@@ -5,6 +5,9 @@ import { HowItWorks } from "@/components/HowItWorks";
 import { TrustStrip } from "@/components/TrustStrip";
 import { ImageStrip } from "@/components/ImageStrip";
 import { MobileNav } from "@/components/MobileNav";
+import { FloatingWhatsAppButton } from "@/components/FloatingWhatsAppButton";
+import { BackToTopButton } from "@/components/BackToTopButton";
+import { useScrollDirection } from "@/hooks/use-scroll-direction";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
@@ -21,6 +24,8 @@ const NAV = [
 export default function Index() {
   const formRef = useRef<HTMLDivElement | null>(null);
   const [active, setActive] = useState<string>("sell");
+  const [navHidden, setNavHidden] = useState(false);
+  const { direction, y } = useScrollDirection({ thresholdPx: 6 });
 
   const adminWhatsAppLink = useMemo(() => {
     const fromEnv = (import.meta as any).env?.VITE_ADMIN_WHATSAPP_LINK as string | undefined;
@@ -28,6 +33,7 @@ export default function Index() {
   }, []);
 
   function navTo(id: string) {
+    setNavHidden(true);
     document.getElementById(id)?.scrollIntoView({ behavior: "smooth", block: "start" });
   }
 
@@ -47,9 +53,16 @@ export default function Index() {
     return () => io.disconnect();
   }, []);
 
+  useEffect(() => {
+    if (!navHidden) return;
+    if (direction === "up") setNavHidden(false);
+  }, [direction, navHidden]);
+
+  const showTop = y > 520;
+
   return (
     <div className="min-h-screen bg-slate-50">
-      <Header active={active} onNav={navTo} waLink={adminWhatsAppLink} />
+      <Header active={active} onNav={navTo} waLink={adminWhatsAppLink} hidden={navHidden} />
 
       <main className="mx-auto max-w-6xl px-4 pb-16 pt-20 md:px-6 md:pt-24">
         {/* Hero */}
@@ -70,9 +83,21 @@ export default function Index() {
             </p>
 
             <div className="mt-5 grid gap-2">
-              <HeroPromise icon={<Timer className="h-4 w-4" />} title="Call back within 2 hours" desc="Once you submit, it’s on us." />
-              <HeroPromise icon={<ShieldCheck className="h-4 w-4" />} title="Private by design" desc="Your number isn’t posted online." />
-              <HeroPromise icon={<Check className="h-4 w-4" />} title="One clean form" desc="Everything dealers need, in a structured format." />
+              <HeroPromise
+                icon={<Timer className="h-4 w-4" />}
+                title="Call back within 2 hours"
+                desc="Once you submit, it’s on us."
+              />
+              <HeroPromise
+                icon={<ShieldCheck className="h-4 w-4" />}
+                title="Private by design"
+                desc="Your number isn’t posted online."
+              />
+              <HeroPromise
+                icon={<Check className="h-4 w-4" />}
+                title="One clean form"
+                desc="Everything dealers need, in a structured format."
+              />
             </div>
 
             <div className="mt-6 flex flex-col gap-3 sm:flex-row sm:items-center">
@@ -199,6 +224,9 @@ export default function Index() {
           <p className="text-xs text-slate-500">© {new Date().getFullYear()} Sell Your Ride. All rights reserved.</p>
         </footer>
       </main>
+
+      <FloatingWhatsAppButton href={adminWhatsAppLink} />
+      <BackToTopButton show={showTop} />
     </div>
   );
 }
@@ -207,13 +235,20 @@ function Header({
   active,
   onNav,
   waLink,
+  hidden,
 }: {
   active: string;
   onNav: (id: string) => void;
   waLink: string;
+  hidden: boolean;
 }) {
   return (
-    <div className="fixed left-0 right-0 top-0 z-50 border-b border-slate-200 bg-white">
+    <div
+      className={cn(
+        "fixed left-0 right-0 top-0 z-50 border-b border-slate-200 bg-white transition-transform duration-200",
+        hidden ? "-translate-y-full" : "translate-y-0"
+      )}
+    >
       <div className="mx-auto flex max-w-6xl items-center justify-between px-4 py-3 md:px-6">
         <button onClick={() => onNav("sell")} className="group inline-flex items-center gap-2">
           <span className="grid h-9 w-9 place-items-center rounded-lg bg-indigo-600 text-white shadow-sm">SYR</span>
