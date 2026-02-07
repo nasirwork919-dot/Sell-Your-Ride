@@ -120,7 +120,7 @@ export default function Index() {
       },
       {
         name: "Imran",
-        text: "Loved the WhatsApp follow-up. One form and then a real person called me, simple.",
+        text: "Loved the WhatsApp follow up. One form and then a real person called me, simple.",
         avatarUrl: "https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?auto=compress&cs=tinysrgb&w=200",
       },
       {

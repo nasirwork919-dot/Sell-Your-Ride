@@ -16,14 +16,12 @@ export function MobileNav({
   const [open, setOpen] = useState(false);
   const [pendingNav, setPendingNav] = useState<string | null>(null);
 
-  // Close on hash changes (simple UX)
   useEffect(() => {
     const onHash = () => setOpen(false);
     window.addEventListener("hashchange", onHash);
     return () => window.removeEventListener("hashchange", onHash);
   }, []);
 
-  // Run navigation only after the sheet is fully closed (more reliable on mobile)
   useEffect(() => {
     if (open) return;
     if (!pendingNav) return;

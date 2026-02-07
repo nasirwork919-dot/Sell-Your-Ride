@@ -80,9 +80,15 @@ export default function FollowUp() {
               {POINTS.map((p) => {
                 const Icon = p.icon;
                 return (
-                  <div key={p.title} className="flex gap-3 rounded-xl border border-slate-200 bg-slate-50 px-4 py-3">
-                    <div className="mt-0.5 grid h-9 w-9 place-items-center rounded-lg border border-slate-200 bg-white text-slate-900 sm:h-10 sm:w-10">
-                      <Icon className="h-4 w-4 text-indigo-600 sm:h-[18px] sm:w-[18px]" />
+                  <div key={p.title} className="flex gap-3 rounded-xl border border-slate-200/70 bg-slate-50 px-4 py-3">
+                    <div
+                      className="mt-0.5 grid place-items-center rounded-lg bg-white text-slate-900 shadow-sm ring-1 ring-slate-200/70"
+                      style={{ width: "clamp(2.25rem, 4vw, 2.75rem)", height: "clamp(2.25rem, 4vw, 2.75rem)" }}
+                    >
+                      <Icon
+                        className="text-indigo-600"
+                        style={{ width: "clamp(1.0rem, 2.2vw, 1.15rem)", height: "clamp(1.0rem, 2.2vw, 1.15rem)" }}
+                      />
                     </div>
                     <div className="min-w-0">
                       <p className="text-sm font-semibold text-slate-900">{p.title}</p>
@@ -95,8 +101,14 @@ export default function FollowUp() {
 
             <div className="mt-6 rounded-xl border border-emerald-200 bg-emerald-50 p-4">
               <div className="flex items-start gap-3">
-                <div className="grid h-9 w-9 place-items-center rounded-lg border border-emerald-200 bg-white sm:h-10 sm:w-10">
-                  <Check className="h-4 w-4 text-emerald-700 sm:h-[18px] sm:w-[18px]" />
+                <div
+                  className="grid place-items-center rounded-lg bg-white shadow-sm ring-1 ring-emerald-200"
+                  style={{ width: "clamp(2.25rem, 4vw, 2.75rem)", height: "clamp(2.25rem, 4vw, 2.75rem)" }}
+                >
+                  <Check
+                    className="text-emerald-700"
+                    style={{ width: "clamp(1.0rem, 2.2vw, 1.15rem)", height: "clamp(1.0rem, 2.2vw, 1.15rem)" }}
+                  />
                 </div>
                 <div className="min-w-0">
                   <p className="text-sm font-semibold text-emerald-950">What you’ll get on the call</p>
