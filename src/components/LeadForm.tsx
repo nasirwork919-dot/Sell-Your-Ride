@@ -88,16 +88,16 @@ export function LeadForm() {
               Get <span className="text-indigo-700">dealer offers</span>
             </h3>
 
-            <div className="inline-flex items-center gap-2 rounded-full border border-indigo-200 bg-indigo-50 px-3 py-1.5 text-[13px] font-semibold text-indigo-950 shadow-sm md:text-sm">
-              <span className="inline-flex items-center rounded-full bg-white px-2 py-0.5 text-indigo-900 ring-1 ring-indigo-200">
+            <div className="inline-flex items-center gap-2 rounded-lg border border-indigo-200 bg-indigo-50 px-3 py-1.5 text-[13px] font-semibold text-indigo-950 shadow-sm md:text-sm">
+              <span className="inline-flex items-center rounded-md bg-white px-2 py-0.5 text-indigo-900 ring-1 ring-indigo-200">
                 Fast
               </span>
               <span className="h-4 w-px bg-indigo-200" aria-hidden="true" />
-              <span className="inline-flex items-center rounded-full bg-white px-2 py-0.5 text-indigo-900 ring-1 ring-indigo-200">
+              <span className="inline-flex items-center rounded-md bg-white px-2 py-0.5 text-indigo-900 ring-1 ring-indigo-200">
                 Private
               </span>
               <span className="h-4 w-px bg-indigo-200" aria-hidden="true" />
-              <span className="inline-flex items-center rounded-full bg-white px-2 py-0.5 text-indigo-900 ring-1 ring-indigo-200">
+              <span className="inline-flex items-center rounded-md bg-white px-2 py-0.5 text-indigo-900 ring-1 ring-indigo-200">
                 Secure
               </span>
             </div>
