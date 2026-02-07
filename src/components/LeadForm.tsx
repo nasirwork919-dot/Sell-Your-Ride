@@ -23,7 +23,11 @@ const formSchema = z.object({
     }, "Use E.164 (+15551234567) or local digits"),
   carBrand: z.string().min(2, "Brand is required").max(40),
   carModel: z.string().min(1, "Model is required").max(40),
-  manufacturingYear: z.coerce.number().int().min(1980, "Year must be 1980 or later").max(currentYear, `Year can't be later than ${currentYear}`),
+  manufacturingYear: z.coerce
+    .number()
+    .int()
+    .min(1980, "Year must be 1980 or later")
+    .max(currentYear, `Year can't be later than ${currentYear}`),
   askingPrice: z.coerce.number().int().positive("Enter a valid price"),
   kilometersDriven: z.coerce.number().int().min(0, "KM must be 0 or more"),
   additionalNotes: z.string().max(800).optional(),
@@ -78,15 +82,19 @@ export function LeadForm() {
   return (
     <Card className="rounded-xl border-slate-200 bg-white p-5 shadow-sm md:p-7">
       <div className="flex items-start justify-between gap-4">
-        <div>
+        <div className="min-w-0">
           <h3 className="text-xl font-semibold tracking-tight text-slate-900 md:text-2xl">Get dealer offers</h3>
           <p className="mt-1 text-sm leading-relaxed text-slate-700 md:text-[15px]">
             No payments. No public listing. Submit once and we call you within 2 hours.
           </p>
         </div>
 
-        <div className="hidden rounded-lg border border-indigo-200 bg-indigo-50 px-3 py-2 text-sm font-semibold text-indigo-800 md:block">
-          Fast <span className="px-1.5 text-indigo-400">•</span> Private <span className="px-1.5 text-indigo-400">•</span> Secure
+        <div className="shrink-0 rounded-lg border border-indigo-200 bg-indigo-50 px-3 py-2 text-[13px] font-semibold leading-5 text-indigo-900 md:text-sm">
+          <div className="flex flex-col items-start">
+            <span>Fast</span>
+            <span className="text-indigo-600">Private</span>
+            <span>Secure</span>
+          </div>
         </div>
       </div>
 
