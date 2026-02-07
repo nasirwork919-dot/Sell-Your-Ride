@@ -14,6 +14,7 @@ export function MobileNav({
   onNav: (id: string) => void;
 }) {
   const [open, setOpen] = useState(false);
+  const [pendingNav, setPendingNav] = useState<string | null>(null);
 
   // Close on hash changes (simple UX)
   useEffect(() => {
@@ -21,6 +22,14 @@ export function MobileNav({
     window.addEventListener("hashchange", onHash);
     return () => window.removeEventListener("hashchange", onHash);
   }, []);
+
+  // Run navigation only after the sheet is fully closed (more reliable on mobile)
+  useEffect(() => {
+    if (open) return;
+    if (!pendingNav) return;
+    onNav(pendingNav);
+    setPendingNav(null);
+  }, [open, pendingNav, onNav]);
 
   return (
     <Sheet open={open} onOpenChange={setOpen}>
@@ -46,9 +55,10 @@ export function MobileNav({
             {items.map((n) => (
               <button
                 key={n.id}
+                type="button"
                 onClick={() => {
+                  setPendingNav(n.id);
                   setOpen(false);
-                  onNav(n.id);
                 }}
                 className={cn(
                   "w-full rounded-lg border px-4 py-3 text-left text-sm font-semibold transition",
