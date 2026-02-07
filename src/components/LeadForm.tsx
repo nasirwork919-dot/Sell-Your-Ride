@@ -20,7 +20,7 @@ const formSchema = z.object({
     .refine((v) => {
       const compact = v.replace(/[\s()-]/g, "");
       return /^\+[1-9]\d{6,14}$/.test(compact) || /^\d{7,15}$/.test(compact);
-    }, "Use E.164 (+15551234567) or local digits"),
+    }, "Use E.164 (+614XXXXXXXX) or local digits"),
   carBrand: z.string().min(2, "Brand is required").max(40),
   carModel: z.string().min(1, "Model is required").max(40),
   manufacturingYear: z.coerce
@@ -142,7 +142,7 @@ export function LeadForm() {
           <Field label="Full name" error={errors.fullName?.message}>
             <Input
               className="h-12 rounded-lg border-slate-200 bg-white text-[15px] md:text-base"
-              placeholder="e.g., Ahmed Khan"
+              placeholder="e.g., Olivia Smith"
               {...register("fullName")}
             />
           </Field>
@@ -150,7 +150,7 @@ export function LeadForm() {
           <Field label="Phone (WhatsApp)" error={errors.phone?.message}>
             <Input
               className="h-12 rounded-lg border-slate-200 bg-white text-[15px] md:text-base"
-              placeholder="+15551234567"
+              placeholder="+61412 345 678"
               inputMode="tel"
               {...register("phone")}
             />
@@ -167,7 +167,7 @@ export function LeadForm() {
           <Field label="Car model" error={errors.carModel?.message}>
             <Input
               className="h-12 rounded-lg border-slate-200 bg-white text-[15px] md:text-base"
-              placeholder="e.g., Corolla"
+              placeholder="e.g., Corolla Ascent Sport"
               {...register("carModel")}
             />
           </Field>
@@ -175,7 +175,7 @@ export function LeadForm() {
           <Field label="Manufacturing year" error={errors.manufacturingYear?.message}>
             <Input
               className="h-12 rounded-lg border-slate-200 bg-white text-[15px] md:text-base"
-              placeholder={`${currentYear}`}
+              placeholder={`e.g., ${currentYear - 3}`}
               inputMode="numeric"
               {...register("manufacturingYear")}
             />
@@ -184,7 +184,7 @@ export function LeadForm() {
           <Field label="Asking price" error={errors.askingPrice?.message}>
             <Input
               className="h-12 rounded-lg border-slate-200 bg-white text-[15px] md:text-base"
-              placeholder="e.g., 9500"
+              placeholder="e.g., 18,500 (AUD)"
               inputMode="numeric"
               {...register("askingPrice")}
             />
@@ -193,7 +193,7 @@ export function LeadForm() {
           <Field label="Kilometers driven" error={errors.kilometersDriven?.message}>
             <Input
               className="h-12 rounded-lg border-slate-200 bg-white text-[15px] md:text-base"
-              placeholder="e.g., 120000"
+              placeholder="e.g., 124,000 km"
               inputMode="numeric"
               {...register("kilometersDriven")}
             />
@@ -202,7 +202,7 @@ export function LeadForm() {
           <Field label="Additional notes (optional)" error={errors.additionalNotes?.message} className="md:col-span-2">
             <Textarea
               className="min-h-28 rounded-lg border-slate-200 bg-white text-[15px] leading-relaxed md:text-base"
-              placeholder="Accidents, service history, upgrades, urgency..."
+              placeholder="Condition, service history, rego expiry, accidents, upgrades, urgency…"
               {...register("additionalNotes")}
             />
           </Field>

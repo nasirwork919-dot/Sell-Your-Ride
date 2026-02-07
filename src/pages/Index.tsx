@@ -10,10 +10,10 @@ import { BackToTopButton } from "@/components/BackToTopButton";
 import { useScrollDirection } from "@/hooks/use-scroll-direction";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
-import { Separator } from "@/components/ui/separator";
 import { cn } from "@/lib/utils";
 import { ArrowRight, BadgeCheck, Check, MessageCircle, ShieldCheck, Timer } from "lucide-react";
 import { ReviewsMarquee } from "@/components/ReviewsMarquee";
+import { SiteFooter } from "@/components/SiteFooter";
 
 const NAV = [
   { id: "sell", label: "Sell Your Car" },
@@ -37,18 +37,14 @@ export default function Index() {
     const el = document.getElementById(id);
     if (!el) return;
 
-    // Keep URL in sync (also helps some mobile browsers "commit" the navigation)
     if (window.location.hash !== `#${id}`) {
       window.history.replaceState(null, "", `#${id}`);
     }
 
-    // Account for fixed header height + a little breathing room
     const headerOffsetPx = 84;
     const top = el.getBoundingClientRect().top + window.scrollY - headerOffsetPx;
     const clampedTop = Math.max(0, top);
 
-    // iOS/Safari can ignore smooth scroll right after a Sheet/Dialog closes.
-    // Force an immediate jump first, then "settle" with smooth scroll.
     window.scrollTo({ top: clampedTop, behavior: "auto" });
 
     requestAnimationFrame(() => {
@@ -57,11 +53,9 @@ export default function Index() {
   }
 
   function navTo(id: string) {
-    // Let the mobile sheet start closing before we scroll (prevents odd mobile timing)
     window.setTimeout(() => {
       scrollToSection(id);
 
-      // Some mobile browsers need a tiny nudge for scroll listeners / layout to settle
       window.setTimeout(() => {
         window.scrollBy({ top: 1, left: 0, behavior: "auto" });
         window.scrollBy({ top: -1, left: 0, behavior: "auto" });
@@ -85,17 +79,13 @@ export default function Index() {
     return () => io.disconnect();
   }, []);
 
-  // If user loads with a hash, scroll to that section after mount.
   useEffect(() => {
     const id = window.location.hash.replace("#", "").trim();
     if (!id) return;
-
-    // Slight delay to ensure layout is ready
     window.setTimeout(() => scrollToSection(id), 80);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  // Hide header only on real scroll down; show on scroll up.
   useEffect(() => {
     if (y < 24) {
       setNavHidden(false);
@@ -148,7 +138,6 @@ export default function Index() {
       <Header active={active} onNav={navTo} waLink={adminWhatsAppLink} hidden={navHidden} />
 
       <main className="mx-auto max-w-6xl px-4 pb-16 pt-20 md:px-6 md:pt-24">
-        {/* Hero */}
         <section className="grid gap-10 md:grid-cols-2 md:items-start">
           <div>
             <div className="inline-flex items-center gap-2 rounded-md border border-slate-200 bg-white px-3 py-1 text-xs font-semibold text-slate-700">
@@ -212,7 +201,6 @@ export default function Index() {
           </div>
         </section>
 
-        {/* How it works (customer-centric) */}
         <section id="how" className="mt-14 scroll-mt-24">
           <SectionTitle kicker="How it works" title="You submit. We call you within 2 hours." />
           <p className="mt-2 max-w-3xl text-sm leading-relaxed text-slate-700">
@@ -226,7 +214,6 @@ export default function Index() {
           </div>
         </section>
 
-        {/* Visual strip */}
         <section className="mt-12">
           <SectionTitle kicker="What you get" title="A smooth selling experience" />
           <p className="mt-2 max-w-3xl text-sm leading-relaxed text-slate-700">
@@ -238,7 +225,6 @@ export default function Index() {
           </div>
         </section>
 
-        {/* Reviews */}
         <section id="reviews" className="mt-14 scroll-mt-24">
           <SectionTitle kicker="Reviews" title="Trusted by busy sellers" />
           <p className="mt-2 max-w-3xl text-sm leading-relaxed text-slate-700">
@@ -250,7 +236,6 @@ export default function Index() {
           </div>
         </section>
 
-        {/* Contact */}
         <section id="contact" className="mt-14 scroll-mt-24">
           <Card className="rounded-xl border-slate-200 bg-white p-6 shadow-sm md:p-8">
             <div className="flex flex-col gap-6 md:flex-row md:items-center md:justify-between">
@@ -279,25 +264,7 @@ export default function Index() {
           </Card>
         </section>
 
-        <footer className="mt-12 rounded-xl border border-slate-200 bg-white p-6 text-sm text-slate-700 shadow-sm">
-          <div className="grid gap-4 md:grid-cols-3">
-            <div>
-              <p className="text-sm font-semibold text-slate-900">Sell Your Ride</p>
-              <p className="mt-1">Private lead intake + dealer connection.</p>
-            </div>
-            <div>
-              <p className="font-semibold text-slate-900">Contact</p>
-              <p className="mt-1">Email: hello@example.com</p>
-              <p>Phone: +61 04 7093 000</p>
-            </div>
-            <div>
-              <p className="font-semibold text-slate-900">Address</p>
-              <p className="mt-1">123 Placeholder Street, City, Country</p>
-            </div>
-          </div>
-          <Separator className="my-5 bg-slate-200" />
-          <p className="text-xs text-slate-500">© {new Date().getFullYear()} Sell Your Ride. All rights reserved.</p>
-        </footer>
+        <SiteFooter />
       </main>
 
       <FloatingWhatsAppButton href={adminWhatsAppLink} />
