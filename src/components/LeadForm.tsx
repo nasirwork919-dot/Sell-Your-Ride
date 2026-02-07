@@ -84,14 +84,22 @@ export function LeadForm() {
       <div className="flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
         <div className="min-w-0">
           <div className="flex flex-wrap items-center gap-x-3 gap-y-2">
-            <h3 className="text-xl font-semibold tracking-tight text-slate-900 md:text-2xl">Get dealer offers</h3>
+            <h3 className="text-xl font-semibold tracking-tight text-slate-900 md:text-2xl">
+              Get <span className="text-indigo-700">dealer offers</span>
+            </h3>
 
-            <div className="rounded-full border border-indigo-200 bg-indigo-50 px-3 py-1 text-[13px] font-semibold text-indigo-900 md:text-sm">
-              <span>Fast</span>
-              <span className="px-1.5 text-indigo-400">•</span>
-              <span>Private</span>
-              <span className="px-1.5 text-indigo-400">•</span>
-              <span>Secure</span>
+            <div className="inline-flex items-center gap-2 rounded-full border border-indigo-200 bg-indigo-50 px-3 py-1.5 text-[13px] font-semibold text-indigo-950 shadow-sm md:text-sm">
+              <span className="inline-flex items-center rounded-full bg-white px-2 py-0.5 text-indigo-900 ring-1 ring-indigo-200">
+                Fast
+              </span>
+              <span className="h-4 w-px bg-indigo-200" aria-hidden="true" />
+              <span className="inline-flex items-center rounded-full bg-white px-2 py-0.5 text-indigo-900 ring-1 ring-indigo-200">
+                Private
+              </span>
+              <span className="h-4 w-px bg-indigo-200" aria-hidden="true" />
+              <span className="inline-flex items-center rounded-full bg-white px-2 py-0.5 text-indigo-900 ring-1 ring-indigo-200">
+                Secure
+              </span>
             </div>
           </div>
 
