@@ -1,11 +1,15 @@
 import { useEffect, useMemo, useRef, useState } from "react";
 import { LeadForm } from "@/components/LeadForm";
 import { HeroImageCard } from "@/components/HeroImageCard";
+import { HowItWorks } from "@/components/HowItWorks";
+import { TrustStrip } from "@/components/TrustStrip";
+import { ImageStrip } from "@/components/ImageStrip";
+import { MobileNav } from "@/components/MobileNav";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
 import { cn } from "@/lib/utils";
-import { ArrowRight, Check, MessageCircle, ShieldCheck, Sparkles } from "lucide-react";
+import { ArrowRight, BadgeCheck, Check, MessageCircle, ShieldCheck, Timer } from "lucide-react";
 
 const NAV = [
   { id: "sell", label: "Sell Your Car" },
@@ -19,10 +23,13 @@ export default function Index() {
   const [active, setActive] = useState<string>("sell");
 
   const adminWhatsAppLink = useMemo(() => {
-    // Optional: set VITE_ADMIN_WHATSAPP_LINK to override
     const fromEnv = (import.meta as any).env?.VITE_ADMIN_WHATSAPP_LINK as string | undefined;
     return fromEnv ?? "https://wa.me/";
   }, []);
+
+  function navTo(id: string) {
+    document.getElementById(id)?.scrollIntoView({ behavior: "smooth", block: "start" });
+  }
 
   useEffect(() => {
     const ids = NAV.map((n) => n.id);
@@ -42,35 +49,38 @@ export default function Index() {
 
   return (
     <div className="min-h-screen bg-slate-50">
-      <Header
-        active={active}
-        onNav={(id) => document.getElementById(id)?.scrollIntoView({ behavior: "smooth", block: "start" })}
-        waLink={adminWhatsAppLink}
-      />
+      <Header active={active} onNav={navTo} waLink={adminWhatsAppLink} />
 
       <main className="mx-auto max-w-6xl px-4 pb-16 pt-20 md:px-6 md:pt-24">
         {/* Hero */}
         <section className="grid gap-10 md:grid-cols-2 md:items-start">
           <div>
-            <div className="inline-flex items-center gap-2 rounded-md border border-slate-200 bg-white px-3 py-1 text-xs font-medium text-slate-700">
-              <Sparkles className="h-4 w-4 text-indigo-600" />
-              Dealer-connected lead intake — no marketplace, no payments
+            <div className="inline-flex items-center gap-2 rounded-md border border-slate-200 bg-white px-3 py-1 text-xs font-semibold text-slate-700">
+              <BadgeCheck className="h-4 w-4 text-indigo-600" />
+              Premium lead intake — private, dealer-connected
             </div>
 
             <h1 className="mt-4 text-balance text-4xl font-semibold tracking-tight text-slate-900 md:text-5xl">
-              Sell Your Car Fast — Submit Details, We Connect You with Dealers
+              Sell Your Car Fast — Submit Once, We Handle the Rest
             </h1>
+
             <p className="mt-4 max-w-xl text-pretty text-base leading-relaxed text-slate-700">
-              Share your car details once. Our backend automation delivers your lead to our admin via WhatsApp, and we
-              connect you with relevant dealer partners.
+              This is not a marketplace. No public listing. No payments. You submit your details, and our team does the
+              dealer outreach — then we call you back with next steps.
             </p>
+
+            <div className="mt-5 grid gap-2">
+              <HeroPromise icon={<Timer className="h-4 w-4" />} title="Call back within 2 hours" desc="Once you submit, it’s on us." />
+              <HeroPromise icon={<ShieldCheck className="h-4 w-4" />} title="Private by design" desc="Your number isn’t posted online." />
+              <HeroPromise icon={<Check className="h-4 w-4" />} title="One clean form" desc="Everything dealers need, in a structured format." />
+            </div>
 
             <div className="mt-6 flex flex-col gap-3 sm:flex-row sm:items-center">
               <Button
                 className="h-11 rounded-lg bg-indigo-600 text-white hover:bg-indigo-700"
                 onClick={() => formRef.current?.scrollIntoView({ behavior: "smooth", block: "start" })}
               >
-                Get started
+                Submit car details
                 <ArrowRight className="ml-2 h-4 w-4" />
               </Button>
               <a href={adminWhatsAppLink} target="_blank" rel="noreferrer" className="inline-flex">
@@ -79,14 +89,9 @@ export default function Index() {
                   className="h-11 rounded-lg border border-slate-200 bg-white text-slate-900 hover:bg-slate-50"
                 >
                   <MessageCircle className="mr-2 h-4 w-4" />
-                  WhatsApp us
+                  WhatsApp
                 </Button>
               </a>
-            </div>
-
-            <div className="mt-8 grid grid-cols-2 gap-3">
-              <MiniPill icon={<ShieldCheck className="h-4 w-4" />} title="Private" subtitle="No public listings" />
-              <MiniPill icon={<Check className="h-4 w-4" />} title="Fast" subtitle="< 1 min to submit" />
             </div>
 
             <div className="mt-6">
@@ -99,42 +104,28 @@ export default function Index() {
           </div>
         </section>
 
-        {/* How it works */}
+        {/* How it works (customer-centric) */}
         <section id="how" className="mt-14 scroll-mt-24">
-          <SectionTitle kicker="How it works" title="Three steps. Clean and simple." />
-          <div className="mt-6 grid gap-4 md:grid-cols-3">
-            <StepCard n="01" title="Submit your car" desc="Tell us the essentials: model, year, price, and mileage." />
-            <StepCard n="02" title="Backend automation" desc="Server validates, stores, and formats a dealer-ready summary." />
-            <StepCard n="03" title="WhatsApp delivery" desc="A structured message is delivered to our admin for quick follow-up." />
+          <SectionTitle kicker="How it works" title="You submit. We sell-call within 2 hours." />
+          <p className="mt-2 max-w-3xl text-sm leading-relaxed text-slate-700">
+            Clear, old-school service — powered by modern automation. You don’t chase dealers; we bring the process to you.
+          </p>
+          <div className="mt-6">
+            <HowItWorks />
+          </div>
+          <div className="mt-6">
+            <TrustStrip />
           </div>
         </section>
 
-        {/* Flow strip */}
+        {/* Visual strip */}
         <section className="mt-12">
-          <Card className="rounded-xl border-slate-200 bg-white p-5 shadow-sm md:p-7">
-            <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
-              <div>
-                <p className="text-sm font-semibold text-slate-900">Architecture flow</p>
-                <p className="mt-1 text-sm text-slate-700">Website Form → Backend Automation → WhatsApp Message to Admin</p>
-              </div>
-              <div className="flex flex-wrap items-center gap-2 text-xs font-medium">
-                <span className="rounded-md bg-indigo-600 px-3 py-1 text-white">Form</span>
-                <span className="text-slate-400">→</span>
-                <span className="rounded-md bg-emerald-600 px-3 py-1 text-white">API + Validation</span>
-                <span className="text-slate-400">→</span>
-                <span className="rounded-md bg-slate-900 px-3 py-1 text-white">WhatsApp</span>
-              </div>
-            </div>
-          </Card>
-        </section>
-
-        {/* Trust */}
-        <section className="mt-12">
-          <SectionTitle kicker="Trust" title="Built for privacy & security" />
-          <div className="mt-6 grid gap-4 md:grid-cols-3">
-            <TrustCard title="Server-side validation" desc="Input is validated on the server before saving or messaging." />
-            <TrustCard title="Rate limiting + honeypot" desc="Basic bot protection and throttling help keep submissions clean." />
-            <TrustCard title="No public access" desc="There’s no lead listing or admin dashboard exposed publicly." />
+          <SectionTitle kicker="What you get" title="A smooth selling experience" />
+          <p className="mt-2 max-w-3xl text-sm leading-relaxed text-slate-700">
+            A simple form, a real follow-up call, and dealer interest — without the noise.
+          </p>
+          <div className="mt-6">
+            <ImageStrip />
           </div>
         </section>
 
@@ -165,7 +156,7 @@ export default function Index() {
             <div className="flex flex-col gap-6 md:flex-row md:items-center md:justify-between">
               <div>
                 <h3 className="text-xl font-semibold tracking-tight text-slate-900">Ready to sell?</h3>
-                <p className="mt-1 text-sm text-slate-700">Submit your car details and we’ll connect you with dealers.</p>
+                <p className="mt-1 text-sm text-slate-700">Submit your car details and we’ll call you within 2 hours.</p>
               </div>
               <div className="flex flex-col gap-3 sm:flex-row">
                 <Button
@@ -192,7 +183,7 @@ export default function Index() {
           <div className="grid gap-4 md:grid-cols-3">
             <div>
               <p className="text-sm font-semibold text-slate-900">CarLead</p>
-              <p className="mt-1">Lead collection + dealer connection platform.</p>
+              <p className="mt-1">Private lead intake + dealer connection.</p>
             </div>
             <div>
               <p className="font-semibold text-slate-900">Contact</p>
@@ -235,7 +226,7 @@ function Header({
               key={n.id}
               onClick={() => onNav(n.id)}
               className={cn(
-                "rounded-lg px-3 py-2 text-sm font-medium transition",
+                "rounded-lg px-3 py-2 text-sm font-semibold transition",
                 active === n.id ? "bg-slate-900 text-white" : "text-slate-700 hover:bg-slate-100"
               )}
             >
@@ -244,12 +235,15 @@ function Header({
           ))}
         </nav>
 
-        <a href={waLink} target="_blank" rel="noreferrer" className="inline-flex">
-          <Button className="h-10 rounded-lg bg-emerald-600 text-white hover:bg-emerald-700">
-            <MessageCircle className="mr-2 h-4 w-4" />
-            WhatsApp
-          </Button>
-        </a>
+        <div className="flex items-center gap-2">
+          <a href={waLink} target="_blank" rel="noreferrer" className="hidden md:inline-flex">
+            <Button className="h-10 rounded-lg bg-emerald-600 text-white hover:bg-emerald-700">
+              <MessageCircle className="mr-2 h-4 w-4" />
+              WhatsApp
+            </Button>
+          </a>
+          <MobileNav active={active} items={NAV} onNav={onNav} />
+        </div>
       </div>
     </div>
   );
@@ -264,43 +258,23 @@ function SectionTitle({ kicker, title }: { kicker: string; title: string }) {
   );
 }
 
-function StepCard({ n, title, desc }: { n: string; title: string; desc: string }) {
-  return (
-    <Card className="rounded-xl border-slate-200 bg-white p-5 shadow-sm">
-      <div className="flex items-start justify-between">
-        <span className="rounded-md bg-indigo-600 px-3 py-1 text-xs font-semibold text-white">{n}</span>
-        <span className="text-xs font-medium text-slate-500">~1 minute</span>
-      </div>
-      <h3 className="mt-4 text-base font-semibold text-slate-900">{title}</h3>
-      <p className="mt-2 text-sm leading-relaxed text-slate-700">{desc}</p>
-    </Card>
-  );
-}
-
-function TrustCard({ title, desc }: { title: string; desc: string }) {
-  return (
-    <Card className="rounded-xl border-slate-200 bg-white p-5 shadow-sm">
-      <h3 className="text-base font-semibold text-slate-900">{title}</h3>
-      <p className="mt-2 text-sm leading-relaxed text-slate-700">{desc}</p>
-    </Card>
-  );
-}
-
-function MiniPill({
+function HeroPromise({
   icon,
   title,
-  subtitle,
+  desc,
 }: {
   icon: React.ReactNode;
   title: string;
-  subtitle: string;
+  desc: string;
 }) {
   return (
-    <div className="flex items-center gap-3 rounded-xl border border-slate-200 bg-white px-4 py-3 shadow-sm">
-      <div className="grid h-10 w-10 place-items-center rounded-lg bg-slate-900 text-white">{icon}</div>
+    <div className="flex gap-3 rounded-xl border border-slate-200 bg-white px-4 py-3 shadow-sm">
+      <div className="grid h-9 w-9 shrink-0 place-items-center rounded-lg border border-slate-200 bg-slate-50 text-slate-900">
+        {icon}
+      </div>
       <div>
         <p className="text-sm font-semibold text-slate-900">{title}</p>
-        <p className="text-xs text-slate-600">{subtitle}</p>
+        <p className="mt-0.5 text-sm text-slate-700">{desc}</p>
       </div>
     </div>
   );
