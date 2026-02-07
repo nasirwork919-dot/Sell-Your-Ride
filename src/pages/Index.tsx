@@ -36,11 +36,23 @@ export default function Index() {
     const el = document.getElementById(id);
     if (!el) return;
 
+    // Keep URL in sync (also helps some mobile browsers "commit" the navigation)
+    if (window.location.hash !== `#${id}`) {
+      window.history.replaceState(null, "", `#${id}`);
+    }
+
     // Account for fixed header height + a little breathing room
     const headerOffsetPx = 84;
     const top = el.getBoundingClientRect().top + window.scrollY - headerOffsetPx;
+    const clampedTop = Math.max(0, top);
 
-    window.scrollTo({ top: Math.max(0, top), behavior: "smooth" });
+    // iOS/Safari can ignore smooth scroll right after a Sheet/Dialog closes.
+    // Force an immediate jump first, then "settle" with smooth scroll.
+    window.scrollTo({ top: clampedTop, behavior: "auto" });
+
+    requestAnimationFrame(() => {
+      window.scrollTo({ top: clampedTop, behavior: "smooth" });
+    });
   }
 
   function navTo(id: string) {
@@ -70,6 +82,16 @@ export default function Index() {
     );
     els.forEach((el) => io.observe(el));
     return () => io.disconnect();
+  }, []);
+
+  // If user loads with a hash, scroll to that section after mount.
+  useEffect(() => {
+    const id = window.location.hash.replace("#", "").trim();
+    if (!id) return;
+
+    // Slight delay to ensure layout is ready
+    window.setTimeout(() => scrollToSection(id), 80);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   // Hide header only on real scroll down; show on scroll up.
@@ -125,10 +147,7 @@ export default function Index() {
             </div>
 
             <div className="mt-6 flex flex-col gap-3 sm:flex-row sm:items-center">
-              <Button
-                className="h-11 rounded-lg bg-indigo-600 text-white hover:bg-indigo-700"
-                onClick={() => scrollToSection("sell")}
-              >
+              <Button className="h-11 rounded-lg bg-indigo-600 text-white hover:bg-indigo-700" onClick={() => scrollToSection("sell")}>
                 Submit car details
                 <ArrowRight className="ml-2 h-4 w-4" />
               </Button>
@@ -208,7 +227,10 @@ export default function Index() {
                 <p className="mt-1 text-sm text-slate-700">Submit your car details and we’ll call you within 2 hours.</p>
               </div>
               <div className="flex flex-col gap-3 sm:flex-row">
-                <Button className="h-11 rounded-lg bg-indigo-600 text-white hover:bg-indigo-700" onClick={() => scrollToSection("sell")}>
+                <Button
+                  className="h-11 rounded-lg bg-indigo-600 text-white hover:bg-indigo-700"
+                  onClick={() => scrollToSection("sell")}
+                >
                   Submit details
                 </Button>
                 <a href={adminWhatsAppLink} target="_blank" rel="noreferrer" className="inline-flex">
