@@ -32,17 +32,30 @@ export default function Index() {
     return fromEnv ?? "https://wa.me/6147093000";
   }, []);
 
+  function scrollToSection(id: string) {
+    const el = document.getElementById(id);
+    if (!el) return;
+
+    // Account for fixed header height + a little breathing room
+    const headerOffsetPx = 84;
+    const top = el.getBoundingClientRect().top + window.scrollY - headerOffsetPx;
+
+    window.scrollTo({ top: Math.max(0, top), behavior: "smooth" });
+  }
+
   function navTo(id: string) {
     setNavHidden(true);
 
-    document.getElementById(id)?.scrollIntoView({ behavior: "smooth", block: "start" });
-
-    // On some mobile browsers, scrollIntoView doesn't always trigger our scroll-direction
-    // threshold right away; a tiny nudge ensures the header transitions immediately.
+    // Let the mobile sheet start closing before we scroll (prevents odd mobile timing)
     window.setTimeout(() => {
-      window.scrollBy({ top: 1, left: 0, behavior: "auto" });
-      window.scrollBy({ top: -1, left: 0, behavior: "auto" });
-    }, 50);
+      scrollToSection(id);
+
+      // Some mobile browsers need a tiny nudge for scroll listeners / layout to settle
+      window.setTimeout(() => {
+        window.scrollBy({ top: 1, left: 0, behavior: "auto" });
+        window.scrollBy({ top: -1, left: 0, behavior: "auto" });
+      }, 50);
+    }, 60);
   }
 
   useEffect(() => {
