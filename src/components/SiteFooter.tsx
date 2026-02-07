@@ -51,9 +51,18 @@ export function SiteFooter() {
                   We never publish your phone number. Your details are shared only with our team and dealer partners to
                   progress your sale.
                 </p>
-                <p className="mt-2 text-xs font-semibold uppercase tracking-[0.18em] text-slate-600">
-                  ABN: 00 000 000 000 (placeholder)
-                </p>
+
+                <div className="mt-3 flex flex-wrap items-center gap-2">
+                  <span className="inline-flex items-center gap-2 rounded-full border border-slate-200 bg-white px-3 py-1 text-xs font-semibold text-slate-700 shadow-sm">
+                    <span className="text-slate-500">ABN</span>
+                    <span className="text-slate-900">00 000 000 000</span>
+                    <span className="text-slate-500">(placeholder)</span>
+                  </span>
+                  <span className="inline-flex items-center gap-2 rounded-full border border-emerald-200 bg-emerald-50 px-3 py-1 text-xs font-semibold text-emerald-900">
+                    <span className="h-1.5 w-1.5 rounded-full bg-emerald-600" aria-hidden="true" />
+                    Australian support team
+                  </span>
+                </div>
               </div>
             </div>
 
