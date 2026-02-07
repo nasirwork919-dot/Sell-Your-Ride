@@ -81,22 +81,28 @@ export function LeadForm() {
   }
 
   return (
-    <Card className="rounded-3xl border-white/10 bg-white/70 p-5 shadow-[0_20px_70px_-30px_rgba(15,23,42,.35)] backdrop-blur md:p-7">
+    <Card className="rounded-xl border-slate-200 bg-white p-5 shadow-sm md:p-7">
       <div className="flex items-start justify-between gap-4">
         <div>
           <h3 className="text-lg font-semibold tracking-tight text-slate-900 md:text-xl">Get dealer offers</h3>
-          <p className="mt-1 text-sm text-slate-600">No payments. Just a clean lead intake and dealer connection.</p>
+          <p className="mt-1 text-sm text-slate-700">No payments. Just a clean lead intake and dealer connection.</p>
         </div>
-        <div className="hidden rounded-2xl bg-slate-900 px-3 py-1.5 text-xs font-medium text-white/90 md:block">
+        <div className="hidden rounded-md bg-slate-900 px-3 py-1.5 text-xs font-medium text-white md:block">
           Fast • Private • Secure
         </div>
       </div>
 
       {success ? (
-        <div className="mt-6 rounded-2xl border border-emerald-200 bg-emerald-50 p-4">
+        <div className="mt-6 rounded-lg border border-emerald-200 bg-emerald-50 p-4">
           <p className="font-medium text-emerald-900">Thanks! Our team received your details and will contact you shortly.</p>
-          <p className="mt-1 text-sm text-emerald-800">If you need to add anything, message us on WhatsApp and mention your name.</p>
-          <Button className="mt-4 rounded-2xl" variant="secondary" onClick={() => setSuccess(false)}>
+          <p className="mt-1 text-sm text-emerald-800">
+            If you need to add anything, message us on WhatsApp and mention your name.
+          </p>
+          <Button
+            className="mt-4 rounded-lg border border-slate-200 bg-white text-slate-900 hover:bg-slate-50"
+            variant="secondary"
+            onClick={() => setSuccess(false)}
+          >
             Submit another car
           </Button>
         </div>
@@ -105,50 +111,75 @@ export function LeadForm() {
           {/* Honeypot */}
           <div className="hidden" aria-hidden="true">
             <Label htmlFor={honeypotName}>Website</Label>
-            <Input id={honeypotName} value={honeypotValue} onChange={(e) => setHoneypotValue(e.target.value)} tabIndex={-1} autoComplete="off" />
+            <Input
+              id={honeypotName}
+              value={honeypotValue}
+              onChange={(e) => setHoneypotValue(e.target.value)}
+              tabIndex={-1}
+              autoComplete="off"
+            />
           </div>
 
           <Field label="Full name" error={errors.fullName?.message}>
-            <Input className="h-11 rounded-2xl" placeholder="e.g., Ahmed Khan" {...register("fullName")} />
+            <Input className="h-11 rounded-lg border-slate-200 bg-white" placeholder="e.g., Ahmed Khan" {...register("fullName")} />
           </Field>
 
           <Field label="Phone (WhatsApp)" error={errors.phone?.message}>
-            <Input className="h-11 rounded-2xl" placeholder="+15551234567" inputMode="tel" {...register("phone")} />
+            <Input
+              className="h-11 rounded-lg border-slate-200 bg-white"
+              placeholder="+15551234567"
+              inputMode="tel"
+              {...register("phone")}
+            />
           </Field>
 
           <Field label="Car brand" error={errors.carBrand?.message}>
-            <Input className="h-11 rounded-2xl" placeholder="e.g., Toyota" {...register("carBrand")} />
+            <Input className="h-11 rounded-lg border-slate-200 bg-white" placeholder="e.g., Toyota" {...register("carBrand")} />
           </Field>
 
           <Field label="Car model" error={errors.carModel?.message}>
-            <Input className="h-11 rounded-2xl" placeholder="e.g., Corolla" {...register("carModel")} />
+            <Input className="h-11 rounded-lg border-slate-200 bg-white" placeholder="e.g., Corolla" {...register("carModel")} />
           </Field>
 
           <Field label="Manufacturing year" error={errors.manufacturingYear?.message}>
-            <Input className="h-11 rounded-2xl" placeholder={`${currentYear}`} inputMode="numeric" {...register("manufacturingYear")} />
+            <Input
+              className="h-11 rounded-lg border-slate-200 bg-white"
+              placeholder={`${currentYear}`}
+              inputMode="numeric"
+              {...register("manufacturingYear")}
+            />
           </Field>
 
           <Field label="Asking price" error={errors.askingPrice?.message}>
-            <Input className="h-11 rounded-2xl" placeholder="e.g., 9500" inputMode="numeric" {...register("askingPrice")} />
+            <Input className="h-11 rounded-lg border-slate-200 bg-white" placeholder="e.g., 9500" inputMode="numeric" {...register("askingPrice")} />
           </Field>
 
           <Field label="Kilometers driven" error={errors.kilometersDriven?.message}>
-            <Input className="h-11 rounded-2xl" placeholder="e.g., 120000" inputMode="numeric" {...register("kilometersDriven")} />
+            <Input
+              className="h-11 rounded-lg border-slate-200 bg-white"
+              placeholder="e.g., 120000"
+              inputMode="numeric"
+              {...register("kilometersDriven")}
+            />
           </Field>
 
           <Field label="Additional notes (optional)" error={errors.additionalNotes?.message} className="md:col-span-2">
-            <Textarea className="min-h-24 rounded-2xl" placeholder="Accidents, service history, upgrades, urgency..." {...register("additionalNotes")} />
+            <Textarea
+              className="min-h-24 rounded-lg border-slate-200 bg-white"
+              placeholder="Accidents, service history, upgrades, urgency..."
+              {...register("additionalNotes")}
+            />
           </Field>
 
           {serverError ? (
-            <div className="md:col-span-2 rounded-2xl border border-rose-200 bg-rose-50 p-3 text-sm text-rose-800">
+            <div className="md:col-span-2 rounded-lg border border-rose-200 bg-rose-50 p-3 text-sm text-rose-800">
               {serverError}
             </div>
           ) : null}
 
           <div className="md:col-span-2 flex flex-col gap-3 md:flex-row md:items-center md:justify-between">
-            <p className="text-xs text-slate-500">By submitting, you agree to be contacted by our team and dealer partners.</p>
-            <Button disabled={isSubmitting} className="h-11 rounded-2xl bg-indigo-600 text-white hover:bg-indigo-700">
+            <p className="text-xs text-slate-600">By submitting, you agree to be contacted by our team and dealer partners.</p>
+            <Button disabled={isSubmitting} className="h-11 rounded-lg bg-indigo-600 text-white hover:bg-indigo-700">
               {isSubmitting ? "Submitting…" : "Submit details"}
             </Button>
           </div>
@@ -172,8 +203,8 @@ function Field({
   return (
     <div className={className}>
       <div className="flex items-end justify-between gap-3">
-        <Label className="text-sm text-slate-800">{label}</Label>
-        {error ? <span className="text-xs font-medium text-rose-600">{error}</span> : null}
+        <Label className="text-sm font-medium text-slate-900">{label}</Label>
+        {error ? <span className="text-xs font-semibold text-rose-600">{error}</span> : null}
       </div>
       <div className="mt-1.5">{children}</div>
     </div>
