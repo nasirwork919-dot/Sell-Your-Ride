@@ -57,16 +57,16 @@ export default function Index() {
           <div>
             <div className="inline-flex items-center gap-2 rounded-md border border-slate-200 bg-white px-3 py-1 text-xs font-semibold text-slate-700">
               <BadgeCheck className="h-4 w-4 text-indigo-600" />
-              Premium lead intake — private, dealer-connected
+              Premium lead intake. Private and dealer-connected.
             </div>
 
             <h1 className="mt-4 text-balance text-4xl font-semibold tracking-tight text-slate-900 md:text-5xl">
-              Sell Your Car Fast — Submit Once, We Handle the Rest
+              Sell Your Car Fast. Submit Once. We Handle the Rest.
             </h1>
 
             <p className="mt-4 max-w-xl text-pretty text-base leading-relaxed text-slate-700">
               This is not a marketplace. No public listing. No payments. You submit your details, and our team does the
-              dealer outreach — then we call you back with next steps.
+              dealer outreach. Then we call you back with next steps.
             </p>
 
             <div className="mt-5 grid gap-2">
@@ -106,9 +106,9 @@ export default function Index() {
 
         {/* How it works (customer-centric) */}
         <section id="how" className="mt-14 scroll-mt-24">
-          <SectionTitle kicker="How it works" title="You submit. We sell-call within 2 hours." />
+          <SectionTitle kicker="How it works" title="You submit. We call you within 2 hours." />
           <p className="mt-2 max-w-3xl text-sm leading-relaxed text-slate-700">
-            Clear, old-school service — powered by modern automation. You don’t chase dealers; we bring the process to you.
+            Clear, old-school service powered by smart automation. You don’t chase dealers. We bring the process to you.
           </p>
           <div className="mt-6">
             <HowItWorks />
@@ -122,7 +122,7 @@ export default function Index() {
         <section className="mt-12">
           <SectionTitle kicker="What you get" title="A smooth selling experience" />
           <p className="mt-2 max-w-3xl text-sm leading-relaxed text-slate-700">
-            A simple form, a real follow-up call, and dealer interest — without the noise.
+            A simple form, a real follow-up call, and dealer interest without the noise.
           </p>
           <div className="mt-6">
             <ImageStrip />
@@ -136,7 +136,7 @@ export default function Index() {
             {[
               { name: "Omar", text: "Submitted in 40 seconds. Got a call the same day." },
               { name: "Sara", text: "No confusion, no marketplace spam. Super straightforward." },
-              { name: "Imran", text: "Loved the WhatsApp follow-up — quick and clear." },
+              { name: "Imran", text: "Loved the WhatsApp follow-up. Quick and clear." },
               { name: "Nadia", text: "Felt secure. No public listing of my number." },
               { name: "Hassan", text: "Dealer offers came faster than I expected." },
               { name: "Leila", text: "Clean design, easy on mobile." },

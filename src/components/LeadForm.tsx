@@ -23,12 +23,7 @@ const formSchema = z.object({
     }, "Use E.164 (+15551234567) or local digits"),
   carBrand: z.string().min(2, "Brand is required").max(40),
   carModel: z.string().min(1, "Model is required").max(40),
-  manufacturingYear: z
-    .coerce
-    .number()
-    .int()
-    .min(1980, "Year must be 1980 or later")
-    .max(currentYear, `Year can't be later than ${currentYear}`),
+  manufacturingYear: z.coerce.number().int().min(1980, "Year must be 1980 or later").max(currentYear, `Year can't be later than ${currentYear}`),
   askingPrice: z.coerce.number().int().positive("Enter a valid price"),
   kilometersDriven: z.coerce.number().int().min(0, "KM must be 0 or more"),
   additionalNotes: z.string().max(800).optional(),
@@ -84,22 +79,27 @@ export function LeadForm() {
     <Card className="rounded-xl border-slate-200 bg-white p-5 shadow-sm md:p-7">
       <div className="flex items-start justify-between gap-4">
         <div>
-          <h3 className="text-lg font-semibold tracking-tight text-slate-900 md:text-xl">Get dealer offers</h3>
-          <p className="mt-1 text-sm text-slate-700">No payments. Just a clean lead intake and dealer connection.</p>
+          <h3 className="text-xl font-semibold tracking-tight text-slate-900 md:text-2xl">Get dealer offers</h3>
+          <p className="mt-1 text-sm leading-relaxed text-slate-700 md:text-[15px]">
+            No payments. No public listing. Submit once and we call you within 2 hours.
+          </p>
         </div>
-        <div className="hidden rounded-md bg-slate-900 px-3 py-1.5 text-xs font-medium text-white md:block">
-          Fast • Private • Secure
+
+        <div className="hidden rounded-lg border border-indigo-200 bg-indigo-50 px-3 py-2 text-sm font-semibold text-indigo-800 md:block">
+          Fast <span className="px-1.5 text-indigo-400">•</span> Private <span className="px-1.5 text-indigo-400">•</span> Secure
         </div>
       </div>
 
       {success ? (
         <div className="mt-6 rounded-lg border border-emerald-200 bg-emerald-50 p-4">
-          <p className="font-medium text-emerald-900">Thanks! Our team received your details and will contact you shortly.</p>
-          <p className="mt-1 text-sm text-emerald-800">
+          <p className="text-[15px] font-semibold text-emerald-900">
+            Thanks! Our team received your details and will contact you shortly.
+          </p>
+          <p className="mt-1 text-sm leading-relaxed text-emerald-800">
             If you need to add anything, message us on WhatsApp and mention your name.
           </p>
           <Button
-            className="mt-4 rounded-lg border border-slate-200 bg-white text-slate-900 hover:bg-slate-50"
+            className="mt-4 h-11 rounded-lg border border-slate-200 bg-white text-slate-900 hover:bg-slate-50"
             variant="secondary"
             onClick={() => setSuccess(false)}
           >
@@ -121,12 +121,16 @@ export function LeadForm() {
           </div>
 
           <Field label="Full name" error={errors.fullName?.message}>
-            <Input className="h-11 rounded-lg border-slate-200 bg-white" placeholder="e.g., Ahmed Khan" {...register("fullName")} />
+            <Input
+              className="h-12 rounded-lg border-slate-200 bg-white text-[15px] md:text-base"
+              placeholder="e.g., Ahmed Khan"
+              {...register("fullName")}
+            />
           </Field>
 
           <Field label="Phone (WhatsApp)" error={errors.phone?.message}>
             <Input
-              className="h-11 rounded-lg border-slate-200 bg-white"
+              className="h-12 rounded-lg border-slate-200 bg-white text-[15px] md:text-base"
               placeholder="+15551234567"
               inputMode="tel"
               {...register("phone")}
@@ -134,16 +138,24 @@ export function LeadForm() {
           </Field>
 
           <Field label="Car brand" error={errors.carBrand?.message}>
-            <Input className="h-11 rounded-lg border-slate-200 bg-white" placeholder="e.g., Toyota" {...register("carBrand")} />
+            <Input
+              className="h-12 rounded-lg border-slate-200 bg-white text-[15px] md:text-base"
+              placeholder="e.g., Toyota"
+              {...register("carBrand")}
+            />
           </Field>
 
           <Field label="Car model" error={errors.carModel?.message}>
-            <Input className="h-11 rounded-lg border-slate-200 bg-white" placeholder="e.g., Corolla" {...register("carModel")} />
+            <Input
+              className="h-12 rounded-lg border-slate-200 bg-white text-[15px] md:text-base"
+              placeholder="e.g., Corolla"
+              {...register("carModel")}
+            />
           </Field>
 
           <Field label="Manufacturing year" error={errors.manufacturingYear?.message}>
             <Input
-              className="h-11 rounded-lg border-slate-200 bg-white"
+              className="h-12 rounded-lg border-slate-200 bg-white text-[15px] md:text-base"
               placeholder={`${currentYear}`}
               inputMode="numeric"
               {...register("manufacturingYear")}
@@ -151,12 +163,17 @@ export function LeadForm() {
           </Field>
 
           <Field label="Asking price" error={errors.askingPrice?.message}>
-            <Input className="h-11 rounded-lg border-slate-200 bg-white" placeholder="e.g., 9500" inputMode="numeric" {...register("askingPrice")} />
+            <Input
+              className="h-12 rounded-lg border-slate-200 bg-white text-[15px] md:text-base"
+              placeholder="e.g., 9500"
+              inputMode="numeric"
+              {...register("askingPrice")}
+            />
           </Field>
 
           <Field label="Kilometers driven" error={errors.kilometersDriven?.message}>
             <Input
-              className="h-11 rounded-lg border-slate-200 bg-white"
+              className="h-12 rounded-lg border-slate-200 bg-white text-[15px] md:text-base"
               placeholder="e.g., 120000"
               inputMode="numeric"
               {...register("kilometersDriven")}
@@ -165,7 +182,7 @@ export function LeadForm() {
 
           <Field label="Additional notes (optional)" error={errors.additionalNotes?.message} className="md:col-span-2">
             <Textarea
-              className="min-h-24 rounded-lg border-slate-200 bg-white"
+              className="min-h-28 rounded-lg border-slate-200 bg-white text-[15px] leading-relaxed md:text-base"
               placeholder="Accidents, service history, upgrades, urgency..."
               {...register("additionalNotes")}
             />
@@ -178,8 +195,10 @@ export function LeadForm() {
           ) : null}
 
           <div className="md:col-span-2 flex flex-col gap-3 md:flex-row md:items-center md:justify-between">
-            <p className="text-xs text-slate-600">By submitting, you agree to be contacted by our team and dealer partners.</p>
-            <Button disabled={isSubmitting} className="h-11 rounded-lg bg-indigo-600 text-white hover:bg-indigo-700">
+            <p className="text-xs leading-relaxed text-slate-600 md:text-sm">
+              By submitting, you agree to be contacted by our team and dealer partners.
+            </p>
+            <Button disabled={isSubmitting} className="h-12 rounded-lg bg-indigo-600 text-base text-white hover:bg-indigo-700">
               {isSubmitting ? "Submitting…" : "Submit details"}
             </Button>
           </div>
@@ -203,7 +222,7 @@ function Field({
   return (
     <div className={className}>
       <div className="flex items-end justify-between gap-3">
-        <Label className="text-sm font-medium text-slate-900">{label}</Label>
+        <Label className="text-sm font-semibold text-slate-900 md:text-[15px]">{label}</Label>
         {error ? <span className="text-xs font-semibold text-rose-600">{error}</span> : null}
       </div>
       <div className="mt-1.5">{children}</div>
