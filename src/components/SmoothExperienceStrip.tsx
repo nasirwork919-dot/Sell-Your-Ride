@@ -10,7 +10,7 @@ const ITEMS = [
     desc: "A structured form that captures the exact details dealers ask for—so you don’t repeat yourself.",
     icon: BadgeCheck,
     image: images.interior,
-    imageAlt: "Car interior details that matter",
+    imageAlt: "Quick mobile form entry for clear car details",
   },
   {
     title: "Human follow-up, fast",
@@ -23,8 +23,8 @@ const ITEMS = [
     title: "Private & secure by design",
     desc: "No public listing, server-side validation, bot protection, and rate limiting from the start.",
     icon: ShieldCheck,
-    image: images.exterior,
-    imageAlt: "Car exterior in a clean setting",
+    image: images.security,
+    imageAlt: "Secure and private handling of your information",
   },
 ] as const;
 

@@ -10,7 +10,7 @@ const SECTIONS = [
     title: "Clarity in one minute",
     icon: BadgeCheck,
     image: images.interior,
-    imageAlt: "Car interior details that matter",
+    imageAlt: "Quick mobile form entry for clear car details",
     bullets: [
       "A simple form that captures the essentials dealers ask for.",
       "No back-and-forth messages to collect missing details.",
@@ -31,8 +31,8 @@ const SECTIONS = [
   {
     title: "Private & secure by design",
     icon: ShieldCheck,
-    image: images.exterior,
-    imageAlt: "Car exterior in a clean setting",
+    image: images.security,
+    imageAlt: "Secure and private handling of your information",
     bullets: [
       "Your contact details are never posted publicly.",
       "Server-side validation, honeypot bot protection, and rate limiting.",
