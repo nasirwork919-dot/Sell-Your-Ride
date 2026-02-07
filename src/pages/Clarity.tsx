@@ -8,8 +8,19 @@ import { Link } from "react-router-dom";
 const BULLETS = [
   "Capture the essentials dealers actually ask for—no fluff, no repeated messages.",
   "Designed mobile-first: big inputs, clear labels, and zero clutter.",
-  "Reduces mistakes with instant validation (so we can move fast after you submit).",
-  "Structured details help us match you faster with the right dealers in our network.",
+  "Reduces mistakes with instant validation, so we can move fast after you submit.",
+  "Structured details help us qualify your car and match you with the right dealers sooner.",
+] as const;
+
+const MINI = [
+  {
+    title: "Dealer-ready details",
+    desc: "Brand, model, year, price, KM, notes—cleanly structured so nothing important gets missed.",
+  },
+  {
+    title: "Less back-and-forth",
+    desc: "You won’t be asked the same basics again. We start the conversation from a complete baseline.",
+  },
 ] as const;
 
 export default function Clarity() {
@@ -54,12 +65,13 @@ export default function Clarity() {
             </div>
 
             <h2 className="mt-4 text-2xl font-semibold tracking-tight text-slate-900 md:text-3xl">
-              Dealers move faster when details are complete.
+              Clear details = faster dealer interest.
             </h2>
 
             <p className="mt-3 text-sm leading-relaxed text-slate-700 md:text-[15px]">
-              Most sales stall because the same questions get asked again and again. Our intake is intentionally short,
-              but it captures the exact information that helps us qualify your car and contact the right dealers—fast.
+              Most sales slow down because the basics are incomplete: price, year, KM, condition, and context. Our form
+              is intentionally simple, but it collects what dealers need to quickly understand your car—so we can
+              outreach with confidence and get you a real callback faster.
             </p>
 
             <Separator className="my-6 bg-slate-200" />
@@ -73,6 +85,14 @@ export default function Clarity() {
                   <p className="text-sm leading-relaxed text-slate-700">{b}</p>
                 </div>
               ))}
+            </div>
+
+            <div className="mt-6 rounded-xl border border-slate-200 bg-white p-4">
+              <p className="text-sm font-semibold text-slate-900">Why it matters</p>
+              <p className="mt-1 text-sm leading-relaxed text-slate-700">
+                When your submission is clear, we don’t need extra messages to “fill in the gaps.” That means less time
+                lost, fewer misunderstandings, and a smoother path to real offers.
+              </p>
             </div>
 
             <div className="mt-7 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
@@ -99,8 +119,9 @@ export default function Clarity() {
               </div>
 
               <div className="mt-3 grid gap-3 sm:grid-cols-2 md:grid-cols-1">
-                <MiniStat icon={<ClipboardList className="h-4 w-4" />} title="No repeated questions" desc="We collect it once—properly." />
-                <MiniStat icon={<BadgeCheck className="h-4 w-4" />} title="Dealer-ready format" desc="Structured details dealers expect." />
+                {MINI.map((m) => (
+                  <MiniStat key={m.title} icon={<ClipboardList className="h-4 w-4" />} title={m.title} desc={m.desc} />
+                ))}
               </div>
             </Card>
           </div>

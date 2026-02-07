@@ -8,19 +8,25 @@ import { Link } from "react-router-dom";
 const ASSURANCES = [
   {
     title: "No public listing of your details",
-    desc: "Your phone number isn’t posted online. This is a private intake—not a marketplace post.",
+    desc: "Your phone number is never posted on a public listing. It stays private—between you and our team.",
     icon: EyeOff,
   },
   {
-    title: "Server-side validation + bot protection",
-    desc: "We validate submissions and use a honeypot field to reduce spam and automated abuse.",
+    title: "Validated submissions (less spam)",
+    desc: "We validate inputs, use a honeypot field, and block abusive traffic—so real sellers get priority attention.",
     icon: ShieldCheck,
   },
   {
-    title: "Rate limiting + safe defaults",
-    desc: "We limit excessive requests and keep your submission data minimal and purpose-driven.",
+    title: "Rate limiting + minimal data collection",
+    desc: "We limit excessive requests and collect only what’s needed to contact you and understand your car.",
     icon: LockKeyhole,
   },
+] as const;
+
+const PROMISES = [
+  { label: "Public exposure", value: "None" },
+  { label: "Bot/spam reduction", value: "Honeypot + limits" },
+  { label: "Purpose of data", value: "Contact + car context" },
 ] as const;
 
 export default function Security() {
@@ -60,11 +66,12 @@ export default function Security() {
         <div className="grid gap-6 md:grid-cols-12 md:items-start">
           <Card className="rounded-2xl border-slate-200 bg-white p-5 shadow-sm md:col-span-7 md:p-7">
             <h2 className="text-2xl font-semibold tracking-tight text-slate-900 md:text-3xl">
-              Your information stays off the public internet.
+              Private by default. Secure by design.
             </h2>
             <p className="mt-3 text-sm leading-relaxed text-slate-700 md:text-[15px]">
-              Selling a car shouldn’t mean exposing your phone number to strangers. We keep this experience private by
-              default: you submit details once, and we coordinate the dealer outreach behind the scenes.
+              Selling privately shouldn’t mean risking your phone number being shared around the internet. We’re not a
+              marketplace—there’s no public listing and no public negotiation. You submit your details once, and we use
+              them only to coordinate dealer interest and contact you with next steps.
             </p>
 
             <Separator className="my-6 bg-slate-200" />
@@ -94,8 +101,8 @@ export default function Security() {
                 <div className="min-w-0">
                   <p className="text-sm font-semibold text-indigo-950">Simple promise</p>
                   <p className="mt-1 text-sm leading-relaxed text-indigo-950/90">
-                    We collect only what’s needed to contact you and understand your car—then we use it to coordinate
-                    next steps. Nothing is posted publicly.
+                    We collect only what helps us do the job: contact you, understand your car, and coordinate next
+                    steps. Nothing is posted publicly, and you stay in control of the conversation.
                   </p>
                 </div>
               </div>
@@ -104,7 +111,7 @@ export default function Security() {
             <div className="mt-7 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
               <div className="flex items-center gap-2 text-xs font-semibold text-slate-600">
                 <ShieldCheck className="h-4 w-4 text-indigo-600" />
-                Privacy-first by default.
+                Privacy-first from the first click.
               </div>
               <Link to="/#sell" className="inline-flex">
                 <Button className="h-11 rounded-lg bg-indigo-600 text-white hover:bg-indigo-700">Submit car details</Button>
@@ -125,8 +132,9 @@ export default function Security() {
               </div>
 
               <div className="mt-3 grid gap-3">
-                <MiniStat label="Public exposure" value="None" />
-                <MiniStat label="Spam reduction" value="Honeypot + limits" />
+                {PROMISES.map((m) => (
+                  <MiniStat key={m.label} label={m.label} value={m.value} />
+                ))}
               </div>
             </Card>
           </div>

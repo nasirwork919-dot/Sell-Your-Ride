@@ -8,19 +8,25 @@ import { Link } from "react-router-dom";
 const POINTS = [
   {
     title: "A real person reviews your details",
-    desc: "We quickly check for completeness and context—so the next steps are clear.",
+    desc: "We check the essentials, confirm context, and make sure the next step is clear—no guesswork.",
     icon: Users,
   },
   {
     title: "Call within 2 hours",
-    desc: "You get a simple conversation: interest, expectations, and what happens next.",
+    desc: "A short, practical call: we confirm details, align expectations, and explain what happens next.",
     icon: PhoneCall,
   },
   {
-    title: "No public negotiations",
-    desc: "No listing. No inbox chaos. We coordinate dealer outreach behind the scenes.",
+    title: "We handle dealer outreach",
+    desc: "You don’t need to respond to strangers. We coordinate interest privately and bring you the real options.",
     icon: Clock,
   },
+] as const;
+
+const CALL_OUTCOMES = [
+  "Confirm your car details (so no time is wasted).",
+  "Discuss your target price and realistic demand.",
+  "Explain next steps and expected timelines.",
 ] as const;
 
 export default function FollowUp() {
@@ -60,11 +66,12 @@ export default function FollowUp() {
         <div className="grid gap-6 md:grid-cols-12 md:items-start">
           <Card className="rounded-2xl border-slate-200 bg-white p-5 shadow-sm md:col-span-7 md:p-7">
             <h2 className="text-2xl font-semibold tracking-tight text-slate-900 md:text-3xl">
-              You shouldn’t have to chase dealers.
+              A real call beats a noisy inbox.
             </h2>
             <p className="mt-3 text-sm leading-relaxed text-slate-700 md:text-[15px]">
-              Marketplace selling is noisy: dozens of messages, unclear intent, and endless “Is it available?” chats. We
-              keep it simple—submit once, then get a real call. We handle the dealer outreach for you.
+              Marketplace selling is exhausting: dozens of low-intent messages, repeated questions, and time wasted. Our
+              process is different—submit once, then get a fast call with clear next steps. We coordinate dealer interest
+              privately so you stay in control and save time.
             </p>
 
             <Separator className="my-6 bg-slate-200" />
@@ -93,10 +100,14 @@ export default function FollowUp() {
                 </div>
                 <div className="min-w-0">
                   <p className="text-sm font-semibold text-emerald-950">What you’ll get on the call</p>
-                  <p className="mt-1 text-sm leading-relaxed text-emerald-900">
-                    A quick confirmation of your car details, expected next steps, and how dealer interest will be
-                    handled—without pressure.
-                  </p>
+                  <ul className="mt-2 grid gap-2 text-sm text-emerald-900">
+                    {CALL_OUTCOMES.map((t) => (
+                      <li key={t} className="flex gap-2 leading-relaxed">
+                        <span className="mt-1 h-1.5 w-1.5 shrink-0 rounded-full bg-emerald-700" aria-hidden="true" />
+                        <span>{t}</span>
+                      </li>
+                    ))}
+                  </ul>
                 </div>
               </div>
             </div>
@@ -123,7 +134,8 @@ export default function FollowUp() {
 
               <div className="mt-3 grid gap-3">
                 <MiniStat title="Fast response" value="Within 2 hours" />
-                <MiniStat title="No spam" value="No public listing" />
+                <MiniStat title="Less noise" value="No public inbox spam" />
+                <MiniStat title="Clear next step" value="One call, then action" />
               </div>
             </Card>
           </div>
