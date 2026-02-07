@@ -3,7 +3,7 @@ import { LeadForm } from "@/components/LeadForm";
 import { HeroImageCard } from "@/components/HeroImageCard";
 import { HowItWorks } from "@/components/HowItWorks";
 import { TrustStrip } from "@/components/TrustStrip";
-import { ImageStrip } from "@/components/ImageStrip";
+import { SmoothExperienceStrip } from "@/components/SmoothExperienceStrip";
 import { MobileNav } from "@/components/MobileNav";
 import { FloatingWhatsAppButton } from "@/components/FloatingWhatsAppButton";
 import { BackToTopButton } from "@/components/BackToTopButton";
@@ -190,10 +190,11 @@ export default function Index() {
         <section className="mt-12">
           <SectionTitle kicker="What you get" title="A smooth selling experience" />
           <p className="mt-2 max-w-3xl text-sm leading-relaxed text-slate-700">
-            A simple form, a real follow-up call, and dealer interest without the noise.
+            Designed for busy sellers: one structured submission, private handling, and a real follow-up call—without
+            public listings or marketplace noise.
           </p>
           <div className="mt-6">
-            <ImageStrip />
+            <SmoothExperienceStrip />
           </div>
         </section>
 
