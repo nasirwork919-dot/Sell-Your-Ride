@@ -44,8 +44,6 @@ export default function Index() {
   }
 
   function navTo(id: string) {
-    setNavHidden(true);
-
     // Let the mobile sheet start closing before we scroll (prevents odd mobile timing)
     window.setTimeout(() => {
       scrollToSection(id);
@@ -74,10 +72,15 @@ export default function Index() {
     return () => io.disconnect();
   }, []);
 
+  // Hide header only on real scroll down; show on scroll up.
   useEffect(() => {
-    if (!navHidden) return;
+    if (y < 24) {
+      setNavHidden(false);
+      return;
+    }
+    if (direction === "down") setNavHidden(true);
     if (direction === "up") setNavHidden(false);
-  }, [direction, navHidden]);
+  }, [direction, y]);
 
   const showTop = y > 520;
 
@@ -124,7 +127,7 @@ export default function Index() {
             <div className="mt-6 flex flex-col gap-3 sm:flex-row sm:items-center">
               <Button
                 className="h-11 rounded-lg bg-indigo-600 text-white hover:bg-indigo-700"
-                onClick={() => formRef.current?.scrollIntoView({ behavior: "smooth", block: "start" })}
+                onClick={() => scrollToSection("sell")}
               >
                 Submit car details
                 <ArrowRight className="ml-2 h-4 w-4" />
@@ -205,10 +208,7 @@ export default function Index() {
                 <p className="mt-1 text-sm text-slate-700">Submit your car details and we’ll call you within 2 hours.</p>
               </div>
               <div className="flex flex-col gap-3 sm:flex-row">
-                <Button
-                  className="h-11 rounded-lg bg-indigo-600 text-white hover:bg-indigo-700"
-                  onClick={() => formRef.current?.scrollIntoView({ behavior: "smooth", block: "start" })}
-                >
+                <Button className="h-11 rounded-lg bg-indigo-600 text-white hover:bg-indigo-700" onClick={() => scrollToSection("sell")}>
                   Submit details
                 </Button>
                 <a href={adminWhatsAppLink} target="_blank" rel="noreferrer" className="inline-flex">
