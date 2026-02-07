@@ -81,7 +81,7 @@ export default function Security() {
                 const Icon = a.icon;
                 return (
                   <div key={a.title} className="flex gap-3 rounded-xl border border-slate-200 bg-slate-50 px-4 py-3">
-                    <div className="mt-0.5 grid h-9 w-9 place-items-center rounded-lg border border-slate-200 bg-white text-slate-900">
+                    <div className="mt-0.5 grid h-9 w-9 shrink-0 place-items-center rounded-lg border border-slate-200 bg-white text-slate-900">
                       <Icon className="h-4 w-4 text-indigo-600" />
                     </div>
                     <div className="min-w-0">
@@ -95,8 +95,8 @@ export default function Security() {
 
             <div className="mt-6 rounded-xl border border-indigo-200 bg-indigo-50 p-4">
               <div className="flex items-start gap-3">
-                <div className="grid h-9 w-9 place-items-center rounded-lg border border-indigo-200 bg-white">
-                  <Check className="h-4 w-4 text-indigo-700" />
+                <div className="grid h-9 w-9 shrink-0 place-items-center rounded-lg border border-indigo-200 bg-white sm:h-10 sm:w-10">
+                  <Check className="h-4 w-4 text-indigo-700 sm:h-[18px] sm:w-[18px]" />
                 </div>
                 <div className="min-w-0">
                   <p className="text-sm font-semibold text-indigo-950">Simple promise</p>
