@@ -7,12 +7,12 @@ import { Clock, Mail, MapPin, Phone, ShieldCheck } from "lucide-react";
 export function SiteFooter() {
   return (
     <footer className="mt-12">
-      <Card className="rounded-2xl border-slate-200 bg-white p-6 shadow-sm md:p-8">
+      <Card className="rounded-xl border-slate-200 bg-white p-6 shadow-sm md:p-8">
         <div className="flex flex-col gap-5 md:flex-row md:items-center md:justify-between">
           <div className="min-w-0">
             <p className="text-xs font-semibold uppercase tracking-[0.22em] text-indigo-700">Australia</p>
             <div className="mt-2 flex items-center gap-3">
-              <span className="grid h-10 w-10 place-items-center rounded-xl bg-indigo-600 text-sm font-extrabold tracking-tight text-white shadow-sm">
+              <span className="grid h-10 w-10 place-items-center rounded-lg bg-indigo-600 text-sm font-extrabold tracking-tight text-white shadow-sm">
                 SYR
               </span>
               <div className="min-w-0">
@@ -27,22 +27,22 @@ export function SiteFooter() {
           </div>
 
           <div className="flex flex-wrap gap-2">
-            <Badge className="rounded-lg bg-emerald-600 px-2.5 py-1 text-white hover:bg-emerald-600">
+            <Badge className="rounded-md bg-emerald-600 px-2.5 py-1 text-white hover:bg-emerald-600">
               Callback within 2 hours
             </Badge>
-            <Badge className="rounded-lg bg-slate-900 px-2.5 py-1 text-white hover:bg-slate-900">
+            <Badge className="rounded-md bg-slate-900 px-2.5 py-1 text-white hover:bg-slate-900">
               No public listing
             </Badge>
-            <Badge className="rounded-lg bg-indigo-50 px-2.5 py-1 text-indigo-900 ring-1 ring-indigo-200 hover:bg-indigo-50">
+            <Badge className="rounded-md bg-indigo-50 px-2.5 py-1 text-indigo-900 ring-1 ring-indigo-200 hover:bg-indigo-50">
               Mobile first
             </Badge>
           </div>
         </div>
 
-        <div className="mt-6 rounded-2xl border border-slate-200 bg-slate-50 p-4 md:p-5">
+        <div className="mt-6 rounded-xl border border-slate-200 bg-slate-50 p-4 md:p-5">
           <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
             <div className="flex items-start gap-3">
-              <div className="grid h-10 w-10 shrink-0 place-items-center rounded-xl border border-slate-200 bg-white">
+              <div className="grid h-10 w-10 shrink-0 place-items-center rounded-lg border border-slate-200 bg-white">
                 <ShieldCheck className="h-5 w-5 text-emerald-700" />
               </div>
               <div className="min-w-0">
@@ -54,9 +54,8 @@ export function SiteFooter() {
 
                 <div className="mt-3 flex flex-wrap items-center gap-2">
                   <span className="inline-flex items-center gap-2 rounded-full border border-slate-200 bg-white px-3 py-1 text-xs font-semibold text-slate-700 shadow-sm">
-                    <span className="text-slate-500">ABN</span>
-                    <span className="text-slate-900">00 000 000 000</span>
-                    <span className="text-slate-500">(placeholder)</span>
+                    <span className="text-slate-500">WhatsApp</span>
+                    <span className="text-slate-900">+61 4 7093 000</span>
                   </span>
                   <span className="inline-flex items-center gap-2 rounded-full border border-emerald-200 bg-emerald-50 px-3 py-1 text-xs font-semibold text-emerald-900">
                     <span className="h-1.5 w-1.5 rounded-full bg-emerald-600" aria-hidden="true" />
@@ -68,12 +67,12 @@ export function SiteFooter() {
 
             <div className="flex flex-col gap-2 sm:flex-row sm:items-center">
               <a href="#sell" className="inline-flex">
-                <Button className="h-11 rounded-xl bg-indigo-600 text-white hover:bg-indigo-700">Submit car details</Button>
+                <Button className="h-11 rounded-lg bg-indigo-600 text-white hover:bg-indigo-700">Submit car details</Button>
               </a>
               <a href="https://wa.me/6147093000" target="_blank" rel="noreferrer" className="inline-flex">
                 <Button
                   variant="secondary"
-                  className="h-11 rounded-xl border border-slate-200 bg-white text-slate-900 hover:bg-slate-50"
+                  className="h-11 rounded-lg border border-slate-200 bg-white text-slate-900 hover:bg-slate-50"
                 >
                   WhatsApp
                 </Button>
@@ -133,14 +132,14 @@ function FooterBlock({
   return (
     <div className={className}>
       <div className="flex items-start gap-3">
-        <div className="grid h-10 w-10 shrink-0 place-items-center rounded-xl border border-slate-200 bg-white">
+        <div className="grid h-10 w-10 shrink-0 place-items-center rounded-lg border border-slate-200 bg-white">
           {icon}
         </div>
         <div className="min-w-0">
           <div className="flex items-center gap-2">
             <p className="text-sm font-semibold text-slate-900">{title}</p>
             {trailingIcon ? (
-              <span className="grid h-6 w-6 place-items-center rounded-lg border border-slate-200 bg-white">
+              <span className="grid h-6 w-6 place-items-center rounded-md border border-slate-200 bg-white">
                 {trailingIcon}
               </span>
             ) : null}
