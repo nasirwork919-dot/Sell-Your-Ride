@@ -2,8 +2,10 @@
 // You can replace these with your own hosted assets anytime.
 
 export const images = {
+  // Better aligned with the business: seller/buyer handover moment (keys / deal)
   hero:
-    "https://images.pexels.com/photos/358070/pexels-photo-358070.jpeg?auto=compress&cs=tinysrgb&w=1600",
+    "https://images.pexels.com/photos/97075/pexels-photo-97075.jpeg?auto=compress&cs=tinysrgb&w=1600",
+
   exterior:
     "https://images.pexels.com/photos/170811/pexels-photo-170811.jpeg?auto=compress&cs=tinysrgb&w=1600",
   interior:
