@@ -13,6 +13,7 @@ import { Card } from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
 import { cn } from "@/lib/utils";
 import { ArrowRight, BadgeCheck, Check, MessageCircle, ShieldCheck, Timer } from "lucide-react";
+import { ReviewsMarquee } from "@/components/ReviewsMarquee";
 
 const NAV = [
   { id: "sell", label: "Sell Your Car" },
@@ -106,6 +107,42 @@ export default function Index() {
 
   const showTop = y > 520;
 
+  const reviews = useMemo(
+    () => [
+      {
+        name: "Omar",
+        text: "Submitted in 40 seconds. Got a call the same day and the next steps were crystal clear.",
+        avatarUrl: "https://images.pexels.com/photos/614810/pexels-photo-614810.jpeg?auto=compress&cs=tinysrgb&w=200",
+      },
+      {
+        name: "Sara",
+        text: "No confusion, no marketplace spam. It felt private and surprisingly smooth on mobile.",
+        avatarUrl: "https://images.pexels.com/photos/415829/pexels-photo-415829.jpeg?auto=compress&cs=tinysrgb&w=200",
+      },
+      {
+        name: "Imran",
+        text: "Loved the WhatsApp follow-up. One form and then a real person called me—simple.",
+        avatarUrl: "https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?auto=compress&cs=tinysrgb&w=200",
+      },
+      {
+        name: "Nadia",
+        text: "Felt secure. No public listing of my number and the process was explained clearly.",
+        avatarUrl: "https://images.pexels.com/photos/774909/pexels-photo-774909.jpeg?auto=compress&cs=tinysrgb&w=200",
+      },
+      {
+        name: "Hassan",
+        text: "Dealer interest came faster than I expected. The call helped set the right price expectations.",
+        avatarUrl: "https://images.pexels.com/photos/2379004/pexels-photo-2379004.jpeg?auto=compress&cs=tinysrgb&w=200",
+      },
+      {
+        name: "Leila",
+        text: "Clean design and quick to submit. I appreciated not having to deal with random messages.",
+        avatarUrl: "https://images.pexels.com/photos/1130626/pexels-photo-1130626.jpeg?auto=compress&cs=tinysrgb&w=200",
+      },
+    ],
+    []
+  );
+
   return (
     <div className="min-h-screen bg-slate-50">
       <Header active={active} onNav={navTo} waLink={adminWhatsAppLink} hidden={navHidden} />
@@ -147,7 +184,10 @@ export default function Index() {
             </div>
 
             <div className="mt-6 flex flex-col gap-3 sm:flex-row sm:items-center">
-              <Button className="h-11 rounded-lg bg-indigo-600 text-white hover:bg-indigo-700" onClick={() => scrollToSection("sell")}>
+              <Button
+                className="h-11 rounded-lg bg-indigo-600 text-white hover:bg-indigo-700"
+                onClick={() => scrollToSection("sell")}
+              >
                 Submit car details
                 <ArrowRight className="ml-2 h-4 w-4" />
               </Button>
@@ -201,21 +241,12 @@ export default function Index() {
         {/* Reviews */}
         <section id="reviews" className="mt-14 scroll-mt-24">
           <SectionTitle kicker="Reviews" title="Trusted by busy sellers" />
-          <div className="mt-6 grid gap-4 md:grid-cols-3">
-            {[
-              { name: "Omar", text: "Submitted in 40 seconds. Got a call the same day." },
-              { name: "Sara", text: "No confusion, no marketplace spam. Super straightforward." },
-              { name: "Imran", text: "Loved the WhatsApp follow-up. Quick and clear." },
-              { name: "Nadia", text: "Felt secure. No public listing of my number." },
-              { name: "Hassan", text: "Dealer offers came faster than I expected." },
-              { name: "Leila", text: "Clean design, easy on mobile." },
-            ].map((t) => (
-              <Card key={t.name} className="rounded-xl border-slate-200 bg-white p-5 shadow-sm">
-                <p className="text-sm leading-relaxed text-slate-700">“{t.text}”</p>
-                <Separator className="my-4 bg-slate-200" />
-                <p className="text-sm font-semibold text-slate-900">{t.name}</p>
-              </Card>
-            ))}
+          <p className="mt-2 max-w-3xl text-sm leading-relaxed text-slate-700">
+            Quick submissions, private handling, and a real call—here’s what sellers say after using the intake.
+          </p>
+
+          <div className="mt-6">
+            <ReviewsMarquee items={reviews} />
           </div>
         </section>
 
