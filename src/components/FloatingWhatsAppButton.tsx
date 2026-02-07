@@ -9,12 +9,13 @@ export function FloatingWhatsAppButton({ href }: { href: string }) {
       rel="noreferrer"
       className="fixed bottom-4 left-4 z-50 md:bottom-6 md:left-6"
       aria-label="Chat on WhatsApp"
+      title="WhatsApp"
     >
       <Button
-        className="h-12 rounded-lg bg-emerald-600 px-4 text-white shadow-lg shadow-emerald-600/15 hover:bg-emerald-700"
+        size="icon"
+        className="h-12 w-12 rounded-full bg-emerald-600/90 text-white shadow-lg shadow-emerald-600/20 backdrop-blur hover:bg-emerald-700/90"
       >
-        <MessageCircle className="mr-2 h-5 w-5" />
-        WhatsApp
+        <MessageCircle className="h-5 w-5" />
       </Button>
     </a>
   );

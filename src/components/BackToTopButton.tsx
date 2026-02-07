@@ -10,13 +10,14 @@ export function BackToTopButton({ show }: { show: boolean }) {
       ].join(" ")}
     >
       <Button
+        size="icon"
         variant="secondary"
-        className="h-12 rounded-lg border border-slate-200 bg-white px-4 text-slate-900 shadow-lg shadow-slate-900/5 hover:bg-slate-50"
+        className="h-12 w-12 rounded-full border border-slate-200/70 bg-white/70 text-slate-900 shadow-lg shadow-slate-900/10 backdrop-blur hover:bg-white/90"
         onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
         aria-label="Back to top"
+        title="Back to top"
       >
-        <ArrowUp className="mr-2 h-5 w-5" />
-        Top
+        <ArrowUp className="h-5 w-5" />
       </Button>
     </div>
   );
