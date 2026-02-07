@@ -1,0 +1,34 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum LeadStatus {
+  submitted
+  whatsapp_sent
+  whatsapp_failed
+}
+
+model Lead {
+  id                 String     @id @default(cuid())
+  fullName           String
+  phone              String
+  carBrand           String
+  carModel           String
+  manufacturingYear  Int
+  askingPrice        Int
+  kilometersDriven   Int
+  additionalNotes    String?
+
+  status             LeadStatus @default(submitted)
+  whatsappError      String?
+
+  ip                 String?
+  userAgent          String?
+
+  createdAt          DateTime   @default(now())
+}
