@@ -82,7 +82,7 @@ export default function FollowUp() {
                 return (
                   <div key={p.title} className="flex gap-3 rounded-xl border border-slate-200/70 bg-slate-50 px-4 py-3">
                     <div
-                      className="mt-0.5 grid place-items-center rounded-lg bg-white text-slate-900 shadow-sm ring-1 ring-slate-200/70"
+                      className="mt-0.5 grid place-items-center rounded-lg bg-white text-slate-900 shadow-sm"
                       style={{ width: "clamp(2.25rem, 4vw, 2.75rem)", height: "clamp(2.25rem, 4vw, 2.75rem)" }}
                     >
                       <Icon
@@ -102,7 +102,7 @@ export default function FollowUp() {
             <div className="mt-6 rounded-xl border border-emerald-200 bg-emerald-50 p-4">
               <div className="flex items-start gap-3">
                 <div
-                  className="grid place-items-center rounded-lg bg-white shadow-sm ring-1 ring-emerald-200"
+                  className="grid place-items-center rounded-lg bg-white shadow-sm"
                   style={{ width: "clamp(2.25rem, 4vw, 2.75rem)", height: "clamp(2.25rem, 4vw, 2.75rem)" }}
                 >
                   <Check

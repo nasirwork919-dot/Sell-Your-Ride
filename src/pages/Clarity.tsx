@@ -80,7 +80,7 @@ export default function Clarity() {
               {BULLETS.map((b) => (
                 <div key={b} className="flex gap-3 rounded-xl border border-slate-200/70 bg-slate-50 px-4 py-3">
                   <div
-                    className="mt-0.5 grid place-items-center rounded-lg bg-white text-slate-900 shadow-sm ring-1 ring-slate-200/70"
+                    className="mt-0.5 grid place-items-center rounded-lg bg-white text-slate-900 shadow-sm"
                     style={{ width: "clamp(2.0rem, 3.6vw, 2.5rem)", height: "clamp(2.0rem, 3.6vw, 2.5rem)" }}
                   >
                     <Check
@@ -126,12 +126,7 @@ export default function Clarity() {
 
               <div className="mt-3 grid gap-3 sm:grid-cols-2 md:grid-cols-1">
                 {MINI.map((m) => (
-                  <MiniStat
-                    key={m.title}
-                    icon={<ClipboardList />}
-                    title={m.title}
-                    desc={m.desc}
-                  />
+                  <MiniStat key={m.title} icon={<ClipboardList />} title={m.title} desc={m.desc} />
                 ))}
               </div>
             </Card>
@@ -146,7 +141,7 @@ function MiniStat({ icon, title, desc }: { icon: React.ReactNode; title: string;
   return (
     <div className="flex gap-3 rounded-xl border border-slate-200 bg-white px-4 py-3">
       <div
-        className="grid place-items-center rounded-lg bg-slate-50 text-slate-900 shadow-sm ring-1 ring-slate-200/70"
+        className="grid place-items-center rounded-lg bg-slate-50 text-slate-900 shadow-sm"
         style={{ width: "clamp(2.25rem, 4vw, 2.75rem)", height: "clamp(2.25rem, 4vw, 2.75rem)" }}
       >
         <span

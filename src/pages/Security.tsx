@@ -70,7 +70,7 @@ export default function Security() {
             </h2>
             <p className="mt-3 text-sm leading-relaxed text-slate-700 md:text-[15px]">
               Selling privately shouldn’t mean risking your phone number being shared around the internet. We’re not a
-              marketplace—there’s no public listing and no public negotiation. You submit your details once, and we use
+              marketplace, there’s no public listing and no public negotiation. You submit your details once, and we use
               them only to coordinate dealer interest and contact you with next steps.
             </p>
 
@@ -81,8 +81,8 @@ export default function Security() {
                 const Icon = a.icon;
                 return (
                   <div key={a.title} className="flex gap-3 rounded-xl border border-slate-200 bg-slate-50 px-4 py-3">
-                    <div className="mt-0.5 grid h-9 w-9 shrink-0 place-items-center rounded-lg border border-slate-200 bg-white text-slate-900">
-                      <Icon className="h-4 w-4 text-indigo-600" />
+                    <div className="mt-0.5 grid h-9 w-9 shrink-0 place-items-center rounded-lg bg-white text-slate-900 shadow-sm sm:h-10 sm:w-10">
+                      <Icon className="h-4 w-4 text-indigo-600 sm:h-[18px] sm:w-[18px]" />
                     </div>
                     <div className="min-w-0">
                       <p className="text-sm font-semibold text-slate-900">{a.title}</p>
@@ -95,7 +95,7 @@ export default function Security() {
 
             <div className="mt-6 rounded-xl border border-indigo-200 bg-indigo-50 p-4">
               <div className="flex items-start gap-3">
-                <div className="grid h-9 w-9 shrink-0 place-items-center rounded-lg border border-indigo-200 bg-white sm:h-10 sm:w-10">
+                <div className="grid h-9 w-9 shrink-0 place-items-center rounded-lg bg-white shadow-sm sm:h-10 sm:w-10">
                   <Check className="h-4 w-4 text-indigo-700 sm:h-[18px] sm:w-[18px]" />
                 </div>
                 <div className="min-w-0">
