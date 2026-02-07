@@ -24,7 +24,7 @@ export default function Index() {
 
   const adminWhatsAppLink = useMemo(() => {
     const fromEnv = (import.meta as any).env?.VITE_ADMIN_WHATSAPP_LINK as string | undefined;
-    return fromEnv ?? "https://wa.me/";
+    return fromEnv ?? "https://wa.me/6147093000";
   }, []);
 
   function navTo(id: string) {
@@ -182,13 +182,13 @@ export default function Index() {
         <footer className="mt-12 rounded-xl border border-slate-200 bg-white p-6 text-sm text-slate-700 shadow-sm">
           <div className="grid gap-4 md:grid-cols-3">
             <div>
-              <p className="text-sm font-semibold text-slate-900">CarLead</p>
+              <p className="text-sm font-semibold text-slate-900">Sell Your Ride</p>
               <p className="mt-1">Private lead intake + dealer connection.</p>
             </div>
             <div>
               <p className="font-semibold text-slate-900">Contact</p>
               <p className="mt-1">Email: hello@example.com</p>
-              <p>Phone: +1 (555) 123-4567</p>
+              <p>Phone: +61 04 7093 000</p>
             </div>
             <div>
               <p className="font-semibold text-slate-900">Address</p>
@@ -196,7 +196,7 @@ export default function Index() {
             </div>
           </div>
           <Separator className="my-5 bg-slate-200" />
-          <p className="text-xs text-slate-500">© {new Date().getFullYear()} CarLead. All rights reserved.</p>
+          <p className="text-xs text-slate-500">© {new Date().getFullYear()} Sell Your Ride. All rights reserved.</p>
         </footer>
       </main>
     </div>
@@ -216,8 +216,8 @@ function Header({
     <div className="fixed left-0 right-0 top-0 z-50 border-b border-slate-200 bg-white">
       <div className="mx-auto flex max-w-6xl items-center justify-between px-4 py-3 md:px-6">
         <button onClick={() => onNav("sell")} className="group inline-flex items-center gap-2">
-          <span className="grid h-9 w-9 place-items-center rounded-lg bg-indigo-600 text-white shadow-sm">CL</span>
-          <span className="text-sm font-semibold tracking-tight text-slate-900">CarLead</span>
+          <span className="grid h-9 w-9 place-items-center rounded-lg bg-indigo-600 text-white shadow-sm">SYR</span>
+          <span className="text-sm font-semibold tracking-tight text-slate-900">Sell Your Ride</span>
         </button>
 
         <nav className="hidden items-center gap-1 md:flex">
