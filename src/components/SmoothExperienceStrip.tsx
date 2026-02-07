@@ -11,6 +11,7 @@ const ITEMS = [
     icon: BadgeCheck,
     image: images.interior,
     imageAlt: "Quick mobile form entry for clear car details",
+    href: "/experience/clarity",
   },
   {
     title: "Human follow-up, fast",
@@ -18,6 +19,7 @@ const ITEMS = [
     icon: PhoneCall,
     image: images.handshake,
     imageAlt: "A real conversation and follow-up call",
+    href: "/experience/follow-up",
   },
   {
     title: "Private & secure by design",
@@ -25,6 +27,7 @@ const ITEMS = [
     icon: ShieldCheck,
     image: images.security,
     imageAlt: "Secure and private handling of your information",
+    href: "/experience/security",
   },
 ] as const;
 
@@ -63,7 +66,7 @@ export function SmoothExperienceStrip() {
                 aria-label="Open experience details"
                 title="Open details"
               >
-                <Link to="/experience">
+                <Link to={it.href}>
                   <ArrowRight className="h-4 w-4" />
                 </Link>
               </Button>
