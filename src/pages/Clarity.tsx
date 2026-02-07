@@ -6,19 +6,19 @@ import { ArrowLeft, ArrowRight, BadgeCheck, Check, ClipboardList, Sparkles } fro
 import { Link } from "react-router-dom";
 
 const BULLETS = [
-  "Capture the essentials dealers actually ask for—no fluff, no repeated messages.",
-  "Designed mobile-first: big inputs, clear labels, and zero clutter.",
+  "Capture the essentials dealers actually ask for, no fluff, no repeated messages.",
+  "Designed mobile first: big inputs, clear labels, and zero clutter.",
   "Reduces mistakes with instant validation, so we can move fast after you submit.",
   "Structured details help us qualify your car and match you with the right dealers sooner.",
 ] as const;
 
 const MINI = [
   {
-    title: "Dealer-ready details",
-    desc: "Brand, model, year, price, KM, notes—cleanly structured so nothing important gets missed.",
+    title: "Dealer ready details",
+    desc: "Brand, model, year, price, KM, notes, cleanly structured so nothing important gets missed.",
   },
   {
-    title: "Less back-and-forth",
+    title: "Less back and forth",
     desc: "You won’t be asked the same basics again. We start the conversation from a complete baseline.",
   },
 ] as const;
@@ -70,7 +70,7 @@ export default function Clarity() {
 
             <p className="mt-3 text-sm leading-relaxed text-slate-700 md:text-[15px]">
               Most sales slow down because the basics are incomplete: price, year, KM, condition, and context. Our form
-              is intentionally simple, but it collects what dealers need to quickly understand your car—so we can
+              is intentionally simple, but it collects what dealers need to quickly understand your car, so we can
               outreach with confidence and get you a real callback faster.
             </p>
 
@@ -79,8 +79,8 @@ export default function Clarity() {
             <div className="grid gap-3">
               {BULLETS.map((b) => (
                 <div key={b} className="flex gap-3 rounded-xl border border-slate-200 bg-slate-50 px-4 py-3">
-                  <div className="mt-0.5 grid h-8 w-8 place-items-center rounded-lg border border-slate-200 bg-white text-slate-900">
-                    <Check className="h-4 w-4 text-emerald-600" />
+                  <div className="mt-0.5 grid h-8 w-8 place-items-center rounded-lg border border-slate-200 bg-white text-slate-900 sm:h-9 sm:w-9">
+                    <Check className="h-4 w-4 text-emerald-600 sm:h-[18px] sm:w-[18px]" />
                   </div>
                   <p className="text-sm leading-relaxed text-slate-700">{b}</p>
                 </div>
@@ -90,7 +90,7 @@ export default function Clarity() {
             <div className="mt-6 rounded-xl border border-slate-200 bg-white p-4">
               <p className="text-sm font-semibold text-slate-900">Why it matters</p>
               <p className="mt-1 text-sm leading-relaxed text-slate-700">
-                When your submission is clear, we don’t need extra messages to “fill in the gaps.” That means less time
+                When your submission is clear, we don’t need extra messages to fill in the gaps. That means less time
                 lost, fewer misunderstandings, and a smoother path to real offers.
               </p>
             </div>
@@ -98,7 +98,7 @@ export default function Clarity() {
             <div className="mt-7 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
               <div className="flex items-center gap-2 text-xs font-semibold text-slate-600">
                 <Sparkles className="h-4 w-4 text-indigo-600" />
-                Built for speed—without cutting corners.
+                Built for speed, without cutting corners.
               </div>
               <Link to="/#sell" className="inline-flex">
                 <Button className="h-11 rounded-lg bg-indigo-600 text-white hover:bg-indigo-700">Submit car details</Button>
@@ -120,7 +120,12 @@ export default function Clarity() {
 
               <div className="mt-3 grid gap-3 sm:grid-cols-2 md:grid-cols-1">
                 {MINI.map((m) => (
-                  <MiniStat key={m.title} icon={<ClipboardList className="h-4 w-4" />} title={m.title} desc={m.desc} />
+                  <MiniStat
+                    key={m.title}
+                    icon={<ClipboardList className="h-4 w-4 sm:h-[18px] sm:w-[18px]" />}
+                    title={m.title}
+                    desc={m.desc}
+                  />
                 ))}
               </div>
             </Card>
@@ -134,7 +139,7 @@ export default function Clarity() {
 function MiniStat({ icon, title, desc }: { icon: React.ReactNode; title: string; desc: string }) {
   return (
     <div className="flex gap-3 rounded-xl border border-slate-200 bg-white px-4 py-3">
-      <div className="grid h-9 w-9 place-items-center rounded-lg border border-slate-200 bg-slate-50 text-slate-900">
+      <div className="grid h-9 w-9 place-items-center rounded-lg border border-slate-200 bg-slate-50 text-slate-900 sm:h-10 sm:w-10">
         {icon}
       </div>
       <div className="min-w-0">
