@@ -8,7 +8,7 @@ import { Link } from "react-router-dom";
 const POINTS = [
   {
     title: "A real person reviews your details",
-    desc: "We check the essentials, confirm context, and make sure the next step is clear—no guesswork.",
+    desc: "We check the essentials, confirm context, and make sure the next step is clear, no guesswork.",
     icon: Users,
   },
   {
@@ -48,7 +48,7 @@ export default function FollowUp() {
             <div>
               <p className="text-xs font-semibold uppercase tracking-[0.2em] text-indigo-700">Experience</p>
               <h1 className="mt-1 text-xl font-semibold tracking-tight text-slate-900 md:text-2xl">
-                Human follow-up, fast
+                Human follow up, fast
               </h1>
             </div>
           </div>
@@ -69,9 +69,9 @@ export default function FollowUp() {
               A real call beats a noisy inbox.
             </h2>
             <p className="mt-3 text-sm leading-relaxed text-slate-700 md:text-[15px]">
-              Marketplace selling is exhausting: dozens of low-intent messages, repeated questions, and time wasted. Our
-              process is different—submit once, then get a fast call with clear next steps. We coordinate dealer interest
-              privately so you stay in control and save time.
+              Marketplace selling is exhausting: dozens of low intent messages, repeated questions, and time wasted. Our
+              process is different: submit once, then get a fast call with clear next steps. We coordinate dealer
+              interest privately so you stay in control and save time.
             </p>
 
             <Separator className="my-6 bg-slate-200" />
@@ -81,8 +81,8 @@ export default function FollowUp() {
                 const Icon = p.icon;
                 return (
                   <div key={p.title} className="flex gap-3 rounded-xl border border-slate-200 bg-slate-50 px-4 py-3">
-                    <div className="mt-0.5 grid h-9 w-9 place-items-center rounded-lg border border-slate-200 bg-white text-slate-900">
-                      <Icon className="h-4 w-4 text-indigo-600" />
+                    <div className="mt-0.5 grid h-9 w-9 place-items-center rounded-lg border border-slate-200 bg-white text-slate-900 sm:h-10 sm:w-10">
+                      <Icon className="h-4 w-4 text-indigo-600 sm:h-[18px] sm:w-[18px]" />
                     </div>
                     <div className="min-w-0">
                       <p className="text-sm font-semibold text-slate-900">{p.title}</p>
@@ -95,8 +95,8 @@ export default function FollowUp() {
 
             <div className="mt-6 rounded-xl border border-emerald-200 bg-emerald-50 p-4">
               <div className="flex items-start gap-3">
-                <div className="grid h-9 w-9 place-items-center rounded-lg border border-emerald-200 bg-white">
-                  <Check className="h-4 w-4 text-emerald-700" />
+                <div className="grid h-9 w-9 place-items-center rounded-lg border border-emerald-200 bg-white sm:h-10 sm:w-10">
+                  <Check className="h-4 w-4 text-emerald-700 sm:h-[18px] sm:w-[18px]" />
                 </div>
                 <div className="min-w-0">
                   <p className="text-sm font-semibold text-emerald-950">What you’ll get on the call</p>
@@ -113,7 +113,7 @@ export default function FollowUp() {
             </div>
 
             <div className="mt-7 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
-              <p className="text-xs font-semibold text-slate-600">Less friction. More clarity. Real follow-up.</p>
+              <p className="text-xs font-semibold text-slate-600">Less friction. More clarity. Real follow up.</p>
               <Link to="/#sell" className="inline-flex">
                 <Button className="h-11 rounded-lg bg-indigo-600 text-white hover:bg-indigo-700">Submit car details</Button>
               </Link>
@@ -125,7 +125,7 @@ export default function FollowUp() {
               <div className="overflow-hidden rounded-xl border border-slate-200 bg-slate-50">
                 <img
                   src={images.handshake}
-                  alt="A real conversation and follow-up call"
+                  alt="A real conversation and follow up call"
                   className="h-56 w-full object-cover md:h-[360px]"
                   loading="lazy"
                   referrerPolicy="no-referrer"

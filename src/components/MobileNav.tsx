@@ -36,10 +36,10 @@ export function MobileNav({
       <SheetTrigger asChild>
         <Button
           variant="secondary"
-          className="h-10 rounded-lg border border-slate-200 bg-white text-slate-900 hover:bg-slate-50 md:hidden"
+          className="h-10 w-10 rounded-lg border border-slate-200 bg-white p-0 text-slate-900 hover:bg-slate-50 md:hidden"
           aria-label="Open menu"
         >
-          <Menu className="h-5 w-5" />
+          <Menu className="h-5 w-5 sm:h-[22px] sm:w-[22px]" />
         </Button>
       </SheetTrigger>
 
@@ -73,7 +73,7 @@ export function MobileNav({
           </div>
 
           <p className="mt-5 text-xs leading-relaxed text-slate-600">
-            Submit the form and relax — we handle dealer outreach and call you back within 2 hours.
+            Submit the form and relax. We handle dealer outreach and call you back within 2 hours.
           </p>
         </div>
       </SheetContent>
