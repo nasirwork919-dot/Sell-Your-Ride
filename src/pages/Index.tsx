@@ -34,7 +34,15 @@ export default function Index() {
 
   function navTo(id: string) {
     setNavHidden(true);
+
     document.getElementById(id)?.scrollIntoView({ behavior: "smooth", block: "start" });
+
+    // On some mobile browsers, scrollIntoView doesn't always trigger our scroll-direction
+    // threshold right away; a tiny nudge ensures the header transitions immediately.
+    window.setTimeout(() => {
+      window.scrollBy({ top: 1, left: 0, behavior: "auto" });
+      window.scrollBy({ top: -1, left: 0, behavior: "auto" });
+    }, 50);
   }
 
   useEffect(() => {

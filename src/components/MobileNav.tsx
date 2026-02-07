@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from "@/components/ui/sheet";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
@@ -13,15 +13,17 @@ export function MobileNav({
   items: ReadonlyArray<{ id: string; label: string }>;
   onNav: (id: string) => void;
 }) {
+  const [open, setOpen] = useState(false);
+
   // Close on hash changes (simple UX)
   useEffect(() => {
-    const onHash = () => {};
+    const onHash = () => setOpen(false);
     window.addEventListener("hashchange", onHash);
     return () => window.removeEventListener("hashchange", onHash);
   }, []);
 
   return (
-    <Sheet>
+    <Sheet open={open} onOpenChange={setOpen}>
       <SheetTrigger asChild>
         <Button
           variant="secondary"
@@ -31,17 +33,23 @@ export function MobileNav({
           <Menu className="h-5 w-5" />
         </Button>
       </SheetTrigger>
+
       <SheetContent side="right" className="w-[320px] border-slate-200 bg-white p-0">
         <div className="p-5">
           <SheetHeader>
-            <SheetTitle className="text-left text-base font-semibold tracking-tight text-slate-900">Navigate</SheetTitle>
+            <SheetTitle className="text-left text-base font-semibold tracking-tight text-slate-900">
+              Sell Your Ride
+            </SheetTitle>
           </SheetHeader>
 
           <div className="mt-4 grid gap-2">
             {items.map((n) => (
               <button
                 key={n.id}
-                onClick={() => onNav(n.id)}
+                onClick={() => {
+                  setOpen(false);
+                  onNav(n.id);
+                }}
                 className={cn(
                   "w-full rounded-lg border px-4 py-3 text-left text-sm font-semibold transition",
                   active === n.id
