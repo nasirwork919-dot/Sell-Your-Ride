@@ -11,7 +11,16 @@ import { useScrollDirection } from "@/hooks/use-scroll-direction";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { cn } from "@/lib/utils";
-import { ArrowRight, BadgeCheck, Check, MessageCircle, ShieldCheck, Timer } from "lucide-react";
+import {
+  ArrowRight,
+  BadgeCheck,
+  Check,
+  Clock3,
+  MessageCircle,
+  PhoneCall,
+  ShieldCheck,
+  Timer,
+} from "lucide-react";
 import { ReviewsMarquee } from "@/components/ReviewsMarquee";
 import { SiteFooter } from "@/components/SiteFooter";
 
@@ -111,7 +120,7 @@ export default function Index() {
       },
       {
         name: "Imran",
-        text: "Loved the WhatsApp follow-up. One form and then a real person called me—simple.",
+        text: "Loved the WhatsApp follow-up. One form and then a real person called me, simple.",
         avatarUrl: "https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?auto=compress&cs=tinysrgb&w=200",
       },
       {
@@ -202,10 +211,36 @@ export default function Index() {
         </section>
 
         <section id="how" className="mt-14 scroll-mt-24">
-          <SectionTitle kicker="How it works" title="You submit. We call you within 2 hours." />
-          <p className="mt-2 max-w-3xl text-sm leading-relaxed text-slate-700">
-            Clear, old-school service powered by smart automation. You don’t chase dealers. We bring the process to you.
-          </p>
+          <div className="flex flex-col gap-5 md:flex-row md:items-end md:justify-between">
+            <div className="min-w-0">
+              <SectionTitle kicker="How it works" title="You submit, we call within 2 hours." />
+              <p className="mt-2 max-w-3xl text-sm leading-relaxed text-slate-700">
+                Clear, old school service powered by smart automation. You don’t chase dealers. We bring the process to
+                you with one structured submission and a real callback.
+              </p>
+            </div>
+
+            <Card className="rounded-2xl border-slate-200 bg-white p-4 shadow-sm md:p-5">
+              <div className="grid gap-3 sm:grid-cols-3 sm:gap-4">
+                <MiniHighlight
+                  icon={<Clock3 className="h-4 w-4 text-indigo-700" />}
+                  title="Fast"
+                  desc="2 hour callback goal"
+                />
+                <MiniHighlight
+                  icon={<ShieldCheck className="h-4 w-4 text-emerald-700" />}
+                  title="Private"
+                  desc="No public listing"
+                />
+                <MiniHighlight
+                  icon={<PhoneCall className="h-4 w-4 text-slate-900" />}
+                  title="Human"
+                  desc="Real phone call"
+                />
+              </div>
+            </Card>
+          </div>
+
           <div className="mt-6">
             <HowItWorks />
           </div>
@@ -217,7 +252,7 @@ export default function Index() {
         <section className="mt-12">
           <SectionTitle kicker="What you get" title="A smooth selling experience" />
           <p className="mt-2 max-w-3xl text-sm leading-relaxed text-slate-700">
-            Designed for busy sellers: one structured submission, private handling, and a real follow-up call—without
+            Designed for busy sellers: one structured submission, private handling, and a real follow up call, without
             public listings or marketplace noise.
           </p>
           <div className="mt-6">
@@ -228,7 +263,7 @@ export default function Index() {
         <section id="reviews" className="mt-14 scroll-mt-24">
           <SectionTitle kicker="Reviews" title="Trusted by busy sellers" />
           <p className="mt-2 max-w-3xl text-sm leading-relaxed text-slate-700">
-            Quick submissions, private handling, and a real call—here’s what sellers say after using the intake.
+            Quick submissions, private handling, and a real call. Here’s what sellers say after using the intake.
           </p>
 
           <div className="mt-6">
@@ -352,6 +387,28 @@ function HeroPromise({
       <div>
         <p className="text-sm font-semibold text-slate-900">{title}</p>
         <p className="mt-0.5 text-sm text-slate-700">{desc}</p>
+      </div>
+    </div>
+  );
+}
+
+function MiniHighlight({
+  icon,
+  title,
+  desc,
+}: {
+  icon: React.ReactNode;
+  title: string;
+  desc: string;
+}) {
+  return (
+    <div className="flex items-start gap-3 rounded-xl border border-slate-200 bg-slate-50 px-3 py-3">
+      <div className="grid h-9 w-9 shrink-0 place-items-center rounded-xl border border-slate-200 bg-white">
+        {icon}
+      </div>
+      <div className="min-w-0">
+        <p className="text-sm font-semibold text-slate-900">{title}</p>
+        <p className="mt-0.5 text-xs font-semibold uppercase tracking-[0.18em] text-slate-600">{desc}</p>
       </div>
     </div>
   );
