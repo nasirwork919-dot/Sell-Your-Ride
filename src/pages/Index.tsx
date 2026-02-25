@@ -149,10 +149,13 @@ export default function Index() {
       <Header active={active} onNav={navTo} waLink={adminWhatsAppLink} hidden={navHidden} scrolled={scrolled} />
 
       <main className="mx-auto max-w-6xl px-4 pb-16 pt-20 md:px-6 md:pt-24">
-        {/* Mobile: above-the-fold form for campaign traffic */}
-        <MobileAboveFoldForm onWhatsApp={() => window.open(adminWhatsAppLink, "_blank", "noopener,noreferrer")} />
+        {/* Mobile: campaign-first layout */}
+        <MobileAboveFoldForm
+          onWhatsApp={() => window.open(adminWhatsAppLink, "_blank", "noopener,noreferrer")}
+          onOpenReviews={() => window.open(googleReviewsLink, "_blank", "noopener,noreferrer")}
+        />
 
-        {/* Desktop/tablet: keep the premium hero + form section */}
+        {/* Desktop/tablet */}
         <div className="hidden md:block">
           <PremiumHero onPrimaryCta={() => scrollToSection("sell")} waLink={adminWhatsAppLink} />
 
