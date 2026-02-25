@@ -10,9 +10,10 @@ import { useScrollDirection } from "@/hooks/use-scroll-direction";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { cn } from "@/lib/utils";
-import { BadgeCheck, Clock3, MessageCircle, PhoneCall, ShieldCheck } from "lucide-react";
+import { Clock3, MessageCircle, PhoneCall, ShieldCheck } from "lucide-react";
 import { ReviewsMarquee } from "@/components/ReviewsMarquee";
 import { SiteFooter } from "@/components/SiteFooter";
+import { CarBuyersStyleHero } from "@/components/CarBuyersStyleHero";
 import { PremiumHero } from "@/components/PremiumHero";
 
 const NAV = [
@@ -138,7 +139,7 @@ export default function Index() {
       <Header active={active} onNav={navTo} waLink={adminWhatsAppLink} hidden={navHidden} />
 
       <main className="mx-auto max-w-6xl px-4 pb-16 pt-20 md:px-6 md:pt-24">
-        <PremiumHero onPrimaryCta={() => scrollToSection("sell")} waLink={adminWhatsAppLink} />
+        <CarBuyersStyleHero onPrimaryCta={() => scrollToSection("sell")} waLink={adminWhatsAppLink} />
 
         <section id="sell" ref={formRef} className="mt-10 scroll-mt-24">
           <LeadForm />
@@ -156,21 +157,9 @@ export default function Index() {
 
             <Card className="rounded-2xl border-slate-200 bg-white p-4 shadow-sm md:p-5">
               <div className="grid gap-3 sm:grid-cols-3 sm:gap-4">
-                <MiniHighlight
-                  icon={<Clock3 className="h-4 w-4 text-indigo-700" />}
-                  title="Fast"
-                  desc="2 hour callback goal"
-                />
-                <MiniHighlight
-                  icon={<ShieldCheck className="h-4 w-4 text-emerald-700" />}
-                  title="Private"
-                  desc="No public listing"
-                />
-                <MiniHighlight
-                  icon={<PhoneCall className="h-4 w-4 text-slate-900" />}
-                  title="Human"
-                  desc="Real phone call"
-                />
+                <MiniHighlight icon={<Clock3 className="h-4 w-4 text-indigo-700" />} title="Fast" desc="2 hour callback goal" />
+                <MiniHighlight icon={<ShieldCheck className="h-4 w-4 text-emerald-700" />} title="Private" desc="No public listing" />
+                <MiniHighlight icon={<PhoneCall className="h-4 w-4 text-slate-900" />} title="Human" desc="Real phone call" />
               </div>
             </Card>
           </div>
@@ -213,10 +202,7 @@ export default function Index() {
                 <p className="mt-1 text-sm text-slate-700">Submit your car details and we will call you within 2 hours.</p>
               </div>
               <div className="flex flex-col gap-3 sm:flex-row">
-                <Button
-                  className="h-11 rounded-lg bg-indigo-600 text-white hover:bg-indigo-700"
-                  onClick={() => scrollToSection("sell")}
-                >
+                <Button className="h-11 rounded-lg bg-indigo-600 text-white hover:bg-indigo-700" onClick={() => scrollToSection("sell")}>
                   Submit details
                 </Button>
                 <a href={adminWhatsAppLink} target="_blank" rel="noreferrer" className="inline-flex">
