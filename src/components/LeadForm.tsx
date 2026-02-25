@@ -8,6 +8,9 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { isLeadSubmitError, submitLead } from "@/lib/api";
+import { showError, showSuccess } from "@/utils/toast";
+import { CheckCircle2, Loader2, ShieldCheck } from "lucide-react";
+import { cn } from "@/lib/utils";
 
 const currentYear = new Date().getFullYear();
 
@@ -72,15 +75,17 @@ export function LeadForm() {
         }
       }
       setServerError(res.error ?? "Submission failed");
+      showError(res.error ?? "Submission failed");
       return;
     }
 
+    showSuccess("Submitted — we’ll call you shortly.");
     setSuccess(true);
     reset();
   }
 
   return (
-    <Card className="rounded-xl border-slate-200 bg-white p-5 shadow-sm md:p-7">
+    <Card className="rounded-2xl border-slate-200 bg-white p-5 shadow-sm md:p-7">
       <div className="flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
         <div className="min-w-0">
           <div className="flex flex-wrap items-center gap-x-3 gap-y-2">
@@ -88,18 +93,9 @@ export function LeadForm() {
               Get <span className="text-indigo-700">dealer offers</span>
             </h3>
 
-            <div className="inline-flex items-center gap-2 rounded-lg border border-indigo-200 bg-indigo-50 px-3 py-1.5 text-[13px] font-semibold text-indigo-950 shadow-sm md:text-sm">
-              <span className="inline-flex items-center rounded-md bg-white px-2 py-0.5 text-indigo-900 ring-1 ring-indigo-200">
-                Fast
-              </span>
-              <span className="h-4 w-px bg-indigo-200" aria-hidden="true" />
-              <span className="inline-flex items-center rounded-md bg-white px-2 py-0.5 text-indigo-900 ring-1 ring-indigo-200">
-                Private
-              </span>
-              <span className="h-4 w-px bg-indigo-200" aria-hidden="true" />
-              <span className="inline-flex items-center rounded-md bg-white px-2 py-0.5 text-indigo-900 ring-1 ring-indigo-200">
-                Secure
-              </span>
+            <div className="inline-flex items-center gap-2 rounded-full border border-indigo-200 bg-indigo-50 px-3 py-1.5 text-[12px] font-semibold text-indigo-950 shadow-sm md:text-sm">
+              <ShieldCheck className="h-4 w-4 text-indigo-700" />
+              Private intake
             </div>
           </div>
 
@@ -110,20 +106,28 @@ export function LeadForm() {
       </div>
 
       {success ? (
-        <div className="mt-6 rounded-lg border border-emerald-200 bg-emerald-50 p-4">
-          <p className="text-[15px] font-semibold text-emerald-900">
-            Thanks! Our team received your details and will contact you shortly.
-          </p>
-          <p className="mt-1 text-sm leading-relaxed text-emerald-800">
-            If you need to add anything, message us on WhatsApp and mention your name.
-          </p>
-          <Button
-            className="mt-4 h-11 rounded-lg border border-slate-200 bg-white text-slate-900 hover:bg-slate-50"
-            variant="secondary"
-            onClick={() => setSuccess(false)}
-          >
-            Submit another car
-          </Button>
+        <div className="mt-6 rounded-2xl border border-emerald-200 bg-emerald-50 p-5">
+          <div className="flex items-start gap-3">
+            <span className="mt-0.5 grid h-10 w-10 place-items-center rounded-2xl bg-white shadow-sm ring-1 ring-emerald-200">
+              <CheckCircle2 className="h-5 w-5 text-emerald-700" />
+            </span>
+            <div className="min-w-0">
+              <p className="text-[15px] font-semibold text-emerald-950">
+                Thanks — our team received your details.
+              </p>
+              <p className="mt-1 text-sm leading-relaxed text-emerald-900/90">
+                We’ll contact you shortly. If you need to add anything, message us on WhatsApp and mention your name.
+              </p>
+
+              <Button
+                className="mt-4 h-11 rounded-xl border border-slate-200 bg-white text-slate-900 hover:bg-slate-50"
+                variant="secondary"
+                onClick={() => setSuccess(false)}
+              >
+                Submit another car
+              </Button>
+            </div>
+          </div>
         </div>
       ) : (
         <form className="mt-6 grid grid-cols-1 gap-4 md:grid-cols-2" onSubmit={handleSubmit(onSubmit)} noValidate>
@@ -141,40 +145,44 @@ export function LeadForm() {
 
           <Field label="Full name" error={errors.fullName?.message}>
             <Input
-              className="h-12 rounded-lg border-slate-200 bg-white text-[15px] md:text-base"
+              className={inputClassName(errors.fullName?.message)}
               placeholder="e.g., Olivia Smith"
+              autoComplete="name"
               {...register("fullName")}
             />
           </Field>
 
           <Field label="Phone (WhatsApp)" error={errors.phone?.message}>
             <Input
-              className="h-12 rounded-lg border-slate-200 bg-white text-[15px] md:text-base"
+              className={inputClassName(errors.phone?.message)}
               placeholder="+61412 345 678"
               inputMode="tel"
+              autoComplete="tel"
               {...register("phone")}
             />
           </Field>
 
           <Field label="Car brand" error={errors.carBrand?.message}>
             <Input
-              className="h-12 rounded-lg border-slate-200 bg-white text-[15px] md:text-base"
+              className={inputClassName(errors.carBrand?.message)}
               placeholder="e.g., Toyota"
+              autoComplete="off"
               {...register("carBrand")}
             />
           </Field>
 
           <Field label="Car model" error={errors.carModel?.message}>
             <Input
-              className="h-12 rounded-lg border-slate-200 bg-white text-[15px] md:text-base"
+              className={inputClassName(errors.carModel?.message)}
               placeholder="e.g., Corolla Ascent Sport"
+              autoComplete="off"
               {...register("carModel")}
             />
           </Field>
 
           <Field label="Manufacturing year" error={errors.manufacturingYear?.message}>
             <Input
-              className="h-12 rounded-lg border-slate-200 bg-white text-[15px] md:text-base"
+              className={inputClassName(errors.manufacturingYear?.message)}
               placeholder={`e.g., ${currentYear - 3}`}
               inputMode="numeric"
               {...register("manufacturingYear")}
@@ -183,7 +191,7 @@ export function LeadForm() {
 
           <Field label="Asking price" error={errors.askingPrice?.message}>
             <Input
-              className="h-12 rounded-lg border-slate-200 bg-white text-[15px] md:text-base"
+              className={inputClassName(errors.askingPrice?.message)}
               placeholder="e.g., 18,500 (AUD)"
               inputMode="numeric"
               {...register("askingPrice")}
@@ -192,8 +200,8 @@ export function LeadForm() {
 
           <Field label="Kilometers driven" error={errors.kilometersDriven?.message}>
             <Input
-              className="h-12 rounded-lg border-slate-200 bg-white text-[15px] md:text-base"
-              placeholder="e.g., 124,000 km"
+              className={inputClassName(errors.kilometersDriven?.message)}
+              placeholder="e.g., 124,000"
               inputMode="numeric"
               {...register("kilometersDriven")}
             />
@@ -201,14 +209,18 @@ export function LeadForm() {
 
           <Field label="Additional notes (optional)" error={errors.additionalNotes?.message} className="md:col-span-2">
             <Textarea
-              className="min-h-28 rounded-lg border-slate-200 bg-white text-[15px] leading-relaxed md:text-base"
+              className={cn(
+                "min-h-28 rounded-xl border-slate-200 bg-white text-[15px] leading-relaxed shadow-sm",
+                "focus-visible:ring-2 focus-visible:ring-indigo-500/40 focus-visible:ring-offset-0",
+                errors.additionalNotes?.message ? "border-rose-300 focus-visible:ring-rose-500/35" : ""
+              )}
               placeholder="Condition, service history, rego expiry, accidents, upgrades, urgency…"
               {...register("additionalNotes")}
             />
           </Field>
 
           {serverError ? (
-            <div className="md:col-span-2 rounded-lg border border-rose-200 bg-rose-50 p-3 text-sm text-rose-800">
+            <div className="md:col-span-2 rounded-xl border border-rose-200 bg-rose-50 p-3 text-sm text-rose-800">
               {serverError}
             </div>
           ) : null}
@@ -219,14 +231,30 @@ export function LeadForm() {
             </p>
             <Button
               disabled={isSubmitting}
-              className="h-12 rounded-lg bg-indigo-600 text-base text-white hover:bg-indigo-700"
+              className="h-12 rounded-xl bg-indigo-600 text-base text-white shadow-sm hover:bg-indigo-700"
             >
-              {isSubmitting ? "Submitting…" : "Submit details"}
+              {isSubmitting ? (
+                <span className="inline-flex items-center">
+                  <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                  Submitting…
+                </span>
+              ) : (
+                "Submit details"
+              )}
             </Button>
           </div>
         </form>
       )}
     </Card>
+  );
+}
+
+function inputClassName(hasError?: string) {
+  return cn(
+    "h-12 rounded-xl border-slate-200 bg-white text-[15px] shadow-sm md:text-base",
+    "placeholder:text-slate-400",
+    "focus-visible:ring-2 focus-visible:ring-indigo-500/40 focus-visible:ring-offset-0",
+    hasError ? "border-rose-300 focus-visible:ring-rose-500/35" : ""
   );
 }
 

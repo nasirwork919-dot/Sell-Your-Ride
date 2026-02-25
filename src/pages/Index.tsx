@@ -72,6 +72,14 @@ export default function Index() {
   }
 
   useEffect(() => {
+    // If a hash is present, we will scroll to it; otherwise force top.
+    const id = window.location.hash.replace("#", "").trim();
+    if (!id) {
+      window.scrollTo({ top: 0, left: 0, behavior: "auto" });
+    }
+  }, []);
+
+  useEffect(() => {
     const ids = NAV.map((n) => n.id);
     const els = ids.map((id) => document.getElementById(id)).filter(Boolean) as HTMLElement[];
     const io = new IntersectionObserver(
@@ -186,17 +194,7 @@ export default function Index() {
               {/* LEFT */}
               <div className="md:col-span-7 md:flex md:items-center">
                 <div className="w-full">
-                  {/* Brand */}
-                  <div className="flex items-center gap-3">
-                    <div className="grid h-10 w-10 place-items-center rounded-2xl bg-indigo-600 text-sm font-extrabold tracking-tight text-white shadow-sm">
-                      SYR
-                    </div>
-                    <div className="min-w-0">
-                      <p className="text-sm font-semibold tracking-tight text-slate-900">Sell Your Ride</p>
-                    </div>
-                  </div>
-
-                  <h1 className="mt-4 text-balance text-[32px] font-semibold leading-[1.08] tracking-tight text-slate-900 sm:text-4xl md:mt-5 md:text-5xl">
+                  <h1 className="text-balance text-[32px] font-semibold leading-[1.08] tracking-tight text-slate-900 sm:text-4xl md:text-5xl">
                     Sell your car privately and get a real callback.
                   </h1>
 
@@ -241,11 +239,7 @@ export default function Index() {
 
                   {/* Cards: 2x2 */}
                   <div className="mt-6 grid gap-3 sm:grid-cols-2 md:mt-8">
-                    <HeroMiniCard
-                      icon={<Zap className="h-4 w-4 text-indigo-700" />}
-                      title="Quick intake"
-                      desc="One clean form. No listing."
-                    />
+                    <HeroMiniCard icon={<Zap className="h-4 w-4 text-indigo-700" />} title="Quick intake" desc="One clean form. No listing." />
                     <HeroMiniCard
                       icon={<ShieldCheck className="h-4 w-4 text-emerald-700" />}
                       title="Dealer outreach"
@@ -256,11 +250,7 @@ export default function Index() {
                       title="Real callback"
                       desc="Clear next steps in 2 hours."
                     />
-                    <HeroMiniCard
-                      icon={<ShieldCheck className="h-4 w-4 text-slate-900" />}
-                      title="Private handling"
-                      desc="Secure by default."
-                    />
+                    <HeroMiniCard icon={<ShieldCheck className="h-4 w-4 text-slate-900" />} title="Private handling" desc="Secure by default." />
                   </div>
                 </div>
               </div>
