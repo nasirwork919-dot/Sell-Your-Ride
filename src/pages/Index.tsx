@@ -385,9 +385,7 @@ function MiniHighlight({
       </div>
       <div className="min-w-0">
         <p className="text-sm font-semibold text-slate-900">{title}</p>
-        <p className="mt-0.5 text-xs font-semibold uppercase tracking-[0.18em] text-slate-600">
-          {desc}
-        </p>
+        <p className="mt-0.5 text-xs font-semibold uppercase tracking-[0.18em] text-slate-600">{desc}</p>
       </div>
     </div>
   );
