@@ -179,7 +179,7 @@ export default function Index() {
           </div>
 
           {/* Decorative hero cutout image (desktop only) */}
-          <div className="pointer-events-none absolute left-[39%] top-14 hidden -translate-x-1/2 md:block">
+          <div className="pointer-events-none absolute left-[24%] top-8 hidden -translate-x-1/2 md:block">
             <img
               src={images.heroMain1}
               alt=""
@@ -239,7 +239,11 @@ export default function Index() {
 
                   {/* Cards: 2x2 */}
                   <div className="mt-6 grid gap-3 sm:grid-cols-2 md:mt-8">
-                    <HeroMiniCard icon={<Zap className="h-4 w-4 text-indigo-700" />} title="Quick intake" desc="One clean form. No listing." />
+                    <HeroMiniCard
+                      icon={<Zap className="h-4 w-4 text-indigo-700" />}
+                      title="Quick intake"
+                      desc="One clean form. No listing."
+                    />
                     <HeroMiniCard
                       icon={<ShieldCheck className="h-4 w-4 text-emerald-700" />}
                       title="Dealer outreach"
@@ -250,7 +254,11 @@ export default function Index() {
                       title="Real callback"
                       desc="Clear next steps in 2 hours."
                     />
-                    <HeroMiniCard icon={<ShieldCheck className="h-4 w-4 text-slate-900" />} title="Private handling" desc="Secure by default." />
+                    <HeroMiniCard
+                      icon={<ShieldCheck className="h-4 w-4 text-slate-900" />}
+                      title="Private handling"
+                      desc="Secure by default."
+                    />
                   </div>
                 </div>
               </div>
