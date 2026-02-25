@@ -136,13 +136,7 @@ export default function Index() {
 
   return (
     <div className="min-h-screen bg-slate-50">
-      <Header
-        active={active}
-        onNav={navTo}
-        waLink={adminWhatsAppLink}
-        hidden={navHidden}
-        scrolled={scrolled}
-      />
+      <Header active={active} onNav={navTo} waLink={adminWhatsAppLink} hidden={navHidden} scrolled={scrolled} />
 
       <main className="mx-auto max-w-6xl px-4 pb-16 pt-20 md:px-6 md:pt-24">
         <PremiumHero onPrimaryCta={() => scrollToSection("sell")} waLink={adminWhatsAppLink} />
@@ -206,10 +200,7 @@ export default function Index() {
                 <p className="mt-1 text-sm text-slate-700">Submit your car details and we will call you soon.</p>
               </div>
               <div className="flex flex-col gap-3 sm:flex-row">
-                <Button
-                  className="h-11 rounded-md bg-indigo-600 text-white hover:bg-indigo-700"
-                  onClick={() => scrollToSection("sell")}
-                >
+                <Button className="h-11 rounded-md bg-indigo-600 text-white hover:bg-indigo-700" onClick={() => scrollToSection("sell")}>
                   Get my instant offer
                 </Button>
                 <a href={adminWhatsAppLink} target="_blank" rel="noreferrer" className="inline-flex">

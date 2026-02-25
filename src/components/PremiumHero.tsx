@@ -1,14 +1,8 @@
-import { ArrowRight, Info, MessageCircle } from "lucide-react";
+import { Link } from "react-router-dom";
+import { ArrowRight, MessageCircle, PhoneCall, ShieldCheck, Zap } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { images } from "@/lib/images";
 import { cn } from "@/lib/utils";
-
-const TRUST_BADGES = [
-  "Free towing Australia wide",
-  "Instant bank transfer",
-  "Any make, any condition",
-  "Licensed buyers",
-] as const;
 
 export function PremiumHero({
   onPrimaryCta,
@@ -20,10 +14,10 @@ export function PremiumHero({
   className?: string;
 }) {
   return (
-    <section className={cn("grid gap-7 md:grid-cols-12 md:items-center md:gap-10", className)} aria-label="Hero">
-      {/* LEFT: copy */}
-      <div className="md:col-span-7">
-        {/* Label */}
+    <section className={cn("grid gap-6 md:grid-cols-12 md:items-stretch md:gap-8", className)} aria-label="Hero">
+      {/* Copy */}
+      <div className="md:col-span-7 md:pr-2">
+        {/* Brand */}
         <div className="flex items-center gap-3">
           <div className="grid h-10 w-10 place-items-center rounded-md bg-indigo-600 text-sm font-extrabold tracking-tight text-white shadow-sm md:h-11 md:w-11">
             SYR
@@ -34,86 +28,129 @@ export function PremiumHero({
           </div>
         </div>
 
-        {/* Headline */}
-        <h1 className="mt-4 text-balance text-4xl font-semibold leading-[1.05] tracking-tight text-slate-900 sm:text-5xl md:mt-5 md:text-6xl">
-          Sell your car fast.
-          <span className="block">
-            Get paid{" "}
-            <span className="whitespace-nowrap rounded-md bg-indigo-50 px-2 py-0.5 text-indigo-900 ring-1 ring-indigo-100">
-              today
-            </span>
-            .
-          </span>
+        <h1 className="mt-4 text-balance text-3xl font-semibold leading-[1.08] tracking-tight text-slate-900 sm:text-4xl md:mt-5 md:text-5xl">
+          Sell your car{" "}
+          <span className="whitespace-nowrap rounded-md bg-indigo-50 px-2 py-0.5 text-indigo-900 ring-1 ring-indigo-100">
+            privately
+          </span>{" "}
+          —and get a real callback.
         </h1>
 
-        {/* Supporting text */}
-        <p className="mt-3 max-w-2xl text-pretty text-[15px] leading-relaxed text-slate-700 sm:text-base">
-          One quick form. We handle everything. Same-day callback.
+        <p className="mt-3 max-w-2xl text-pretty text-sm leading-relaxed text-slate-700 sm:text-base md:text-[15px]">
+          One clean submission. We do the dealer outreach and call you with next steps.
         </p>
 
         {/* CTAs */}
-        <div className="mt-6 grid gap-2 sm:flex sm:items-center sm:gap-3">
-          <Button
-            className="h-12 w-full rounded-md bg-indigo-600 text-base text-white shadow-sm hover:bg-indigo-700 sm:w-auto"
-            onClick={onPrimaryCta}
-          >
-            Get my instant offer
+        <div className="mt-5 grid gap-2 sm:flex sm:items-center sm:gap-3 md:mt-6">
+          <Button className="h-11 w-full rounded-md bg-indigo-600 text-white hover:bg-indigo-700 sm:w-auto" onClick={onPrimaryCta}>
+            Start with the form
             <ArrowRight className="ml-2 h-4 w-4" />
           </Button>
 
-          <a href="#how" className="inline-flex">
+          <a href={waLink} target="_blank" rel="noreferrer" className="inline-flex">
             <Button
               variant="secondary"
-              className="h-12 w-full rounded-md border border-slate-200 bg-white text-base text-slate-900 hover:bg-slate-50 sm:w-auto"
+              className="h-11 w-full rounded-md border border-slate-200 bg-white text-slate-900 hover:bg-slate-50 sm:w-auto"
             >
-              <Info className="mr-2 h-4 w-4" />
-              How it works
-            </Button>
-          </a>
-
-          <a href={waLink} target="_blank" rel="noreferrer" className="inline-flex sm:ml-1">
-            <Button className="h-12 w-full rounded-md bg-emerald-600 text-base text-white hover:bg-emerald-700 sm:w-auto">
               <MessageCircle className="mr-2 h-4 w-4" />
               WhatsApp
             </Button>
           </a>
+
+          <Link to="/experience" className="hidden md:inline-flex md:ml-1">
+            <Button variant="ghost" className="h-11 rounded-md text-slate-700 hover:bg-slate-100 hover:text-slate-900">
+              See the experience
+              <ArrowRight className="ml-2 h-4 w-4" />
+            </Button>
+          </Link>
         </div>
 
-        {/* Trust badges */}
-        <div className="mt-5 grid gap-2 sm:grid-cols-2 lg:grid-cols-4">
-          {TRUST_BADGES.map((t) => (
-            <div
-              key={t}
-              className="flex items-start gap-2 rounded-md border border-slate-200 bg-white px-3 py-3 shadow-sm"
-            >
-              <span
-                className="mt-1 h-5 w-5 shrink-0 rounded-md bg-emerald-600/10 text-emerald-700 ring-1 ring-emerald-600/20"
-                aria-hidden="true"
-              />
-              <p className="text-sm font-semibold leading-snug text-slate-900">{t}</p>
-            </div>
-          ))}
+        {/* Compact trust row on mobile, fuller steps on desktop */}
+        <div className="mt-4 grid gap-2 md:mt-8 md:grid md:grid-cols-3 md:gap-3">
+          <div className="grid gap-2 md:hidden">
+            <MiniTrustRow icon={<Zap className="h-4 w-4 text-indigo-700" />} text="~60s intake" />
+            <MiniTrustRow icon={<PhoneCall className="h-4 w-4 text-indigo-700" />} text="2-hour callback goal" />
+            <MiniTrustRow icon={<ShieldCheck className="h-4 w-4 text-emerald-700" />} text="No public listing" />
+          </div>
+
+          <div className="hidden md:contents">
+            <StepPill title="Quick intake" desc="One clean form. No listing." icon={<Zap className="h-4 w-4" />} />
+            <StepPill title="Dealer outreach" desc="We match and follow up." icon={<ShieldCheck className="h-4 w-4" />} />
+            <StepPill title="Real callback" desc="Clear next steps in 2 hours." icon={<PhoneCall className="h-4 w-4" />} />
+          </div>
         </div>
       </div>
 
-      {/* RIGHT: image */}
-      <div className="md:col-span-5">
-        <div className="relative overflow-hidden rounded-md shadow-[0_16px_38px_rgba(15,23,42,0.16)]">
+      {/* Image (merged into section; no card/border) */}
+      <div className="md:col-span-5 md:pl-2">
+        <div className="relative overflow-hidden rounded-md shadow-[0_10px_30px_rgba(15,23,42,0.10)]">
           <img
             src={images.hero}
             alt="Premium car in a clean setting"
-            className="h-[220px] w-full object-cover sm:h-[300px] md:h-[560px]"
+            className="h-[200px] w-full object-cover sm:h-[260px] md:h-[560px]"
             loading="eager"
             referrerPolicy="no-referrer"
           />
-          {/* Subtle overlay for contrast (10–15%) */}
-          <div className="pointer-events-none absolute inset-0 bg-slate-900/15" />
+          <div className="pointer-events-none absolute inset-0 bg-slate-900/10" />
         </div>
 
-        <p className="mt-3 text-xs font-semibold uppercase tracking-[0.18em] text-slate-600">
-          Private intake • No public listing • Fast follow-up
-        </p>
+        {/* Keep extra details off mobile; show only on larger screens */}
+        <div className="mt-3 hidden grid-cols-3 gap-2 sm:grid md:grid-cols-1">
+          <StatRow label="Submit once" value="~60 seconds" />
+          <StatRow label="Callback goal" value="2 hours" />
+          <StatRow label="Public listing" value="None" />
+        </div>
       </div>
     </section>
+  );
+}
+
+function MiniTrustRow({ icon, text }: { icon: React.ReactNode; text: string }) {
+  return (
+    <div className="flex items-center justify-between rounded-md border border-slate-200 bg-white px-4 py-3 shadow-sm">
+      <div className="flex items-center gap-2">
+        <span className="grid h-8 w-8 place-items-center rounded-md bg-slate-50 text-slate-900 ring-1 ring-slate-200">
+          {icon}
+        </span>
+        <p className="text-sm font-semibold tracking-tight text-slate-900">{text}</p>
+      </div>
+      <span className="text-xs font-semibold uppercase tracking-[0.18em] text-slate-500">Clean</span>
+    </div>
+  );
+}
+
+function StepPill({
+  title,
+  desc,
+  icon,
+}: {
+  title: string;
+  desc: string;
+  icon: React.ReactNode;
+}) {
+  return (
+    <div className="rounded-md border border-slate-200 bg-white p-4 shadow-sm">
+      <div className="flex items-center justify-between gap-3">
+        <div className="inline-flex items-center gap-2 rounded-md border border-slate-200 bg-slate-50 px-3 py-1 text-xs font-extrabold text-slate-900">
+          <span className="grid h-5 w-5 place-items-center rounded-md bg-indigo-600 text-[11px] text-white">•</span>
+          Step
+        </div>
+        <div className="grid h-9 w-9 place-items-center rounded-md bg-slate-50 text-slate-900 shadow-sm">
+          {icon}
+        </div>
+      </div>
+
+      <p className="mt-3 text-sm font-semibold tracking-tight text-slate-900">{title}</p>
+      <p className="mt-1 text-sm leading-relaxed text-slate-700">{desc}</p>
+    </div>
+  );
+}
+
+function StatRow({ label, value }: { label: string; value: string }) {
+  return (
+    <div className="flex items-center justify-between rounded-md border border-slate-200 bg-slate-50 px-4 py-3">
+      <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-slate-600">{label}</p>
+      <p className="text-sm font-semibold tracking-tight text-slate-900">{value}</p>
+    </div>
   );
 }
