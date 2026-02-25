@@ -170,20 +170,15 @@ export default function Index() {
             <div className="absolute inset-0 bg-white/65" />
           </div>
 
-          {/* Decorative circle image in the left "empty" area (desktop only) */}
+          {/* Decorative hero cutout image (desktop only) */}
           <div className="pointer-events-none absolute left-[46%] top-11 hidden -translate-x-1/2 md:block">
-            <div className="relative">
-              <div className="h-[196px] w-[196px] overflow-hidden rounded-full border border-white/85 bg-white/70 shadow-[0_22px_60px_rgba(15,23,42,0.26)] backdrop-blur">
-                <img
-                  src={images.sellerKeys}
-                  alt=""
-                  className="h-full w-full object-cover"
-                  style={{ objectPosition: "center 35%" }}
-                  loading="eager"
-                  referrerPolicy="no-referrer"
-                />
-              </div>
-            </div>
+            <img
+              src={images.heroMain1}
+              alt=""
+              className="h-[230px] w-auto select-none object-contain drop-shadow-[0_22px_60px_rgba(15,23,42,0.28)]"
+              loading="eager"
+              referrerPolicy="no-referrer"
+            />
           </div>
 
           <div className="relative p-5 sm:p-7 md:p-10">
