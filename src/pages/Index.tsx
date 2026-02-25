@@ -261,7 +261,7 @@ function Header({
               key={n.id}
               onClick={() => onNav(n.id)}
               className={cn(
-                "rounded-md px-3 py-2 text-sm font-semibold transition",
+                "whitespace-nowrap rounded-md px-2.5 py-2 text-sm font-semibold transition lg:px-3",
                 active === n.id ? "bg-slate-900 text-white" : "text-slate-700 hover:bg-slate-100"
               )}
             >
