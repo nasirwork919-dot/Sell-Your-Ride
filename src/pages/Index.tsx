@@ -89,7 +89,7 @@ export default function Index() {
           .sort((a, b) => (b.intersectionRatio ?? 0) - (a.intersectionRatio ?? 0))[0];
         if (visible?.target?.id) setActive(visible.target.id);
       },
-      { rootMargin: "-30% 0px -60% 0px", threshold: [0.12, 0.2, 0.3] }
+      { rootMargin: "-30% 0px -60% 0px", threshold: [0.12, 0.2, 0.3] },
     );
     els.forEach((el) => io.observe(el));
     return () => io.disconnect();
@@ -147,7 +147,7 @@ export default function Index() {
         avatarUrl: "https://images.pexels.com/photos/1130626/pexels-photo-1130626.jpeg?auto=compress&cs=tinysrgb&w=200",
       },
     ],
-    []
+    [],
   );
 
   return (
@@ -161,7 +161,7 @@ export default function Index() {
         <section
           aria-label="Hero + form"
           className={cn(
-            "relative overflow-hidden rounded-3xl border border-slate-200/70 bg-white shadow-[0_18px_50px_rgba(15,23,42,0.08)]"
+            "relative overflow-hidden rounded-3xl border border-slate-200/70 bg-white shadow-[0_18px_50px_rgba(15,23,42,0.08)]",
           )}
         >
           {/* Global background */}
@@ -267,7 +267,7 @@ export default function Index() {
               <div className="md:col-span-5">
                 <div id="sell" ref={formRef} className="scroll-mt-28">
                   <Card className="rounded-3xl border-slate-200 bg-white/90 p-3 shadow-sm backdrop-blur">
-                    <div className="rounded-[5px] border border-slate-200 bg-slate-50 p-3 md:p-3">
+                    <div className="rounded-2xl border border-slate-200 bg-slate-50 p-4">
                       <p className="text-xs font-semibold uppercase tracking-[0.18em] text-slate-600">
                         Get dealer offers
                       </p>
@@ -395,7 +395,7 @@ function Header({
       className={cn(
         "fixed left-0 right-0 top-0 z-50 border-b border-slate-200 transition-transform duration-200",
         scrolled ? "bg-white/80 backdrop-blur" : "bg-white",
-        hidden ? "-translate-y-full" : "translate-y-0"
+        hidden ? "-translate-y-full" : "translate-y-0",
       )}
     >
       <div className="mx-auto grid max-w-6xl grid-cols-2 items-center px-4 py-3 md:grid-cols-3 md:px-6">
@@ -413,7 +413,7 @@ function Header({
               onClick={() => onNav(n.id)}
               className={cn(
                 "whitespace-nowrap rounded-md px-2.5 py-2 text-sm font-semibold transition lg:px-3",
-                active === n.id ? "bg-slate-900 text-white" : "text-slate-700 hover:bg-slate-100"
+                active === n.id ? "bg-slate-900 text-white" : "text-slate-700 hover:bg-slate-100",
               )}
             >
               {n.label}

@@ -85,7 +85,7 @@ export function LeadForm() {
   }
 
   return (
-    <Card className="rounded-[5px] border-slate-200 bg-white p-3 shadow-sm md:p-3">
+    <Card className="rounded-[5px] border-slate-200 bg-white p-6 shadow-sm md:p-7">
       <div className="flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
         <div className="min-w-0">
           <div className="flex flex-wrap items-center gap-x-3 gap-y-2">
@@ -248,7 +248,7 @@ function inputClassName(hasError?: string) {
     "h-12 rounded-[5px] border border-slate-200 bg-white px-3 text-[15px] text-slate-900 shadow-sm md:text-base",
     "placeholder:text-slate-500",
     "focus-visible:ring-2 focus-visible:ring-indigo-500/35 focus-visible:ring-offset-0",
-    hasError ? "border-rose-300 focus-visible:ring-rose-500/30" : ""
+    hasError ? "border-rose-300 focus-visible:ring-rose-500/30" : "",
   );
 }
 
@@ -257,7 +257,7 @@ function textareaClassName(hasError?: string) {
     "min-h-28 rounded-[5px] border border-slate-200 bg-white px-3 py-3 text-[15px] leading-relaxed text-slate-900 shadow-sm",
     "placeholder:text-slate-500",
     "focus-visible:ring-2 focus-visible:ring-indigo-500/35 focus-visible:ring-offset-0",
-    hasError ? "border-rose-300 focus-visible:ring-rose-500/30" : ""
+    hasError ? "border-rose-300 focus-visible:ring-rose-500/30" : "",
   );
 }
 
