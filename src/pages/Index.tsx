@@ -171,7 +171,7 @@ export default function Index() {
           </div>
 
           {/* Decorative hero cutout image (desktop only) */}
-          <div className="pointer-events-none absolute left-[44%] top-10 hidden -translate-x-1/2 md:block">
+          <div className="pointer-events-none absolute left-[39%] top-14 hidden -translate-x-1/2 md:block">
             <img
               src={images.heroMain1}
               alt=""
