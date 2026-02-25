@@ -16,7 +16,6 @@ import { SiteFooter } from "@/components/SiteFooter";
 import { PremiumHero } from "@/components/PremiumHero";
 import { FloatingGoogleRatingButton } from "@/components/FloatingGoogleRatingButton";
 import { MarketingPixels } from "@/components/MarketingPixels";
-import { MobileAboveFoldForm } from "@/components/MobileAboveFoldForm";
 
 const NAV = [
   { id: "sell", label: "Get an Offer" },
@@ -149,149 +148,92 @@ export default function Index() {
       <Header active={active} onNav={navTo} waLink={adminWhatsAppLink} hidden={navHidden} scrolled={scrolled} />
 
       <main className="mx-auto max-w-6xl px-4 pb-16 pt-20 md:px-6 md:pt-24">
-        {/* Mobile: campaign-first funnel */}
-        <div className="md:hidden">
-          <MobileAboveFoldForm
-            onWhatsApp={() => window.open(adminWhatsAppLink, "_blank", "noopener,noreferrer")}
-            onOpenReviews={() => window.open(googleReviewsLink, "_blank", "noopener,noreferrer")}
-          />
+        <PremiumHero onPrimaryCta={() => scrollToSection("sell")} waLink={adminWhatsAppLink} />
 
-          <section id="how" className="mt-10 scroll-mt-24">
-            <SectionTitle kicker="How it works" title="One form. We handle the rest." />
-            <p className="mt-2 text-sm leading-relaxed text-slate-700">
-              A clean intake, private handling, and a real callback—designed for busy Australian sellers.
-            </p>
-            <div className="mt-5">
-              <HowItWorks />
-            </div>
-            <div className="mt-5">
-              <TrustStrip />
-            </div>
-          </section>
+        <section id="sell" ref={formRef} className="mt-10 scroll-mt-24">
+          <LeadForm />
+        </section>
 
-          <section id="reviews" className="mt-12 scroll-mt-24">
-            <SectionTitle kicker="Reviews" title="Trusted by busy sellers" />
-            <p className="mt-2 text-sm leading-relaxed text-slate-700">Fast submissions, private handling, real calls.</p>
-            <div className="mt-5">
-              <ReviewsMarquee items={reviews} />
+        <section id="how" className="mt-14 scroll-mt-24">
+          <div className="flex flex-col gap-5 md:flex-row md:items-end md:justify-between">
+            <div className="min-w-0">
+              <SectionTitle kicker="How it works" title="One form. We handle the rest." />
+              <p className="mt-2 max-w-3xl text-sm leading-relaxed text-slate-700">
+                Designed for busy Australian sellers: a clean intake, private handling, and a real callback.
+              </p>
             </div>
-          </section>
 
-          <section id="contact" className="mt-12 scroll-mt-24">
-            <Card className="rounded-2xl border-slate-200 bg-white p-5 shadow-sm">
-              <h3 className="text-lg font-semibold tracking-tight text-slate-900">Ready to sell?</h3>
-              <p className="mt-1 text-sm text-slate-700">Submit your car details and we’ll call you soon.</p>
-              <div className="mt-4 grid gap-2">
+            <Card className="rounded-md border-slate-200 bg-white p-4 shadow-sm md:p-5">
+              <div className="grid gap-3 sm:grid-cols-3 sm:gap-4">
+                <MiniHighlight icon={<Clock3 className="h-4 w-4 text-indigo-700" />} title="Fast" desc="Same-day callback" />
+                <MiniHighlight
+                  icon={<ShieldCheck className="h-4 w-4 text-emerald-700" />}
+                  title="Private"
+                  desc="No public listing"
+                />
+                <MiniHighlight icon={<PhoneCall className="h-4 w-4 text-slate-900" />} title="Human" desc="Real conversation" />
+              </div>
+            </Card>
+          </div>
+
+          <div className="mt-6">
+            <HowItWorks />
+          </div>
+          <div className="mt-6">
+            <TrustStrip />
+          </div>
+        </section>
+
+        <section className="mt-12">
+          <SectionTitle kicker="What you get" title="A smooth selling experience" />
+          <p className="mt-2 max-w-3xl text-sm leading-relaxed text-slate-700">
+            One structured submission, private handling, and a fast follow-up—without marketplace noise.
+          </p>
+          <div className="mt-6">
+            <SmoothExperienceStrip />
+          </div>
+        </section>
+
+        <section id="reviews" className="mt-14 scroll-mt-24">
+          <SectionTitle kicker="Reviews" title="Trusted by busy sellers" />
+          <p className="mt-2 max-w-3xl text-sm leading-relaxed text-slate-700">
+            Quick submissions, private handling, and a real call. Here is what sellers say after using the intake.
+          </p>
+
+          <div className="mt-6">
+            <ReviewsMarquee items={reviews} />
+          </div>
+        </section>
+
+        <section id="contact" className="mt-14 scroll-mt-24">
+          <Card className="rounded-md border-slate-200 bg-white p-6 shadow-sm md:p-8">
+            <div className="flex flex-col gap-6 md:flex-row md:items-center md:justify-between">
+              <div>
+                <h3 className="text-xl font-semibold tracking-tight text-slate-900">Ready to sell?</h3>
+                <p className="mt-1 text-sm text-slate-700">Submit your car details and we will call you soon.</p>
+              </div>
+              <div className="flex flex-col gap-3 sm:flex-row">
                 <Button
-                  className="h-12 rounded-2xl bg-indigo-600 text-base text-white hover:bg-indigo-700"
+                  className="h-11 rounded-md bg-indigo-600 text-white hover:bg-indigo-700"
                   onClick={() => scrollToSection("sell")}
                 >
-                  Start the form
+                  Get my instant offer
                 </Button>
-                <Button
-                  variant="secondary"
-                  className="h-12 rounded-2xl border border-slate-200 bg-white text-slate-900 hover:bg-slate-50"
-                  onClick={() => window.open(adminWhatsAppLink, "_blank", "noopener,noreferrer")}
-                >
-                  <MessageCircle className="mr-2 h-4 w-4" />
-                  WhatsApp
-                </Button>
-              </div>
-            </Card>
-          </section>
-
-          <SiteFooter />
-        </div>
-
-        {/* Desktop/tablet: full layout */}
-        <div className="hidden md:block">
-          <PremiumHero onPrimaryCta={() => scrollToSection("sell")} waLink={adminWhatsAppLink} />
-
-          <section id="sell" ref={formRef} className="mt-10 scroll-mt-24">
-            <LeadForm />
-          </section>
-
-          <section id="how" className="mt-14 scroll-mt-24">
-            <div className="flex flex-col gap-5 md:flex-row md:items-end md:justify-between">
-              <div className="min-w-0">
-                <SectionTitle kicker="How it works" title="One form. We handle the rest." />
-                <p className="mt-2 max-w-3xl text-sm leading-relaxed text-slate-700">
-                  Designed for busy Australian sellers: a clean intake, private handling, and a real callback.
-                </p>
-              </div>
-
-              <Card className="rounded-md border-slate-200 bg-white p-4 shadow-sm md:p-5">
-                <div className="grid gap-3 sm:grid-cols-3 sm:gap-4">
-                  <MiniHighlight icon={<Clock3 className="h-4 w-4 text-indigo-700" />} title="Fast" desc="Same-day callback" />
-                  <MiniHighlight
-                    icon={<ShieldCheck className="h-4 w-4 text-emerald-700" />}
-                    title="Private"
-                    desc="No public listing"
-                  />
-                  <MiniHighlight icon={<PhoneCall className="h-4 w-4 text-slate-900" />} title="Human" desc="Real conversation" />
-                </div>
-              </Card>
-            </div>
-
-            <div className="mt-6">
-              <HowItWorks />
-            </div>
-            <div className="mt-6">
-              <TrustStrip />
-            </div>
-          </section>
-
-          <section className="mt-12">
-            <SectionTitle kicker="What you get" title="A smooth selling experience" />
-            <p className="mt-2 max-w-3xl text-sm leading-relaxed text-slate-700">
-              One structured submission, private handling, and a fast follow-up—without marketplace noise.
-            </p>
-            <div className="mt-6">
-              <SmoothExperienceStrip />
-            </div>
-          </section>
-
-          <section id="reviews" className="mt-14 scroll-mt-24">
-            <SectionTitle kicker="Reviews" title="Trusted by busy sellers" />
-            <p className="mt-2 max-w-3xl text-sm leading-relaxed text-slate-700">
-              Quick submissions, private handling, and a real call. Here is what sellers say after using the intake.
-            </p>
-
-            <div className="mt-6">
-              <ReviewsMarquee items={reviews} />
-            </div>
-          </section>
-
-          <section id="contact" className="mt-14 scroll-mt-24">
-            <Card className="rounded-md border-slate-200 bg-white p-6 shadow-sm md:p-8">
-              <div className="flex flex-col gap-6 md:flex-row md:items-center md:justify-between">
-                <div>
-                  <h3 className="text-xl font-semibold tracking-tight text-slate-900">Ready to sell?</h3>
-                  <p className="mt-1 text-sm text-slate-700">Submit your car details and we will call you soon.</p>
-                </div>
-                <div className="flex flex-col gap-3 sm:flex-row">
+                <a href={adminWhatsAppLink} target="_blank" rel="noreferrer" className="inline-flex">
                   <Button
-                    className="h-11 rounded-md bg-indigo-600 text-white hover:bg-indigo-700"
-                    onClick={() => scrollToSection("sell")}
+                    variant="secondary"
+                    className="h-11 rounded-md border border-slate-200 bg-white text-slate-900 hover:bg-slate-50"
                   >
-                    Get my instant offer
+                    <MessageCircle className="mr-2 h-4 w-4" />
+                    WhatsApp
                   </Button>
-                  <a href={adminWhatsAppLink} target="_blank" rel="noreferrer" className="inline-flex">
-                    <Button
-                      variant="secondary"
-                      className="h-11 rounded-md border border-slate-200 bg-white text-slate-900 hover:bg-slate-50"
-                    >
-                      <MessageCircle className="mr-2 h-4 w-4" />
-                      WhatsApp
-                    </Button>
-                  </a>
-                </div>
+                </a>
               </div>
-            </Card>
-          </section>
+            </div>
+          </Card>
+        </section>
 
-          <SiteFooter />
-        </div>
+        <SiteFooter />
       </main>
 
       <FloatingGoogleRatingButton href={googleReviewsLink} rating="4.9" countText="200+" />
