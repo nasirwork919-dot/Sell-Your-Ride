@@ -1,7 +1,6 @@
 import { Link } from "react-router-dom";
 import { ArrowRight, MessageCircle, PhoneCall, ShieldCheck, Zap } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { Card } from "@/components/ui/card";
 import { images } from "@/lib/images";
 import { cn } from "@/lib/utils";
 
@@ -20,7 +19,7 @@ export function PremiumHero({
       <div className="md:col-span-7 md:pr-2">
         {/* Brand */}
         <div className="flex items-center gap-3">
-          <div className="grid h-10 w-10 place-items-center rounded-2xl bg-indigo-600 text-sm font-extrabold tracking-tight text-white shadow-sm md:h-11 md:w-11">
+          <div className="grid h-10 w-10 place-items-center rounded-md bg-indigo-600 text-sm font-extrabold tracking-tight text-white shadow-sm md:h-11 md:w-11">
             SYR
           </div>
           <div className="min-w-0">
@@ -31,19 +30,19 @@ export function PremiumHero({
 
         <h1 className="mt-4 text-balance text-3xl font-semibold leading-[1.08] tracking-tight text-slate-900 sm:text-4xl md:mt-5 md:text-5xl">
           Sell your car{" "}
-          <span className="whitespace-nowrap rounded-xl bg-indigo-50 px-2 py-0.5 text-indigo-900 ring-1 ring-indigo-100">
+          <span className="whitespace-nowrap rounded-md bg-indigo-50 px-2 py-0.5 text-indigo-900 ring-1 ring-indigo-100">
             privately
-          </span>
-          {" "}and get a real callback.
+          </span>{" "}
+          —and get a real callback.
         </h1>
 
         <p className="mt-3 max-w-2xl text-pretty text-sm leading-relaxed text-slate-700 sm:text-base md:text-[15px]">
           One clean submission. We do the dealer outreach and call you with next steps.
         </p>
 
-        {/* Mobile-first CTAs */}
+        {/* CTAs */}
         <div className="mt-5 grid gap-2 sm:flex sm:items-center sm:gap-3 md:mt-6">
-          <Button className="h-11 w-full rounded-xl bg-indigo-600 text-white hover:bg-indigo-700 sm:w-auto" onClick={onPrimaryCta}>
+          <Button className="h-11 w-full rounded-md bg-indigo-600 text-white hover:bg-indigo-700 sm:w-auto" onClick={onPrimaryCta}>
             Start with the form
             <ArrowRight className="ml-2 h-4 w-4" />
           </Button>
@@ -51,7 +50,7 @@ export function PremiumHero({
           <a href={waLink} target="_blank" rel="noreferrer" className="inline-flex">
             <Button
               variant="secondary"
-              className="h-11 w-full rounded-xl border border-slate-200 bg-white text-slate-900 hover:bg-slate-50 sm:w-auto"
+              className="h-11 w-full rounded-md border border-slate-200 bg-white text-slate-900 hover:bg-slate-50 sm:w-auto"
             >
               <MessageCircle className="mr-2 h-4 w-4" />
               WhatsApp
@@ -59,7 +58,10 @@ export function PremiumHero({
           </a>
 
           <Link to="/experience" className="hidden md:inline-flex md:ml-1">
-            <Button variant="ghost" className="h-11 rounded-xl text-slate-700 hover:bg-slate-100 hover:text-slate-900">
+            <Button
+              variant="ghost"
+              className="h-11 rounded-md text-slate-700 hover:bg-slate-100 hover:text-slate-900"
+            >
               See the experience
               <ArrowRight className="ml-2 h-4 w-4" />
             </Button>
@@ -82,27 +84,25 @@ export function PremiumHero({
         </div>
       </div>
 
-      {/* Image panel (smaller on mobile) */}
+      {/* Image (merged into section; no card/border) */}
       <div className="md:col-span-5 md:pl-2">
-        <Card className="relative overflow-hidden rounded-3xl border-slate-200 bg-white p-2.5 shadow-sm sm:p-3">
-          <div className="relative overflow-hidden rounded-2xl border border-slate-200 bg-slate-100">
-            <img
-              src={images.hero}
-              alt="Premium car in a clean setting"
-              className="h-[180px] w-full object-cover sm:h-[260px] md:h-[560px]"
-              loading="eager"
-              referrerPolicy="no-referrer"
-            />
-            <div className="absolute inset-0 bg-slate-900/10" />
-          </div>
+        <div className="relative overflow-hidden rounded-md shadow-[0_10px_30px_rgba(15,23,42,0.10)]">
+          <img
+            src={images.hero}
+            alt="Premium car in a clean setting"
+            className="h-[200px] w-full object-cover sm:h-[260px] md:h-[560px]"
+            loading="eager"
+            referrerPolicy="no-referrer"
+          />
+          <div className="pointer-events-none absolute inset-0 bg-slate-900/10" />
+        </div>
 
-          {/* Hide stats on mobile to keep it clean */}
-          <div className="mt-3 hidden grid-cols-1 gap-2 sm:grid sm:grid-cols-3 md:grid-cols-1">
-            <StatRow label="Submit once" value="~60 seconds" />
-            <StatRow label="Callback goal" value="2 hours" />
-            <StatRow label="Public listing" value="None" />
-          </div>
-        </Card>
+        {/* Keep extra details off mobile; show only on larger screens */}
+        <div className="mt-3 hidden grid-cols-3 gap-2 sm:grid md:grid-cols-1">
+          <StatRow label="Submit once" value="~60 seconds" />
+          <StatRow label="Callback goal" value="2 hours" />
+          <StatRow label="Public listing" value="None" />
+        </div>
       </div>
     </section>
   );
@@ -110,9 +110,9 @@ export function PremiumHero({
 
 function MiniTrustRow({ icon, text }: { icon: React.ReactNode; text: string }) {
   return (
-    <div className="flex items-center justify-between rounded-xl border border-slate-200 bg-white px-4 py-3 shadow-sm">
+    <div className="flex items-center justify-between rounded-md border border-slate-200 bg-white px-4 py-3 shadow-sm">
       <div className="flex items-center gap-2">
-        <span className="grid h-8 w-8 place-items-center rounded-xl bg-slate-50 text-slate-900 ring-1 ring-slate-200">
+        <span className="grid h-8 w-8 place-items-center rounded-md bg-slate-50 text-slate-900 ring-1 ring-slate-200">
           {icon}
         </span>
         <p className="text-sm font-semibold tracking-tight text-slate-900">{text}</p>
@@ -132,26 +132,26 @@ function StepPill({
   icon: React.ReactNode;
 }) {
   return (
-    <Card className="rounded-2xl border-slate-200 bg-white p-4 shadow-sm">
+    <div className="rounded-md border border-slate-200 bg-white p-4 shadow-sm">
       <div className="flex items-center justify-between gap-3">
-        <div className="inline-flex items-center gap-2 rounded-full border border-slate-200 bg-slate-50 px-3 py-1 text-xs font-extrabold text-slate-900">
-          <span className="grid h-5 w-5 place-items-center rounded-full bg-indigo-600 text-[11px] text-white">•</span>
+        <div className="inline-flex items-center gap-2 rounded-md border border-slate-200 bg-slate-50 px-3 py-1 text-xs font-extrabold text-slate-900">
+          <span className="grid h-5 w-5 place-items-center rounded-md bg-indigo-600 text-[11px] text-white">•</span>
           Step
         </div>
-        <div className="grid h-9 w-9 place-items-center rounded-2xl bg-slate-50 text-slate-900 shadow-sm">
+        <div className="grid h-9 w-9 place-items-center rounded-md bg-slate-50 text-slate-900 shadow-sm">
           {icon}
         </div>
       </div>
 
       <p className="mt-3 text-sm font-semibold tracking-tight text-slate-900">{title}</p>
       <p className="mt-1 text-sm leading-relaxed text-slate-700">{desc}</p>
-    </Card>
+    </div>
   );
 }
 
 function StatRow({ label, value }: { label: string; value: string }) {
   return (
-    <div className="flex items-center justify-between rounded-2xl border border-slate-200 bg-slate-50 px-4 py-3">
+    <div className="flex items-center justify-between rounded-md border border-slate-200 bg-slate-50 px-4 py-3">
       <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-slate-600">{label}</p>
       <p className="text-sm font-semibold tracking-tight text-slate-900">{value}</p>
     </div>
