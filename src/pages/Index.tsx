@@ -172,13 +172,13 @@ export default function Index() {
           <div className="relative p-5 sm:p-7 md:p-10">
             <div className="grid gap-6 md:grid-cols-12 md:items-start md:gap-8">
               {/* LEFT */}
-              <div className="md:col-span-7">
+              <div className="md:col-span-7 md:flex md:flex-col md:items-center md:text-center">
                 {/* Brand */}
-                <div className="flex items-center gap-3">
+                <div className="flex items-center gap-3 md:justify-center">
                   <div className="grid h-10 w-10 place-items-center rounded-2xl bg-indigo-600 text-sm font-extrabold tracking-tight text-white shadow-sm">
                     SYR
                   </div>
-                  <div className="min-w-0">
+                  <div className="min-w-0 md:text-left">
                     <p className="text-xs font-semibold uppercase tracking-[0.22em] text-indigo-700">Australia</p>
                     <p className="text-sm font-semibold tracking-tight text-slate-900">Sell Your Ride</p>
                   </div>
@@ -193,7 +193,7 @@ export default function Index() {
                 </p>
 
                 {/* CTAs */}
-                <div className="mt-5 grid gap-2 sm:flex sm:items-center sm:gap-3 md:mt-6">
+                <div className="mt-5 grid gap-2 sm:flex sm:items-center sm:justify-center sm:gap-3 md:mt-6">
                   <Button
                     className="h-11 w-full rounded-2xl bg-indigo-600 text-white hover:bg-indigo-700 sm:w-auto sm:rounded-xl"
                     onClick={() => {
@@ -228,7 +228,7 @@ export default function Index() {
                 </div>
 
                 {/* Cards: 2x2 */}
-                <div className="mt-6 grid gap-3 sm:grid-cols-2 md:mt-8">
+                <div className="mt-6 grid w-full max-w-[560px] gap-3 sm:grid-cols-2 md:mt-8">
                   <HeroMiniCard
                     icon={<Zap className="h-4 w-4 text-indigo-700" />}
                     title="Quick intake"
