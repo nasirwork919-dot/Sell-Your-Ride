@@ -29,8 +29,12 @@ export function PremiumHero({
           </div>
         </div>
 
-        <h1 className="mt-4 text-balance text-3xl font-semibold tracking-tight text-slate-900 sm:text-4xl md:mt-5 md:text-5xl">
-          Sell your car—privately.
+        <h1 className="mt-4 text-balance text-3xl font-semibold leading-[1.08] tracking-tight text-slate-900 sm:text-4xl md:mt-5 md:text-5xl">
+          Sell your car{" "}
+          <span className="whitespace-nowrap rounded-xl bg-indigo-50 px-2 py-0.5 text-indigo-900 ring-1 ring-indigo-100">
+            privately
+          </span>
+          {" "}—and get a real callback.
         </h1>
 
         <p className="mt-3 max-w-2xl text-pretty text-sm leading-relaxed text-slate-700 sm:text-base md:text-[15px]">
