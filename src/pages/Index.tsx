@@ -48,7 +48,7 @@ export default function Index() {
       window.history.replaceState(null, "", `#${id}`);
     }
 
-    const headerOffsetPx = 84;
+    const headerOffsetPx = 88; // slightly larger on mobile due to taller header
     const top = el.getBoundingClientRect().top + window.scrollY - headerOffsetPx;
     const clampedTop = Math.max(0, top);
 
@@ -147,23 +147,23 @@ export default function Index() {
 
       <Header active={active} onNav={navTo} waLink={adminWhatsAppLink} hidden={navHidden} scrolled={scrolled} />
 
-      <main className="mx-auto max-w-6xl px-4 pb-16 pt-20 md:px-6 md:pt-24">
+      <main className="mx-auto max-w-6xl px-4 pb-16 pt-[88px] sm:pt-24 md:px-6 md:pt-24">
         <PremiumHero onPrimaryCta={() => scrollToSection("sell")} waLink={adminWhatsAppLink} />
 
-        <section id="sell" ref={formRef} className="mt-10 scroll-mt-24">
+        <section id="sell" ref={formRef} className="mt-8 scroll-mt-28 sm:mt-10">
           <LeadForm />
         </section>
 
-        <section id="how" className="mt-14 scroll-mt-24">
-          <div className="flex flex-col gap-5 md:flex-row md:items-end md:justify-between">
+        <section id="how" className="mt-12 scroll-mt-28 sm:mt-14">
+          <div className="flex flex-col gap-4 md:flex-row md:items-end md:justify-between md:gap-5">
             <div className="min-w-0">
               <SectionTitle kicker="How it works" title="One form. We handle the rest." />
-              <p className="mt-2 max-w-3xl text-sm leading-relaxed text-slate-700">
+              <p className="mt-2 max-w-3xl text-sm leading-relaxed text-slate-700 sm:text-[15px]">
                 Designed for busy Australian sellers: a clean intake, private handling, and a real callback.
               </p>
             </div>
 
-            <Card className="rounded-md border-slate-200 bg-white p-4 shadow-sm md:p-5">
+            <Card className="rounded-2xl border-slate-200 bg-white p-4 shadow-sm md:rounded-md md:p-5">
               <div className="grid gap-3 sm:grid-cols-3 sm:gap-4">
                 <MiniHighlight icon={<Clock3 className="h-4 w-4 text-indigo-700" />} title="Fast" desc="Same-day callback" />
                 <MiniHighlight
@@ -176,45 +176,47 @@ export default function Index() {
             </Card>
           </div>
 
-          <div className="mt-6">
+          <div className="mt-5 sm:mt-6">
             <HowItWorks />
           </div>
-          <div className="mt-6">
+          <div className="mt-5 sm:mt-6">
             <TrustStrip />
           </div>
         </section>
 
-        <section className="mt-12">
+        <section className="mt-10 sm:mt-12">
           <SectionTitle kicker="What you get" title="A smooth selling experience" />
-          <p className="mt-2 max-w-3xl text-sm leading-relaxed text-slate-700">
+          <p className="mt-2 max-w-3xl text-sm leading-relaxed text-slate-700 sm:text-[15px]">
             One structured submission, private handling, and a fast follow-up—without marketplace noise.
           </p>
-          <div className="mt-6">
+          <div className="mt-5 sm:mt-6">
             <SmoothExperienceStrip />
           </div>
         </section>
 
-        <section id="reviews" className="mt-14 scroll-mt-24">
+        <section id="reviews" className="mt-12 scroll-mt-28 sm:mt-14">
           <SectionTitle kicker="Reviews" title="Trusted by busy sellers" />
-          <p className="mt-2 max-w-3xl text-sm leading-relaxed text-slate-700">
+          <p className="mt-2 max-w-3xl text-sm leading-relaxed text-slate-700 sm:text-[15px]">
             Quick submissions, private handling, and a real call. Here is what sellers say after using the intake.
           </p>
 
-          <div className="mt-6">
+          <div className="mt-5 sm:mt-6">
             <ReviewsMarquee items={reviews} />
           </div>
         </section>
 
-        <section id="contact" className="mt-14 scroll-mt-24">
-          <Card className="rounded-md border-slate-200 bg-white p-6 shadow-sm md:p-8">
-            <div className="flex flex-col gap-6 md:flex-row md:items-center md:justify-between">
+        <section id="contact" className="mt-12 scroll-mt-28 sm:mt-14">
+          <Card className="rounded-2xl border-slate-200 bg-white p-5 shadow-sm sm:p-6 md:rounded-md md:p-8">
+            <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between md:gap-6">
               <div>
                 <h3 className="text-xl font-semibold tracking-tight text-slate-900">Ready to sell?</h3>
-                <p className="mt-1 text-sm text-slate-700">Submit your car details and we will call you soon.</p>
+                <p className="mt-1 text-sm text-slate-700 sm:text-[15px]">
+                  Submit your car details and we will call you soon.
+                </p>
               </div>
-              <div className="flex flex-col gap-3 sm:flex-row">
+              <div className="grid gap-2 sm:flex sm:flex-row sm:gap-3">
                 <Button
-                  className="h-11 rounded-md bg-indigo-600 text-white hover:bg-indigo-700"
+                  className="h-12 rounded-xl bg-indigo-600 text-base text-white hover:bg-indigo-700 sm:h-11 sm:rounded-md sm:text-sm"
                   onClick={() => scrollToSection("sell")}
                 >
                   Get my instant offer
@@ -222,7 +224,7 @@ export default function Index() {
                 <a href={adminWhatsAppLink} target="_blank" rel="noreferrer" className="inline-flex">
                   <Button
                     variant="secondary"
-                    className="h-11 rounded-md border border-slate-200 bg-white text-slate-900 hover:bg-slate-50"
+                    className="h-12 w-full rounded-xl border border-slate-200 bg-white text-base text-slate-900 hover:bg-slate-50 sm:h-11 sm:w-auto sm:rounded-md sm:text-sm"
                   >
                     <MessageCircle className="mr-2 h-4 w-4" />
                     WhatsApp
@@ -267,8 +269,10 @@ function Header({
       <div className="mx-auto grid max-w-6xl grid-cols-2 items-center px-4 py-3 md:grid-cols-3 md:px-6">
         {/* Left: logo */}
         <button onClick={() => onNav("sell")} className="group inline-flex items-center gap-2 justify-self-start">
-          <span className="grid h-9 w-9 place-items-center rounded-md bg-indigo-600 text-white shadow-sm">SYR</span>
-          <span className="text-sm font-semibold tracking-tight text-slate-900">Sell Your Ride</span>
+          <span className="grid h-10 w-10 place-items-center rounded-xl bg-indigo-600 text-white shadow-sm md:h-9 md:w-9 md:rounded-md">
+            SYR
+          </span>
+          <span className="text-[15px] font-semibold tracking-tight text-slate-900 md:text-sm">Sell Your Ride</span>
         </button>
 
         {/* Center: nav */}
@@ -305,7 +309,7 @@ function Header({
 function SectionTitle({ kicker, title }: { kicker: string; title: string }) {
   return (
     <div>
-      <p className="text-xs font-semibold uppercase tracking-[0.2em] text-indigo-700">{kicker}</p>
+      <p className="text-[11px] font-semibold uppercase tracking-[0.22em] text-indigo-700 sm:text-xs">{kicker}</p>
       <h2 className="mt-2 text-2xl font-semibold tracking-tight text-slate-900 md:text-3xl">{title}</h2>
     </div>
   );
@@ -321,8 +325,8 @@ function MiniHighlight({
   desc: string;
 }) {
   return (
-    <div className="flex items-start gap-3 rounded-md border border-slate-200 bg-slate-50 px-3 py-3">
-      <div className="grid h-9 w-9 shrink-0 place-items-center rounded-md border border-slate-200 bg-white">
+    <div className="flex items-start gap-3 rounded-xl border border-slate-200 bg-slate-50 px-3 py-3 md:rounded-md">
+      <div className="grid h-10 w-10 shrink-0 place-items-center rounded-xl border border-slate-200 bg-white md:h-9 md:w-9 md:rounded-md">
         {icon}
       </div>
       <div className="min-w-0">
