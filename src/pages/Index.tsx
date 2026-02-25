@@ -192,7 +192,6 @@ export default function Index() {
                       SYR
                     </div>
                     <div className="min-w-0">
-                      <p className="text-xs font-semibold uppercase tracking-[0.22em] text-indigo-700">Australia</p>
                       <p className="text-sm font-semibold tracking-tight text-slate-900">Sell Your Ride</p>
                     </div>
                   </div>
