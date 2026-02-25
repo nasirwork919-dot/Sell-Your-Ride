@@ -16,6 +16,7 @@ import { SiteFooter } from "@/components/SiteFooter";
 import { PremiumHero } from "@/components/PremiumHero";
 import { FloatingGoogleRatingButton } from "@/components/FloatingGoogleRatingButton";
 import { MarketingPixels } from "@/components/MarketingPixels";
+import { images } from "@/lib/images";
 
 const NAV = [
   { id: "sell", label: "Get an Offer" },
@@ -148,7 +149,35 @@ export default function Index() {
       <Header active={active} onNav={navTo} waLink={adminWhatsAppLink} hidden={navHidden} scrolled={scrolled} />
 
       <main className="mx-auto max-w-6xl px-4 pb-16 pt-[88px] sm:pt-24 md:px-6 md:pt-24">
-        <PremiumHero onPrimaryCta={() => scrollToSection("sell")} waLink={adminWhatsAppLink} />
+        {/* Hero background test */}
+        <section
+          aria-label="Hero background"
+          className="relative overflow-hidden rounded-3xl border border-slate-200/70 bg-white shadow-[0_18px_50px_rgba(15,23,42,0.08)]"
+        >
+          {/* Background image */}
+          <div className="absolute inset-0">
+            <img
+              src={images.hero}
+              alt=""
+              className="h-full w-full object-cover"
+              loading="eager"
+              referrerPolicy="no-referrer"
+            />
+            {/* Contrast overlays */}
+            <div className="absolute inset-0 bg-slate-950/40" />
+            <div className="absolute inset-0 bg-white/55 mix-blend-soft-light" />
+          </div>
+
+          {/* Foreground content */}
+          <div className="relative p-5 sm:p-7 md:p-10">
+            <div className="[&_*]:!text-slate-900">
+              <PremiumHero onPrimaryCta={() => scrollToSection("sell")} waLink={adminWhatsAppLink} />
+            </div>
+
+            {/* subtle bottom fade into page background */}
+            <div className="pointer-events-none absolute inset-x-0 bottom-0 h-10 bg-gradient-to-b from-transparent to-slate-50" />
+          </div>
+        </section>
 
         <section id="sell" ref={formRef} className="mt-8 scroll-mt-28 sm:mt-10">
           <LeadForm />
@@ -267,7 +296,6 @@ function Header({
       )}
     >
       <div className="mx-auto grid max-w-6xl grid-cols-2 items-center px-4 py-3 md:grid-cols-3 md:px-6">
-        {/* Left: logo */}
         <button onClick={() => onNav("sell")} className="group inline-flex items-center gap-2 justify-self-start">
           <span className="grid h-10 w-10 place-items-center rounded-xl bg-indigo-600 text-white shadow-sm md:h-9 md:w-9 md:rounded-md">
             SYR
@@ -275,7 +303,6 @@ function Header({
           <span className="text-[15px] font-semibold tracking-tight text-slate-900 md:text-sm">Sell Your Ride</span>
         </button>
 
-        {/* Center: nav */}
         <nav className="hidden items-center justify-center gap-1 md:flex">
           {NAV.map((n) => (
             <button
@@ -291,7 +318,6 @@ function Header({
           ))}
         </nav>
 
-        {/* Right: CTA + mobile nav */}
         <div className="flex items-center justify-end gap-2">
           <a href={waLink} target="_blank" rel="noreferrer" className="hidden md:inline-flex">
             <Button className="h-10 rounded-md bg-emerald-600 text-white hover:bg-emerald-700">
@@ -331,7 +357,9 @@ function MiniHighlight({
       </div>
       <div className="min-w-0">
         <p className="text-sm font-semibold text-slate-900">{title}</p>
-        <p className="mt-0.5 text-xs font-semibold uppercase tracking-[0.18em] text-slate-600">{desc}</p>
+        <p className="mt-0.5 text-xs font-semibold uppercase tracking-[0.18em] text-slate-600">
+          {desc}
+        </p>
       </div>
     </div>
   );
