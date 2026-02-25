@@ -1,4 +1,5 @@
 import hero from "@/assets/hero.webp";
+import sellerKeys from "@/assets/seller-keys.webp";
 
 // Royalty-free images from Pexels (hotlink).
 // You can replace these with your own hosted assets anytime.
@@ -6,6 +7,9 @@ import hero from "@/assets/hero.webp";
 export const images = {
   // Local hero image (uploaded)
   hero,
+
+  // Local: seller holding keys (uploaded)
+  sellerKeys,
 
   exterior:
     "https://images.pexels.com/photos/170811/pexels-photo-170811.jpeg?auto=compress&cs=tinysrgb&w=1600",
