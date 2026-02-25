@@ -22,7 +22,7 @@ export function PremiumHero({
         {/* Brand */}
         <div className="flex items-center gap-3">
           <div className="grid h-10 w-10 place-items-center rounded-md bg-indigo-600 text-sm font-extrabold tracking-tight text-white shadow-sm md:h-11 md:w-11">
-            
+            SYR
           </div>
           <div className="min-w-0">
             <p className="text-xs font-semibold uppercase tracking-[0.22em] text-indigo-700">Australia</p>
