@@ -149,16 +149,20 @@ export default function Index() {
       <Header active={active} onNav={navTo} waLink={adminWhatsAppLink} hidden={navHidden} scrolled={scrolled} />
 
       <main className="mx-auto max-w-6xl px-4 pb-16 pt-[88px] sm:pt-24 md:px-6 md:pt-24">
-        {/* Hero background test */}
+        {/* Hero background test (larger on desktop) */}
         <section
           aria-label="Hero background"
-          className="relative overflow-hidden rounded-3xl border border-slate-200/70 bg-white shadow-[0_18px_50px_rgba(15,23,42,0.08)]"
+          className={cn(
+            "relative overflow-hidden rounded-3xl border border-slate-200/70 bg-white shadow-[0_18px_50px_rgba(15,23,42,0.08)]",
+            "min-h-[420px] sm:min-h-[520px] md:min-h-[640px]"
+          )}
         >
           <div className="absolute inset-0">
             <img
               src={images.hero}
               alt=""
               className="h-full w-full object-cover"
+              style={{ objectPosition: "center 35%" }}
               loading="eager"
               referrerPolicy="no-referrer"
             />
@@ -171,7 +175,7 @@ export default function Index() {
               <PremiumHero onPrimaryCta={() => scrollToSection("sell")} waLink={adminWhatsAppLink} showImage={false} />
             </div>
 
-            <div className="pointer-events-none absolute inset-x-0 bottom-0 h-10 bg-gradient-to-b from-transparent to-slate-50" />
+            <div className="pointer-events-none absolute inset-x-0 bottom-0 h-12 bg-gradient-to-b from-transparent to-slate-50" />
           </div>
         </section>
 
