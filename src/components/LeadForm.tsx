@@ -128,7 +128,11 @@ export function LeadForm() {
           </div>
         </div>
       ) : (
-        <form className="mt-6 grid grid-cols-1 gap-5 md:grid-cols-2" onSubmit={handleSubmit(onSubmit)} noValidate>
+        <form
+          className="mt-6 grid grid-cols-1 gap-5 md:grid-cols-2 md:gap-x-6 md:gap-y-6"
+          onSubmit={handleSubmit(onSubmit)}
+          noValidate
+        >
           {/* Honeypot */}
           <div className="hidden" aria-hidden="true">
             <Label htmlFor={honeypotName}>Website</Label>
@@ -225,7 +229,7 @@ export function LeadForm() {
             </p>
             <Button
               disabled={isSubmitting}
-              className="h-12 rounded-[5px] bg-indigo-600 text-base text-white shadow-sm hover:bg-indigo-700"
+              className="h-12 rounded-[5px] bg-indigo-600 text-base text-white shadow-sm hover:bg-indigo-700 md:h-[52px] md:px-6 md:text-[15px]"
             >
               {isSubmitting ? (
                 <span className="inline-flex items-center">
@@ -245,7 +249,7 @@ export function LeadForm() {
 
 function inputClassName(hasError?: string) {
   return cn(
-    "h-12 rounded-[5px] border border-slate-200 bg-white px-3 text-[15px] text-slate-900 shadow-sm md:text-base",
+    "h-12 rounded-[5px] border border-slate-200 bg-white px-3 text-[15px] text-slate-900 shadow-sm md:h-[52px] md:px-4 md:text-[16px]",
     "placeholder:text-slate-500",
     "focus-visible:ring-2 focus-visible:ring-indigo-500/35 focus-visible:ring-offset-0",
     hasError ? "border-rose-300 focus-visible:ring-rose-500/30" : "",
@@ -254,7 +258,7 @@ function inputClassName(hasError?: string) {
 
 function textareaClassName(hasError?: string) {
   return cn(
-    "min-h-28 rounded-[5px] border border-slate-200 bg-white px-3 py-3 text-[15px] leading-relaxed text-slate-900 shadow-sm",
+    "min-h-28 rounded-[5px] border border-slate-200 bg-white px-3 py-3 text-[15px] leading-relaxed text-slate-900 shadow-sm md:min-h-32 md:px-4 md:text-[16px]",
     "placeholder:text-slate-500",
     "focus-visible:ring-2 focus-visible:ring-indigo-500/35 focus-visible:ring-offset-0",
     hasError ? "border-rose-300 focus-visible:ring-rose-500/30" : "",
