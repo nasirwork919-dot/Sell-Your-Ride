@@ -209,18 +209,14 @@ export function LeadForm() {
 
           <Field label="Additional notes (optional)" error={errors.additionalNotes?.message} className="md:col-span-2">
             <Textarea
-              className={cn(
-                "min-h-28 rounded-xl border-slate-200 bg-white text-[15px] leading-relaxed shadow-sm",
-                "focus-visible:ring-2 focus-visible:ring-indigo-500/40 focus-visible:ring-offset-0",
-                errors.additionalNotes?.message ? "border-rose-300 focus-visible:ring-rose-500/35" : ""
-              )}
+              className={textareaClassName(errors.additionalNotes?.message)}
               placeholder="Condition, service history, rego expiry, accidents, upgrades, urgency…"
               {...register("additionalNotes")}
             />
           </Field>
 
           {serverError ? (
-            <div className="md:col-span-2 rounded-xl border border-rose-200 bg-rose-50 p-3 text-sm text-rose-800">
+            <div className="md:col-span-2 rounded-[10px] border border-rose-200 bg-rose-50 p-3 text-sm text-rose-800">
               {serverError}
             </div>
           ) : null}
@@ -251,10 +247,20 @@ export function LeadForm() {
 
 function inputClassName(hasError?: string) {
   return cn(
-    "h-12 rounded-xl border-slate-200 bg-white text-[15px] shadow-sm md:text-base",
-    "placeholder:text-slate-400",
-    "focus-visible:ring-2 focus-visible:ring-indigo-500/40 focus-visible:ring-offset-0",
-    hasError ? "border-rose-300 focus-visible:ring-rose-500/35" : ""
+    // Clearer surface + consistent 5px radius
+    "h-12 rounded-[5px] border border-slate-200 bg-white text-[15px] text-slate-900 shadow-sm md:text-base",
+    "placeholder:text-slate-500",
+    "focus-visible:ring-2 focus-visible:ring-indigo-500/35 focus-visible:ring-offset-0",
+    hasError ? "border-rose-300 focus-visible:ring-rose-500/30" : ""
+  );
+}
+
+function textareaClassName(hasError?: string) {
+  return cn(
+    "min-h-28 rounded-[5px] border border-slate-200 bg-white text-[15px] leading-relaxed text-slate-900 shadow-sm",
+    "placeholder:text-slate-500",
+    "focus-visible:ring-2 focus-visible:ring-indigo-500/35 focus-visible:ring-offset-0",
+    hasError ? "border-rose-300 focus-visible:ring-rose-500/30" : ""
   );
 }
 
@@ -275,7 +281,7 @@ function Field({
         <Label className="text-sm font-semibold text-slate-900 md:text-[15px]">{label}</Label>
         {error ? <span className="text-xs font-semibold text-rose-600">{error}</span> : null}
       </div>
-      <div className="mt-1.5">{children}</div>
+      <div className="mt-2">{children}</div>
     </div>
   );
 }
