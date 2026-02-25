@@ -31,11 +31,7 @@ export function PremiumHero({
         </div>
 
         <h1 className="mt-4 text-balance text-3xl font-semibold leading-[1.08] tracking-tight text-slate-900 sm:text-4xl md:mt-5 md:text-5xl">
-          Sell your car{" "}
-          <span className="whitespace-nowrap rounded-md bg-indigo-50 px-2 py-0.5 text-indigo-900 ring-1 ring-indigo-100">
-            privately
-          </span>{" "}
-          and get a real callback.
+          Sell your car <span className="whitespace-nowrap">privately</span> and get a real callback.
         </h1>
 
         <p className="mt-3 max-w-2xl text-pretty text-sm leading-relaxed text-slate-700 sm:text-base md:text-[15px]">
@@ -82,9 +78,7 @@ export function PremiumHero({
             <StepPill title="Quick intake" desc="One clean form. No listing." icon={<Zap className="h-4 w-4" />} />
             <StepPill title="Dealer outreach" desc="We match and follow up." icon={<ShieldCheck className="h-4 w-4" />} />
             <StepPill title="Real callback" desc="Clear next steps in 2 hours." icon={<PhoneCall className="h-4 w-4" />} />
-            {!showImage ? (
-              <StepPill title="Private handling" desc="Secure by default." icon={<ShieldCheck className="h-4 w-4" />} />
-            ) : null}
+            {!showImage ? <StepPill title="Private handling" desc="Secure by default." icon={<ShieldCheck className="h-4 w-4" />} /> : null}
           </div>
         </div>
       </div>

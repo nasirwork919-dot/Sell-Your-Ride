@@ -166,8 +166,6 @@ export default function Index() {
               loading="eager"
               referrerPolicy="no-referrer"
             />
-            <div className="absolute inset-0 bg-slate-950/40" />
-            <div className="absolute inset-0 bg-white/55 mix-blend-soft-light" />
           </div>
 
           <div className="relative p-5 sm:p-7 md:p-10">
