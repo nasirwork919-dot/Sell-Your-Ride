@@ -14,6 +14,9 @@ import { Clock3, MessageCircle, PhoneCall, ShieldCheck } from "lucide-react";
 import { ReviewsMarquee } from "@/components/ReviewsMarquee";
 import { SiteFooter } from "@/components/SiteFooter";
 import { PremiumHero } from "@/components/PremiumHero";
+import { FloatingGoogleRatingButton } from "@/components/FloatingGoogleRatingButton";
+import { MarketingPixels } from "@/components/MarketingPixels";
+import { MobileAboveFoldForm } from "@/components/MobileAboveFoldForm";
 
 const NAV = [
   { id: "sell", label: "Get an Offer" },
@@ -31,6 +34,11 @@ export default function Index() {
   const adminWhatsAppLink = useMemo(() => {
     const fromEnv = (import.meta as any).env?.VITE_ADMIN_WHATSAPP_LINK as string | undefined;
     return fromEnv ?? "https://wa.me/6147093000";
+  }, []);
+
+  const googleReviewsLink = useMemo(() => {
+    const fromEnv = (import.meta as any).env?.VITE_GOOGLE_REVIEWS_LINK as string | undefined;
+    return fromEnv ?? "https://www.google.com/search?q=sell+your+ride+reviews";
   }, []);
 
   function scrollToSection(id: string) {
@@ -136,14 +144,22 @@ export default function Index() {
 
   return (
     <div className="min-h-screen bg-slate-50">
+      <MarketingPixels />
+
       <Header active={active} onNav={navTo} waLink={adminWhatsAppLink} hidden={navHidden} scrolled={scrolled} />
 
       <main className="mx-auto max-w-6xl px-4 pb-16 pt-20 md:px-6 md:pt-24">
-        <PremiumHero onPrimaryCta={() => scrollToSection("sell")} waLink={adminWhatsAppLink} />
+        {/* Mobile: above-the-fold form for campaign traffic */}
+        <MobileAboveFoldForm onWhatsApp={() => window.open(adminWhatsAppLink, "_blank", "noopener,noreferrer")} />
 
-        <section id="sell" ref={formRef} className="mt-10 scroll-mt-24">
-          <LeadForm />
-        </section>
+        {/* Desktop/tablet: keep the premium hero + form section */}
+        <div className="hidden md:block">
+          <PremiumHero onPrimaryCta={() => scrollToSection("sell")} waLink={adminWhatsAppLink} />
+
+          <section id="sell" ref={formRef} className="mt-10 scroll-mt-24">
+            <LeadForm />
+          </section>
+        </div>
 
         <section id="how" className="mt-14 scroll-mt-24">
           <div className="flex flex-col gap-5 md:flex-row md:items-end md:justify-between">
@@ -220,6 +236,7 @@ export default function Index() {
         <SiteFooter />
       </main>
 
+      <FloatingGoogleRatingButton href={googleReviewsLink} rating="4.9" countText="200+" />
       <FloatingWhatsAppButton href={adminWhatsAppLink} />
       <BackToTopButton show={showTop} />
     </div>
