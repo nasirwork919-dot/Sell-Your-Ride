@@ -85,7 +85,7 @@ export function LeadForm() {
   }
 
   return (
-    <Card className="rounded-2xl border-slate-200 bg-white p-5 shadow-sm md:p-7">
+    <Card className="rounded-[5px] border-slate-200 bg-white p-5 shadow-sm md:p-7">
       <div className="flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
         <div className="min-w-0">
           <div className="flex flex-wrap items-center gap-x-3 gap-y-2">
@@ -93,7 +93,7 @@ export function LeadForm() {
               Get <span className="text-indigo-700">dealer offers</span>
             </h3>
 
-            <div className="inline-flex items-center gap-2 rounded-full border border-indigo-200 bg-indigo-50 px-3 py-1.5 text-[12px] font-semibold text-indigo-950 shadow-sm md:text-sm">
+            <div className="inline-flex items-center gap-2 rounded-[5px] border border-indigo-200 bg-indigo-50 px-3 py-1.5 text-[12px] font-semibold text-indigo-950 shadow-sm md:text-sm">
               <ShieldCheck className="h-4 w-4 text-indigo-700" />
               Private intake
             </div>
@@ -106,21 +106,19 @@ export function LeadForm() {
       </div>
 
       {success ? (
-        <div className="mt-6 rounded-2xl border border-emerald-200 bg-emerald-50 p-5">
+        <div className="mt-6 rounded-[5px] border border-emerald-200 bg-emerald-50 p-5">
           <div className="flex items-start gap-3">
-            <span className="mt-0.5 grid h-10 w-10 place-items-center rounded-2xl bg-white shadow-sm ring-1 ring-emerald-200">
+            <span className="mt-0.5 grid h-10 w-10 place-items-center rounded-[5px] bg-white shadow-sm ring-1 ring-emerald-200">
               <CheckCircle2 className="h-5 w-5 text-emerald-700" />
             </span>
             <div className="min-w-0">
-              <p className="text-[15px] font-semibold text-emerald-950">
-                Thanks — our team received your details.
-              </p>
+              <p className="text-[15px] font-semibold text-emerald-950">Thanks — our team received your details.</p>
               <p className="mt-1 text-sm leading-relaxed text-emerald-900/90">
                 We’ll contact you shortly. If you need to add anything, message us on WhatsApp and mention your name.
               </p>
 
               <Button
-                className="mt-4 h-11 rounded-xl border border-slate-200 bg-white text-slate-900 hover:bg-slate-50"
+                className="mt-4 h-11 rounded-[5px] border border-slate-200 bg-white text-slate-900 hover:bg-slate-50"
                 variant="secondary"
                 onClick={() => setSuccess(false)}
               >
@@ -216,7 +214,7 @@ export function LeadForm() {
           </Field>
 
           {serverError ? (
-            <div className="md:col-span-2 rounded-[10px] border border-rose-200 bg-rose-50 p-3 text-sm text-rose-800">
+            <div className="md:col-span-2 rounded-[5px] border border-rose-200 bg-rose-50 p-3 text-sm text-rose-800">
               {serverError}
             </div>
           ) : null}
@@ -227,7 +225,7 @@ export function LeadForm() {
             </p>
             <Button
               disabled={isSubmitting}
-              className="h-12 rounded-xl bg-indigo-600 text-base text-white shadow-sm hover:bg-indigo-700"
+              className="h-12 rounded-[5px] bg-indigo-600 text-base text-white shadow-sm hover:bg-indigo-700"
             >
               {isSubmitting ? (
                 <span className="inline-flex items-center">
@@ -247,8 +245,8 @@ export function LeadForm() {
 
 function inputClassName(hasError?: string) {
   return cn(
-    // Clearer surface + consistent 5px radius
-    "h-12 rounded-[5px] border border-slate-200 bg-white text-[15px] text-slate-900 shadow-sm md:text-base",
+    // 0.75rem (12px) horizontal padding, 5px radius
+    "h-12 rounded-[5px] border border-slate-200 bg-white px-3 text-[15px] text-slate-900 shadow-sm md:text-base",
     "placeholder:text-slate-500",
     "focus-visible:ring-2 focus-visible:ring-indigo-500/35 focus-visible:ring-offset-0",
     hasError ? "border-rose-300 focus-visible:ring-rose-500/30" : ""
@@ -257,7 +255,8 @@ function inputClassName(hasError?: string) {
 
 function textareaClassName(hasError?: string) {
   return cn(
-    "min-h-28 rounded-[5px] border border-slate-200 bg-white text-[15px] leading-relaxed text-slate-900 shadow-sm",
+    // 0.75rem (12px) horizontal padding, 5px radius
+    "min-h-28 rounded-[5px] border border-slate-200 bg-white px-3 py-3 text-[15px] leading-relaxed text-slate-900 shadow-sm",
     "placeholder:text-slate-500",
     "focus-visible:ring-2 focus-visible:ring-indigo-500/35 focus-visible:ring-offset-0",
     hasError ? "border-rose-300 focus-visible:ring-rose-500/30" : ""
