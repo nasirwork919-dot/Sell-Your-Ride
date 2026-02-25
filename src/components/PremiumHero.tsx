@@ -18,17 +18,17 @@ export function PremiumHero({
   return (
     <section className={cn("grid gap-6 md:grid-cols-12 md:items-stretch md:gap-8", className)} aria-label="Hero">
       {/* Copy */}
-      <div className={cn(showImage ? "md:col-span-7 md:pr-2" : "md:col-span-12 md:pr-0")}>
-        {/* Brand */}
-        <div className="flex items-center gap-3">
-          <div className="grid h-10 w-10 place-items-center rounded-md bg-indigo-600 text-sm font-extrabold tracking-tight text-white shadow-sm md:h-11 md:w-11">
-            SYR
-          </div>
-          <div className="min-w-0">
-            <p className="text-xs font-semibold uppercase tracking-[0.22em] text-indigo-700">Australia</p>
-            <p className="text-sm font-semibold tracking-tight text-slate-900">Sell Your Ride</p>
-          </div>
-        </div>
+      // <div className={cn(showImage ? "md:col-span-7 md:pr-2" : "md:col-span-12 md:pr-0")}>
+      //   {/* Brand */}
+      //   <div className="flex items-center gap-3">
+      //     <div className="grid h-10 w-10 place-items-center rounded-md bg-indigo-600 text-sm font-extrabold tracking-tight text-white shadow-sm md:h-11 md:w-11">
+      //       SYR
+      //     </div>
+      //     <div className="min-w-0">
+      //       <p className="text-xs font-semibold uppercase tracking-[0.22em] text-indigo-700">Australia</p>
+      //       <p className="text-sm font-semibold tracking-tight text-slate-900">Sell Your Ride</p>
+      //     </div>
+      //   </div>
 
         <h1 className="mt-4 text-balance text-3xl font-semibold leading-[1.08] tracking-tight text-slate-900 sm:text-4xl md:mt-5 md:text-5xl">
           Sell your car <span className="whitespace-nowrap">privately</span> and get a real callback.
