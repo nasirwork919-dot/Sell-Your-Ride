@@ -10,13 +10,13 @@ import { useScrollDirection } from "@/hooks/use-scroll-direction";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { cn } from "@/lib/utils";
-import { Clock3, MessageCircle, PhoneCall, ShieldCheck } from "lucide-react";
+import { Clock3, MessageCircle, PhoneCall, ShieldCheck, ArrowRight, Zap } from "lucide-react";
 import { ReviewsMarquee } from "@/components/ReviewsMarquee";
 import { SiteFooter } from "@/components/SiteFooter";
-import { PremiumHero } from "@/components/PremiumHero";
 import { FloatingGoogleRatingButton } from "@/components/FloatingGoogleRatingButton";
 import { MarketingPixels } from "@/components/MarketingPixels";
 import { images } from "@/lib/images";
+import { Link } from "react-router-dom";
 
 const NAV = [
   { id: "sell", label: "Get an Offer" },
@@ -149,12 +149,11 @@ export default function Index() {
       <Header active={active} onNav={navTo} waLink={adminWhatsAppLink} hidden={navHidden} scrolled={scrolled} />
 
       <main className="mx-auto max-w-6xl px-4 pb-16 pt-[88px] sm:pt-24 md:px-6 md:pt-24">
-        {/* Hero background test (larger on desktop) */}
+        {/* Above-the-fold: left (copy + cards), right (form) */}
         <section
-          aria-label="Hero background"
+          aria-label="Hero + form"
           className={cn(
-            "relative overflow-hidden rounded-3xl border border-slate-200/70 bg-white shadow-[0_18px_50px_rgba(15,23,42,0.08)]",
-            "min-h-[420px] sm:min-h-[520px] md:min-h-[640px]"
+            "relative overflow-hidden rounded-3xl border border-slate-200/70 bg-white shadow-[0_18px_50px_rgba(15,23,42,0.08)]"
           )}
         >
           <div className="absolute inset-0">
@@ -166,19 +165,116 @@ export default function Index() {
               loading="eager"
               referrerPolicy="no-referrer"
             />
+            {/* Subtle readability wash (not a gradient) */}
+            <div className="absolute inset-0 bg-white/65" />
           </div>
 
           <div className="relative p-5 sm:p-7 md:p-10">
-            <div className="[&_*]:!text-slate-900">
-              <PremiumHero onPrimaryCta={() => scrollToSection("sell")} waLink={adminWhatsAppLink} showImage={false} />
+            <div className="grid gap-6 md:grid-cols-12 md:items-start md:gap-8">
+              {/* LEFT */}
+              <div className="md:col-span-7">
+                {/* Brand */}
+                <div className="flex items-center gap-3">
+                  <div className="grid h-10 w-10 place-items-center rounded-2xl bg-indigo-600 text-sm font-extrabold tracking-tight text-white shadow-sm">
+                    SYR
+                  </div>
+                  <div className="min-w-0">
+                    <p className="text-xs font-semibold uppercase tracking-[0.22em] text-indigo-700">Australia</p>
+                    <p className="text-sm font-semibold tracking-tight text-slate-900">Sell Your Ride</p>
+                  </div>
+                </div>
+
+                <h1 className="mt-4 text-balance text-[32px] font-semibold leading-[1.08] tracking-tight text-slate-900 sm:text-4xl md:mt-5 md:text-5xl">
+                  Sell your car privately and get a real callback.
+                </h1>
+
+                <p className="mt-3 max-w-2xl text-pretty text-sm leading-relaxed text-slate-700 sm:text-base md:text-[15px]">
+                  One clean submission. We do the dealer outreach and call you with next steps.
+                </p>
+
+                {/* CTAs */}
+                <div className="mt-5 grid gap-2 sm:flex sm:items-center sm:gap-3 md:mt-6">
+                  <Button
+                    className="h-11 w-full rounded-2xl bg-indigo-600 text-white hover:bg-indigo-700 sm:w-auto sm:rounded-xl"
+                    onClick={() => {
+                      const el = document.getElementById("sell");
+                      if (!el) return;
+                      el.scrollIntoView({ behavior: "smooth", block: "start" });
+                    }}
+                  >
+                    Start with the form
+                    <ArrowRight className="ml-2 h-4 w-4" />
+                  </Button>
+
+                  <a href={adminWhatsAppLink} target="_blank" rel="noreferrer" className="inline-flex">
+                    <Button
+                      variant="secondary"
+                      className="h-11 w-full rounded-2xl border border-slate-200 bg-white text-slate-900 hover:bg-slate-50 sm:w-auto sm:rounded-xl"
+                    >
+                      <MessageCircle className="mr-2 h-4 w-4" />
+                      WhatsApp
+                    </Button>
+                  </a>
+
+                  <Link to="/experience" className="hidden md:inline-flex md:ml-1">
+                    <Button
+                      variant="ghost"
+                      className="h-11 rounded-2xl text-slate-700 hover:bg-slate-100 hover:text-slate-900"
+                    >
+                      See the experience
+                      <ArrowRight className="ml-2 h-4 w-4" />
+                    </Button>
+                  </Link>
+                </div>
+
+                {/* Cards: 2x2 */}
+                <div className="mt-6 grid gap-3 sm:grid-cols-2 md:mt-8">
+                  <HeroMiniCard
+                    icon={<Zap className="h-4 w-4 text-indigo-700" />}
+                    title="Quick intake"
+                    desc="One clean form. No listing."
+                  />
+                  <HeroMiniCard
+                    icon={<ShieldCheck className="h-4 w-4 text-emerald-700" />}
+                    title="Dealer outreach"
+                    desc="We match and follow up."
+                  />
+                  <HeroMiniCard
+                    icon={<PhoneCall className="h-4 w-4 text-indigo-700" />}
+                    title="Real callback"
+                    desc="Clear next steps in 2 hours."
+                  />
+                  <HeroMiniCard
+                    icon={<ShieldCheck className="h-4 w-4 text-slate-900" />}
+                    title="Private handling"
+                    desc="Secure by default."
+                  />
+                </div>
+              </div>
+
+              {/* RIGHT */}
+              <div className="md:col-span-5">
+                <div id="sell" ref={formRef} className="scroll-mt-28">
+                  <Card className="rounded-3xl border-slate-200 bg-white/90 p-3 shadow-sm backdrop-blur">
+                    <div className="rounded-2xl border border-slate-200 bg-slate-50 p-4">
+                      <p className="text-xs font-semibold uppercase tracking-[0.18em] text-slate-600">
+                        Get dealer offers
+                      </p>
+                      <p className="mt-1 text-sm font-semibold tracking-tight text-slate-900">
+                        Enter your car details — we’ll call you soon.
+                      </p>
+                    </div>
+                    <div className="mt-3">
+                      <LeadForm />
+                    </div>
+                  </Card>
+                </div>
+              </div>
             </div>
           </div>
         </section>
 
-        <section id="sell" ref={formRef} className="mt-8 scroll-mt-28 sm:mt-10">
-          <LeadForm />
-        </section>
-
+        {/* Keep the rest of the page sections */}
         <section id="how" className="mt-12 scroll-mt-28 sm:mt-14">
           <div className="flex flex-col gap-4 md:flex-row md:items-end md:justify-between md:gap-5">
             <div className="min-w-0">
@@ -356,5 +452,32 @@ function MiniHighlight({
         <p className="mt-0.5 text-xs font-semibold uppercase tracking-[0.18em] text-slate-600">{desc}</p>
       </div>
     </div>
+  );
+}
+
+function HeroMiniCard({
+  icon,
+  title,
+  desc,
+}: {
+  icon: React.ReactNode;
+  title: string;
+  desc: string;
+}) {
+  return (
+    <Card className="rounded-2xl border-slate-200 bg-white/90 p-4 shadow-sm backdrop-blur">
+      <div className="flex items-start justify-between gap-3">
+        <div className="inline-flex items-center gap-2 rounded-full border border-slate-200 bg-white px-3 py-1 text-xs font-semibold text-slate-700">
+          <span className="grid h-5 w-5 place-items-center rounded-full bg-indigo-600 text-[11px] font-extrabold text-white">
+            •
+          </span>
+          Step
+        </div>
+        <span className="grid h-9 w-9 place-items-center rounded-xl border border-slate-200 bg-slate-50">{icon}</span>
+      </div>
+
+      <p className="mt-3 text-sm font-semibold tracking-tight text-slate-900">{title}</p>
+      <p className="mt-1 text-sm leading-relaxed text-slate-700">{desc}</p>
+    </Card>
   );
 }
