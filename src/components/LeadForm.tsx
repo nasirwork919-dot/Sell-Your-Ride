@@ -85,7 +85,7 @@ export function LeadForm() {
   }
 
   return (
-    <Card className="rounded-[5px] border-slate-200 bg-white p-6 shadow-sm md:p-7">
+    <Card className="rounded-[5px] border-slate-200 bg-white p-3 shadow-sm md:p-3">
       <div className="flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
         <div className="min-w-0">
           <div className="flex flex-wrap items-center gap-x-3 gap-y-2">
@@ -245,7 +245,6 @@ export function LeadForm() {
 
 function inputClassName(hasError?: string) {
   return cn(
-    // Match the screenshot: slightly larger internal padding, still 5px radius
     "h-12 rounded-[5px] border border-slate-200 bg-white px-3 text-[15px] text-slate-900 shadow-sm md:text-base",
     "placeholder:text-slate-500",
     "focus-visible:ring-2 focus-visible:ring-indigo-500/35 focus-visible:ring-offset-0",
