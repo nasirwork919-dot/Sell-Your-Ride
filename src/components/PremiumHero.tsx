@@ -8,15 +8,17 @@ export function PremiumHero({
   onPrimaryCta,
   waLink,
   className,
+  showImage = true,
 }: {
   onPrimaryCta: () => void;
   waLink: string;
   className?: string;
+  showImage?: boolean;
 }) {
   return (
     <section className={cn("grid gap-6 md:grid-cols-12 md:items-stretch md:gap-8", className)} aria-label="Hero">
       {/* Copy */}
-      <div className="md:col-span-7 md:pr-2">
+      <div className={cn(showImage ? "md:col-span-7 md:pr-2" : "md:col-span-12 md:pr-0")}>
         {/* Brand */}
         <div className="flex items-center gap-3">
           <div className="grid h-10 w-10 place-items-center rounded-md bg-indigo-600 text-sm font-extrabold tracking-tight text-white shadow-sm md:h-11 md:w-11">
@@ -42,7 +44,10 @@ export function PremiumHero({
 
         {/* CTAs */}
         <div className="mt-5 grid gap-2 sm:flex sm:items-center sm:gap-3 md:mt-6">
-          <Button className="h-11 w-full rounded-md bg-indigo-600 text-white hover:bg-indigo-700 sm:w-auto" onClick={onPrimaryCta}>
+          <Button
+            className="h-11 w-full rounded-md bg-indigo-600 text-white hover:bg-indigo-700 sm:w-auto"
+            onClick={onPrimaryCta}
+          >
             Start with the form
             <ArrowRight className="ml-2 h-4 w-4" />
           </Button>
@@ -66,7 +71,7 @@ export function PremiumHero({
         </div>
 
         {/* Compact trust row on mobile, fuller steps on desktop */}
-        <div className="mt-4 grid gap-2 md:mt-8 md:grid md:grid-cols-3 md:gap-3">
+        <div className={cn("mt-4 grid gap-2 md:mt-8 md:grid md:grid-cols-3 md:gap-3", !showImage && "md:grid-cols-4")}>
           <div className="grid gap-2 md:hidden">
             <MiniTrustRow icon={<Zap className="h-4 w-4 text-indigo-700" />} text="~60s intake" />
             <MiniTrustRow icon={<PhoneCall className="h-4 w-4 text-indigo-700" />} text="2-hour callback goal" />
@@ -77,30 +82,34 @@ export function PremiumHero({
             <StepPill title="Quick intake" desc="One clean form. No listing." icon={<Zap className="h-4 w-4" />} />
             <StepPill title="Dealer outreach" desc="We match and follow up." icon={<ShieldCheck className="h-4 w-4" />} />
             <StepPill title="Real callback" desc="Clear next steps in 2 hours." icon={<PhoneCall className="h-4 w-4" />} />
+            {!showImage ? (
+              <StepPill title="Private handling" desc="Secure by default." icon={<ShieldCheck className="h-4 w-4" />} />
+            ) : null}
           </div>
         </div>
       </div>
 
-      {/* Image (merged into section; no card/border) */}
-      <div className="md:col-span-5 md:pl-2">
-        <div className="relative overflow-hidden rounded-md shadow-[0_10px_30px_rgba(15,23,42,0.10)]">
-          <img
-            src={images.hero}
-            alt="Premium car in a clean setting"
-            className="h-[200px] w-full object-cover sm:h-[260px] md:h-[560px]"
-            loading="eager"
-            referrerPolicy="no-referrer"
-          />
-          <div className="pointer-events-none absolute inset-0 bg-slate-900/10" />
-        </div>
+      {/* Image */}
+      {showImage ? (
+        <div className="md:col-span-5 md:pl-2">
+          <div className="relative overflow-hidden rounded-md shadow-[0_10px_30px_rgba(15,23,42,0.10)]">
+            <img
+              src={images.hero}
+              alt="Premium car in a clean setting"
+              className="h-[200px] w-full object-cover sm:h-[260px] md:h-[560px]"
+              loading="eager"
+              referrerPolicy="no-referrer"
+            />
+            <div className="pointer-events-none absolute inset-0 bg-slate-900/10" />
+          </div>
 
-        {/* Keep extra details off mobile; show only on larger screens */}
-        <div className="mt-3 hidden grid-cols-3 gap-2 sm:grid md:grid-cols-1">
-          <StatRow label="Submit once" value="~60 seconds" />
-          <StatRow label="Callback goal" value="2 hours" />
-          <StatRow label="Public listing" value="None" />
+          <div className="mt-3 hidden grid-cols-3 gap-2 sm:grid md:grid-cols-1">
+            <StatRow label="Submit once" value="~60 seconds" />
+            <StatRow label="Callback goal" value="2 hours" />
+            <StatRow label="Public listing" value="None" />
+          </div>
         </div>
-      </div>
+      ) : null}
     </section>
   );
 }

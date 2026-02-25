@@ -154,7 +154,6 @@ export default function Index() {
           aria-label="Hero background"
           className="relative overflow-hidden rounded-3xl border border-slate-200/70 bg-white shadow-[0_18px_50px_rgba(15,23,42,0.08)]"
         >
-          {/* Background image */}
           <div className="absolute inset-0">
             <img
               src={images.hero}
@@ -163,18 +162,15 @@ export default function Index() {
               loading="eager"
               referrerPolicy="no-referrer"
             />
-            {/* Contrast overlays */}
             <div className="absolute inset-0 bg-slate-950/40" />
             <div className="absolute inset-0 bg-white/55 mix-blend-soft-light" />
           </div>
 
-          {/* Foreground content */}
           <div className="relative p-5 sm:p-7 md:p-10">
             <div className="[&_*]:!text-slate-900">
-              <PremiumHero onPrimaryCta={() => scrollToSection("sell")} waLink={adminWhatsAppLink} />
+              <PremiumHero onPrimaryCta={() => scrollToSection("sell")} waLink={adminWhatsAppLink} showImage={false} />
             </div>
 
-            {/* subtle bottom fade into page background */}
             <div className="pointer-events-none absolute inset-x-0 bottom-0 h-10 bg-gradient-to-b from-transparent to-slate-50" />
           </div>
         </section>
@@ -357,9 +353,7 @@ function MiniHighlight({
       </div>
       <div className="min-w-0">
         <p className="text-sm font-semibold text-slate-900">{title}</p>
-        <p className="mt-0.5 text-xs font-semibold uppercase tracking-[0.18em] text-slate-600">
-          {desc}
-        </p>
+        <p className="mt-0.5 text-xs font-semibold uppercase tracking-[0.18em] text-slate-600">{desc}</p>
       </div>
     </div>
   );
