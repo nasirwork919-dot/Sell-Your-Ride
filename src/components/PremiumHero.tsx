@@ -15,12 +15,12 @@ export function PremiumHero({
   className?: string;
 }) {
   return (
-    <section className={cn("grid gap-8 md:grid-cols-12 md:items-stretch", className)} aria-label="Hero">
+    <section className={cn("grid gap-6 md:grid-cols-12 md:items-stretch md:gap-8", className)} aria-label="Hero">
       {/* Copy */}
       <div className="md:col-span-7 md:pr-2">
         {/* Brand */}
         <div className="flex items-center gap-3">
-          <div className="grid h-11 w-11 place-items-center rounded-2xl bg-indigo-600 text-sm font-extrabold tracking-tight text-white shadow-sm">
+          <div className="grid h-10 w-10 place-items-center rounded-2xl bg-indigo-600 text-sm font-extrabold tracking-tight text-white shadow-sm md:h-11 md:w-11">
             SYR
           </div>
           <div className="min-w-0">
@@ -29,32 +29,32 @@ export function PremiumHero({
           </div>
         </div>
 
-        <h1 className="mt-5 text-balance text-4xl font-semibold tracking-tight text-slate-900 sm:text-5xl">
-          Submit once. Stay private. Get dealer interest with a real callback.
+        <h1 className="mt-4 text-balance text-3xl font-semibold tracking-tight text-slate-900 sm:text-4xl md:mt-5 md:text-5xl">
+          Sell your car—privately.
         </h1>
 
-        <p className="mt-4 max-w-2xl text-pretty text-base leading-relaxed text-slate-700 md:text-[15px]">
-          No public listing and no inbox spam. Share your car details through a clean intake and we coordinate dealer
-          outreach privately, then call you with next steps.
+        <p className="mt-3 max-w-2xl text-pretty text-sm leading-relaxed text-slate-700 sm:text-base md:text-[15px]">
+          One clean submission. We do the dealer outreach and call you with next steps.
         </p>
 
-        <div className="mt-6 flex flex-col gap-3 sm:flex-row sm:items-center">
-          <Button className="h-11 rounded-xl bg-indigo-600 text-white hover:bg-indigo-700" onClick={onPrimaryCta}>
-            Submit car details
+        {/* Mobile-first CTAs */}
+        <div className="mt-5 grid gap-2 sm:flex sm:items-center sm:gap-3 md:mt-6">
+          <Button className="h-11 w-full rounded-xl bg-indigo-600 text-white hover:bg-indigo-700 sm:w-auto" onClick={onPrimaryCta}>
+            Start with the form
             <ArrowRight className="ml-2 h-4 w-4" />
           </Button>
 
           <a href={waLink} target="_blank" rel="noreferrer" className="inline-flex">
             <Button
               variant="secondary"
-              className="h-11 rounded-xl border border-slate-200 bg-white text-slate-900 hover:bg-slate-50"
+              className="h-11 w-full rounded-xl border border-slate-200 bg-white text-slate-900 hover:bg-slate-50 sm:w-auto"
             >
               <MessageCircle className="mr-2 h-4 w-4" />
               WhatsApp
             </Button>
           </a>
 
-          <Link to="/experience" className="inline-flex sm:ml-1">
+          <Link to="/experience" className="hidden md:inline-flex md:ml-1">
             <Button variant="ghost" className="h-11 rounded-xl text-slate-700 hover:bg-slate-100 hover:text-slate-900">
               See the experience
               <ArrowRight className="ml-2 h-4 w-4" />
@@ -62,30 +62,38 @@ export function PremiumHero({
           </Link>
         </div>
 
-        {/* Steps (cleaner) */}
-        <div className="mt-8 grid gap-3 sm:grid-cols-3">
-          <StepPill title="Quick intake" desc="One clean form. No listing." icon={<Zap className="h-4 w-4" />} />
-          <StepPill title="Dealer outreach" desc="We match and follow up." icon={<ShieldCheck className="h-4 w-4" />} />
-          <StepPill title="Real callback" desc="Clear next steps in 2 hours." icon={<PhoneCall className="h-4 w-4" />} />
+        {/* Compact trust row on mobile, fuller steps on desktop */}
+        <div className="mt-4 grid gap-2 md:mt-8 md:grid md:grid-cols-3 md:gap-3">
+          <div className="grid gap-2 md:hidden">
+            <MiniTrustRow icon={<Zap className="h-4 w-4 text-indigo-700" />} text="~60s intake" />
+            <MiniTrustRow icon={<PhoneCall className="h-4 w-4 text-indigo-700" />} text="2-hour callback goal" />
+            <MiniTrustRow icon={<ShieldCheck className="h-4 w-4 text-emerald-700" />} text="No public listing" />
+          </div>
+
+          <div className="hidden md:contents">
+            <StepPill title="Quick intake" desc="One clean form. No listing." icon={<Zap className="h-4 w-4" />} />
+            <StepPill title="Dealer outreach" desc="We match and follow up." icon={<ShieldCheck className="h-4 w-4" />} />
+            <StepPill title="Real callback" desc="Clear next steps in 2 hours." icon={<PhoneCall className="h-4 w-4" />} />
+          </div>
         </div>
       </div>
 
-      {/* Image panel */}
+      {/* Image panel (smaller on mobile) */}
       <div className="md:col-span-5 md:pl-2">
-        <Card className="relative overflow-hidden rounded-3xl border-slate-200 bg-white p-3 shadow-sm">
+        <Card className="relative overflow-hidden rounded-3xl border-slate-200 bg-white p-2.5 shadow-sm sm:p-3">
           <div className="relative overflow-hidden rounded-2xl border border-slate-200 bg-slate-100">
             <img
               src={images.hero}
               alt="Premium car in a clean setting"
-              className="h-[320px] w-full object-cover sm:h-[380px] md:h-[560px]"
+              className="h-[180px] w-full object-cover sm:h-[260px] md:h-[560px]"
               loading="eager"
               referrerPolicy="no-referrer"
             />
             <div className="absolute inset-0 bg-slate-900/10" />
-            <div className="pointer-events-none absolute inset-x-0 bottom-0 h-24 bg-slate-50/40" />
           </div>
 
-          <div className="mt-3 grid gap-2">
+          {/* Hide stats on mobile to keep it clean */}
+          <div className="mt-3 hidden grid-cols-1 gap-2 sm:grid sm:grid-cols-3 md:grid-cols-1">
             <StatRow label="Submit once" value="~60 seconds" />
             <StatRow label="Callback goal" value="2 hours" />
             <StatRow label="Public listing" value="None" />
@@ -93,6 +101,20 @@ export function PremiumHero({
         </Card>
       </div>
     </section>
+  );
+}
+
+function MiniTrustRow({ icon, text }: { icon: React.ReactNode; text: string }) {
+  return (
+    <div className="flex items-center justify-between rounded-xl border border-slate-200 bg-white px-4 py-3 shadow-sm">
+      <div className="flex items-center gap-2">
+        <span className="grid h-8 w-8 place-items-center rounded-xl bg-slate-50 text-slate-900 ring-1 ring-slate-200">
+          {icon}
+        </span>
+        <p className="text-sm font-semibold tracking-tight text-slate-900">{text}</p>
+      </div>
+      <span className="text-xs font-semibold uppercase tracking-[0.18em] text-slate-500">Clean</span>
+    </div>
   );
 }
 
