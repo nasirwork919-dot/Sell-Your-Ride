@@ -16,7 +16,7 @@ import { SiteFooter } from "@/components/SiteFooter";
 import { PremiumHero } from "@/components/PremiumHero";
 
 const NAV = [
-  { id: "sell", label: "Sell Your Car" },
+  { id: "sell", label: "Get an Offer" },
   { id: "how", label: "How It Works" },
   { id: "reviews", label: "Reviews" },
   { id: "contact", label: "Contact" },
@@ -96,6 +96,7 @@ export default function Index() {
   }, [direction, y]);
 
   const showTop = y > 520;
+  const scrolled = y > 10;
 
   const reviews = useMemo(
     () => [
@@ -135,7 +136,13 @@ export default function Index() {
 
   return (
     <div className="min-h-screen bg-slate-50">
-      <Header active={active} onNav={navTo} waLink={adminWhatsAppLink} hidden={navHidden} />
+      <Header
+        active={active}
+        onNav={navTo}
+        waLink={adminWhatsAppLink}
+        hidden={navHidden}
+        scrolled={scrolled}
+      />
 
       <main className="mx-auto max-w-6xl px-4 pb-16 pt-20 md:px-6 md:pt-24">
         <PremiumHero onPrimaryCta={() => scrollToSection("sell")} waLink={adminWhatsAppLink} />
@@ -147,18 +154,17 @@ export default function Index() {
         <section id="how" className="mt-14 scroll-mt-24">
           <div className="flex flex-col gap-5 md:flex-row md:items-end md:justify-between">
             <div className="min-w-0">
-              <SectionTitle kicker="How it works" title="You submit, we call within 2 hours." />
+              <SectionTitle kicker="How it works" title="One form. We handle the rest." />
               <p className="mt-2 max-w-3xl text-sm leading-relaxed text-slate-700">
-                Clear service powered by smart automation. You do not chase dealers. We bring the process to you with
-                one structured submission and a real callback.
+                Designed for busy Australian sellers: a clean intake, private handling, and a real callback.
               </p>
             </div>
 
-            <Card className="rounded-2xl border-slate-200 bg-white p-4 shadow-sm md:p-5">
+            <Card className="rounded-md border-slate-200 bg-white p-4 shadow-sm md:p-5">
               <div className="grid gap-3 sm:grid-cols-3 sm:gap-4">
-                <MiniHighlight icon={<Clock3 className="h-4 w-4 text-indigo-700" />} title="Fast" desc="2 hour callback goal" />
+                <MiniHighlight icon={<Clock3 className="h-4 w-4 text-indigo-700" />} title="Fast" desc="Same-day callback" />
                 <MiniHighlight icon={<ShieldCheck className="h-4 w-4 text-emerald-700" />} title="Private" desc="No public listing" />
-                <MiniHighlight icon={<PhoneCall className="h-4 w-4 text-slate-900" />} title="Human" desc="Real phone call" />
+                <MiniHighlight icon={<PhoneCall className="h-4 w-4 text-slate-900" />} title="Human" desc="Real conversation" />
               </div>
             </Card>
           </div>
@@ -174,8 +180,7 @@ export default function Index() {
         <section className="mt-12">
           <SectionTitle kicker="What you get" title="A smooth selling experience" />
           <p className="mt-2 max-w-3xl text-sm leading-relaxed text-slate-700">
-            Designed for busy sellers: one structured submission, private handling, and a real follow up call, without
-            public listings or marketplace noise.
+            One structured submission, private handling, and a fast follow-up—without marketplace noise.
           </p>
           <div className="mt-6">
             <SmoothExperienceStrip />
@@ -194,20 +199,23 @@ export default function Index() {
         </section>
 
         <section id="contact" className="mt-14 scroll-mt-24">
-          <Card className="rounded-xl border-slate-200 bg-white p-6 shadow-sm md:p-8">
+          <Card className="rounded-md border-slate-200 bg-white p-6 shadow-sm md:p-8">
             <div className="flex flex-col gap-6 md:flex-row md:items-center md:justify-between">
               <div>
                 <h3 className="text-xl font-semibold tracking-tight text-slate-900">Ready to sell?</h3>
-                <p className="mt-1 text-sm text-slate-700">Submit your car details and we will call you within 2 hours.</p>
+                <p className="mt-1 text-sm text-slate-700">Submit your car details and we will call you soon.</p>
               </div>
               <div className="flex flex-col gap-3 sm:flex-row">
-                <Button className="h-11 rounded-lg bg-indigo-600 text-white hover:bg-indigo-700" onClick={() => scrollToSection("sell")}>
-                  Submit details
+                <Button
+                  className="h-11 rounded-md bg-indigo-600 text-white hover:bg-indigo-700"
+                  onClick={() => scrollToSection("sell")}
+                >
+                  Get my instant offer
                 </Button>
                 <a href={adminWhatsAppLink} target="_blank" rel="noreferrer" className="inline-flex">
                   <Button
                     variant="secondary"
-                    className="h-11 rounded-lg border border-slate-200 bg-white text-slate-900 hover:bg-slate-50"
+                    className="h-11 rounded-md border border-slate-200 bg-white text-slate-900 hover:bg-slate-50"
                   >
                     <MessageCircle className="mr-2 h-4 w-4" />
                     WhatsApp
@@ -232,32 +240,37 @@ function Header({
   onNav,
   waLink,
   hidden,
+  scrolled,
 }: {
   active: string;
   onNav: (id: string) => void;
   waLink: string;
   hidden: boolean;
+  scrolled: boolean;
 }) {
   return (
     <div
       className={cn(
-        "fixed left-0 right-0 top-0 z-50 border-b border-slate-200 bg-white transition-transform duration-200",
+        "fixed left-0 right-0 top-0 z-50 border-b border-slate-200 transition-transform duration-200",
+        scrolled ? "bg-white/80 backdrop-blur" : "bg-white",
         hidden ? "-translate-y-full" : "translate-y-0"
       )}
     >
-      <div className="mx-auto flex max-w-6xl items-center justify-between px-4 py-3 md:px-6">
-        <button onClick={() => onNav("sell")} className="group inline-flex items-center gap-2">
-          <span className="grid h-9 w-9 place-items-center rounded-lg bg-indigo-600 text-white shadow-sm">SYR</span>
+      <div className="mx-auto grid max-w-6xl grid-cols-2 items-center px-4 py-3 md:grid-cols-3 md:px-6">
+        {/* Left: logo */}
+        <button onClick={() => onNav("sell")} className="group inline-flex items-center gap-2 justify-self-start">
+          <span className="grid h-9 w-9 place-items-center rounded-md bg-indigo-600 text-white shadow-sm">SYR</span>
           <span className="text-sm font-semibold tracking-tight text-slate-900">Sell Your Ride</span>
         </button>
 
-        <nav className="hidden items-center gap-1 md:flex">
+        {/* Center: nav */}
+        <nav className="hidden items-center justify-center gap-1 md:flex">
           {NAV.map((n) => (
             <button
               key={n.id}
               onClick={() => onNav(n.id)}
               className={cn(
-                "rounded-lg px-3 py-2 text-sm font-semibold transition",
+                "rounded-md px-3 py-2 text-sm font-semibold transition",
                 active === n.id ? "bg-slate-900 text-white" : "text-slate-700 hover:bg-slate-100"
               )}
             >
@@ -266,9 +279,10 @@ function Header({
           ))}
         </nav>
 
-        <div className="flex items-center gap-2">
+        {/* Right: CTA + mobile nav */}
+        <div className="flex items-center justify-end gap-2">
           <a href={waLink} target="_blank" rel="noreferrer" className="hidden md:inline-flex">
-            <Button className="h-10 rounded-lg bg-emerald-600 text-white hover:bg-emerald-700">
+            <Button className="h-10 rounded-md bg-emerald-600 text-white hover:bg-emerald-700">
               <MessageCircle className="mr-2 h-4 w-4" />
               WhatsApp
             </Button>
@@ -299,8 +313,8 @@ function MiniHighlight({
   desc: string;
 }) {
   return (
-    <div className="flex items-start gap-3 rounded-xl border border-slate-200 bg-slate-50 px-3 py-3">
-      <div className="grid h-9 w-9 shrink-0 place-items-center rounded-xl border border-slate-200 bg-white">
+    <div className="flex items-start gap-3 rounded-md border border-slate-200 bg-slate-50 px-3 py-3">
+      <div className="grid h-9 w-9 shrink-0 place-items-center rounded-md border border-slate-200 bg-white">
         {icon}
       </div>
       <div className="min-w-0">
