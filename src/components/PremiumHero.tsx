@@ -33,7 +33,7 @@ export function PremiumHero({
           <span className="whitespace-nowrap rounded-md bg-indigo-50 px-2 py-0.5 text-indigo-900 ring-1 ring-indigo-100">
             privately
           </span>{" "}
-          —and get a real callback.
+          and get a real callback.
         </h1>
 
         <p className="mt-3 max-w-2xl text-pretty text-sm leading-relaxed text-slate-700 sm:text-base md:text-[15px]">
