@@ -267,7 +267,7 @@ export default function Index() {
               <div className="md:col-span-5">
                 <div id="sell" ref={formRef} className="scroll-mt-28">
                   <Card className="rounded-[5px] border-slate-200 bg-white/90 p-3 shadow-sm backdrop-blur">
-                    <div className="rounded-2xl border border-slate-200 bg-slate-50 p-4">
+                    <div className="rounded-[5px] border border-slate-200 bg-slate-50 p-4">
                       <p className="text-xs font-semibold uppercase tracking-[0.18em] text-slate-600">
                         Get dealer offers
                       </p>

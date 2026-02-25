@@ -148,7 +148,7 @@ export function LeadForm() {
           <Field label="Full name" error={errors.fullName?.message}>
             <Input
               className={inputClassName(errors.fullName?.message)}
-              placeholder="e.g., Olivia Smith"
+              placeholder="Olivia Smith"
               autoComplete="name"
               {...register("fullName")}
             />
@@ -167,7 +167,7 @@ export function LeadForm() {
           <Field label="Car brand" error={errors.carBrand?.message}>
             <Input
               className={inputClassName(errors.carBrand?.message)}
-              placeholder="e.g., Toyota"
+              placeholder="Toyota"
               autoComplete="off"
               {...register("carBrand")}
             />
@@ -176,7 +176,7 @@ export function LeadForm() {
           <Field label="Car model" error={errors.carModel?.message}>
             <Input
               className={inputClassName(errors.carModel?.message)}
-              placeholder="e.g., Corolla Ascent Sport"
+              placeholder="Corolla Ascent Sport"
               autoComplete="off"
               {...register("carModel")}
             />
@@ -185,7 +185,7 @@ export function LeadForm() {
           <Field label="Manufacturing year" error={errors.manufacturingYear?.message}>
             <Input
               className={inputClassName(errors.manufacturingYear?.message)}
-              placeholder={`e.g., ${currentYear - 3}`}
+              placeholder={`${currentYear - 3}`}
               inputMode="numeric"
               {...register("manufacturingYear")}
             />
@@ -194,7 +194,7 @@ export function LeadForm() {
           <Field label="Asking price" error={errors.askingPrice?.message}>
             <Input
               className={inputClassName(errors.askingPrice?.message)}
-              placeholder="e.g., 18,500 (AUD)"
+              placeholder="18500 (AUD)"
               inputMode="numeric"
               {...register("askingPrice")}
             />
@@ -203,7 +203,7 @@ export function LeadForm() {
           <Field label="Kilometers driven" error={errors.kilometersDriven?.message}>
             <Input
               className={inputClassName(errors.kilometersDriven?.message)}
-              placeholder="e.g., 124,000"
+              placeholder="124000"
               inputMode="numeric"
               {...register("kilometersDriven")}
             />
