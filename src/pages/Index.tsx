@@ -171,9 +171,9 @@ export default function Index() {
           </div>
 
           {/* Decorative circle image in the left "empty" area (desktop only) */}
-          <div className="pointer-events-none absolute left-[46%] top-10 hidden -translate-x-1/2 md:block">
+          <div className="pointer-events-none absolute left-[46%] top-11 hidden -translate-x-1/2 md:block">
             <div className="relative">
-              <div className="h-[152px] w-[152px] overflow-hidden rounded-full border border-white/85 bg-white/70 shadow-[0_18px_50px_rgba(15,23,42,0.24)] backdrop-blur">
+              <div className="h-[172px] w-[172px] overflow-hidden rounded-full border border-white/85 bg-white/70 shadow-[0_18px_50px_rgba(15,23,42,0.24)] backdrop-blur">
                 <img
                   src={images.sellerKeys}
                   alt=""
@@ -183,7 +183,7 @@ export default function Index() {
                   referrerPolicy="no-referrer"
                 />
               </div>
-              <div className="absolute -bottom-3 -right-3 h-12 w-12 rounded-full border border-white/85 bg-indigo-600/90 shadow-md" />
+              <div className="absolute -bottom-3.5 -right-3.5 h-14 w-14 rounded-full border border-white/85 bg-indigo-600/90 shadow-md" />
             </div>
           </div>
 
