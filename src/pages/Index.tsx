@@ -1,6 +1,5 @@
 import { useEffect, useMemo, useRef, useState } from "react";
 import { LeadForm } from "@/components/LeadForm";
-import { HeroImageCard } from "@/components/HeroImageCard";
 import { HowItWorks } from "@/components/HowItWorks";
 import { TrustStrip } from "@/components/TrustStrip";
 import { SmoothExperienceStrip } from "@/components/SmoothExperienceStrip";
@@ -11,18 +10,10 @@ import { useScrollDirection } from "@/hooks/use-scroll-direction";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { cn } from "@/lib/utils";
-import {
-  ArrowRight,
-  BadgeCheck,
-  Check,
-  Clock3,
-  MessageCircle,
-  PhoneCall,
-  ShieldCheck,
-  Timer,
-} from "lucide-react";
+import { BadgeCheck, Clock3, MessageCircle, PhoneCall, ShieldCheck } from "lucide-react";
 import { ReviewsMarquee } from "@/components/ReviewsMarquee";
 import { SiteFooter } from "@/components/SiteFooter";
+import { PremiumHero } from "@/components/PremiumHero";
 
 const NAV = [
   { id: "sell", label: "Sell Your Car" },
@@ -110,17 +101,17 @@ export default function Index() {
     () => [
       {
         name: "Omar",
-        text: "Submitted in 40 seconds. Got a call the same day and the next steps were crystal clear.",
+        text: "Submitted in 40 seconds. Got a call the same day and the next steps were clear.",
         avatarUrl: "https://images.pexels.com/photos/614810/pexels-photo-614810.jpeg?auto=compress&cs=tinysrgb&w=200",
       },
       {
         name: "Sara",
-        text: "No confusion, no marketplace spam. It felt private and surprisingly smooth on mobile.",
+        text: "No confusion, no marketplace spam. It felt private and smooth on mobile.",
         avatarUrl: "https://images.pexels.com/photos/415829/pexels-photo-415829.jpeg?auto=compress&cs=tinysrgb&w=200",
       },
       {
         name: "Imran",
-        text: "Loved the WhatsApp follow up. One form and then a real person called me, simple.",
+        text: "Loved the WhatsApp follow up. One form and then a real person called me.",
         avatarUrl: "https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?auto=compress&cs=tinysrgb&w=200",
       },
       {
@@ -130,12 +121,12 @@ export default function Index() {
       },
       {
         name: "Hassan",
-        text: "Dealer interest came faster than I expected. The call helped set the right price expectations.",
+        text: "Dealer interest came faster than I expected. The call helped set price expectations.",
         avatarUrl: "https://images.pexels.com/photos/2379004/pexels-photo-2379004.jpeg?auto=compress&cs=tinysrgb&w=200",
       },
       {
         name: "Leila",
-        text: "Clean design and quick to submit. I appreciated not having to deal with random messages.",
+        text: "Clean design and quick to submit. I appreciated not dealing with random messages.",
         avatarUrl: "https://images.pexels.com/photos/1130626/pexels-photo-1130626.jpeg?auto=compress&cs=tinysrgb&w=200",
       },
     ],
@@ -147,67 +138,10 @@ export default function Index() {
       <Header active={active} onNav={navTo} waLink={adminWhatsAppLink} hidden={navHidden} />
 
       <main className="mx-auto max-w-6xl px-4 pb-16 pt-20 md:px-6 md:pt-24">
-        <section className="grid gap-10 md:grid-cols-2 md:items-start">
-          <div>
-            <div className="inline-flex items-center gap-2 rounded-md border border-slate-200 bg-white px-3 py-1 text-xs font-semibold text-slate-700">
-              <BadgeCheck className="h-4 w-4 text-indigo-600" />
-              Premium lead intake. Private and dealer-connected.
-            </div>
+        <PremiumHero onPrimaryCta={() => scrollToSection("sell")} waLink={adminWhatsAppLink} />
 
-            <h1 className="mt-4 text-balance text-4xl font-semibold tracking-tight text-slate-900 md:text-5xl">
-              Sell Your Car Fast. Submit Once. We Handle the Rest.
-            </h1>
-
-            <p className="mt-4 max-w-xl text-pretty text-base leading-relaxed text-slate-700">
-              This is not a marketplace. No public listing. No payments. You submit your details, and our team does the
-              dealer outreach. Then we call you back with next steps.
-            </p>
-
-            <div className="mt-5 grid gap-2">
-              <HeroPromise
-                icon={<Timer className="h-4 w-4" />}
-                title="Call back within 2 hours"
-                desc="Once you submit, it’s on us."
-              />
-              <HeroPromise
-                icon={<ShieldCheck className="h-4 w-4" />}
-                title="Private by design"
-                desc="Your number isn’t posted online."
-              />
-              <HeroPromise
-                icon={<Check className="h-4 w-4" />}
-                title="One clean form"
-                desc="Everything dealers need, in a structured format."
-              />
-            </div>
-
-            <div className="mt-6 flex flex-col gap-3 sm:flex-row sm:items-center">
-              <Button
-                className="h-11 rounded-lg bg-indigo-600 text-white hover:bg-indigo-700"
-                onClick={() => scrollToSection("sell")}
-              >
-                Submit car details
-                <ArrowRight className="ml-2 h-4 w-4" />
-              </Button>
-              <a href={adminWhatsAppLink} target="_blank" rel="noreferrer" className="inline-flex">
-                <Button
-                  variant="secondary"
-                  className="h-11 rounded-lg border border-slate-200 bg-white text-slate-900 hover:bg-slate-50"
-                >
-                  <MessageCircle className="mr-2 h-4 w-4" />
-                  WhatsApp
-                </Button>
-              </a>
-            </div>
-
-            <div className="mt-6">
-              <HeroImageCard />
-            </div>
-          </div>
-
-          <div id="sell" ref={formRef} className="scroll-mt-24">
-            <LeadForm />
-          </div>
+        <section id="sell" ref={formRef} className="mt-10 scroll-mt-24">
+          <LeadForm />
         </section>
 
         <section id="how" className="mt-14 scroll-mt-24">
@@ -215,8 +149,8 @@ export default function Index() {
             <div className="min-w-0">
               <SectionTitle kicker="How it works" title="You submit, we call within 2 hours." />
               <p className="mt-2 max-w-3xl text-sm leading-relaxed text-slate-700">
-                Clear, old school service powered by smart automation. You don’t chase dealers. We bring the process to
-                you with one structured submission and a real callback.
+                Clear service powered by smart automation. You do not chase dealers. We bring the process to you with
+                one structured submission and a real callback.
               </p>
             </div>
 
@@ -263,7 +197,7 @@ export default function Index() {
         <section id="reviews" className="mt-14 scroll-mt-24">
           <SectionTitle kicker="Reviews" title="Trusted by busy sellers" />
           <p className="mt-2 max-w-3xl text-sm leading-relaxed text-slate-700">
-            Quick submissions, private handling, and a real call. Here’s what sellers say after using the intake.
+            Quick submissions, private handling, and a real call. Here is what sellers say after using the intake.
           </p>
 
           <div className="mt-6">
@@ -276,7 +210,7 @@ export default function Index() {
             <div className="flex flex-col gap-6 md:flex-row md:items-center md:justify-between">
               <div>
                 <h3 className="text-xl font-semibold tracking-tight text-slate-900">Ready to sell?</h3>
-                <p className="mt-1 text-sm text-slate-700">Submit your car details and we’ll call you within 2 hours.</p>
+                <p className="mt-1 text-sm text-slate-700">Submit your car details and we will call you within 2 hours.</p>
               </div>
               <div className="flex flex-col gap-3 sm:flex-row">
                 <Button
@@ -366,28 +300,6 @@ function SectionTitle({ kicker, title }: { kicker: string; title: string }) {
     <div>
       <p className="text-xs font-semibold uppercase tracking-[0.2em] text-indigo-700">{kicker}</p>
       <h2 className="mt-2 text-2xl font-semibold tracking-tight text-slate-900 md:text-3xl">{title}</h2>
-    </div>
-  );
-}
-
-function HeroPromise({
-  icon,
-  title,
-  desc,
-}: {
-  icon: React.ReactNode;
-  title: string;
-  desc: string;
-}) {
-  return (
-    <div className="flex gap-3 rounded-xl border border-slate-200 bg-white px-4 py-3 shadow-sm">
-      <div className="grid h-9 w-9 shrink-0 place-items-center rounded-lg border border-slate-200 bg-slate-50 text-slate-900">
-        {icon}
-      </div>
-      <div>
-        <p className="text-sm font-semibold text-slate-900">{title}</p>
-        <p className="mt-0.5 text-sm text-slate-700">{desc}</p>
-      </div>
     </div>
   );
 }
