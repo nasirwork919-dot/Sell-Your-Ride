@@ -13,7 +13,6 @@ import { cn } from "@/lib/utils";
 import { Clock3, MessageCircle, PhoneCall, ShieldCheck } from "lucide-react";
 import { ReviewsMarquee } from "@/components/ReviewsMarquee";
 import { SiteFooter } from "@/components/SiteFooter";
-import { CarBuyersStyleHero } from "@/components/CarBuyersStyleHero";
 import { PremiumHero } from "@/components/PremiumHero";
 
 const NAV = [
@@ -139,7 +138,7 @@ export default function Index() {
       <Header active={active} onNav={navTo} waLink={adminWhatsAppLink} hidden={navHidden} />
 
       <main className="mx-auto max-w-6xl px-4 pb-16 pt-20 md:px-6 md:pt-24">
-        <CarBuyersStyleHero onPrimaryCta={() => scrollToSection("sell")} waLink={adminWhatsAppLink} />
+        <PremiumHero onPrimaryCta={() => scrollToSection("sell")} waLink={adminWhatsAppLink} />
 
         <section id="sell" ref={formRef} className="mt-10 scroll-mt-24">
           <LeadForm />
