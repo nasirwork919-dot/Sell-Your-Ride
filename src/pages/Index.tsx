@@ -171,11 +171,11 @@ export default function Index() {
           </div>
 
           {/* Decorative hero cutout image (desktop only) */}
-          <div className="pointer-events-none absolute left-[46%] top-11 hidden -translate-x-1/2 md:block">
+          <div className="pointer-events-none absolute left-[44%] top-10 hidden -translate-x-1/2 md:block">
             <img
               src={images.heroMain1}
               alt=""
-              className="h-[230px] w-auto select-none object-contain drop-shadow-[0_22px_60px_rgba(15,23,42,0.28)]"
+              className="h-[210px] w-auto select-none object-contain drop-shadow-[0_22px_60px_rgba(15,23,42,0.26)]"
               loading="eager"
               referrerPolicy="no-referrer"
             />
