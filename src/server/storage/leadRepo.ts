@@ -1,5 +1,23 @@
-import type { Lead, Prisma } from "@prisma/client";
 import { getPrisma } from "./prisma";
+
+type LeadStatus = "submitted" | "whatsapp_sent" | "whatsapp_failed";
+
+type LeadRecord = {
+  id: string;
+  fullName: string;
+  phone: string;
+  carBrand: string;
+  carModel: string;
+  manufacturingYear: number;
+  askingPrice: number;
+  kilometersDriven: number;
+  additionalNotes: string | null;
+  status: LeadStatus;
+  whatsappError: string | null;
+  ip: string | null;
+  userAgent: string | null;
+  createdAt: Date;
+};
 
 type CreateLeadInput = {
   fullName: string;
@@ -14,17 +32,17 @@ type CreateLeadInput = {
   userAgent?: string;
 };
 
-const memory: Lead[] = [] as unknown as Lead[];
+const memory: LeadRecord[] = [];
 
 function dbAvailable() {
   return Boolean(process.env.DATABASE_URL);
 }
 
 export const leadRepo = {
-  async create(data: CreateLeadInput): Promise<Lead> {
+  async create(data: CreateLeadInput): Promise<LeadRecord> {
     if (!dbAvailable()) {
       const now = new Date();
-      const lead: Lead = {
+      const lead: LeadRecord = {
         id: `mem_${Math.random().toString(16).slice(2)}`,
         fullName: data.fullName,
         phone: data.phone,
@@ -45,18 +63,18 @@ export const leadRepo = {
     }
 
     const prisma = getPrisma();
-    return prisma.lead.create({ data });
+    return prisma.lead.create({ data }) as Promise<LeadRecord>;
   },
 
   async updateStatus(
     id: string,
-    patch: { status: "whatsapp_sent" | "whatsapp_failed"; whatsappError?: string }
+    patch: { status: Exclude<LeadStatus, "submitted">; whatsappError?: string }
   ): Promise<void> {
     if (!dbAvailable()) {
       const idx = memory.findIndex((l) => l.id === id);
       if (idx >= 0) {
-        (memory[idx] as any).status = patch.status;
-        (memory[idx] as any).whatsappError = patch.whatsappError ?? null;
+        memory[idx].status = patch.status;
+        memory[idx].whatsappError = patch.whatsappError ?? null;
       }
       return;
     }
@@ -67,7 +85,7 @@ export const leadRepo = {
       data: {
         status: patch.status,
         whatsappError: patch.whatsappError,
-      } satisfies Prisma.LeadUpdateInput,
+      },
     });
   },
 };

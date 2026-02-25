@@ -78,15 +78,9 @@ export default function Clarity() {
 
             <div className="grid gap-3">
               {BULLETS.map((b) => (
-                <div key={b} className="flex gap-3 rounded-xl border border-slate-200/70 bg-slate-50 px-4 py-3">
-                  <div
-                    className="mt-0.5 grid place-items-center rounded-lg bg-white text-slate-900 shadow-sm"
-                    style={{ width: "clamp(2.0rem, 3.6vw, 2.5rem)", height: "clamp(2.0rem, 3.6vw, 2.5rem)" }}
-                  >
-                    <Check
-                      className="text-emerald-600"
-                      style={{ width: "clamp(0.95rem, 2vw, 1.15rem)", height: "clamp(0.95rem, 2vw, 1.15rem)" }}
-                    />
+                <div key={b} className="flex gap-3 rounded-xl border border-slate-200 bg-slate-50 px-4 py-3">
+                  <div className="mt-0.5 grid h-9 w-9 place-items-center rounded-lg border border-slate-200 bg-white text-slate-900 sm:h-10 sm:w-10">
+                    <Check className="h-4 w-4 text-emerald-600 sm:h-[18px] sm:w-[18px]" />
                   </div>
                   <p className="text-sm leading-relaxed text-slate-700">{b}</p>
                 </div>
@@ -126,7 +120,12 @@ export default function Clarity() {
 
               <div className="mt-3 grid gap-3 sm:grid-cols-2 md:grid-cols-1">
                 {MINI.map((m) => (
-                  <MiniStat key={m.title} icon={<ClipboardList />} title={m.title} desc={m.desc} />
+                  <MiniStat
+                    key={m.title}
+                    icon={<ClipboardList className="h-4 w-4 sm:h-[18px] sm:w-[18px]" />}
+                    title={m.title}
+                    desc={m.desc}
+                  />
                 ))}
               </div>
             </Card>
@@ -140,16 +139,8 @@ export default function Clarity() {
 function MiniStat({ icon, title, desc }: { icon: React.ReactNode; title: string; desc: string }) {
   return (
     <div className="flex gap-3 rounded-xl border border-slate-200 bg-white px-4 py-3">
-      <div
-        className="grid place-items-center rounded-lg bg-slate-50 text-slate-900 shadow-sm"
-        style={{ width: "clamp(2.25rem, 4vw, 2.75rem)", height: "clamp(2.25rem, 4vw, 2.75rem)" }}
-      >
-        <span
-          className="text-slate-900"
-          style={{ width: "clamp(1.0rem, 2.2vw, 1.15rem)", height: "clamp(1.0rem, 2.2vw, 1.15rem)" }}
-        >
-          {icon}
-        </span>
+      <div className="grid h-9 w-9 place-items-center rounded-lg border border-slate-200 bg-slate-50 text-slate-900 sm:h-10 sm:w-10">
+        {icon}
       </div>
       <div className="min-w-0">
         <p className="text-sm font-semibold text-slate-900">{title}</p>

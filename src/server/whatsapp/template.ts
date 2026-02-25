@@ -1,11 +1,21 @@
-import type { Lead } from "@prisma/client";
+type LeadLike = {
+  fullName: string;
+  phone: string;
+  carBrand: string;
+  carModel: string;
+  manufacturingYear: number;
+  askingPrice: number;
+  kilometersDriven: number;
+  additionalNotes: string | null;
+  createdAt: Date;
+};
 
 export function formatLeadWhatsAppMessage({
   lead,
   now,
 }: {
   lead: Pick<
-    Lead,
+    LeadLike,
     | "fullName"
     | "phone"
     | "carBrand"
