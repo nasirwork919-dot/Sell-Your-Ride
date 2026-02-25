@@ -149,7 +149,7 @@ export default function Index() {
       <Header active={active} onNav={navTo} waLink={adminWhatsAppLink} hidden={navHidden} scrolled={scrolled} />
 
       <main className="mx-auto max-w-6xl px-4 pb-16 pt-[88px] sm:pt-24 md:px-6 md:pt-24">
-        {/* Above-the-fold: top image blended + two columns */}
+        {/* Above-the-fold: hero background + two columns */}
         <section
           aria-label="Hero + form"
           className={cn(
@@ -170,25 +170,24 @@ export default function Index() {
             <div className="absolute inset-0 bg-white/65" />
           </div>
 
-          {/* Top merged photo strip */}
-          <div className="relative">
-            <div className="relative h-[140px] w-full sm:h-[180px] md:h-[210px]">
-              <img
-                src={images.sellerKeys}
-                alt="Happy seller holding car keys"
-                className="h-full w-full object-cover"
-                style={{ objectPosition: "center 30%" }}
-                loading="eager"
-                referrerPolicy="no-referrer"
-              />
-              {/* Blend into the hero background below */}
-              <div className="pointer-events-none absolute inset-0 bg-white/20" />
-              <div className="pointer-events-none absolute inset-x-0 bottom-0 h-20 bg-gradient-to-b from-transparent to-white/85" />
-              <div className="pointer-events-none absolute inset-x-0 bottom-0 h-10 bg-white/35" />
+          {/* Decorative circle image in the left "empty" area (desktop only) */}
+          <div className="pointer-events-none absolute left-8 top-8 hidden md:block">
+            <div className="relative">
+              <div className="h-[120px] w-[120px] overflow-hidden rounded-full border border-white/80 bg-white/70 shadow-[0_16px_40px_rgba(15,23,42,0.20)] backdrop-blur">
+                <img
+                  src={images.sellerKeys}
+                  alt=""
+                  className="h-full w-full object-cover"
+                  style={{ objectPosition: "center 35%" }}
+                  loading="eager"
+                  referrerPolicy="no-referrer"
+                />
+              </div>
+              <div className="absolute -bottom-2 -right-2 h-10 w-10 rounded-full border border-white/80 bg-indigo-600/90 shadow-sm" />
             </div>
           </div>
 
-          <div className="relative p-5 pt-5 sm:p-7 sm:pt-6 md:p-10 md:pt-8">
+          <div className="relative p-5 sm:p-7 md:p-10">
             <div className="grid gap-6 md:grid-cols-12 md:items-stretch md:gap-8">
               {/* LEFT */}
               <div className="md:col-span-7 md:flex md:items-center">
