@@ -8,6 +8,7 @@ export default defineConfig(() => ({
     host: "::",
     port: 8080,
     proxy: {
+      // Dev-only convenience: Vercel provides /api in production.
       "/api": {
         target: "http://localhost:8080",
         changeOrigin: true,
