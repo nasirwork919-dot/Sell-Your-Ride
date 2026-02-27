@@ -1,4 +1,4 @@
-import { getPrisma } from "./prisma";
+import { randomUUID } from "crypto";
 
 type LeadStatus = "submitted" | "whatsapp_sent" | "whatsapp_failed";
 
@@ -34,58 +34,46 @@ type CreateLeadInput = {
 
 const memory: LeadRecord[] = [];
 
-function dbAvailable() {
-  return Boolean(process.env.DATABASE_URL);
+function makeId() {
+  try {
+    return `mem_${randomUUID()}`;
+  } catch {
+    return `mem_${Math.random().toString(16).slice(2)}${Date.now().toString(16)}`;
+  }
 }
 
 export const leadRepo = {
   async create(data: CreateLeadInput): Promise<LeadRecord> {
-    if (!dbAvailable()) {
-      const now = new Date();
-      const lead: LeadRecord = {
-        id: `mem_${Math.random().toString(16).slice(2)}`,
-        fullName: data.fullName,
-        phone: data.phone,
-        carBrand: data.carBrand,
-        carModel: data.carModel,
-        manufacturingYear: data.manufacturingYear,
-        askingPrice: data.askingPrice,
-        kilometersDriven: data.kilometersDriven,
-        additionalNotes: data.additionalNotes ?? null,
-        status: "submitted",
-        whatsappError: null,
-        ip: data.ip ?? null,
-        userAgent: data.userAgent ?? null,
-        createdAt: now,
-      };
-      memory.push(lead);
-      return lead;
-    }
+    const now = new Date();
+    const lead: LeadRecord = {
+      id: makeId(),
+      fullName: data.fullName,
+      phone: data.phone,
+      carBrand: data.carBrand,
+      carModel: data.carModel,
+      manufacturingYear: data.manufacturingYear,
+      askingPrice: data.askingPrice,
+      kilometersDriven: data.kilometersDriven,
+      additionalNotes: data.additionalNotes ?? null,
+      status: "submitted",
+      whatsappError: null,
+      ip: data.ip ?? null,
+      userAgent: data.userAgent ?? null,
+      createdAt: now,
+    };
 
-    const prisma = getPrisma();
-    return prisma.lead.create({ data }) as Promise<LeadRecord>;
+    memory.push(lead);
+    return lead;
   },
 
   async updateStatus(
     id: string,
     patch: { status: Exclude<LeadStatus, "submitted">; whatsappError?: string }
   ): Promise<void> {
-    if (!dbAvailable()) {
-      const idx = memory.findIndex((l) => l.id === id);
-      if (idx >= 0) {
-        memory[idx].status = patch.status;
-        memory[idx].whatsappError = patch.whatsappError ?? null;
-      }
-      return;
+    const idx = memory.findIndex((l) => l.id === id);
+    if (idx >= 0) {
+      memory[idx].status = patch.status;
+      memory[idx].whatsappError = patch.whatsappError ?? null;
     }
-
-    const prisma = getPrisma();
-    await prisma.lead.update({
-      where: { id },
-      data: {
-        status: patch.status,
-        whatsappError: patch.whatsappError,
-      },
-    });
   },
 };
