@@ -40,7 +40,7 @@ export function CarBuyersHeader({
         hidden ? "-translate-y-full" : "translate-y-0",
       )}
     >
-      <div className="mx-auto flex h-[60px] max-w-6xl items-center gap-3 px-4 md:px-6">
+      <div className="mx-auto flex h-[64px] max-w-6xl items-center gap-3 px-4 md:px-6">
         {/* Left: icon + phone */}
         <button
           type="button"
@@ -48,27 +48,28 @@ export function CarBuyersHeader({
           className="inline-flex items-center gap-3"
           aria-label="Go to quote form"
         >
-          <span className="inline-flex h-9 w-9 items-center justify-center rounded-xl bg-[#0B3A7A] text-white shadow-sm">
-            <span className="text-base font-extrabold leading-none">$</span>
+          <span className="inline-flex h-10 w-10 items-center justify-center rounded-xl bg-[#0B3A7A] text-white shadow-sm">
+            <span className="text-lg font-extrabold leading-none">$</span>
           </span>
-          <span className="whitespace-nowrap text-[17px] font-extrabold tracking-tight text-[#0B3A7A] sm:text-lg">
+          <span className="whitespace-nowrap text-lg font-extrabold tracking-tight text-[#0B3A7A] sm:text-xl">
             {phoneText}
           </span>
         </button>
 
-        {/* Center: nav (visually narrower + tighter like reference) */}
-        <nav className="hidden min-w-0 flex-1 justify-center md:flex" aria-label="Primary navigation">
-          <div className="flex w-full max-w-[560px] items-center justify-center gap-6 whitespace-nowrap">
+        {/* Center: nav (no wrap, reference-like spacing) */}
+        <nav
+          className="hidden min-w-0 flex-1 items-center justify-center md:flex"
+          aria-label="Primary navigation"
+        >
+          <div className="flex min-w-0 items-center gap-8 whitespace-nowrap">
             {items.map((n) => (
               <button
                 key={n.id}
                 type="button"
                 onClick={() => onNav(n.id)}
                 className={cn(
-                  "inline-flex items-center gap-1 rounded-full px-1.5 py-1.5 text-sm font-semibold text-[#0B3A7A] transition hover:bg-slate-100",
-                  active === n.id
-                    ? "underline underline-offset-[8px] decoration-1"
-                    : "no-underline",
+                  "inline-flex items-center gap-1 rounded-full px-2 py-2 text-sm font-semibold text-[#0B3A7A] transition hover:bg-slate-100",
+                  active === n.id ? "underline underline-offset-[10px] decoration-2" : "no-underline",
                 )}
               >
                 <span className="whitespace-nowrap">{n.label}</span>
@@ -78,7 +79,7 @@ export function CarBuyersHeader({
 
             <Link
               to="/experience"
-              className="inline-flex items-center gap-1 rounded-full px-1.5 py-1.5 text-sm font-semibold text-[#0B3A7A] transition hover:bg-slate-100"
+              className="inline-flex items-center gap-1 rounded-full px-2 py-2 text-sm font-semibold text-[#0B3A7A] transition hover:bg-slate-100"
             >
               <span className="whitespace-nowrap">Experience</span>
               <ChevronDown className="h-4 w-4 text-[#0B3A7A]/70" />
@@ -90,7 +91,7 @@ export function CarBuyersHeader({
         <div className="ml-auto flex items-center gap-2">
           <Button
             onClick={() => onNav("sell")}
-            className="hidden h-10 whitespace-nowrap rounded-full bg-white px-6 font-extrabold text-[#0B3A7A] ring-1 ring-[#0B3A7A] hover:bg-slate-50 md:inline-flex"
+            className="hidden h-10 whitespace-nowrap rounded-full bg-white px-7 font-extrabold text-[#0B3A7A] ring-1 ring-[#0B3A7A] hover:bg-slate-50 md:inline-flex"
           >
             Get a quote
           </Button>
