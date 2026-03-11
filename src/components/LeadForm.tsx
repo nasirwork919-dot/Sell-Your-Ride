@@ -86,23 +86,9 @@ export function LeadForm() {
 
   return (
     <Card className="rounded-[5px] border-slate-200 bg-white p-6 shadow-sm md:p-7">
-      <div className="flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
-        <div className="min-w-0">
-          <div className="flex flex-wrap items-center gap-x-3 gap-y-2">
-            <h3 className="text-xl font-semibold tracking-tight text-slate-900 md:text-2xl">
-              Get <span className="text-indigo-700">dealer offers</span>
-            </h3>
-
-            <div className="inline-flex items-center gap-2 rounded-[5px] border border-indigo-200 bg-indigo-50 px-3 py-1.5 text-[12px] font-semibold text-indigo-950 shadow-sm md:text-sm">
-              <ShieldCheck className="h-4 w-4 text-indigo-700" />
-              Private intake
-            </div>
-          </div>
-
-          <p className="mt-2 text-sm leading-relaxed text-slate-700 md:text-[15px]">
-            No payments. No public listing. Submit once and we call you within 2 hours.
-          </p>
-        </div>
+      <div className="sr-only">
+        <ShieldCheck className="h-4 w-4" />
+        <p>Private intake form</p>
       </div>
 
       {success ? (
