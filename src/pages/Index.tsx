@@ -15,9 +15,10 @@ import { useScrollDirection } from "@/hooks/use-scroll-direction";
 
 const NAV = [
   { id: "sell", label: "Sell my car" },
-  { id: "how", label: "How it works" },
-  { id: "reviews", label: "Reviews" },
-  { id: "contact", label: "Contact" },
+  { id: "truck", label: "Sell my truck" },
+  { id: "caravan", label: "Sell my caravan" },
+  { id: "difference", label: "Our Difference", hasDropdown: true },
+  { id: "about", label: "About", hasDropdown: true },
 ] as const;
 
 export default function Index() {
@@ -68,7 +69,17 @@ export default function Index() {
   }, []);
 
   useEffect(() => {
-    const ids = NAV.map((n) => n.id);
+    const ids = [
+      "sell",
+      "truck",
+      "caravan",
+      "difference",
+      "about",
+      "video",
+      "how",
+      "reviews",
+      "contact",
+    ];
     const els = ids.map((id) => document.getElementById(id)).filter(Boolean) as HTMLElement[];
     const io = new IntersectionObserver(
       (entries) => {
@@ -124,25 +135,38 @@ export default function Index() {
         onNav={navTo}
         hidden={navHidden}
         scrolled={scrolled}
-        phoneText="+61 478 797 731"
+        phoneText="1300 770 571"
       />
 
-      <main className="mx-auto max-w-6xl px-4 pb-16 pt-[118px] sm:pt-32 md:px-6">
-        {/* Hero */}
-        <CarBuyersHero
-          onPrimaryCta={() => {
-            const el = document.getElementById("sell");
-            if (!el) return;
-            el.scrollIntoView({ behavior: "smooth", block: "start" });
-          }}
-          phoneText="+61 478 797 731"
-        />
+      <main className="mx-auto max-w-6xl px-4 pb-16 pt-[88px] sm:pt-24 md:px-6">
+        {/* Hero + form (quote) */}
+        <section id="sell" className="scroll-mt-28">
+          <CarBuyersHero
+            onPrimaryCta={() => {
+              const el = document.getElementById("sell");
+              if (!el) return;
+              el.scrollIntoView({ behavior: "smooth", block: "start" });
+            }}
+            phoneText="1300 770 571"
+          />
+        </section>
 
-        {/* Category tiles (reference block) */}
-        <HomeCategoryTiles className="mt-10" onNavigate={navTo} />
+        {/* Category tiles */}
+        <section id="truck" className="mt-10 scroll-mt-28">
+          <HomeCategoryTiles onNavigate={navTo} />
+        </section>
+
+        {/* Caravan anchor can map to same block for now */}
+        <section id="caravan" className="sr-only" aria-hidden="true" />
+
+        {/* Difference + About anchors (scroll targets for header items) */}
+        <section id="difference" className="sr-only" aria-hidden="true" />
+        <section id="about" className="sr-only" aria-hidden="true" />
 
         {/* Leave space for video only */}
-        <VideoPlaceholder className="mt-10" />
+        <section id="video" className="mt-10 scroll-mt-28">
+          <VideoPlaceholder />
+        </section>
 
         {/* How it works */}
         <section id="how" className="mt-10 scroll-mt-28">
