@@ -1,7 +1,10 @@
 import { useEffect, useMemo, useRef, useState } from "react";
 import { LeadForm } from "@/components/LeadForm";
 import { CarBuyersHero } from "@/components/CarBuyersHero";
+import { HomeCategoryTiles } from "@/components/HomeCategoryTiles";
+import { VideoPlaceholder } from "@/components/VideoPlaceholder";
 import { HowItWorks } from "@/components/HowItWorks";
+
 import { TrustStrip } from "@/components/TrustStrip";
 import { SmoothExperienceStrip } from "@/components/SmoothExperienceStrip";
 import { MobileNav } from "@/components/MobileNav";
@@ -168,8 +171,15 @@ export default function Index() {
           }}
         />
 
+        {/* Reference-style homepage block */}
+        <HomeCategoryTiles className="mt-10" onNavigate={navTo} />
+
+        {/* Leave space for video (as requested) */}
+        <VideoPlaceholder className="mt-10" />
+
         {/* Keep the rest of the page sections */}
         <section id="how" className="mt-12 scroll-mt-28 sm:mt-14">
+
           <div className="flex flex-col gap-4 md:flex-row md:items-end md:justify-between md:gap-5">
             <div className="min-w-0">
               <SectionTitle kicker="How it works" title="One form. We handle the rest." />
