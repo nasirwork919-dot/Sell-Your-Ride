@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { cn } from "@/lib/utils";
 import { PhoneCall } from "lucide-react";
+import heroSellYourRide from "@/assets/hero-sellyourride.png";
 
 export function CarBuyersHero({
   onPrimaryCta,
@@ -66,23 +67,23 @@ export function CarBuyersHero({
 
       <div className="mx-auto max-w-6xl px-4 pb-6 pt-[86px] md:px-6 md:pb-10">
         <div className="grid gap-6 md:grid-cols-12 md:items-start md:gap-8">
-          {/* LEFT (simple, clean) */}
+          {/* LEFT (image + simple brand text) */}
           <div className="md:col-span-7">
             <div className="relative">
-              {/* soft circle like screenshot */}
-              <div className="pointer-events-none absolute left-6 top-4 h-40 w-40 rounded-full bg-white/35" />
+              <div className="overflow-hidden rounded-3xl bg-white/10 p-4 backdrop-blur sm:p-5">
+                <img
+                  src={heroSellYourRide}
+                  alt="SellYourRide hero"
+                  className="h-[180px] w-full rounded-2xl object-cover sm:h-[220px]"
+                  loading="eager"
+                />
 
-              <div className="relative rounded-3xl px-2 pb-1 pt-2">
-                <div className="mx-auto w-full max-w-[540px] rounded-3xl bg-transparent p-4 text-center sm:p-6">
-                  <p className="text-4xl font-extrabold tracking-tight text-white sm:text-5xl">
-                    Car<span className="text-[#0B3A7A]">Buyers</span>
-                    <span className="ml-1 text-base font-bold text-white/90">.com.au</span>
-                  </p>
-                  <p className="mt-3 text-2xl font-extrabold tracking-tight text-[#0B3A7A] sm:text-3xl">
-                    Sell My Car
+                <div className="mt-4 text-center">
+                  <p className="text-3xl font-extrabold tracking-tight text-white sm:text-4xl">
+                    SellYourRide<span className="text-white/90">.com</span>
                   </p>
                   <p className="mt-2 text-sm font-semibold text-[#08304B]">
-                    Open 7 days a week • Best price promise • We come to you
+                    Quick offer • We come to you • Fast payment
                   </p>
                 </div>
 
