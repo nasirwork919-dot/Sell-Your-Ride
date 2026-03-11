@@ -4,7 +4,9 @@ import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { cn } from "@/lib/utils";
 import { PhoneCall } from "lucide-react";
-import heroSellYourRide from "@/assets/hero-sellyourride.png";
+
+const HERO_IMAGE_URL =
+  "https://images.pexels.com/photos/358070/pexels-photo-358070.jpeg?auto=compress&cs=tinysrgb&w=1600";
 
 export function CarBuyersHero({
   onPrimaryCta,
@@ -17,21 +19,9 @@ export function CarBuyersHero({
 }) {
   const steps = useMemo(
     () => [
-      {
-        n: 1,
-        title: "Get a quick offer",
-        desc: "Fill out the form to get started.",
-      },
-      {
-        n: 2,
-        title: "Convenient inspection",
-        desc: "We come to you at your preferred time.",
-      },
-      {
-        n: 3,
-        title: "Get the best price",
-        desc: "We make an offer and pay fast.",
-      },
+      { n: 1, title: "Get a quick offer", desc: "Fill out the form to get started." },
+      { n: 2, title: "Free inspection", desc: "We come to you at a time that suits." },
+      { n: 3, title: "Best offer", desc: "We evaluate and pay fast." },
     ],
     [],
   );
@@ -52,7 +42,7 @@ export function CarBuyersHero({
               <PhoneCall className="h-5 w-5" />
             </span>
             <p className="text-[15px] font-semibold tracking-tight text-[#0B3A7A] sm:text-base">
-              {phoneText ?? "1300 770 571"}
+              {phoneText ?? "+61 478 797 731"}
             </p>
           </div>
 
@@ -67,49 +57,58 @@ export function CarBuyersHero({
 
       <div className="mx-auto max-w-6xl px-4 pb-6 pt-[86px] md:px-6 md:pb-10">
         <div className="grid gap-6 md:grid-cols-12 md:items-start md:gap-8">
-          {/* LEFT (image + simple brand text) */}
+          {/* LEFT */}
           <div className="md:col-span-7">
             <div className="relative">
-              <div className="overflow-hidden rounded-3xl bg-white/10 p-4 backdrop-blur sm:p-5">
-                <img
-                  src={heroSellYourRide}
-                  alt="SellYourRide hero"
-                  className="h-[180px] w-full rounded-2xl object-cover sm:h-[220px]"
-                  loading="eager"
-                />
+              {/* soft spotlight */}
+              <div className="pointer-events-none absolute left-8 top-6 h-44 w-44 rounded-full bg-white/35" />
 
-                <div className="mt-4 text-center">
-                  <p className="text-3xl font-extrabold tracking-tight text-white sm:text-4xl">
-                    SellYourRide<span className="text-white/90">.com</span>
-                  </p>
-                  <p className="mt-2 text-sm font-semibold text-[#08304B]">
-                    Quick offer • We come to you • Fast payment
-                  </p>
-                </div>
+              {/* vehicle image */}
+              <div className="relative mx-auto w-full max-w-[620px]">
+                <div className="overflow-hidden rounded-3xl bg-white/10 p-3 backdrop-blur sm:p-4">
+                  <img
+                    src={HERO_IMAGE_URL}
+                    alt="Car on the road"
+                    className="h-[170px] w-full rounded-2xl object-cover sm:h-[210px]"
+                    loading="eager"
+                    referrerPolicy="no-referrer"
+                  />
 
-                <div className="mt-5 grid gap-3 sm:grid-cols-3">
-                  {steps.map((s) => (
-                    <Card
-                      key={s.n}
-                      className="relative rounded-2xl border-white/40 bg-white/20 p-4 shadow-sm backdrop-blur"
-                    >
-                      <div className="absolute -top-3 left-1/2 grid h-9 w-9 -translate-x-1/2 place-items-center rounded-full bg-[#0B3A7A] text-sm font-extrabold text-white shadow">
-                        {s.n}
-                      </div>
-                      <p className="mt-3 text-sm font-extrabold text-white">{s.title}</p>
-                      <p className="mt-1 text-xs font-semibold text-white/90">{s.desc}</p>
-                    </Card>
-                  ))}
+                  <div className="mt-4 text-center">
+                    <p className="text-4xl font-extrabold tracking-tight text-white sm:text-5xl">
+                      SellYourRide<span className="text-white/90">.com.au</span>
+                    </p>
+                    <p className="mt-2 text-2xl font-extrabold tracking-tight text-[#0B3A7A] sm:text-3xl">
+                      We Buy Any Car
+                    </p>
+                    <p className="mx-auto mt-2 max-w-[56ch] text-sm font-semibold leading-relaxed text-[#08304B]">
+                      We come to you, inspect for free, we evaluate the car and get you the best offer within 24 hours.
+                    </p>
+                  </div>
+
+                  <div className="mt-5 grid gap-3 sm:grid-cols-3">
+                    {steps.map((s) => (
+                      <Card
+                        key={s.n}
+                        className="relative rounded-2xl border-white/40 bg-white/20 p-4 shadow-sm backdrop-blur"
+                      >
+                        <div className="absolute -top-3 left-1/2 grid h-9 w-9 -translate-x-1/2 place-items-center rounded-full bg-[#0B3A7A] text-sm font-extrabold text-white shadow">
+                          {s.n}
+                        </div>
+                        <p className="mt-3 text-sm font-extrabold text-white">{s.title}</p>
+                        <p className="mt-1 text-xs font-semibold text-white/90">{s.desc}</p>
+                      </Card>
+                    ))}
+                  </div>
                 </div>
               </div>
             </div>
           </div>
 
-          {/* RIGHT (form card) */}
+          {/* RIGHT */}
           <div className="md:col-span-5">
             <div id="sell" className="scroll-mt-28">
               <div className="relative">
-                {/* badge */}
                 <div className="absolute -top-5 left-6 z-10 rotate-[-10deg] rounded-2xl bg-[#0B3A7A] px-4 py-2 text-[11px] font-extrabold uppercase tracking-[0.16em] text-white shadow">
                   We pay more than dealers
                 </div>
@@ -120,7 +119,6 @@ export function CarBuyersHero({
                       We will buy your car today!
                     </p>
 
-                    {/* step dots */}
                     <div className="mt-3 flex items-center gap-3" aria-label="Quote steps">
                       <div className="grid h-8 w-8 place-items-center rounded-full bg-[#0B3A7A] text-sm font-extrabold text-white">
                         1
