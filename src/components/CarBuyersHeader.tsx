@@ -40,35 +40,34 @@ export function CarBuyersHeader({
         hidden ? "-translate-y-full" : "translate-y-0",
       )}
     >
-      <div className="mx-auto flex h-[64px] max-w-6xl items-center gap-3 px-4 md:px-6">
-        {/* Left: icon + phone */}
-        <button
-          type="button"
-          onClick={() => onNav("sell")}
-          className="inline-flex items-center gap-3"
-          aria-label="Go to quote form"
-        >
-          <span className="inline-flex h-10 w-10 items-center justify-center rounded-xl bg-[#0B3A7A] text-white shadow-sm">
-            <span className="text-lg font-extrabold leading-none">$</span>
-          </span>
-          <span className="whitespace-nowrap text-lg font-extrabold tracking-tight text-[#0B3A7A] sm:text-xl">
-            {phoneText}
-          </span>
-        </button>
+      <div className="mx-auto grid h-[60px] max-w-6xl grid-cols-[minmax(220px,1fr)_minmax(0,2fr)_minmax(220px,1fr)] items-center px-4 md:px-6">
+        {/* Left lane */}
+        <div className="flex items-center justify-start">
+          <button
+            type="button"
+            onClick={() => onNav("sell")}
+            className="inline-flex items-center gap-3"
+            aria-label="Go to quote form"
+          >
+            <span className="inline-flex h-10 w-10 items-center justify-center rounded-xl bg-[#0B3A7A] text-white shadow-sm">
+              <span className="text-lg font-extrabold leading-none">$</span>
+            </span>
+            <span className="whitespace-nowrap text-lg font-extrabold tracking-tight text-[#0B3A7A] sm:text-xl">
+              {phoneText}
+            </span>
+          </button>
+        </div>
 
-        {/* Center: nav (no wrap, reference-like spacing) */}
-        <nav
-          className="hidden min-w-0 flex-1 items-center justify-center md:flex"
-          aria-label="Primary navigation"
-        >
-          <div className="flex min-w-0 items-center gap-8 whitespace-nowrap">
+        {/* Center lane: nav (truly centered, no wrap) */}
+        <nav className="hidden min-w-0 items-center justify-center md:flex" aria-label="Primary navigation">
+          <div className="flex min-w-0 items-center justify-center gap-9 whitespace-nowrap">
             {items.map((n) => (
               <button
                 key={n.id}
                 type="button"
                 onClick={() => onNav(n.id)}
                 className={cn(
-                  "inline-flex items-center gap-1 rounded-full px-2 py-2 text-sm font-semibold text-[#0B3A7A] transition hover:bg-slate-100",
+                  "inline-flex items-center gap-1 rounded-full px-2 py-2 text-sm font-medium text-[#0B3A7A] transition hover:bg-slate-100",
                   active === n.id ? "underline underline-offset-[10px] decoration-2" : "no-underline",
                 )}
               >
@@ -79,7 +78,7 @@ export function CarBuyersHeader({
 
             <Link
               to="/experience"
-              className="inline-flex items-center gap-1 rounded-full px-2 py-2 text-sm font-semibold text-[#0B3A7A] transition hover:bg-slate-100"
+              className="inline-flex items-center gap-1 rounded-full px-2 py-2 text-sm font-medium text-[#0B3A7A] transition hover:bg-slate-100"
             >
               <span className="whitespace-nowrap">Experience</span>
               <ChevronDown className="h-4 w-4 text-[#0B3A7A]/70" />
@@ -87,11 +86,11 @@ export function CarBuyersHeader({
           </div>
         </nav>
 
-        {/* Right: CTA + mobile menu */}
-        <div className="ml-auto flex items-center gap-2">
+        {/* Right lane: CTA + mobile */}
+        <div className="flex items-center justify-end gap-2">
           <Button
             onClick={() => onNav("sell")}
-            className="hidden h-10 whitespace-nowrap rounded-full bg-white px-7 font-extrabold text-[#0B3A7A] ring-1 ring-[#0B3A7A] hover:bg-slate-50 md:inline-flex"
+            className="hidden h-10 whitespace-nowrap rounded-full bg-white px-8 font-extrabold text-[#0B3A7A] ring-1 ring-[#0B3A7A]/90 hover:bg-slate-50 md:inline-flex"
           >
             Get a quote
           </Button>
