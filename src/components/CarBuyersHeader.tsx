@@ -11,7 +11,7 @@ export function CarBuyersHeader({
   active,
   items,
   onNav,
-  phoneText = "1300 770 571",
+  phoneText = "+61 478 797 731",
   hidden,
   scrolled,
 }: {
@@ -35,13 +35,13 @@ export function CarBuyersHeader({
   return (
     <header
       className={cn(
-        "fixed left-0 right-0 top-0 z-50 border-t-4 border-[#0B3A7A] border-b border-slate-200 transition-transform duration-200",
+        "fixed left-0 right-0 top-0 z-50 border-b border-slate-200 transition-transform duration-200",
         scrolled ? "bg-white/92 backdrop-blur" : "bg-white",
         hidden ? "-translate-y-full" : "translate-y-0",
       )}
     >
-      <div className="mx-auto grid max-w-6xl grid-cols-2 items-center gap-3 px-4 py-3 md:grid-cols-12 md:px-6">
-        {/* Left: phone */}
+      <div className="mx-auto grid h-[68px] max-w-6xl grid-cols-2 items-center gap-3 px-4 md:grid-cols-12 md:px-6">
+        {/* Left: icon + phone */}
         <button
           type="button"
           onClick={() => onNav("sell")}
@@ -54,7 +54,7 @@ export function CarBuyersHeader({
           <span className="text-lg font-extrabold tracking-tight text-[#0B3A7A] sm:text-xl">{phoneText}</span>
         </button>
 
-        {/* Center: nav */}
+        {/* Center nav */}
         <nav className="col-span-7 hidden items-center justify-center gap-7 md:flex" aria-label="Primary navigation">
           {items.map((n) => (
             <button
@@ -70,6 +70,7 @@ export function CarBuyersHeader({
               {n.hasDropdown ? <ChevronDown className="h-4 w-4 text-[#0B3A7A]/70" /> : null}
             </button>
           ))}
+
           <Link
             to="/experience"
             className="inline-flex items-center gap-1 rounded-full px-2 py-2 text-sm font-semibold text-[#0B3A7A] transition hover:bg-slate-100"

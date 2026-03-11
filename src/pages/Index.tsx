@@ -135,7 +135,7 @@ export default function Index() {
         onNav={navTo}
         hidden={navHidden}
         scrolled={scrolled}
-        phoneText="1300 770 571"
+        phoneText="+61 478 797 731"
       />
 
       <main className="mx-auto max-w-6xl px-4 pb-16 pt-[88px] sm:pt-24 md:px-6">
@@ -147,7 +147,7 @@ export default function Index() {
               if (!el) return;
               el.scrollIntoView({ behavior: "smooth", block: "start" });
             }}
-            phoneText="1300 770 571"
+            phoneText="+61 478 797 731"
           />
         </section>
 
