@@ -40,36 +40,33 @@ export function CarBuyersHeader({
         hidden ? "-translate-y-full" : "translate-y-0",
       )}
     >
-      <div className="mx-auto flex h-[64px] max-w-6xl items-center gap-3 px-4 md:px-6">
+      <div className="mx-auto flex h-[74px] max-w-6xl items-center gap-4 px-4 md:px-6">
         {/* Left: icon + phone */}
         <button
           type="button"
           onClick={() => onNav("sell")}
-          className="inline-flex items-center gap-3"
+          className="inline-flex items-center gap-4"
           aria-label="Go to quote form"
         >
-          <span className="inline-flex h-10 w-10 items-center justify-center rounded-xl bg-[#0B3A7A] text-white shadow-sm">
-            <span className="text-lg font-extrabold leading-none">$</span>
+          <span className="inline-flex h-12 w-12 items-center justify-center rounded-2xl bg-[#0B3A7A] text-white shadow-sm">
+            <span className="text-xl font-extrabold leading-none">$</span>
           </span>
-          <span className="whitespace-nowrap text-lg font-extrabold tracking-tight text-[#0B3A7A] sm:text-xl">
+          <span className="whitespace-nowrap text-xl font-extrabold tracking-tight text-[#0B3A7A] sm:text-2xl">
             {phoneText}
           </span>
         </button>
 
-        {/* Center: nav (no wrap, reference-like spacing) */}
-        <nav
-          className="hidden min-w-0 flex-1 items-center justify-center md:flex"
-          aria-label="Primary navigation"
-        >
-          <div className="flex min-w-0 items-center gap-8 whitespace-nowrap">
+        {/* Center: nav */}
+        <nav className="hidden min-w-0 flex-1 items-center justify-center md:flex" aria-label="Primary navigation">
+          <div className="flex min-w-0 items-center gap-10 whitespace-nowrap">
             {items.map((n) => (
               <button
                 key={n.id}
                 type="button"
                 onClick={() => onNav(n.id)}
                 className={cn(
-                  "inline-flex items-center gap-1 rounded-full px-2 py-2 text-sm font-semibold text-[#0B3A7A] transition hover:bg-slate-100",
-                  active === n.id ? "underline underline-offset-[10px] decoration-2" : "no-underline",
+                  "inline-flex items-center gap-1 rounded-full px-2 py-2 text-[13px] font-semibold text-[#0B3A7A] transition hover:bg-slate-100",
+                  active === n.id ? "underline underline-offset-[12px] decoration-[1.5px]" : "no-underline",
                 )}
               >
                 <span className="whitespace-nowrap">{n.label}</span>
@@ -79,7 +76,7 @@ export function CarBuyersHeader({
 
             <Link
               to="/experience"
-              className="inline-flex items-center gap-1 rounded-full px-2 py-2 text-sm font-semibold text-[#0B3A7A] transition hover:bg-slate-100"
+              className="inline-flex items-center gap-1 rounded-full px-2 py-2 text-[13px] font-semibold text-[#0B3A7A] transition hover:bg-slate-100"
             >
               <span className="whitespace-nowrap">Experience</span>
               <ChevronDown className="h-4 w-4 text-[#0B3A7A]/70" />
@@ -91,7 +88,7 @@ export function CarBuyersHeader({
         <div className="ml-auto flex items-center gap-2">
           <Button
             onClick={() => onNav("sell")}
-            className="hidden h-10 whitespace-nowrap rounded-full bg-white px-7 font-extrabold text-[#0B3A7A] ring-1 ring-[#0B3A7A] hover:bg-slate-50 md:inline-flex"
+            className="hidden h-11 whitespace-nowrap rounded-full bg-white px-9 text-[13px] font-extrabold text-[#0B3A7A] ring-2 ring-[#0B3A7A]/90 hover:bg-slate-50 md:inline-flex"
           >
             Get a quote
           </Button>
@@ -100,7 +97,7 @@ export function CarBuyersHeader({
             <SheetTrigger asChild>
               <Button
                 variant="secondary"
-                className="h-10 w-10 rounded-2xl border border-slate-200 bg-white p-0 text-slate-900 hover:bg-slate-50 md:hidden"
+                className="h-11 w-11 rounded-2xl border border-slate-200 bg-white p-0 text-slate-900 hover:bg-slate-50 md:hidden"
                 aria-label="Open menu"
               >
                 <Menu className="h-5 w-5" />
