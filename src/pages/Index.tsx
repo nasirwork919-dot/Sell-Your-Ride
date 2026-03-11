@@ -11,7 +11,8 @@ import { useScrollDirection } from "@/hooks/use-scroll-direction";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { cn } from "@/lib/utils";
-import { Clock3, MessageCircle, PhoneCall, ShieldCheck, ArrowRight, Zap } from "lucide-react";
+import { Clock3, PhoneCall, ShieldCheck } from "lucide-react";
+
 import { ReviewsMarquee } from "@/components/ReviewsMarquee";
 import { SiteFooter } from "@/components/SiteFooter";
 import { FloatingGoogleRatingButton } from "@/components/FloatingGoogleRatingButton";
@@ -20,10 +21,10 @@ import { images } from "@/lib/images";
 import { Link } from "react-router-dom";
 
 const NAV = [
-  { id: "sell", label: "Get an Offer" },
-  { id: "how", label: "How It Works" },
-  { id: "reviews", label: "Reviews" },
-  { id: "contact", label: "Contact" },
+  { id: "sell", label: "Sell my car" },
+  { id: "how", label: "Sell my truck" },
+  { id: "reviews", label: "Sell my caravan" },
+  { id: "contact", label: "About" },
 ] as const;
 
 export default function Index() {
@@ -240,10 +241,10 @@ export default function Index() {
                     variant="secondary"
                     className="h-12 w-full rounded-xl border border-slate-200 bg-white text-base text-slate-900 hover:bg-slate-50 sm:h-11 sm:w-auto sm:rounded-md sm:text-sm"
                   >
-                    <MessageCircle className="mr-2 h-4 w-4" />
                     WhatsApp
                   </Button>
                 </a>
+
               </div>
             </div>
           </Card>
@@ -280,22 +281,28 @@ function Header({
         hidden ? "-translate-y-full" : "translate-y-0",
       )}
     >
-      <div className="mx-auto grid max-w-6xl grid-cols-2 items-center px-4 py-3 md:grid-cols-3 md:px-6">
-        <button onClick={() => onNav("sell")} className="group inline-flex items-center gap-2 justify-self-start">
-          <span className="grid h-10 w-10 place-items-center rounded-xl bg-indigo-600 text-white shadow-sm md:h-9 md:w-9 md:rounded-md">
-            SYR
+      <div className="mx-auto grid max-w-6xl grid-cols-2 items-center px-4 py-3 md:grid-cols-12 md:px-6">
+        {/* Left: icon + phone */}
+        <button
+          onClick={() => onNav("sell")}
+          className="group col-span-1 inline-flex items-center gap-3 justify-self-start md:col-span-4"
+          aria-label="Go to quote form"
+        >
+          <span className="grid h-10 w-10 place-items-center rounded-xl bg-[#0B3A7A] text-white shadow-sm">
+            $
           </span>
-          <span className="text-[15px] font-semibold tracking-tight text-slate-900 md:text-sm">Sell Your Ride</span>
+          <span className="text-lg font-extrabold tracking-tight text-[#0B3A7A]">1300 770 571</span>
         </button>
 
-        <nav className="hidden items-center justify-center gap-1 md:flex">
+        {/* Middle: nav links */}
+        <nav className="col-span-6 hidden items-center justify-center gap-6 md:flex">
           {NAV.map((n) => (
             <button
               key={n.id}
               onClick={() => onNav(n.id)}
               className={cn(
-                "whitespace-nowrap rounded-md px-2.5 py-2 text-sm font-semibold transition lg:px-3",
-                active === n.id ? "bg-slate-900 text-white" : "text-slate-700 hover:bg-slate-100",
+                "whitespace-nowrap rounded-full px-2 py-2 text-sm font-semibold text-[#0B3A7A] transition hover:bg-slate-100",
+                active === n.id ? "underline underline-offset-8" : "no-underline",
               )}
             >
               {n.label}
@@ -303,16 +310,18 @@ function Header({
           ))}
         </nav>
 
-        <div className="flex items-center justify-end gap-2">
-          <a href={waLink} target="_blank" rel="noreferrer" className="hidden md:inline-flex">
-            <Button className="h-10 rounded-md bg-emerald-600 text-white hover:bg-emerald-700">
-              <MessageCircle className="mr-2 h-4 w-4" />
-              WhatsApp
-            </Button>
-          </a>
+        {/* Right: CTA */}
+        <div className="col-span-1 flex items-center justify-end gap-2 md:col-span-2">
+          <Button
+            onClick={() => onNav("sell")}
+            className="h-10 rounded-full bg-white px-5 font-semibold text-[#0B3A7A] ring-1 ring-[#0B3A7A]/30 hover:bg-slate-50"
+          >
+            Get a quote
+          </Button>
           <MobileNav active={active} items={NAV} onNav={onNav} />
         </div>
       </div>
+
     </div>
   );
 }
