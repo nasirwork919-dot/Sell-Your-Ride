@@ -12,6 +12,7 @@ import { FloatingGoogleRatingButton } from "@/components/FloatingGoogleRatingBut
 import { FloatingWhatsAppButton } from "@/components/FloatingWhatsAppButton";
 import { MarketingPixels } from "@/components/MarketingPixels";
 import { useScrollDirection } from "@/hooks/use-scroll-direction";
+import { AsFeaturedInStrip } from "@/components/AsFeaturedInStrip";
 
 const NAV = [
   { id: "sell", label: "Sell my car" },
@@ -140,6 +141,9 @@ export default function Index() {
             phoneText="+61 478 797 731"
           />
         </section>
+
+        {/* As featured in */}
+        <AsFeaturedInStrip />
 
         {/* Category tiles */}
         <section id="truck" className="mt-10 scroll-mt-28">
