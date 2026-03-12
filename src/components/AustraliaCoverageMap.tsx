@@ -46,15 +46,14 @@ export function AustraliaCoverageMap({ className }: { className?: string }) {
           </h2>
 
           <div className="relative mx-auto mt-8 max-w-5xl">
-            {/* Map frame: give extra vertical room so Tasmania can sit below without overflowing */}
+            {/* Map frame: extra vertical space so all labels remain inside the green section */}
             <div
               className={cn(
                 "relative mx-auto w-full",
-                // Taller than 16:9 so y>100% markers still stay inside this section
-                "h-[340px] sm:h-[420px] md:h-[520px]",
+                "h-[420px] sm:h-[520px] md:h-[660px]",
               )}
             >
-              {/* Australia outline (stylized to match the screenshot) */}
+              {/* Australia outline (stylized) */}
               <svg
                 viewBox="0 0 1200 700"
                 preserveAspectRatio="xMidYMid meet"
@@ -115,12 +114,10 @@ function CityPin({ x, y, label }: { x: number; y: number; label: string }) {
       title={label}
     >
       <div className="flex items-center gap-2">
-        {/* blue dot */}
         <span className="relative grid h-3.5 w-3.5 place-items-center rounded-full bg-[#0B3A7A] shadow-sm">
           <span className="h-2 w-2 rounded-full bg-white" />
         </span>
 
-        {/* orange label */}
         <span className="rounded-full bg-[#F47A1F] px-3 py-1 text-[11px] font-extrabold text-white shadow-[0_8px_18px_rgba(15,23,42,0.10)]">
           {label}
         </span>
