@@ -2,78 +2,62 @@ import { cn } from "@/lib/utils";
 
 type Logo = {
   name: string;
-  src: string;
+  accent: "navy" | "teal" | "amber" | "indigo";
 };
 
 const LOGOS: Logo[] = [
-  {
-    name: "Australian FinTech",
-    src: "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3a/Australian_FinTech_logo.png/320px-Australian_FinTech_logo.png",
-  },
-  {
-    name: "Daily Mail",
-    src: "https://upload.wikimedia.org/wikipedia/commons/thumb/c/cb/Daily_Mail_logo.png/320px-Daily_Mail_logo.png",
-  },
-  {
-    name: "Drive",
-    src: "https://upload.wikimedia.org/wikipedia/commons/thumb/5/57/Drive.com.au_logo.svg/320px-Drive.com.au_logo.svg.png",
-  },
-  {
-    name: "Daily Telegraph",
-    src: "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6c/The_Daily_Telegraph_logo.svg/320px-The_Daily_Telegraph_logo.svg.png",
-  },
-  {
-    name: "Inwire",
-    src: "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6e/Inwire_logo.svg/320px-Inwire_logo.svg.png",
-  },
-  {
-    name: "Herald Sun",
-    src: "https://upload.wikimedia.org/wikipedia/commons/thumb/3/32/Herald_Sun_logo.svg/320px-Herald_Sun_logo.svg.png",
-  },
-  {
-    name: "Yahoo Finance",
-    src: "https://upload.wikimedia.org/wikipedia/commons/thumb/2/24/Yahoo%21_Finance_logo_2021.svg/320px-Yahoo%21_Finance_logo_2021.svg.png",
-  },
-  {
-    name: "Gumtree Cars",
-    src: "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5d/Gumtree_logo.svg/320px-Gumtree_logo.svg.png",
-  },
-  {
-    name: "CarExpert",
-    src: "https://upload.wikimedia.org/wikipedia/commons/thumb/7/70/Car_logo.svg/320px-Car_logo.svg.png",
-  },
-];
+  { name: "Drive Daily", accent: "navy" },
+  { name: "AutoReview", accent: "teal" },
+  { name: "Finance AU", accent: "amber" },
+  { name: "The Telegraph", accent: "indigo" },
+  { name: "Car Insider", accent: "navy" },
+  { name: "Road & Track", accent: "teal" },
+  { name: "Market Watch", accent: "amber" },
+  { name: "Seller Stories", accent: "indigo" },
+] as const;
+
+function accentClass(accent: Logo["accent"]) {
+  switch (accent) {
+    case "navy":
+      return "bg-[#0B3A7A] text-white";
+    case "teal":
+      return "bg-[#18B9C8] text-[#062B41]";
+    case "amber":
+      return "bg-amber-400 text-amber-950";
+    case "indigo":
+      return "bg-indigo-600 text-white";
+  }
+}
 
 export function AsFeaturedInStrip({ className }: { className?: string }) {
   return (
-    <section
-      className={cn(
-        "mt-6 overflow-hidden rounded-3xl bg-slate-100 px-5 py-8 ring-1 ring-slate-200 sm:px-8 sm:py-10",
-        className,
-      )}
-      aria-label="As featured in"
-    >
-      <p className="text-center text-xs font-extrabold uppercase tracking-[0.28em] text-slate-900">
-        As featured in
-      </p>
+    <section className={cn("w-full", className)} aria-label="As featured in">
+      <div className="w-full bg-slate-100 py-10 ring-1 ring-slate-200">
+        <div className="mx-auto max-w-6xl px-4 md:px-6">
+          <p className="text-center text-xs font-extrabold uppercase tracking-[0.28em] text-slate-900">
+            As featured in
+          </p>
 
-      <div className="mt-6 flex flex-wrap items-center justify-center gap-x-8 gap-y-5 sm:gap-x-10">
-        {LOGOS.map((l) => (
-          <div
-            key={l.name}
-            className="grid h-8 place-items-center opacity-80 grayscale transition-opacity hover:opacity-100 sm:h-9"
-            title={l.name}
-            aria-label={l.name}
-          >
-            <img
-              src={l.src}
-              alt={l.name}
-              className="h-full w-auto object-contain"
-              loading="lazy"
-              referrerPolicy="no-referrer"
-            />
+          <div className="mt-6 grid grid-cols-2 gap-3 sm:grid-cols-4 md:flex md:flex-wrap md:items-center md:justify-center md:gap-4">
+            {LOGOS.map((l) => (
+              <div
+                key={l.name}
+                className="flex items-center justify-center rounded-2xl border border-slate-200 bg-white px-4 py-3 shadow-sm"
+                title={l.name}
+                aria-label={l.name}
+              >
+                <span className="inline-flex items-center gap-3">
+                  <span className={cn("h-8 w-8 rounded-xl shadow-sm", accentClass(l.accent))} aria-hidden="true" />
+                  <span className="text-sm font-extrabold tracking-tight text-slate-800">{l.name}</span>
+                </span>
+              </div>
+            ))}
           </div>
-        ))}
+
+          <p className="mt-5 text-center text-xs font-semibold text-slate-600">
+            Sample logos for layout — replace with your real brand marks anytime.
+          </p>
+        </div>
       </div>
     </section>
   );

@@ -129,55 +129,59 @@ export default function Index() {
         phoneText="+61 478 797 731"
       />
 
-      <main className="mx-auto max-w-6xl px-4 pb-16 pt-[88px] sm:pt-24 md:px-6">
-        {/* Hero + form (quote) */}
-        <section id="sell" className="scroll-mt-28">
-          <CarBuyersHero
-            onPrimaryCta={() => {
-              const el = document.getElementById("sell");
-              if (!el) return;
-              el.scrollIntoView({ behavior: "smooth", block: "start" });
-            }}
-            phoneText="+61 478 797 731"
-          />
-        </section>
+      <main className="w-full pb-16 pt-[88px] sm:pt-24">
+        <div className="mx-auto max-w-6xl px-4 md:px-6">
+          {/* Hero + form (quote) */}
+          <section id="sell" className="scroll-mt-28">
+            <CarBuyersHero
+              onPrimaryCta={() => {
+                const el = document.getElementById("sell");
+                if (!el) return;
+                el.scrollIntoView({ behavior: "smooth", block: "start" });
+              }}
+              phoneText="+61 478 797 731"
+            />
+          </section>
+        </div>
 
-        {/* As featured in */}
+        {/* Full-width strip */}
         <AsFeaturedInStrip />
 
-        {/* Category tiles */}
-        <section id="truck" className="mt-10 scroll-mt-28">
-          <HomeCategoryTiles onNavigate={navTo} />
-        </section>
+        <div className="mx-auto max-w-6xl px-4 md:px-6">
+          {/* Category tiles */}
+          <section id="truck" className="mt-10 scroll-mt-28">
+            <HomeCategoryTiles onNavigate={navTo} />
+          </section>
 
-        {/* Caravan anchor can map to same block for now */}
-        <section id="caravan" className="sr-only" aria-hidden="true" />
+          {/* Caravan anchor can map to same block for now */}
+          <section id="caravan" className="sr-only" aria-hidden="true" />
 
-        {/* Difference + About anchors (scroll targets for header items) */}
-        <section id="difference" className="sr-only" aria-hidden="true" />
-        <section id="about" className="sr-only" aria-hidden="true" />
+          {/* Difference + About anchors (scroll targets for header items) */}
+          <section id="difference" className="sr-only" aria-hidden="true" />
+          <section id="about" className="sr-only" aria-hidden="true" />
 
-        {/* Leave space for video only */}
-        <section id="video" className="mt-10 scroll-mt-28">
-          <VideoPlaceholder />
-        </section>
+          {/* Leave space for video only */}
+          <section id="video" className="mt-10 scroll-mt-28">
+            <VideoPlaceholder />
+          </section>
 
-        {/* How it works */}
-        <section id="how" className="mt-10 scroll-mt-28">
-          <CarBuyersHowItWorks />
-        </section>
+          {/* How it works */}
+          <section id="how" className="mt-10 scroll-mt-28">
+            <CarBuyersHowItWorks />
+          </section>
 
-        {/* Reviews */}
-        <section id="reviews" className="mt-10 scroll-mt-28">
-          <CarBuyersReviews items={reviews} />
-        </section>
+          {/* Reviews */}
+          <section id="reviews" className="mt-10 scroll-mt-28">
+            <CarBuyersReviews items={reviews} />
+          </section>
 
-        {/* Contact / CTA */}
-        <section id="contact" className="mt-10 scroll-mt-28">
-          <CarBuyersCta onQuote={() => navTo("sell")} />
-        </section>
+          {/* Contact / CTA */}
+          <section id="contact" className="mt-10 scroll-mt-28">
+            <CarBuyersCta onQuote={() => navTo("sell")} />
+          </section>
 
-        <CarBuyersFooter />
+          <CarBuyersFooter />
+        </div>
       </main>
 
       <FloatingGoogleRatingButton href={googleReviewsLink} rating="4.9" countText="200+" />
