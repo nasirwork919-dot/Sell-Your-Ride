@@ -14,6 +14,7 @@ import { useScrollDirection } from "@/hooks/use-scroll-direction";
 import { AsFeaturedInStrip } from "@/components/AsFeaturedInStrip";
 import { AustraliaCoverageMap } from "@/components/AustraliaCoverageMap";
 import { FastStepsSection } from "@/components/FastStepsSection";
+import { HappyCustomersSection } from "@/components/HappyCustomersSection";
 
 const NAV = [
   { id: "sell", label: "Sell my car" },
@@ -157,8 +158,11 @@ export default function Index() {
           <AustraliaCoverageMap />
         </section>
 
-        {/* NEW: Fast steps section (cloned) */}
+        {/* Fast steps section */}
         <FastStepsSection onEnquire={() => navTo("sell")} />
+
+        {/* NEW: Happy customers section */}
+        <HappyCustomersSection onEnquire={() => navTo("sell")} />
 
         {/* Remaining sections: centered content */}
         <div className="mx-auto max-w-6xl px-4 md:px-6">
