@@ -1,7 +1,6 @@
 import { useEffect, useMemo, useRef, useState } from "react";
 import { CarBuyersHero } from "@/components/CarBuyersHero";
 import { HomeCategoryTiles } from "@/components/HomeCategoryTiles";
-import { VideoPlaceholder } from "@/components/VideoPlaceholder";
 import { CarBuyersHowItWorks } from "@/components/CarBuyersHowItWorks";
 import { CarBuyersReviews } from "@/components/CarBuyersReviews";
 import { CarBuyersCta } from "@/components/CarBuyersCta";
@@ -13,6 +12,7 @@ import { FloatingWhatsAppButton } from "@/components/FloatingWhatsAppButton";
 import { MarketingPixels } from "@/components/MarketingPixels";
 import { useScrollDirection } from "@/hooks/use-scroll-direction";
 import { AsFeaturedInStrip } from "@/components/AsFeaturedInStrip";
+import { AustraliaCoverageMap } from "@/components/AustraliaCoverageMap";
 
 const NAV = [
   { id: "sell", label: "Sell my car" },
@@ -146,9 +146,14 @@ export default function Index() {
         {/* Full-width featured strip */}
         <AsFeaturedInStrip />
 
-        {/* Full-width category tiles (no extra top margin to avoid the gap) */}
+        {/* Full-width category tiles */}
         <section id="truck" className="w-full scroll-mt-28">
           <HomeCategoryTiles onNavigate={navTo} />
+        </section>
+
+        {/* NEW: Full-width Australia coverage map section */}
+        <section id="video" className="w-full scroll-mt-28">
+          <AustraliaCoverageMap />
         </section>
 
         {/* Remaining sections: centered content */}
@@ -159,11 +164,6 @@ export default function Index() {
           {/* Difference + About anchors (scroll targets for header items) */}
           <section id="difference" className="sr-only" aria-hidden="true" />
           <section id="about" className="sr-only" aria-hidden="true" />
-
-          {/* Leave space for video only */}
-          <section id="video" className="mt-10 scroll-mt-28">
-            <VideoPlaceholder />
-          </section>
 
           {/* How it works */}
           <section id="how" className="mt-10 scroll-mt-28">
