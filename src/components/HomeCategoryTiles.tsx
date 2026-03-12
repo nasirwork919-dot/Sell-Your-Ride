@@ -67,7 +67,22 @@ export function HomeCategoryTiles({
   return (
     <section className={cn("w-full bg-white", className)} aria-label="Categories">
       <div className="mx-auto max-w-6xl px-4 py-10 sm:py-12 md:px-6">
-        <div className="grid gap-10 md:grid-cols-3 md:gap-12">
+        {/* Headings (restored) */}
+        <div className="text-center">
+          <p className="text-[34px] font-extrabold tracking-tight text-[#0B3A7A] sm:text-[44px]">
+            SellYourRide
+            <span className="ml-1 align-top text-[10px] font-extrabold text-[#0B3A7A]/70 sm:text-[11px]">.com.au</span>
+          </p>
+
+          <h2 className="mt-4 text-balance text-4xl font-extrabold tracking-tight text-[#0B3A7A] sm:text-5xl">
+            Australia&apos;s Leading
+            <br />
+            Car Buying Service
+          </h2>
+        </div>
+
+        {/* Tiles (kept exactly like your preferred version) */}
+        <div className="mt-10 grid gap-10 md:grid-cols-3 md:gap-12">
           {tiles.map((t) => {
             const styles = accentStyles(t.accent);
             return (
