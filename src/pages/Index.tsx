@@ -146,13 +146,13 @@ export default function Index() {
         {/* Full-width featured strip */}
         <AsFeaturedInStrip />
 
-        {/* Remaining sections: full-width page, centered content */}
-        <div className="mx-auto max-w-6xl px-4 md:px-6">
-          {/* Category tiles */}
-          <section id="truck" className="mt-10 scroll-mt-28">
-            <HomeCategoryTiles onNavigate={navTo} />
-          </section>
+        {/* Full-width category tiles (cloned section) */}
+        <section id="truck" className="mt-10 w-full scroll-mt-28">
+          <HomeCategoryTiles onNavigate={navTo} />
+        </section>
 
+        {/* Remaining sections: centered content */}
+        <div className="mx-auto max-w-6xl px-4 md:px-6">
           {/* Caravan anchor can map to same block for now */}
           <section id="caravan" className="sr-only" aria-hidden="true" />
 
