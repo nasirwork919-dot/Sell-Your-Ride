@@ -46,13 +46,13 @@ export function CarBuyersHero({
         {/* Left side: centered brand block + steps */}
         <div className="md:col-span-7">
           <div className="mx-auto max-w-[640px] text-center">
-            {/* Composite image (no decorative background circle) */}
-            <div className="relative mx-auto w-full max-w-[420px]">
+            {/* Composite image (use uploaded PNG) */}
+            <div className="relative mx-auto w-full max-w-[560px]">
               <div className="relative mx-auto overflow-hidden rounded-[28px] bg-white/0 p-0">
                 <img
-                  src={images.heroMain1}
+                  src={images.heroCompositePng}
                   alt="Car and seller"
-                  className="mx-auto h-[210px] w-full max-w-[420px] rounded-[28px] object-contain"
+                  className="mx-auto h-[220px] w-full max-w-[560px] rounded-[28px] object-contain sm:h-[250px]"
                   loading="eager"
                   referrerPolicy="no-referrer"
                 />
