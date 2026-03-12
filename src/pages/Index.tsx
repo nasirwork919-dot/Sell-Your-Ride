@@ -1,7 +1,6 @@
 import { useEffect, useMemo, useRef, useState } from "react";
 import { CarBuyersHero } from "@/components/CarBuyersHero";
 import { HomeCategoryTiles } from "@/components/HomeCategoryTiles";
-import { CarBuyersHowItWorks } from "@/components/CarBuyersHowItWorks";
 import { CarBuyersCta } from "@/components/CarBuyersCta";
 import { CarBuyersFooter } from "@/components/CarBuyersFooter";
 import { CarBuyersHeader } from "@/components/CarBuyersHeader";
@@ -160,12 +159,10 @@ export default function Index() {
           <section id="difference" className="sr-only" aria-hidden="true" />
           <section id="about" className="sr-only" aria-hidden="true" />
 
-          {/* How it works */}
-          <section id="how" className="mt-10 scroll-mt-28">
-            <CarBuyersHowItWorks />
-          </section>
+          {/* How anchor kept for nav/scroll highlighting, but no longer renders the block */}
+          <section id="how" className="sr-only" aria-hidden="true" />
 
-          {/* Reviews anchor kept for nav/scroll highlighting, but no longer renders the reviews block */}
+          {/* Reviews anchor kept for nav/scroll highlighting */}
           <section id="reviews" className="sr-only" aria-hidden="true" />
         </div>
 
