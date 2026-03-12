@@ -7,7 +7,6 @@ import { CarBuyersCta } from "@/components/CarBuyersCta";
 import { CarBuyersFooter } from "@/components/CarBuyersFooter";
 import { CarBuyersHeader } from "@/components/CarBuyersHeader";
 import { BackToTopButton } from "@/components/BackToTopButton";
-import { FloatingGoogleRatingButton } from "@/components/FloatingGoogleRatingButton";
 import { FloatingWhatsAppButton } from "@/components/FloatingWhatsAppButton";
 import { MarketingPixels } from "@/components/MarketingPixels";
 import { useScrollDirection } from "@/hooks/use-scroll-direction";
@@ -192,7 +191,6 @@ export default function Index() {
         </div>
       </main>
 
-      <FloatingGoogleRatingButton href={googleReviewsLink} rating="4.9" countText="200+" />
       <FloatingWhatsAppButton href={adminWhatsAppLink} />
       <BackToTopButton show={showTop} />
     </div>
