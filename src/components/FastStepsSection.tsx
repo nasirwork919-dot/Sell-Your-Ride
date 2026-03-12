@@ -100,16 +100,20 @@ export function FastStepsSection({
 
         {/* Embedded white wave (part of this blue section) */}
         <div className="pointer-events-none absolute bottom-0 left-0 right-0">
-          <svg viewBox="0 0 1440 160" preserveAspectRatio="none" className="block h-[88px] w-full sm:h-[104px] md:h-[120px]">
+          <svg
+            viewBox="0 0 1440 240"
+            preserveAspectRatio="none"
+            className="block h-[150px] w-full sm:h-[190px] md:h-[230px]"
+          >
             <path
-              d="M0,36 C220,82 480,108 720,92 C980,74 1210,22 1440,38 L1440,160 L0,160 Z"
+              d="M0,70 C220,140 480,176 720,160 C980,140 1210,70 1440,86 L1440,240 L0,240 Z"
               fill="#FFFFFF"
             />
           </svg>
         </div>
 
-        {/* Space so content doesn't overlap the wave */}
-        <div className="h-[88px] sm:h-[104px] md:h-[120px]" />
+        {/* Space so content doesn't overlap the higher wave */}
+        <div className="h-[150px] sm:h-[190px] md:h-[230px]" />
       </div>
     </section>
   );
