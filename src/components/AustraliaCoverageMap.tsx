@@ -97,13 +97,22 @@ export function AustraliaCoverageMap({ className }: { className?: string }) {
   );
 }
 
+function clamp(n: number, min: number, max: number) {
+  return Math.max(min, Math.min(max, n));
+}
+
 function CityPin({ x, y, label }: { x: number; y: number; label: string }) {
+  // Prevent pins/labels from rendering outside the map box (e.g. Tasmania y=114).
+  // The label height varies slightly, so keep a safe inset.
+  const cx = clamp(x, 4, 96);
+  const cy = clamp(y, 4, 96);
+
   return (
     <div
       className="absolute"
       style={{
-        left: `${x}%`,
-        top: `${y}%`,
+        left: `${cx}%`,
+        top: `${cy}%`,
       }}
       aria-label={label}
       title={label}
