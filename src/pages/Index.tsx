@@ -12,7 +12,6 @@ import { FloatingGoogleRatingButton } from "@/components/FloatingGoogleRatingBut
 import { FloatingWhatsAppButton } from "@/components/FloatingWhatsAppButton";
 import { MarketingPixels } from "@/components/MarketingPixels";
 import { useScrollDirection } from "@/hooks/use-scroll-direction";
-import { CurvedLineSeparator } from "@/components/CurvedLineSeparator";
 
 const NAV = [
   { id: "sell", label: "Sell my car" },
@@ -140,9 +139,6 @@ export default function Index() {
             }}
             phoneText="+61 478 797 731"
           />
-
-          {/* Curved line separator (no filled wave) */}
-          <CurvedLineSeparator className="-mx-4 md:-mx-6" color="rgba(11,58,122,0.20)" dash="rgba(255,255,255,0.85)" height={54} />
         </section>
 
         {/* Category tiles */}
