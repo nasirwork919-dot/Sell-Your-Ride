@@ -45,108 +45,151 @@ function PhotoTile({ src, alt, className }: Photo) {
   );
 }
 
-function ReviewsAutoScroller({
+function Dots({
+  count,
+  active,
+  onDot,
+}: {
+  count: number;
+  active: number;
+  onDot: (idx: number) => void;
+}) {
+  return (
+    <div className="mt-4 flex items-center justify-center gap-2" aria-label="Carousel pagination">
+      {Array.from({ length: count }).map((_, i) => (
+        <button
+          key={i}
+          type="button"
+          onClick={() => onDot(i)}
+          className={cn(
+            "h-2.5 w-2.5 rounded-full transition",
+            i === active ? "bg-[#0B3A7A]" : "bg-slate-300 hover:bg-slate-400",
+          )}
+          aria-label={`Go to review ${i + 1}`}
+        />
+      ))}
+    </div>
+  );
+}
+
+function ReviewsOneCardCarousel({
   items,
   className,
-  speedPxPerSecond = 36,
+  intervalMs = 5200,
 }: {
   items: ReadonlyArray<Review>;
   className?: string;
-  speedPxPerSecond?: number;
+  intervalMs?: number;
 }) {
-  const scrollerRef = useRef<HTMLDivElement | null>(null);
-  const rafRef = useRef<number | null>(null);
-  const lastTsRef = useRef<number>(0);
-
+  const [idx, setIdx] = useState(0);
   const [paused, setPaused] = useState(false);
 
-  // pause auto-scroll briefly after user interaction so it doesn’t “fight” them
-  const resumeTimeout = useRef<number | null>(null);
-  function pauseTemporarily(ms = 1400) {
-    setPaused(true);
-    if (resumeTimeout.current) window.clearTimeout(resumeTimeout.current);
-    resumeTimeout.current = window.setTimeout(() => setPaused(false), ms);
+  const trackRef = useRef<HTMLDivElement | null>(null);
+  const startXRef = useRef<number | null>(null);
+  const deltaXRef = useRef<number>(0);
+
+  function go(next: number) {
+    const clamped = ((next % items.length) + items.length) % items.length;
+    setIdx(clamped);
   }
 
   useEffect(() => {
-    const el = scrollerRef.current;
-    if (!el) return;
+    if (paused) return;
+    const id = window.setInterval(() => go(idx + 1), intervalMs);
+    return () => window.clearInterval(id);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [paused, idx, intervalMs]);
 
-    function step(ts: number) {
-      if (!el) return;
+  // Swipe/drag
+  function onPointerDown(e: React.PointerEvent) {
+    (e.currentTarget as HTMLElement).setPointerCapture(e.pointerId);
+    startXRef.current = e.clientX;
+    deltaXRef.current = 0;
+    setPaused(true);
+  }
 
-      if (!lastTsRef.current) lastTsRef.current = ts;
-      const dt = ts - lastTsRef.current;
-      lastTsRef.current = ts;
+  function onPointerMove(e: React.PointerEvent) {
+    if (startXRef.current == null) return;
+    deltaXRef.current = e.clientX - startXRef.current;
 
-      if (!paused) {
-        const dx = (speedPxPerSecond * dt) / 1000;
-        el.scrollLeft += dx;
+    const track = trackRef.current;
+    if (!track) return;
 
-        // seamless wrap: when we reach the duplicated midpoint, jump back by half width
-        const half = el.scrollWidth / 2;
-        if (el.scrollLeft >= half) el.scrollLeft -= half;
-      }
+    // translate track by current drag amount (in px)
+    track.style.transition = "none";
+    track.style.transform = `translateX(calc(${-idx * 100}% + ${deltaXRef.current}px))`;
+  }
 
-      rafRef.current = requestAnimationFrame(step);
+  function onPointerUp() {
+    const dx = deltaXRef.current;
+    startXRef.current = null;
+
+    const track = trackRef.current;
+    if (track) {
+      track.style.transition = "";
+      track.style.transform = "";
     }
 
-    rafRef.current = requestAnimationFrame(step);
+    const threshold = 60;
+    if (dx <= -threshold) go(idx + 1);
+    else if (dx >= threshold) go(idx - 1);
 
-    return () => {
-      if (rafRef.current) cancelAnimationFrame(rafRef.current);
-      if (resumeTimeout.current) window.clearTimeout(resumeTimeout.current);
-    };
-  }, [paused, speedPxPerSecond]);
-
-  // Duplicate list for seamless looping
-  const loop = useMemo(() => [...items, ...items], [items]);
+    // resume after a moment so it doesn't feel jumpy
+    window.setTimeout(() => setPaused(false), 1200);
+  }
 
   return (
     <section
       className={cn("relative", className)}
-      aria-label="Customer reviews"
+      aria-label="Customer reviews carousel"
       onMouseEnter={() => setPaused(true)}
       onMouseLeave={() => setPaused(false)}
-      onTouchStart={() => pauseTemporarily(2000)}
-      onPointerDown={() => pauseTemporarily(2000)}
+      onFocusCapture={() => setPaused(true)}
+      onBlurCapture={() => setPaused(false)}
     >
-      {/* edge fades */}
+      {/* Edge fades (premium, no scrollbar) */}
       <div className="pointer-events-none absolute inset-y-0 left-0 z-10 w-10 bg-gradient-to-r from-white to-white/0 sm:w-16" />
       <div className="pointer-events-none absolute inset-y-0 right-0 z-10 w-10 bg-gradient-to-l from-white to-white/0 sm:w-16" />
 
       <div
-        ref={scrollerRef}
-        className={cn(
-          "overflow-x-auto overscroll-x-contain scroll-smooth",
-          "[-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden",
-        )}
-        onScroll={() => pauseTemporarily(1800)}
+        className="relative overflow-hidden"
+        onPointerDown={onPointerDown}
+        onPointerMove={onPointerMove}
+        onPointerUp={onPointerUp}
+        onPointerCancel={onPointerUp}
+        role="group"
+        aria-roledescription="carousel"
       >
-        <div className="flex w-max gap-4 px-1 py-1 md:gap-5">
-          {loop.map((r, idx) => (
-            <Card
-              key={`${r.name}-${idx}`}
-              className="w-[320px] shrink-0 rounded-2xl border-slate-200 bg-white p-4 shadow-sm md:w-[360px]"
-            >
-              <div className="flex items-center justify-between gap-3">
-                <p className="text-xs font-extrabold text-[#0B3A7A]">{r.name}</p>
-                <GoogleBadge />
-              </div>
+        <div
+          ref={trackRef}
+          className="flex transition-transform duration-500 ease-out"
+          style={{ transform: `translateX(${-idx * 100}%)` }}
+        >
+          {items.map((r) => (
+            <div key={r.name + r.text.slice(0, 10)} className="w-full shrink-0 px-1 sm:px-2">
+              <Card className="rounded-2xl border-slate-200 bg-white p-5 shadow-sm sm:p-6">
+                <div className="flex items-center justify-between gap-3">
+                  <div className="min-w-0">
+                    <p className="truncate text-sm font-extrabold tracking-tight text-[#0B3A7A]">{r.name}</p>
+                    <p className="mt-1 text-[11px] font-semibold uppercase tracking-[0.18em] text-slate-500">
+                      Verified Google review
+                    </p>
+                  </div>
+                  <GoogleBadge />
+                </div>
 
-              <div className="mt-2">
-                <StarsRow />
-              </div>
+                <div className="mt-3">
+                  <StarsRow />
+                </div>
 
-              <p className="mt-3 text-xs leading-relaxed text-slate-600 line-clamp-6">“{r.text}”</p>
-
-              <div className="mt-4 h-1.5 w-full rounded-full bg-slate-100 ring-1 ring-slate-200">
-                <div className="h-full w-[38%] rounded-full bg-slate-300" />
-              </div>
-            </Card>
+                <p className="mt-4 text-sm leading-relaxed text-slate-600">“{r.text}”</p>
+              </Card>
+            </div>
           ))}
         </div>
       </div>
+
+      <Dots count={Math.min(items.length, 6)} active={Math.min(idx, Math.min(items.length, 6) - 1)} onDot={(i) => go(i)} />
     </section>
   );
 }
@@ -166,24 +209,19 @@ export function HappyCustomersSection({
         className: "left-[6%] top-[14%] h-[210px] w-[165px] rotate-[-4deg] md:h-[250px] md:w-[190px]",
       },
       {
-        src: "https://images.pexels.com/photos/210019/pexels-photo-210019.jpeg?auto=compress&cs=tinysrgb&w=1400",
-        alt: "Car exterior in daylight",
-        className: "left-[26%] bottom-[10%] h-[150px] w-[240px] rotate-[2deg] md:h-[170px] md:w-[280px]",
-      },
-      {
-        src: "https://images.pexels.com/photos/3184291/pexels-photo-3184291.jpeg?auto=compress&cs=tinysrgb&w=1400",
-        alt: "Handshake agreement",
-        className: "right-[8%] bottom-[12%] h-[160px] w-[250px] rotate-[-2deg] md:h-[190px] md:w-[300px]",
-      },
-      {
-        src: "https://images.pexels.com/photos/3778876/pexels-photo-3778876.jpeg?auto=compress&cs=tinysrgb&w=1400",
-        alt: "Signing paperwork",
-        className: "right-[10%] top-[18%] h-[120px] w-[190px] rotate-[2deg] md:h-[140px] md:w-[220px]",
-      },
-      {
         src: "https://images.pexels.com/photos/170811/pexels-photo-170811.jpeg?auto=compress&cs=tinysrgb&w=1400",
         alt: "Premium car front view",
         className: "right-[18%] top-[6%] h-[95px] w-[160px] rotate-[1deg] md:h-[110px] md:w-[185px]",
+      },
+      {
+        src: "https://images.pexels.com/photos/4386324/pexels-photo-4386324.jpeg?auto=compress&cs=tinysrgb&w=1400",
+        alt: "Mobile form details",
+        className: "left-[60%] top-[52%] h-[120px] w-[180px] rotate-[-2deg] md:h-[140px] md:w-[210px]",
+      },
+      {
+        src: "https://images.pexels.com/photos/210019/pexels-photo-210019.jpeg?auto=compress&cs=tinysrgb&w=1400",
+        alt: "Car exterior in daylight",
+        className: "left-[26%] bottom-[10%] h-[150px] w-[240px] rotate-[2deg] md:h-[170px] md:w-[280px]",
       },
       {
         src: "https://images.pexels.com/photos/10394784/pexels-photo-10394784.jpeg?auto=compress&cs=tinysrgb&w=1400",
@@ -191,9 +229,14 @@ export function HappyCustomersSection({
         className: "left-[40%] top-[10%] h-[260px] w-[240px] rotate-[1deg] md:h-[300px] md:w-[275px]",
       },
       {
-        src: "https://images.pexels.com/photos/4386324/pexels-photo-4386324.jpeg?auto=compress&cs=tinysrgb&w=1400",
-        alt: "Mobile form details",
-        className: "left-[60%] top-[52%] h-[120px] w-[180px] rotate-[-2deg] md:h-[140px] md:w-[210px]",
+        src: "https://images.pexels.com/photos/3778876/pexels-photo-3778876.jpeg?auto=compress&cs=tinysrgb&w=1400",
+        alt: "Signing paperwork",
+        className: "right-[10%] top-[18%] h-[120px] w-[190px] rotate-[2deg] md:h-[140px] md:w-[220px]",
+      },
+      {
+        src: "https://images.pexels.com/photos/3184291/pexels-photo-3184291.jpeg?auto=compress&cs=tinysrgb&w=1400",
+        alt: "Handshake agreement",
+        className: "right-[8%] bottom-[12%] h-[160px] w-[250px] rotate-[-2deg] md:h-[190px] md:w-[300px]",
       },
     ],
     [],
@@ -233,10 +276,6 @@ export function HappyCustomersSection({
         name: "Amy T.",
         text: "Loved not having to deal with random messages. It was private, simple, and fast.",
       },
-      {
-        name: "Khalid A.",
-        text: "Clear communication from the first call. Pickup was organised without any stress.",
-      },
     ],
     [],
   );
@@ -254,13 +293,15 @@ export function HappyCustomersSection({
           </p>
         </div>
 
-        {/* Collage: ONLY images (no border, no background panel) */}
-        <div className="relative mx-auto mt-8 h-[360px] max-w-5xl overflow-visible sm:h-[420px]" aria-label="Customer photos">
-          {/* faint AU silhouette (keep subtle, no panel) */}
+        {/* Collage: only images + subtle AU silhouette (no grey shapes, no panel) */}
+        <div
+          className="relative mx-auto mt-8 h-[360px] max-w-5xl overflow-visible sm:h-[420px]"
+          aria-label="Customer photos"
+        >
           <svg
             viewBox="0 0 1200 700"
             preserveAspectRatio="xMidYMid meet"
-            className="pointer-events-none absolute left-1/2 top-1/2 h-[120%] w-[120%] -translate-x-1/2 -translate-y-1/2 opacity-[0.08]"
+            className="pointer-events-none absolute left-1/2 top-1/2 h-[120%] w-[120%] -translate-x-1/2 -translate-y-1/2 opacity-[0.06]"
             aria-hidden="true"
           >
             <path
@@ -275,9 +316,9 @@ export function HappyCustomersSection({
           ))}
         </div>
 
-        {/* Reviews: auto-scrolling but user can also scroll */}
-        <div className="mt-8">
-          <ReviewsAutoScroller items={reviews} />
+        {/* Reviews: premium single-card slider */}
+        <div className="mx-auto mt-10 max-w-2xl">
+          <ReviewsOneCardCarousel items={reviews} />
         </div>
 
         {/* CTA */}
