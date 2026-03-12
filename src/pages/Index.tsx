@@ -14,6 +14,7 @@ import { AsFeaturedInStrip } from "@/components/AsFeaturedInStrip";
 import { AustraliaCoverageMap } from "@/components/AustraliaCoverageMap";
 import { FastStepsSection } from "@/components/FastStepsSection";
 import { HappyCustomersSection } from "@/components/HappyCustomersSection";
+import { BenefitsOrangeSection } from "@/components/BenefitsOrangeSection";
 
 const NAV = [
   { id: "sell", label: "Sell my car" },
@@ -181,7 +182,13 @@ export default function Index() {
           <section id="reviews" className="mt-10 scroll-mt-28">
             <CarBuyersReviews items={reviews} />
           </section>
+        </div>
 
+        {/* New benefits section (full width) */}
+        <BenefitsOrangeSection onEnquire={() => navTo("sell")} />
+
+        {/* Back to centered lane for CTA/footer */}
+        <div className="mx-auto max-w-6xl px-4 md:px-6">
           {/* Contact / CTA */}
           <section id="contact" className="mt-10 scroll-mt-28">
             <CarBuyersCta onQuote={() => navTo("sell")} />
