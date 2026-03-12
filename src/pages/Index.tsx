@@ -15,6 +15,7 @@ import { AsFeaturedInStrip } from "@/components/AsFeaturedInStrip";
 import { AustraliaCoverageMap } from "@/components/AustraliaCoverageMap";
 import { FastStepsSection } from "@/components/FastStepsSection";
 import { HappyCustomersSection } from "@/components/HappyCustomersSection";
+import { WhiteWaveSeparator } from "@/components/WhiteWaveSeparator";
 
 const NAV = [
   { id: "sell", label: "Sell my car" },
@@ -161,7 +162,10 @@ export default function Index() {
         {/* Fast steps section */}
         <FastStepsSection onEnquire={() => navTo("sell")} />
 
-        {/* NEW: Happy customers section */}
+        {/* NEW: separator like the reference */}
+        <WhiteWaveSeparator />
+
+        {/* Happy customers section */}
         <HappyCustomersSection onEnquire={() => navTo("sell")} />
 
         {/* Remaining sections: centered content */}
