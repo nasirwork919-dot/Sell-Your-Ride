@@ -12,7 +12,7 @@ import { AsFeaturedInStrip } from "@/components/AsFeaturedInStrip";
 import { AustraliaCoverageMap } from "@/components/AustraliaCoverageMap";
 import { FastStepsSection } from "@/components/FastStepsSection";
 import { HappyCustomersSection } from "@/components/HappyCustomersSection";
-import { BenefitsOrangeSection } from "@/components/BenefitsOrangeSection";
+import { ExactBenefitsOrangeSection } from "@/components/ExactBenefitsOrangeSection";
 
 const NAV = [
   { id: "sell", label: "Sell my car" },
@@ -166,8 +166,8 @@ export default function Index() {
           <section id="reviews" className="sr-only" aria-hidden="true" />
         </div>
 
-        {/* New benefits section (full width) */}
-        <BenefitsOrangeSection onEnquire={() => navTo("sell")} />
+        {/* Exact clone benefits section (full width) */}
+        <ExactBenefitsOrangeSection onEnquire={() => navTo("sell")} />
 
         {/* Back to centered lane for CTA/footer */}
         <div className="mx-auto max-w-6xl px-4 md:px-6">
