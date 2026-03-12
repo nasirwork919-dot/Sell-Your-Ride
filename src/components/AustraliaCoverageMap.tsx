@@ -4,7 +4,7 @@ import carImg from "@/assets/transparent-blue-car.webp";
 type City = {
   name: string;
   x: number; // percentage within the map box
-  y: number; // percentage within the map box (can exceed 100 for Tasmania)
+  y: number; // percentage within the map box
 };
 
 const CITIES: City[] = [
@@ -32,8 +32,8 @@ const CITIES: City[] = [
   { name: "Geelong", x: 63.5, y: 97.5 },
   { name: "Adelaide", x: 52, y: 88 },
 
-  // TAS (intentionally below the mainland)
-  { name: "Tasmania", x: 70, y: 114 },
+  // TAS (kept inside the section)
+  { name: "Tasmania", x: 70, y: 98.5 },
 ];
 
 export function AustraliaCoverageMap({ className }: { className?: string }) {
@@ -46,14 +46,9 @@ export function AustraliaCoverageMap({ className }: { className?: string }) {
           </h2>
 
           <div className="relative mx-auto mt-8 max-w-5xl">
-            {/* Map frame: extra vertical space so all labels remain inside the green section */}
-            <div
-              className={cn(
-                "relative mx-auto w-full",
-                "h-[420px] sm:h-[520px] md:h-[660px]",
-              )}
-            >
-              {/* Australia outline (stylized) */}
+            {/* Map frame */}
+            <div className={cn("relative mx-auto w-full", "h-[420px] sm:h-[520px] md:h-[660px]")}>
+              {/* Australia outline */}
               <svg
                 viewBox="0 0 1200 700"
                 preserveAspectRatio="xMidYMid meet"
