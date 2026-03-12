@@ -4,7 +4,7 @@ import carImg from "@/assets/transparent-blue-car.webp";
 type City = {
   name: string;
   x: number; // percentage within the map box
-  y: number; // percentage within the map box
+  y: number; // percentage within the map box (can exceed 100 for Tasmania)
 };
 
 const CITIES: City[] = [
@@ -32,7 +32,7 @@ const CITIES: City[] = [
   { name: "Geelong", x: 63.5, y: 97.5 },
   { name: "Adelaide", x: 52, y: 88 },
 
-  // TAS
+  // TAS (intentionally below the mainland)
   { name: "Tasmania", x: 70, y: 114 },
 ];
 
@@ -46,8 +46,14 @@ export function AustraliaCoverageMap({ className }: { className?: string }) {
           </h2>
 
           <div className="relative mx-auto mt-8 max-w-5xl">
-            {/* Map frame */}
-            <div className="relative mx-auto aspect-[16/9] w-full">
+            {/* Map frame: give extra vertical room so Tasmania can sit below without overflowing */}
+            <div
+              className={cn(
+                "relative mx-auto w-full",
+                // Taller than 16:9 so y>100% markers still stay inside this section
+                "h-[340px] sm:h-[420px] md:h-[520px]",
+              )}
+            >
               {/* Australia outline (stylized to match the screenshot) */}
               <svg
                 viewBox="0 0 1200 700"
@@ -97,22 +103,13 @@ export function AustraliaCoverageMap({ className }: { className?: string }) {
   );
 }
 
-function clamp(n: number, min: number, max: number) {
-  return Math.max(min, Math.min(max, n));
-}
-
 function CityPin({ x, y, label }: { x: number; y: number; label: string }) {
-  // Prevent pins/labels from rendering outside the map box (e.g. Tasmania y=114).
-  // The label height varies slightly, so keep a safe inset.
-  const cx = clamp(x, 4, 96);
-  const cy = clamp(y, 4, 96);
-
   return (
     <div
       className="absolute"
       style={{
-        left: `${cx}%`,
-        top: `${cy}%`,
+        left: `${x}%`,
+        top: `${y}%`,
       }}
       aria-label={label}
       title={label}
