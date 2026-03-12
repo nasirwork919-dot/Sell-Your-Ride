@@ -13,6 +13,7 @@ import { MarketingPixels } from "@/components/MarketingPixels";
 import { useScrollDirection } from "@/hooks/use-scroll-direction";
 import { AsFeaturedInStrip } from "@/components/AsFeaturedInStrip";
 import { AustraliaCoverageMap } from "@/components/AustraliaCoverageMap";
+import { FastStepsSection } from "@/components/FastStepsSection";
 
 const NAV = [
   { id: "sell", label: "Sell my car" },
@@ -151,10 +152,13 @@ export default function Index() {
           <HomeCategoryTiles onNavigate={navTo} />
         </section>
 
-        {/* NEW: Full-width Australia coverage map section */}
+        {/* Full-width Australia coverage map section */}
         <section id="video" className="w-full scroll-mt-28">
           <AustraliaCoverageMap />
         </section>
+
+        {/* NEW: Fast steps section (cloned) */}
+        <FastStepsSection onEnquire={() => navTo("sell")} />
 
         {/* Remaining sections: centered content */}
         <div className="mx-auto max-w-6xl px-4 md:px-6">
