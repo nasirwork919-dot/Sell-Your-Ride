@@ -2,6 +2,10 @@ import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { cn } from "@/lib/utils";
 
+import carImg from "@/assets/transparent-blue-car.webp";
+import truckImg from "@/assets/psd_box_truck_template.webp";
+import caravanImg from "@/assets/transparent-caravan.webp";
+
 type Tile = {
   title: string;
   question: string;
@@ -39,21 +43,21 @@ export function HomeCategoryTiles({ className, onNavigate }: { className?: strin
       title: "Sell your car",
       question: "Thinking about selling your car?",
       accent: "orange",
-      imageUrl: "https://images.pexels.com/photos/170811/pexels-photo-170811.jpeg?auto=compress&cs=tinysrgb&w=1400",
+      imageUrl: carImg,
       onClick: () => onNavigate("sell"),
     },
     {
       title: "Sell your truck",
       question: "Thinking about selling your truck?",
       accent: "mint",
-      imageUrl: "https://images.pexels.com/photos/2199293/pexels-photo-2199293.jpeg?auto=compress&cs=tinysrgb&w=1400",
+      imageUrl: truckImg,
       onClick: () => onNavigate("sell"),
     },
     {
       title: "Sell your caravan",
       question: "Thinking about selling your caravan?",
       accent: "navy",
-      imageUrl: "https://images.pexels.com/photos/12987932/pexels-photo-12987932.jpeg?auto=compress&cs=tinysrgb&w=1400",
+      imageUrl: caravanImg,
       onClick: () => onNavigate("sell"),
     },
   ];
@@ -86,14 +90,20 @@ export function HomeCategoryTiles({ className, onNavigate }: { className?: strin
                 <div key={t.title} className="text-center">
                   <Card className="relative overflow-hidden rounded-3xl border-slate-200 bg-white shadow-sm">
                     {/* soft corner halo */}
-                    <div className={cn("pointer-events-none absolute -right-10 -top-10 h-40 w-40 rounded-full", styles.halo)} />
-                    <img
-                      src={t.imageUrl}
-                      alt={t.title}
-                      className="h-[170px] w-full object-cover sm:h-[200px]"
-                      loading="lazy"
-                      referrerPolicy="no-referrer"
+                    <div
+                      className={cn("pointer-events-none absolute -right-10 -top-10 h-40 w-40 rounded-full", styles.halo)}
                     />
+
+                    {/* NO border radius on the image region */}
+                    <div className="h-[170px] w-full bg-white sm:h-[200px]">
+                      <img
+                        src={t.imageUrl}
+                        alt={t.title}
+                        className="h-full w-full object-contain"
+                        loading="lazy"
+                        referrerPolicy="no-referrer"
+                      />
+                    </div>
                   </Card>
 
                   {/* Title + question */}
@@ -110,7 +120,12 @@ export function HomeCategoryTiles({ className, onNavigate }: { className?: strin
 
                   {/* Small accent pill line (subtle, like screenshot vibe) */}
                   <div className="mt-4 flex justify-center">
-                    <span className={cn("inline-flex rounded-full px-4 py-1 text-[11px] font-extrabold tracking-wide", styles.pill)}>
+                    <span
+                      className={cn(
+                        "inline-flex rounded-full px-4 py-1 text-[11px] font-extrabold tracking-wide",
+                        styles.pill,
+                      )}
+                    >
                       Fast • Private • Clear
                     </span>
                   </div>
