@@ -2,9 +2,7 @@ import { useMemo } from "react";
 import { LeadForm } from "@/components/LeadForm";
 import { Card } from "@/components/ui/card";
 import { cn } from "@/lib/utils";
-
-const COMPOSITE_IMAGE_URL =
-  "https://images.pexels.com/photos/358070/pexels-photo-358070.jpeg?auto=compress&cs=tinysrgb&w=1600";
+import { images } from "@/lib/images";
 
 export function CarBuyersHero({
   onPrimaryCta,
@@ -48,14 +46,14 @@ export function CarBuyersHero({
         {/* Left side: centered brand block + steps */}
         <div className="md:col-span-7">
           <div className="mx-auto max-w-[640px] text-center">
-            {/* Composite image */}
+            {/* Composite image (use the same local image as before) */}
             <div className="relative mx-auto w-full max-w-[420px]">
               <div className="absolute left-1/2 top-6 h-[230px] w-[230px] -translate-x-1/2 rounded-full bg-white/55" />
               <div className="relative mx-auto overflow-hidden rounded-[28px] bg-white/0 p-0">
                 <img
-                  src={COMPOSITE_IMAGE_URL}
+                  src={images.heroMain1}
                   alt="Car and seller"
-                  className="mx-auto h-[210px] w-full max-w-[420px] rounded-[28px] object-cover"
+                  className="mx-auto h-[210px] w-full max-w-[420px] rounded-[28px] object-contain"
                   loading="eager"
                   referrerPolicy="no-referrer"
                 />
