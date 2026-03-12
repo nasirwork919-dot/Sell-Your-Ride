@@ -146,8 +146,8 @@ export default function Index() {
         {/* Full-width featured strip */}
         <AsFeaturedInStrip />
 
-        {/* Full-width category tiles (cloned section) */}
-        <section id="truck" className="mt-10 w-full scroll-mt-28">
+        {/* Full-width category tiles (no extra top margin to avoid the gap) */}
+        <section id="truck" className="w-full scroll-mt-28">
           <HomeCategoryTiles onNavigate={navTo} />
         </section>
 
