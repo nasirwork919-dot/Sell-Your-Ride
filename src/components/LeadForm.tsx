@@ -45,7 +45,9 @@ const formSchema = z.object({
 type FormValues = z.infer<typeof formSchema>;
 
 const STATES = ["NSW", "VIC", "QLD", "SA", "WA", "TAS", "ACT", "NT"] as const;
-const BADGES = ["", "Base", "Sport", "Luxury", "Limited"] as const;
+
+const BADGE_NONE_VALUE = "none" as const;
+const BADGES = ["Base", "Sport", "Luxury", "Limited"] as const;
 
 export function LeadForm({
   variant,
@@ -111,6 +113,8 @@ export function LeadForm({
     reset();
   }
 
+  const badgeSelectValue = badgeVal && badgeVal.length > 0 ? badgeVal : BADGE_NONE_VALUE;
+
   return (
     <Card
       className={cn(
@@ -172,7 +176,12 @@ export function LeadForm({
                 />
               </div>
 
-              <Input className={heroInput(errors.fullName?.message)} placeholder="Name" autoComplete="name" {...register("fullName")} />
+              <Input
+                className={heroInput(errors.fullName?.message)}
+                placeholder="Name"
+                autoComplete="name"
+                {...register("fullName")}
+              />
               <Input
                 className={heroInput(errors.phone?.message)}
                 placeholder="Phone Number"
@@ -240,7 +249,9 @@ export function LeadForm({
 
               <Select
                 value={String(watch("manufacturingYear") ?? "")}
-                onValueChange={(v) => setValue("manufacturingYear", Number(v) as any, { shouldDirty: true, shouldTouch: true })}
+                onValueChange={(v) =>
+                  setValue("manufacturingYear", Number(v) as any, { shouldDirty: true, shouldTouch: true })
+                }
               >
                 <SelectTrigger className={heroSelectTrigger(errors.manufacturingYear?.message)}>
                   <SelectValue placeholder="Year" />
@@ -255,16 +266,19 @@ export function LeadForm({
               </Select>
 
               <Select
-                value={badgeVal ?? ""}
-                onValueChange={(v) => setValue("badge", v, { shouldDirty: true, shouldTouch: true })}
+                value={badgeSelectValue}
+                onValueChange={(v) =>
+                  setValue("badge", v === BADGE_NONE_VALUE ? "" : v, { shouldDirty: true, shouldTouch: true })
+                }
               >
                 <SelectTrigger className={heroSelectTrigger()}>
                   <SelectValue placeholder="Badge" />
                 </SelectTrigger>
                 <SelectContent>
+                  <SelectItem value={BADGE_NONE_VALUE}>—</SelectItem>
                   {BADGES.map((b) => (
-                    <SelectItem key={b || "none"} value={b}>
-                      {b || "—"}
+                    <SelectItem key={b} value={b}>
+                      {b}
                     </SelectItem>
                   ))}
                 </SelectContent>
@@ -297,7 +311,6 @@ export function LeadForm({
                 )}
               </Button>
 
-              {/* Hidden link behavior stays consistent with your page */}
               {onPrimaryCta ? (
                 <button type="button" className="sr-only" onClick={onPrimaryCta} aria-hidden="true" />
               ) : null}
@@ -387,7 +400,11 @@ export function LeadForm({
                   />
                 </Field>
 
-                <Field label="Additional notes (optional)" error={errors.additionalNotes?.message} className="md:col-span-2">
+                <Field
+                  label="Additional notes (optional)"
+                  error={errors.additionalNotes?.message}
+                  className="md:col-span-2"
+                >
                   <Textarea
                     className={textareaClassName(errors.additionalNotes?.message)}
                     placeholder="Condition, service history, rego expiry, accidents, upgrades, urgency…"
