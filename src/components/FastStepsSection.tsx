@@ -98,18 +98,18 @@ export function FastStepsSection({
           </div>
         </div>
 
-        {/* Bottom curved wave (same section color -> page background) */}
-        <div className="absolute bottom-0 left-0 right-0">
-          <svg viewBox="0 0 1440 160" preserveAspectRatio="none" className="block h-[70px] w-full sm:h-[88px]">
+        {/* Embedded white wave (part of this blue section) */}
+        <div className="pointer-events-none absolute bottom-0 left-0 right-0">
+          <svg viewBox="0 0 1440 160" preserveAspectRatio="none" className="block h-[88px] w-full sm:h-[104px] md:h-[120px]">
             <path
-              d="M0,70 C220,120 480,140 720,118 C980,94 1210,50 1440,62 L1440,160 L0,160 Z"
-              fill="#1E4C86"
+              d="M0,36 C220,82 480,108 720,92 C980,74 1210,22 1440,38 L1440,160 L0,160 Z"
+              fill="#FFFFFF"
             />
           </svg>
         </div>
 
-        {/* Create the “cut” look by placing a light background band below */}
-        <div className="h-[50px] bg-[#F8FAFC] sm:h-[64px]" />
+        {/* Space so content doesn't overlap the wave */}
+        <div className="h-[88px] sm:h-[104px] md:h-[120px]" />
       </div>
     </section>
   );
