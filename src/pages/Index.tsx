@@ -2,7 +2,6 @@ import { useEffect, useMemo, useRef, useState } from "react";
 import { CarBuyersHero } from "@/components/CarBuyersHero";
 import { HomeCategoryTiles } from "@/components/HomeCategoryTiles";
 import { CarBuyersHowItWorks } from "@/components/CarBuyersHowItWorks";
-import { CarBuyersReviews } from "@/components/CarBuyersReviews";
 import { CarBuyersCta } from "@/components/CarBuyersCta";
 import { CarBuyersFooter } from "@/components/CarBuyersFooter";
 import { CarBuyersHeader } from "@/components/CarBuyersHeader";
@@ -106,18 +105,6 @@ export default function Index() {
   const showTop = y > 520;
   const scrolled = y > 10;
 
-  const reviews = useMemo(
-    () => [
-      { name: "Omar", text: "Submitted in 40 seconds. Got a call the same day and the next steps were clear." },
-      { name: "Sara", text: "No confusion and no spam. It felt private and smooth on mobile." },
-      { name: "Imran", text: "Loved the follow up. One form and then a real person called me." },
-      { name: "Nadia", text: "Felt secure. The process was explained clearly and professionally." },
-      { name: "Hassan", text: "Dealer interest came fast. The call helped set price expectations." },
-      { name: "Leila", text: "Clean design and quick to submit. I appreciated not dealing with random messages." },
-    ],
-    [],
-  );
-
   return (
     <div className="min-h-screen bg-slate-50">
       <MarketingPixels />
@@ -178,10 +165,8 @@ export default function Index() {
             <CarBuyersHowItWorks />
           </section>
 
-          {/* Reviews */}
-          <section id="reviews" className="mt-10 scroll-mt-28">
-            <CarBuyersReviews items={reviews} />
-          </section>
+          {/* Reviews anchor kept for nav/scroll highlighting, but no longer renders the reviews block */}
+          <section id="reviews" className="sr-only" aria-hidden="true" />
         </div>
 
         {/* New benefits section (full width) */}
