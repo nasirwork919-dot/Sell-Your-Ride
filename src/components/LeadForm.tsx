@@ -38,11 +38,13 @@ const formSchema = z.object({
 
 type FormValues = z.infer<typeof formSchema>;
 
-export function LeadForm() {
+export function LeadForm({ variant }: { variant?: "default" | "hero-compact" }) {
   const honeypotName = useMemo(() => "website", []);
   const [honeypotValue, setHoneypotValue] = useState("");
   const [serverError, setServerError] = useState<string | null>(null);
   const [success, setSuccess] = useState(false);
+
+  const isHero = variant === "hero-compact";
 
   const {
     register,
@@ -85,26 +87,31 @@ export function LeadForm() {
   }
 
   return (
-    <Card className="rounded-[5px] border-slate-200 bg-white p-6 shadow-sm md:p-7">
+    <Card className={cn("border-slate-200 bg-white shadow-sm", isHero ? "rounded-2xl p-0 shadow-none" : "rounded-[5px] p-6 md:p-7")}>
       <div className="sr-only">
         <ShieldCheck className="h-4 w-4" />
         <p>Private intake form</p>
       </div>
 
       {success ? (
-        <div className="mt-6 rounded-[5px] border border-emerald-200 bg-emerald-50 p-5">
+        <div className={cn(isHero ? "p-4" : "mt-6 rounded-[5px] border border-emerald-200 bg-emerald-50 p-5")}>
           <div className="flex items-start gap-3">
-            <span className="mt-0.5 grid h-10 w-10 place-items-center rounded-[5px] bg-white shadow-sm ring-1 ring-emerald-200">
-              <CheckCircle2 className="h-5 w-5 text-emerald-700" />
+            <span className={cn("mt-0.5 grid place-items-center bg-white shadow-sm", isHero ? "h-9 w-9 rounded-xl ring-1 ring-emerald-200" : "h-10 w-10 rounded-[5px] ring-1 ring-emerald-200")}>
+              <CheckCircle2 className={cn(isHero ? "h-4 w-4" : "h-5 w-5", "text-emerald-700")} />
             </span>
             <div className="min-w-0">
-              <p className="text-[15px] font-semibold text-emerald-950">Thanks — our team received your details.</p>
-              <p className="mt-1 text-sm leading-relaxed text-emerald-900/90">
+              <p className={cn(isHero ? "text-sm" : "text-[15px]", "font-semibold text-emerald-950")}>
+                Thanks — our team received your details.
+              </p>
+              <p className={cn(isHero ? "text-xs" : "text-sm", "mt-1 leading-relaxed text-emerald-900/90")}>
                 We’ll contact you shortly. If you need to add anything, message us on WhatsApp and mention your name.
               </p>
 
               <Button
-                className="mt-4 h-11 rounded-[5px] border border-slate-200 bg-white text-slate-900 hover:bg-slate-50"
+                className={cn(
+                  "mt-3 border border-slate-200 bg-white text-slate-900 hover:bg-slate-50",
+                  isHero ? "h-10 rounded-xl px-4 text-sm" : "h-11 rounded-[5px]"
+                )}
                 variant="secondary"
                 onClick={() => setSuccess(false)}
               >
@@ -115,7 +122,10 @@ export function LeadForm() {
         </div>
       ) : (
         <form
-          className="mt-6 grid grid-cols-1 gap-5 md:grid-cols-2 md:gap-x-6 md:gap-y-6"
+          className={cn(
+            "grid grid-cols-1 gap-5",
+            isHero ? "px-5 pb-5 pt-2" : "mt-6 md:grid-cols-2 md:gap-x-6 md:gap-y-6"
+          )}
           onSubmit={handleSubmit(onSubmit)}
           noValidate
         >
@@ -131,97 +141,98 @@ export function LeadForm() {
             />
           </div>
 
-          <Field label="Full name" error={errors.fullName?.message}>
-            <Input
-              className={inputClassName(errors.fullName?.message)}
-              placeholder="Olivia Smith"
-              autoComplete="name"
-              {...register("fullName")}
-            />
+          <Field label="Name" error={errors.fullName?.message} compact={isHero}>
+            <Input className={inputClassName(errors.fullName?.message, isHero)} placeholder="Name" autoComplete="name" {...register("fullName")} />
           </Field>
 
-          <Field label="Phone (WhatsApp)" error={errors.phone?.message}>
+          <Field label="Phone Number" error={errors.phone?.message} compact={isHero}>
             <Input
-              className={inputClassName(errors.phone?.message)}
-              placeholder="+61412 345 678"
+              className={inputClassName(errors.phone?.message, isHero)}
+              placeholder="Phone Number"
               inputMode="tel"
               autoComplete="tel"
               {...register("phone")}
             />
           </Field>
 
-          <Field label="Car brand" error={errors.carBrand?.message}>
-            <Input
-              className={inputClassName(errors.carBrand?.message)}
-              placeholder="Toyota"
-              autoComplete="off"
-              {...register("carBrand")}
-            />
-          </Field>
+          <div className={cn(isHero ? "" : "md:col-span-2 grid gap-5 md:grid-cols-2 md:gap-x-6 md:gap-y-6")}>
+            <Field label="Make" error={errors.carBrand?.message} compact={isHero}>
+              <Input className={inputClassName(errors.carBrand?.message, isHero)} placeholder="Make" autoComplete="off" {...register("carBrand")} />
+            </Field>
 
-          <Field label="Car model" error={errors.carModel?.message}>
-            <Input
-              className={inputClassName(errors.carModel?.message)}
-              placeholder="Corolla Ascent Sport"
-              autoComplete="off"
-              {...register("carModel")}
-            />
-          </Field>
+            <Field label="Model" error={errors.carModel?.message} compact={isHero}>
+              <Input className={inputClassName(errors.carModel?.message, isHero)} placeholder="Model" autoComplete="off" {...register("carModel")} />
+            </Field>
 
-          <Field label="Manufacturing year" error={errors.manufacturingYear?.message}>
-            <Input
-              className={inputClassName(errors.manufacturingYear?.message)}
-              placeholder={`${currentYear - 3}`}
-              inputMode="numeric"
-              {...register("manufacturingYear")}
-            />
-          </Field>
+            <Field label="Year" error={errors.manufacturingYear?.message} compact={isHero}>
+              <Input
+                className={inputClassName(errors.manufacturingYear?.message, isHero)}
+                placeholder="Year"
+                inputMode="numeric"
+                {...register("manufacturingYear")}
+              />
+            </Field>
 
-          <Field label="Asking price" error={errors.askingPrice?.message}>
-            <Input
-              className={inputClassName(errors.askingPrice?.message)}
-              placeholder="18500 (AUD)"
-              inputMode="numeric"
-              {...register("askingPrice")}
-            />
-          </Field>
+            <Field label="KM's" error={errors.kilometersDriven?.message} compact={isHero}>
+              <Input
+                className={inputClassName(errors.kilometersDriven?.message, isHero)}
+                placeholder="KM's"
+                inputMode="numeric"
+                {...register("kilometersDriven")}
+              />
+            </Field>
 
-          <Field label="Kilometers driven" error={errors.kilometersDriven?.message}>
-            <Input
-              className={inputClassName(errors.kilometersDriven?.message)}
-              placeholder="124000"
-              inputMode="numeric"
-              {...register("kilometersDriven")}
-            />
-          </Field>
+            {/* Hide extra fields in hero variant to match reference look */}
+            {!isHero ? (
+              <>
+                <Field label="Asking price" error={errors.askingPrice?.message}>
+                  <Input
+                    className={inputClassName(errors.askingPrice?.message, false)}
+                    placeholder="18500 (AUD)"
+                    inputMode="numeric"
+                    {...register("askingPrice")}
+                  />
+                </Field>
 
-          <Field label="Additional notes (optional)" error={errors.additionalNotes?.message} className="md:col-span-2">
-            <Textarea
-              className={textareaClassName(errors.additionalNotes?.message)}
-              placeholder="Condition, service history, rego expiry, accidents, upgrades, urgency…"
-              {...register("additionalNotes")}
-            />
-          </Field>
+                <Field label="Additional notes (optional)" error={errors.additionalNotes?.message} className="md:col-span-2">
+                  <Textarea
+                    className={textareaClassName(errors.additionalNotes?.message)}
+                    placeholder="Condition, service history, rego expiry, accidents, upgrades, urgency…"
+                    {...register("additionalNotes")}
+                  />
+                </Field>
+              </>
+            ) : null}
+          </div>
 
           {serverError ? (
-            <div className="md:col-span-2 rounded-[5px] border border-rose-200 bg-rose-50 p-3 text-sm text-rose-800">
+            <div className={cn(isHero ? "rounded-xl" : "md:col-span-2 rounded-[5px]", "border border-rose-200 bg-rose-50 p-3 text-sm text-rose-800")}>
               {serverError}
             </div>
           ) : null}
 
-          <div className="md:col-span-2 flex flex-col gap-3 md:flex-row md:items-center md:justify-between">
-            <p className="text-xs leading-relaxed text-slate-600 md:text-sm">
-              By submitting, you agree to be contacted by our team and dealer partners.
-            </p>
+          <div className={cn(isHero ? "" : "md:col-span-2 flex flex-col gap-3 md:flex-row md:items-center md:justify-between")}>
+            {!isHero ? (
+              <p className="text-xs leading-relaxed text-slate-600 md:text-sm">
+                By submitting, you agree to be contacted by our team and dealer partners.
+              </p>
+            ) : null}
+
             <Button
               disabled={isSubmitting}
-              className="h-12 rounded-[5px] bg-indigo-600 text-base text-white shadow-sm hover:bg-indigo-700 md:h-[52px] md:px-6 md:text-[15px]"
+              className={cn(
+                isHero
+                  ? "h-11 w-full rounded-full bg-[#137C2B] text-sm font-extrabold text-white shadow-sm hover:bg-[#106824]"
+                  : "h-12 rounded-[5px] bg-indigo-600 text-base text-white shadow-sm hover:bg-indigo-700 md:h-[52px] md:px-6 md:text-[15px]"
+              )}
             >
               {isSubmitting ? (
                 <span className="inline-flex items-center">
                   <Loader2 className="mr-2 h-4 w-4 animate-spin" />
                   Submitting…
                 </span>
+              ) : isHero ? (
+                "Instant offer"
               ) : (
                 "Submit details"
               )}
@@ -233,7 +244,16 @@ export function LeadForm() {
   );
 }
 
-function inputClassName(hasError?: string) {
+function inputClassName(hasError?: string, compact?: boolean) {
+  if (compact) {
+    return cn(
+      "h-9 rounded-md border border-slate-200 bg-slate-100 px-3 text-sm text-slate-900 shadow-inner",
+      "placeholder:text-slate-500",
+      "focus-visible:ring-2 focus-visible:ring-[#0B3A7A]/20 focus-visible:ring-offset-0",
+      hasError ? "border-rose-300 focus-visible:ring-rose-500/30" : "",
+    );
+  }
+
   return cn(
     "h-12 rounded-[5px] border border-slate-200 bg-white px-3 text-[15px] text-slate-900 shadow-sm md:h-[52px] md:px-4 md:text-[16px]",
     "placeholder:text-slate-500",
@@ -256,12 +276,27 @@ function Field({
   error,
   children,
   className,
+  compact,
 }: {
   label: string;
   error?: string;
   children: React.ReactNode;
   className?: string;
+  compact?: boolean;
 }) {
+  if (compact) {
+    // Reference hero form: labels are visually hidden (placeholders do the work)
+    return (
+      <div className={className}>
+        <div className="sr-only">
+          <Label className="text-sm font-semibold text-slate-900">{label}</Label>
+        </div>
+        {children}
+        {error ? <div className="mt-1 text-[11px] font-semibold text-rose-600">{error}</div> : null}
+      </div>
+    );
+  }
+
   return (
     <div className={className}>
       <div className="flex items-end justify-between gap-3">
