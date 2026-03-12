@@ -72,7 +72,11 @@ function Dots({
   );
 }
 
-function ReviewsOneCardCarousel({
+function clamp(n: number, min: number, max: number) {
+  return Math.max(min, Math.min(max, n));
+}
+
+function ReviewsThreeUpCarousel({
   items,
   className,
   intervalMs = 5200,
@@ -81,6 +85,7 @@ function ReviewsOneCardCarousel({
   className?: string;
   intervalMs?: number;
 }) {
+  // We show 3 cards on desktop; but we always advance by 1 card
   const [idx, setIdx] = useState(0);
   const [paused, setPaused] = useState(false);
 
@@ -88,19 +93,21 @@ function ReviewsOneCardCarousel({
   const startXRef = useRef<number | null>(null);
   const deltaXRef = useRef<number>(0);
 
+  // Max start index so we still have 3 visible cards (desktop); for mobile we show 1 anyway.
+  const maxIdx = Math.max(0, items.length - 3);
+
   function go(next: number) {
-    const clamped = ((next % items.length) + items.length) % items.length;
-    setIdx(clamped);
+    setIdx(clamp(next, 0, maxIdx));
   }
 
   useEffect(() => {
     if (paused) return;
-    const id = window.setInterval(() => go(idx + 1), intervalMs);
+    const id = window.setInterval(() => {
+      setIdx((p) => (p >= maxIdx ? 0 : p + 1));
+    }, intervalMs);
     return () => window.clearInterval(id);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [paused, idx, intervalMs]);
+  }, [paused, intervalMs, maxIdx]);
 
-  // Swipe/drag
   function onPointerDown(e: React.PointerEvent) {
     (e.currentTarget as HTMLElement).setPointerCapture(e.pointerId);
     startXRef.current = e.clientX;
@@ -115,9 +122,8 @@ function ReviewsOneCardCarousel({
     const track = trackRef.current;
     if (!track) return;
 
-    // translate track by current drag amount (in px)
     track.style.transition = "none";
-    track.style.transform = `translateX(calc(${-idx * 100}% + ${deltaXRef.current}px))`;
+    track.style.transform = `translateX(calc(${-idx * (100 / 3)}% + ${deltaXRef.current}px))`;
   }
 
   function onPointerUp() {
@@ -134,9 +140,10 @@ function ReviewsOneCardCarousel({
     if (dx <= -threshold) go(idx + 1);
     else if (dx >= threshold) go(idx - 1);
 
-    // resume after a moment so it doesn't feel jumpy
     window.setTimeout(() => setPaused(false), 1200);
   }
+
+  const activeDot = idx; // one dot per step (one-card advance)
 
   return (
     <section
@@ -147,12 +154,16 @@ function ReviewsOneCardCarousel({
       onFocusCapture={() => setPaused(true)}
       onBlurCapture={() => setPaused(false)}
     >
-      {/* Edge fades (premium, no scrollbar) */}
+      {/* Edge fades */}
       <div className="pointer-events-none absolute inset-y-0 left-0 z-10 w-10 bg-gradient-to-r from-white to-white/0 sm:w-16" />
       <div className="pointer-events-none absolute inset-y-0 right-0 z-10 w-10 bg-gradient-to-l from-white to-white/0 sm:w-16" />
 
       <div
-        className="relative overflow-hidden"
+        className={cn(
+          "relative overflow-hidden",
+          // ensure no scrollbars appear
+          "[-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden",
+        )}
         onPointerDown={onPointerDown}
         onPointerMove={onPointerMove}
         onPointerUp={onPointerUp}
@@ -163,11 +174,15 @@ function ReviewsOneCardCarousel({
         <div
           ref={trackRef}
           className="flex transition-transform duration-500 ease-out"
-          style={{ transform: `translateX(${-idx * 100}%)` }}
+          // 1 card shift = 1/3 of the container on desktop
+          style={{ transform: `translateX(${-idx * (100 / 3)}%)` }}
         >
           {items.map((r) => (
-            <div key={r.name + r.text.slice(0, 10)} className="w-full shrink-0 px-1 sm:px-2">
-              <Card className="rounded-2xl border-slate-200 bg-white p-5 shadow-sm sm:p-6">
+            <div
+              key={r.name + r.text.slice(0, 10)}
+              className="w-full shrink-0 px-1 sm:px-2 md:w-1/3"
+            >
+              <Card className="h-full rounded-2xl border-slate-200 bg-white p-5 shadow-sm sm:p-6">
                 <div className="flex items-center justify-between gap-3">
                   <div className="min-w-0">
                     <p className="truncate text-sm font-extrabold tracking-tight text-[#0B3A7A]">{r.name}</p>
@@ -189,7 +204,7 @@ function ReviewsOneCardCarousel({
         </div>
       </div>
 
-      <Dots count={Math.min(items.length, 6)} active={Math.min(idx, Math.min(items.length, 6) - 1)} onDot={(i) => go(i)} />
+      <Dots count={Math.max(1, maxIdx + 1)} active={activeDot} onDot={(i) => go(i)} />
     </section>
   );
 }
@@ -293,11 +308,8 @@ export function HappyCustomersSection({
           </p>
         </div>
 
-        {/* Collage: only images + subtle AU silhouette (no grey shapes, no panel) */}
-        <div
-          className="relative mx-auto mt-8 h-[360px] max-w-5xl overflow-visible sm:h-[420px]"
-          aria-label="Customer photos"
-        >
+        {/* Collage: only images + subtle AU silhouette */}
+        <div className="relative mx-auto mt-8 h-[360px] max-w-5xl overflow-visible sm:h-[420px]" aria-label="Customer photos">
           <svg
             viewBox="0 0 1200 700"
             preserveAspectRatio="xMidYMid meet"
@@ -316,9 +328,9 @@ export function HappyCustomersSection({
           ))}
         </div>
 
-        {/* Reviews: premium single-card slider */}
-        <div className="mx-auto mt-10 max-w-2xl">
-          <ReviewsOneCardCarousel items={reviews} />
+        {/* Reviews: 3-up, advance by 1 */}
+        <div className="mx-auto mt-10 max-w-5xl">
+          <ReviewsThreeUpCarousel items={reviews} />
         </div>
 
         {/* CTA */}
