@@ -46,9 +46,8 @@ export function CarBuyersHero({
         {/* Left side: centered brand block + steps */}
         <div className="md:col-span-7">
           <div className="mx-auto max-w-[640px] text-center">
-            {/* Composite image (use the same local image as before) */}
+            {/* Composite image (no decorative background circle) */}
             <div className="relative mx-auto w-full max-w-[420px]">
-              <div className="absolute left-1/2 top-6 h-[230px] w-[230px] -translate-x-1/2 rounded-full bg-white/55" />
               <div className="relative mx-auto overflow-hidden rounded-[28px] bg-white/0 p-0">
                 <img
                   src={images.heroMain1}
