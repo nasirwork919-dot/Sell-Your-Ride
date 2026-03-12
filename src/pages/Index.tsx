@@ -12,6 +12,7 @@ import { FloatingGoogleRatingButton } from "@/components/FloatingGoogleRatingBut
 import { FloatingWhatsAppButton } from "@/components/FloatingWhatsAppButton";
 import { MarketingPixels } from "@/components/MarketingPixels";
 import { useScrollDirection } from "@/hooks/use-scroll-direction";
+import { WaveSeparator } from "@/components/WaveSeparator";
 
 const NAV = [
   { id: "sell", label: "Sell my car" },
@@ -69,17 +70,7 @@ export default function Index() {
   }, []);
 
   useEffect(() => {
-    const ids = [
-      "sell",
-      "truck",
-      "caravan",
-      "difference",
-      "about",
-      "video",
-      "how",
-      "reviews",
-      "contact",
-    ];
+    const ids = ["sell", "truck", "caravan", "difference", "about", "video", "how", "reviews", "contact"];
     const els = ids.map((id) => document.getElementById(id)).filter(Boolean) as HTMLElement[];
     const io = new IntersectionObserver(
       (entries) => {
@@ -149,6 +140,7 @@ export default function Index() {
             }}
             phoneText="+61 478 797 731"
           />
+          <WaveSeparator className="-mx-4 md:-mx-6" from="#22B9C5" to="#FFFFFF" />
         </section>
 
         {/* Category tiles */}
