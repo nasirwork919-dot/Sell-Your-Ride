@@ -8,6 +8,7 @@ import { CarBuyersFooter } from "@/components/CarBuyersFooter";
 import { CarBuyersHeader } from "@/components/CarBuyersHeader";
 import { BackToTopButton } from "@/components/BackToTopButton";
 import { FloatingWhatsAppButton } from "@/components/FloatingWhatsAppButton";
+import { FloatingGoogleRatingButton } from "@/components/FloatingGoogleRatingButton";
 import { MarketingPixels } from "@/components/MarketingPixels";
 import { useScrollDirection } from "@/hooks/use-scroll-direction";
 import { AsFeaturedInStrip } from "@/components/AsFeaturedInStrip";
@@ -192,6 +193,7 @@ export default function Index() {
       </main>
 
       <FloatingWhatsAppButton href={adminWhatsAppLink} />
+      <FloatingGoogleRatingButton href={googleReviewsLink} />
       <BackToTopButton show={showTop} />
     </div>
   );
