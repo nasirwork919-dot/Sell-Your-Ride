@@ -91,22 +91,6 @@ export function AustraliaCoverageMap({ className }: { className?: string }) {
               ))}
             </div>
           </div>
-
-          {/* Bottom-left rating badge (like screenshot) */}
-          <div className="mt-6 flex items-center justify-start">
-            <div className="inline-flex items-center gap-3 rounded-xl bg-white px-4 py-3 shadow-[0_10px_24px_rgba(15,23,42,0.10)] ring-1 ring-slate-200">
-              <div className="grid h-9 w-9 place-items-center rounded-lg bg-slate-50 text-[#0B3A7A] ring-1 ring-slate-200">
-                <span className="text-lg font-extrabold">G</span>
-              </div>
-              <div className="min-w-0">
-                <p className="text-xs font-semibold text-slate-600">Google Rating</p>
-                <p className="mt-0.5 text-sm font-extrabold text-[#0B3A7A]">
-                  4.7 <span className="text-amber-500">★★★★★</span>
-                </p>
-                <p className="mt-0.5 text-[11px] font-semibold text-slate-500">Based on 1233 reviews</p>
-              </div>
-            </div>
-          </div>
         </div>
       </div>
     </section>
