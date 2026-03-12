@@ -130,23 +130,23 @@ export default function Index() {
       />
 
       <main className="w-full pb-16 pt-[88px] sm:pt-24">
-        <div className="mx-auto max-w-6xl px-4 md:px-6">
-          {/* Hero + form (quote) */}
-          <section id="sell" className="scroll-mt-28">
-            <CarBuyersHero
-              onPrimaryCta={() => {
-                const el = document.getElementById("sell");
-                if (!el) return;
-                el.scrollIntoView({ behavior: "smooth", block: "start" });
-              }}
-              phoneText="+61 478 797 731"
-            />
-          </section>
-        </div>
+        {/* Hero + form (quote) — FULL WIDTH */}
+        <section id="sell" className="w-full scroll-mt-28">
+          <CarBuyersHero
+            className="w-full rounded-none"
+            onPrimaryCta={() => {
+              const el = document.getElementById("sell");
+              if (!el) return;
+              el.scrollIntoView({ behavior: "smooth", block: "start" });
+            }}
+            phoneText="+61 478 797 731"
+          />
+        </section>
 
-        {/* Full-width strip */}
+        {/* Full-width featured strip */}
         <AsFeaturedInStrip />
 
+        {/* Remaining sections: full-width page, centered content */}
         <div className="mx-auto max-w-6xl px-4 md:px-6">
           {/* Category tiles */}
           <section id="truck" className="mt-10 scroll-mt-28">

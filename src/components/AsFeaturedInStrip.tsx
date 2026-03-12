@@ -2,34 +2,53 @@ import { cn } from "@/lib/utils";
 
 type Logo = {
   name: string;
-  accent: "navy" | "teal" | "amber" | "indigo";
+  src: string;
 };
 
 const LOGOS: Logo[] = [
-  { name: "Drive Daily", accent: "navy" },
-  { name: "AutoReview", accent: "teal" },
-  { name: "Finance AU", accent: "amber" },
-  { name: "The Telegraph", accent: "indigo" },
-  { name: "Car Insider", accent: "navy" },
-  { name: "Road & Track", accent: "teal" },
-  { name: "Market Watch", accent: "amber" },
-  { name: "Seller Stories", accent: "indigo" },
-] as const;
+  {
+    name: "Drive",
+    src: "https://upload.wikimedia.org/wikipedia/commons/thumb/5/57/Drive.com.au_logo.svg/512px-Drive.com.au_logo.svg.png",
+  },
+  {
+    name: "Yahoo Finance",
+    src: "https://upload.wikimedia.org/wikipedia/commons/thumb/2/24/Yahoo%21_Finance_logo_2021.svg/512px-Yahoo%21_Finance_logo_2021.svg.png",
+  },
+  {
+    name: "Daily Mail",
+    src: "https://upload.wikimedia.org/wikipedia/commons/thumb/c/cb/Daily_Mail_logo.png/512px-Daily_Mail_logo.png",
+  },
+  {
+    name: "The Daily Telegraph",
+    src: "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6c/The_Daily_Telegraph_logo.svg/512px-The_Daily_Telegraph_logo.svg.png",
+  },
+  {
+    name: "Herald Sun",
+    src: "https://upload.wikimedia.org/wikipedia/commons/thumb/3/32/Herald_Sun_logo.svg/512px-Herald_Sun_logo.svg.png",
+  },
+  {
+    name: "Gumtree",
+    src: "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5d/Gumtree_logo.svg/512px-Gumtree_logo.svg.png",
+  },
+  {
+    name: "CarExpert (sample)",
+    src: "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7e/Car_icon.svg/512px-Car_icon.svg.png",
+  },
+  {
+    name: "MarketWatch",
+    src: "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6a/MarketWatch_logo.svg/512px-MarketWatch_logo.svg.png",
+  },
+];
 
-function accentClass(accent: Logo["accent"]) {
-  switch (accent) {
-    case "navy":
-      return "bg-[#0B3A7A] text-white";
-    case "teal":
-      return "bg-[#18B9C8] text-[#062B41]";
-    case "amber":
-      return "bg-amber-400 text-amber-950";
-    case "indigo":
-      return "bg-indigo-600 text-white";
-  }
-}
+export function AsFeaturedInStrip({
+  className,
+  speedSeconds = 26,
+}: {
+  className?: string;
+  speedSeconds?: number;
+}) {
+  const loop = [...LOGOS, ...LOGOS];
 
-export function AsFeaturedInStrip({ className }: { className?: string }) {
   return (
     <section className={cn("w-full", className)} aria-label="As featured in">
       <div className="w-full bg-slate-100 py-10 ring-1 ring-slate-200">
@@ -37,27 +56,58 @@ export function AsFeaturedInStrip({ className }: { className?: string }) {
           <p className="text-center text-xs font-extrabold uppercase tracking-[0.28em] text-slate-900">
             As featured in
           </p>
+        </div>
 
-          <div className="mt-6 grid grid-cols-2 gap-3 sm:grid-cols-4 md:flex md:flex-wrap md:items-center md:justify-center md:gap-4">
-            {LOGOS.map((l) => (
-              <div
-                key={l.name}
-                className="flex items-center justify-center rounded-2xl border border-slate-200 bg-white px-4 py-3 shadow-sm"
-                title={l.name}
-                aria-label={l.name}
-              >
-                <span className="inline-flex items-center gap-3">
-                  <span className={cn("h-8 w-8 rounded-xl shadow-sm", accentClass(l.accent))} aria-hidden="true" />
-                  <span className="text-sm font-extrabold tracking-tight text-slate-800">{l.name}</span>
-                </span>
-              </div>
-            ))}
+        <div className="relative mt-6 overflow-hidden">
+          {/* Edge fades */}
+          <div className="pointer-events-none absolute inset-y-0 left-0 z-10 w-12 bg-gradient-to-r from-slate-100 to-slate-100/0 sm:w-20" />
+          <div className="pointer-events-none absolute inset-y-0 right-0 z-10 w-12 bg-gradient-to-l from-slate-100 to-slate-100/0 sm:w-20" />
+
+          <div className="mx-auto max-w-6xl px-4 md:px-6">
+            <div
+              className="group flex w-max items-center gap-10 motion-reduce:transform-none"
+              style={
+                {
+                  animation: `featured-marquee ${speedSeconds}s linear infinite`,
+                } as React.CSSProperties
+              }
+            >
+              {loop.map((l, idx) => (
+                <div
+                  key={`${l.name}-${idx}`}
+                  className="flex h-10 items-center justify-center sm:h-11"
+                  title={l.name}
+                  aria-label={l.name}
+                >
+                  <img
+                    src={l.src}
+                    alt={l.name}
+                    className="h-full w-auto max-w-[170px] object-contain opacity-80 grayscale transition-opacity duration-200 hover:opacity-100"
+                    loading="lazy"
+                    referrerPolicy="no-referrer"
+                  />
+                </div>
+              ))}
+            </div>
           </div>
+        </div>
 
-          <p className="mt-5 text-center text-xs font-semibold text-slate-600">
-            Sample logos for layout — replace with your real brand marks anytime.
+        <div className="mx-auto mt-5 max-w-6xl px-4 md:px-6">
+          <p className="text-center text-xs font-semibold text-slate-600">
+            Logos shown for layout/demo purposes — replace with your real media mentions anytime.
           </p>
         </div>
+
+        <style>{`
+          @keyframes featured-marquee {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+          }
+
+          @media (prefers-reduced-motion: reduce) {
+            .group { animation: none !important; }
+          }
+        `}</style>
       </div>
     </section>
   );
