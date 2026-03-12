@@ -62,9 +62,7 @@ export function FastStepsSection({
                     </div>
 
                     <div className="min-w-0">
-                      <p className="text-[18px] font-extrabold tracking-tight text-white sm:text-[20px]">
-                        {s.title}
-                      </p>
+                      <p className="text-[18px] font-extrabold tracking-tight text-white sm:text-[20px]">{s.title}</p>
                       <p className="mt-1 whitespace-pre-line text-[12px] font-medium leading-relaxed text-white/80 sm:text-[13px]">
                         {s.desc}
                       </p>
@@ -98,31 +96,28 @@ export function FastStepsSection({
           </div>
         </div>
 
-        {/* Embedded white wave (part of this blue section) */}
+        {/* Teal wave (like reference) */}
         <div className="pointer-events-none absolute bottom-0 left-0 right-0">
-          <svg
-            viewBox="0 0 1440 220"
-            preserveAspectRatio="none"
-            className="block h-[128px] w-full sm:h-[160px] md:h-[190px]"
-          >
+          <svg viewBox="0 0 1440 260" preserveAspectRatio="none" className="block h-[140px] w-full sm:h-[170px] md:h-[200px]">
             {/*
-              Shape goals:
-              - lower on the left (keeps clear below the CTA button)
-              - rises up on the right (tucks under the person image)
-              - smooth, premium, no harsh dip
+              Match reference:
+              - left: fairly low and gentle
+              - mid: dips a bit
+              - right: rises high under the image
             */}
             <path
-              d="M0,130
-                 C220,185 520,210 760,190
-                 C980,172 1180,120 1440,86
-                 L1440,220 L0,220 Z"
-              fill="#FFFFFF"
+              d="M0,175
+                 C180,130 340,220 520,195
+                 C700,170 860,95 1060,110
+                 C1230,122 1335,155 1440,120
+                 L1440,260 L0,260 Z"
+              fill="#29C6C8"
             />
           </svg>
         </div>
 
-        {/* Space so content doesn't overlap the wave */}
-        <div className="h-[128px] sm:h-[160px] md:h-[190px]" />
+        {/* Space so content doesn't overlap wave */}
+        <div className="h-[140px] sm:h-[170px] md:h-[200px]" />
       </div>
     </section>
   );
