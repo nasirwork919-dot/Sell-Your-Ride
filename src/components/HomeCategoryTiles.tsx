@@ -33,24 +33,21 @@ export function HomeCategoryTiles({ className, onNavigate }: { className?: strin
       title: "Sell your car",
       question: "Thinking about selling your car?",
       accent: "orange",
-      imageUrl:
-        "https://images.pexels.com/photos/170811/pexels-photo-170811.jpeg?auto=compress&cs=tinysrgb&w=800",
+      imageUrl: "https://images.pexels.com/photos/170811/pexels-photo-170811.jpeg?auto=compress&cs=tinysrgb&w=800",
       onClick: () => onNavigate("sell"),
     },
     {
       title: "Sell your truck",
       question: "Thinking about selling your truck?",
       accent: "mint",
-      imageUrl:
-        "https://images.pexels.com/photos/2199293/pexels-photo-2199293.jpeg?auto=compress&cs=tinysrgb&w=800",
+      imageUrl: "https://images.pexels.com/photos/2199293/pexels-photo-2199293.jpeg?auto=compress&cs=tinysrgb&w=800",
       onClick: () => onNavigate("sell"),
     },
     {
       title: "Sell your caravan",
       question: "Thinking about selling your caravan?",
       accent: "navy",
-      imageUrl:
-        "https://images.pexels.com/photos/12987932/pexels-photo-12987932.jpeg?auto=compress&cs=tinysrgb&w=800",
+      imageUrl: "https://images.pexels.com/photos/12987932/pexels-photo-12987932.jpeg?auto=compress&cs=tinysrgb&w=800",
       onClick: () => onNavigate("sell"),
     },
   ];
@@ -58,7 +55,11 @@ export function HomeCategoryTiles({ className, onNavigate }: { className?: strin
   return (
     <section className={cn("relative", className)} aria-label="Categories">
       <div className="relative overflow-hidden rounded-3xl bg-white px-5 py-10 shadow-sm ring-1 ring-slate-200 sm:px-8 md:px-10">
-        <h2 className="text-balance text-center font-extrabold tracking-tight text-[#0B3A7A] text-4xl sm:text-5xl">
+        <p className="text-center text-[34px] font-extrabold tracking-tight text-[#0B3A7A] sm:text-[44px]">
+          Sell Your Ride
+        </p>
+
+        <h2 className="mt-4 text-balance text-center text-4xl font-extrabold tracking-tight text-[#0B3A7A] sm:text-5xl">
           Australia&apos;s Leading
           <br />
           Car Buying Service
@@ -81,10 +82,7 @@ export function HomeCategoryTiles({ className, onNavigate }: { className?: strin
               <p className="mt-2 text-sm font-medium text-slate-600">{t.question}</p>
               <Button
                 onClick={t.onClick}
-                className={cn(
-                  "mt-5 h-11 rounded-full px-10 text-sm font-extrabold shadow-sm",
-                  accentStyles(t.accent).button,
-                )}
+                className={cn("mt-5 h-11 rounded-full px-10 text-sm font-extrabold shadow-sm", accentStyles(t.accent).button)}
               >
                 Get a quote
               </Button>
