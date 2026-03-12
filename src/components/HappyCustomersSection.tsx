@@ -85,7 +85,6 @@ function ReviewsThreeUpCarousel({
   className?: string;
   intervalMs?: number;
 }) {
-  // We show 3 cards on desktop; but we always advance by 1 card
   const [idx, setIdx] = useState(0);
   const [paused, setPaused] = useState(false);
 
@@ -93,7 +92,6 @@ function ReviewsThreeUpCarousel({
   const startXRef = useRef<number | null>(null);
   const deltaXRef = useRef<number>(0);
 
-  // Max start index so we still have 3 visible cards (desktop); for mobile we show 1 anyway.
   const maxIdx = Math.max(0, items.length - 3);
 
   function go(next: number) {
@@ -143,7 +141,7 @@ function ReviewsThreeUpCarousel({
     window.setTimeout(() => setPaused(false), 1200);
   }
 
-  const activeDot = idx; // one dot per step (one-card advance)
+  const activeDot = idx;
 
   return (
     <section
@@ -154,14 +152,12 @@ function ReviewsThreeUpCarousel({
       onFocusCapture={() => setPaused(true)}
       onBlurCapture={() => setPaused(false)}
     >
-      {/* Edge fades */}
       <div className="pointer-events-none absolute inset-y-0 left-0 z-10 w-10 bg-gradient-to-r from-white to-white/0 sm:w-16" />
       <div className="pointer-events-none absolute inset-y-0 right-0 z-10 w-10 bg-gradient-to-l from-white to-white/0 sm:w-16" />
 
       <div
         className={cn(
           "relative overflow-hidden",
-          // ensure no scrollbars appear
           "[-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden",
         )}
         onPointerDown={onPointerDown}
@@ -174,14 +170,10 @@ function ReviewsThreeUpCarousel({
         <div
           ref={trackRef}
           className="flex transition-transform duration-500 ease-out"
-          // 1 card shift = 1/3 of the container on desktop
           style={{ transform: `translateX(${-idx * (100 / 3)}%)` }}
         >
           {items.map((r) => (
-            <div
-              key={r.name + r.text.slice(0, 10)}
-              className="w-full shrink-0 px-1 sm:px-2 md:w-1/3"
-            >
+            <div key={r.name + r.text.slice(0, 10)} className="w-full shrink-0 px-1 sm:px-2 md:w-1/3">
               <Card className="h-full rounded-2xl border-slate-200 bg-white p-5 shadow-sm sm:p-6">
                 <div className="flex items-center justify-between gap-3">
                   <div className="min-w-0">
@@ -298,7 +290,6 @@ export function HappyCustomersSection({
   return (
     <section className={cn("w-full bg-white", className)} aria-label="Happy customers">
       <div className="mx-auto max-w-6xl px-4 py-12 sm:py-14 md:px-6">
-        {/* Headline */}
         <div className="text-center">
           <h2 className="text-[30px] font-extrabold tracking-tight text-[#0B3A7A] sm:text-[40px]">
             Join thousands of happy customers
@@ -308,32 +299,16 @@ export function HappyCustomersSection({
           </p>
         </div>
 
-        {/* Collage: only images + subtle AU silhouette */}
         <div className="relative mx-auto mt-8 h-[360px] max-w-5xl overflow-visible sm:h-[420px]" aria-label="Customer photos">
-          <svg
-            viewBox="0 0 1200 700"
-            preserveAspectRatio="xMidYMid meet"
-            className="pointer-events-none absolute left-1/2 top-1/2 h-[120%] w-[120%] -translate-x-1/2 -translate-y-1/2 opacity-[0.06]"
-            aria-hidden="true"
-          >
-            <path
-              d="M353 105 L488 60 L518 110 L610 70 L730 66 L700 120 L785 168 L812 86 L872 240 L870 305 L920 338 L900 430 L842 505 L738 540 L700 590 L616 560 L585 518 L540 560 L462 518 L395 470 L346 500 L278 458 L198 420 L173 350 L192 252 L252 220 L313 180 Z"
-              fill="#0B3A7A"
-            />
-            <path d="M775 590 L820 610 L812 660 L770 670 L740 640 Z" fill="#0B3A7A" />
-          </svg>
-
           {photos.map((p) => (
             <PhotoTile key={p.alt} {...p} />
           ))}
         </div>
 
-        {/* Reviews: 3-up, advance by 1 */}
         <div className="mx-auto mt-10 max-w-5xl">
           <ReviewsThreeUpCarousel items={reviews} />
         </div>
 
-        {/* CTA */}
         <div className="mt-8 flex justify-center">
           <Button
             onClick={onEnquire}
