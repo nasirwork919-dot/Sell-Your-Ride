@@ -81,9 +81,9 @@ export default function SellMyCar() {
         {/* HERO (cloned from home hero layout, with only image swapped) */}
         <section
           aria-label="Hero"
-          className="relative w-full overflow-hidden bg-[#22B9C5] px-0 py-10 md:px-6 md:py-12"
+          className="relative w-full overflow-hidden bg-[#22B9C5] px-4 py-10 md:px-6 md:py-12"
         >
-          <div className="w-full px-4 md:mx-auto md:max-w-6xl md:px-6">
+          <div className="w-full md:mx-auto md:max-w-6xl md:px-6">
             <div className="grid items-center gap-10 md:grid-cols-12 md:gap-12">
               {/* Left */}
               <div className="md:col-span-7">
