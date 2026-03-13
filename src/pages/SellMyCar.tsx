@@ -19,6 +19,7 @@ import { SellMyCarCoverageSection } from "@/components/SellMyCarCoverageSection"
 import { SellMyCarLocationsSection } from "@/components/SellMyCarLocationsSection";
 import { WantedSellTilesSection } from "@/components/WantedSellTilesSection";
 import { SellMyCarEndNoteSection } from "@/components/SellMyCarEndNoteSection";
+import { ExactBenefitsOrangeSection } from "@/components/ExactBenefitsOrangeSection";
 
 const NAV = [
   { id: "sell", label: "Sell my car" },
@@ -220,10 +221,13 @@ export default function SellMyCar() {
         <SellMyCarCoverageSection />
         <SellMyCarLocationsSection />
 
+        {/* Orange paperwork / benefits section from home page */}
+        <ExactBenefitsOrangeSection onEnquire={() => window.scrollTo({ top: 0, behavior: "smooth" })} />
+
         {/* Clone from home page: Wanting to sell tiles (placed under latest section) */}
         <WantedSellTilesSection onQuote={() => window.scrollTo({ top: 0, behavior: "smooth" })} />
 
-        {/* New: end note section */}
+        {/* End note section */}
         <SellMyCarEndNoteSection />
       </main>
 
