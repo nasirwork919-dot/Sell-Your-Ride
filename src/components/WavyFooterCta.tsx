@@ -41,7 +41,7 @@ function TopWave() {
         {/* Curved teal text riding the wave */}
         <text
           fill="#22B9C5"
-          fontSize="20"
+          fontSize="24"
           fontWeight="900"
           letterSpacing="0.6"
           textAnchor="middle"
@@ -56,7 +56,7 @@ function TopWave() {
             textLength={1180}
             lengthAdjust="spacingAndGlyphs"
           >
-            <tspan dy={-9} style={{ paintOrder: "stroke", stroke: "rgba(255,255,255,0.55)", strokeWidth: 2 }}>
+            <tspan dy={-10} style={{ paintOrder: "stroke", stroke: "rgba(255,255,255,0.55)", strokeWidth: 2 }}>
               {label}
             </tspan>
           </textPath>
