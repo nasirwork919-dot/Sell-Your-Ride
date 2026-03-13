@@ -14,6 +14,7 @@ import { AustraliaCoverageMap } from "@/components/AustraliaCoverageMap";
 import { FastStepsSection } from "@/components/FastStepsSection";
 import { HappyCustomersSection } from "@/components/HappyCustomersSection";
 import { ExactBenefitsOrangeSection } from "@/components/ExactBenefitsOrangeSection";
+import { ReadyToSellSection } from "@/components/ReadyToSellSection";
 
 const NAV = [
   { id: "sell", label: "Sell my car" },
@@ -172,6 +173,9 @@ export default function Index() {
 
         {/* Requested clone section (now directly under the orange benefits section) */}
         <WantedSellTilesSection onQuote={() => navTo("sell")} />
+
+        {/* New: Ready-to-sell section (reference screenshot) */}
+        <ReadyToSellSection onQuote={() => navTo("sell")} />
 
         {/* Back to centered lane for CTA/footer */}
         <div className="mx-auto max-w-6xl px-4 md:px-6">
