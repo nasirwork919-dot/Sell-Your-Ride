@@ -3,7 +3,6 @@ import { cn } from "@/lib/utils";
 import { Facebook, Instagram } from "lucide-react";
 
 function TopWave() {
-  // Slightly smoother wave while keeping the same deep feel.
   const waveD = `
     M 0 130
     C 140 72, 260 72, 360 130
@@ -15,16 +14,22 @@ function TopWave() {
   const label = "Australia-wide → Receive quote → Host inspection → Get paid instantly → We pick up your vehicle";
 
   return (
-    <div className="relative w-full bg-white" aria-hidden="true">
-      <svg viewBox="0 0 1440 220" preserveAspectRatio="none" className="block h-[120px] w-full sm:h-[140px]">
+    <div className="relative w-full">
+      {/* The SVG is transparent and overlays between the above section and the navy footer */}
+      <svg
+        viewBox="0 0 1440 220"
+        preserveAspectRatio="none"
+        className="block h-[120px] w-full sm:h-[140px]"
+        aria-hidden="true"
+      >
         <defs>
           <path id="wavePath" d={waveD} />
         </defs>
 
-        {/* White top area */}
+        {/* This white area blends into the ABOVE section */}
         <rect x="0" y="0" width="1440" height="220" fill="#FFFFFF" />
 
-        {/* Navy wave fill */}
+        {/* Navy wave fill that continues into the footer below */}
         <path
           d={`
             ${waveD}
@@ -35,7 +40,7 @@ function TopWave() {
           fill="#163F75"
         />
 
-        {/* Subtle grey line right above the navy (like reference) */}
+        {/* Subtle grey seam line */}
         <path d={waveD} fill="none" stroke="rgba(11,58,122,0.22)" strokeWidth="6" strokeLinecap="round" />
 
         {/* Curved teal text riding the wave */}
@@ -131,7 +136,10 @@ export function WavyFooterCta({ className, onEnquire }: { className?: string; on
 
   return (
     <footer className={cn("w-full", className)} aria-label="Footer">
-      <TopWave />
+      {/* Pull the wave slightly down so it visually becomes the top edge of the navy footer */}
+      <div className="-mb-[18px] sm:-mb-[22px]">
+        <TopWave />
+      </div>
 
       <div className="bg-[#163F75]">
         <div className="mx-auto max-w-6xl px-4 pb-10 pt-10 md:px-6 md:pt-12">
