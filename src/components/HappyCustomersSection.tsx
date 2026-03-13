@@ -213,37 +213,44 @@ export function HappyCustomersSection({
       {
         src: "https://images.pexels.com/photos/120049/pexels-photo-120049.jpeg?auto=compress&cs=tinysrgb&w=1400",
         alt: "Car keys in hand",
-        className: "left-[6%] top-[14%] h-[210px] w-[165px] rotate-[-4deg] md:h-[250px] md:w-[190px]",
+        className:
+          "left-[2%] top-[16%] h-[180px] w-[145px] rotate-[-4deg] sm:left-[6%] sm:top-[14%] sm:h-[210px] sm:w-[165px] md:h-[250px] md:w-[190px]",
       },
       {
         src: "https://images.pexels.com/photos/170811/pexels-photo-170811.jpeg?auto=compress&cs=tinysrgb&w=1400",
         alt: "Premium car front view",
-        className: "right-[18%] top-[6%] h-[95px] w-[160px] rotate-[1deg] md:h-[110px] md:w-[185px]",
+        className:
+          "right-[6%] top-[8%] h-[88px] w-[150px] rotate-[1deg] sm:right-[18%] sm:top-[6%] sm:h-[95px] sm:w-[160px] md:h-[110px] md:w-[185px]",
       },
       {
         src: "https://images.pexels.com/photos/4386324/pexels-photo-4386324.jpeg?auto=compress&cs=tinysrgb&w=1400",
         alt: "Mobile form details",
-        className: "left-[60%] top-[52%] h-[120px] w-[180px] rotate-[-2deg] md:h-[140px] md:w-[210px]",
+        className:
+          "left-[50%] top-[52%] h-[110px] w-[170px] -translate-x-1/2 rotate-[-2deg] sm:left-[60%] sm:top-[52%] sm:h-[120px] sm:w-[180px] md:h-[140px] md:w-[210px]",
       },
       {
         src: "https://images.pexels.com/photos/210019/pexels-photo-210019.jpeg?auto=compress&cs=tinysrgb&w=1400",
         alt: "Car exterior in daylight",
-        className: "left-[26%] bottom-[10%] h-[150px] w-[240px] rotate-[2deg] md:h-[170px] md:w-[280px]",
+        className:
+          "left-[16%] bottom-[10%] h-[135px] w-[220px] rotate-[2deg] sm:left-[26%] sm:bottom-[10%] sm:h-[150px] sm:w-[240px] md:h-[170px] md:w-[280px]",
       },
       {
         src: "https://images.pexels.com/photos/10394784/pexels-photo-10394784.jpeg?auto=compress&cs=tinysrgb&w=1400",
         alt: "Happy customer near a car",
-        className: "left-[40%] top-[10%] h-[260px] w-[240px] rotate-[1deg] md:h-[300px] md:w-[275px]",
+        className:
+          "left-[46%] top-[10%] h-[220px] w-[210px] -translate-x-1/2 rotate-[1deg] sm:left-[40%] sm:top-[10%] sm:h-[260px] sm:w-[240px] md:h-[300px] md:w-[275px]",
       },
       {
         src: "https://images.pexels.com/photos/3778876/pexels-photo-3778876.jpeg?auto=compress&cs=tinysrgb&w=1400",
         alt: "Signing paperwork",
-        className: "right-[10%] top-[18%] h-[120px] w-[190px] rotate-[2deg] md:h-[140px] md:w-[220px]",
+        className:
+          "right-[2%] top-[22%] h-[110px] w-[170px] rotate-[2deg] sm:right-[10%] sm:top-[18%] sm:h-[120px] sm:w-[190px] md:h-[140px] md:w-[220px]",
       },
       {
         src: "https://images.pexels.com/photos/3184291/pexels-photo-3184291.jpeg?auto=compress&cs=tinysrgb&w=1400",
         alt: "Handshake agreement",
-        className: "right-[8%] bottom-[12%] h-[160px] w-[250px] rotate-[-2deg] md:h-[190px] md:w-[300px]",
+        className:
+          "right-[0%] bottom-[10%] h-[150px] w-[235px] rotate-[-2deg] sm:right-[8%] sm:bottom-[12%] sm:h-[160px] sm:w-[250px] md:h-[190px] md:w-[300px]",
       },
     ],
     [],
@@ -299,7 +306,18 @@ export function HappyCustomersSection({
           </p>
         </div>
 
-        <div className="relative mx-auto mt-8 h-[360px] max-w-5xl overflow-visible sm:h-[420px]" aria-label="Customer photos">
+        <div
+          className={cn(
+            "relative mx-auto mt-8 max-w-5xl overflow-visible",
+            "h-[420px] sm:h-[420px] md:h-[460px]",
+          )}
+          aria-label="Customer photos"
+        >
+          {/* soft backdrop shape like the reference */}
+          <div className="pointer-events-none absolute inset-0 grid place-items-center">
+            <div className="h-[260px] w-[300px] rounded-[32px] bg-slate-100/70 sm:h-[300px] sm:w-[360px]" />
+          </div>
+
           {photos.map((p) => (
             <PhotoTile key={p.alt} {...p} />
           ))}

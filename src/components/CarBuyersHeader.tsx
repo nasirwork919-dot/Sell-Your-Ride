@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useState } from "react";
 import { Link } from "react-router-dom";
-import { ChevronDown, Menu } from "lucide-react";
+import { ChevronDown, Menu, Phone } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from "@/components/ui/sheet";
@@ -41,88 +41,36 @@ export function CarBuyersHeader({
         hidden ? "-translate-y-full" : "translate-y-0",
       )}
     >
-      <div className="mx-auto grid h-[68px] max-w-6xl grid-cols-[minmax(220px,1fr)_minmax(0,2fr)_minmax(220px,1fr)] items-center px-4 md:px-6">
-        {/* Left: icon + phone */}
-        <div className="flex items-center justify-start">
-          <button
-            type="button"
-            onClick={() => onNav("sell")}
-            className="inline-flex items-center gap-3"
-            aria-label="Go to quote form"
-            title="Get a quote"
+      {/* MOBILE (matches reference) */}
+      <div className="mx-auto flex h-[64px] max-w-6xl items-center justify-between px-4 md:hidden">
+        <button
+          type="button"
+          onClick={() => onNav("sell")}
+          className="text-left"
+          aria-label="Go to quote form"
+          title="CarBuyers"
+        >
+          <span className="text-[22px] font-extrabold tracking-tight text-[#0B3A7A]">CarBuyers</span>
+        </button>
+
+        <div className="flex items-center gap-2">
+          <a
+            href={`tel:${phoneText.replace(/\s/g, "")}`}
+            className="inline-flex"
+            aria-label="Call"
+            title="Call"
           >
-            <span className="grid h-10 w-10 place-items-center rounded-xl bg-[#0B3A7A] text-white shadow-sm ring-1 ring-[#062B57]/60">
-              {/* Simple inline icon to match reference vibe */}
-              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-                <path
-                  d="M8 7h10l2 6v6H6v-6l2-6Z"
-                  stroke="currentColor"
-                  strokeWidth="2"
-                  strokeLinejoin="round"
-                />
-                <path
-                  d="M7 13h14"
-                  stroke="currentColor"
-                  strokeWidth="2"
-                  strokeLinejoin="round"
-                />
-                <path
-                  d="M9 19h2"
-                  stroke="currentColor"
-                  strokeWidth="2"
-                  strokeLinecap="round"
-                />
-                <path
-                  d="M17 19h-2"
-                  stroke="currentColor"
-                  strokeWidth="2"
-                  strokeLinecap="round"
-                />
-                <path
-                  d="M9 5h6"
-                  stroke="currentColor"
-                  strokeWidth="2"
-                  strokeLinecap="round"
-                />
-              </svg>
-            </span>
+            <Button
+              variant="secondary"
+              className="h-9 w-9 rounded-full border border-[#0B3A7A]/25 bg-white p-0 text-[#0B3A7A] hover:bg-slate-50"
+            >
+              <Phone className="h-4 w-4" />
+            </Button>
+          </a>
 
-            <span className="whitespace-nowrap text-[22px] font-extrabold tracking-tight text-[#0B3A7A]">
-              {phoneText}
-            </span>
-          </button>
-        </div>
-
-        {/* Center: nav (centered) */}
-        <nav className="hidden min-w-0 items-center justify-center md:flex" aria-label="Primary navigation">
-          <div className="flex min-w-0 items-center justify-center gap-7 whitespace-nowrap">
-            {items.map((n) => (
-              <button
-                key={n.id}
-                type="button"
-                onClick={() => onNav(n.id)}
-                className={cn(
-                  "inline-flex items-center gap-1 rounded-full px-2 py-2 text-sm font-semibold text-[#0B3A7A] transition",
-                  "hover:bg-slate-100",
-                  active === n.id ? "underline underline-offset-[12px] decoration-2" : "no-underline",
-                )}
-              >
-                <span className="whitespace-nowrap">{n.label}</span>
-                {n.hasDropdown ? <ChevronDown className="h-4 w-4 text-[#0B3A7A]/70" /> : null}
-              </button>
-            ))}
-          </div>
-        </nav>
-
-        {/* Right: CTA + mobile menu */}
-        <div className="flex items-center justify-end gap-2">
           <Button
             onClick={() => onNav("sell")}
-            className={cn(
-              "hidden h-10 rounded-full px-8 font-extrabold md:inline-flex",
-              "bg-white text-[#0B3A7A]",
-              "ring-1 ring-[#0B3A7A] hover:bg-slate-50",
-            )}
+            className="h-9 rounded-full bg-white px-4 text-[12px] font-extrabold text-[#0B3A7A] ring-1 ring-[#0B3A7A]/30 hover:bg-slate-50"
           >
             Get a quote
           </Button>
@@ -131,7 +79,7 @@ export function CarBuyersHeader({
             <SheetTrigger asChild>
               <Button
                 variant="secondary"
-                className="h-10 w-10 rounded-2xl border border-slate-200 bg-white p-0 text-slate-900 hover:bg-slate-50 md:hidden"
+                className="h-9 w-9 rounded-full border border-[#0B3A7A]/25 bg-white p-0 text-[#0B3A7A] hover:bg-slate-50"
                 aria-label="Open menu"
               >
                 <Menu className="h-5 w-5" />
@@ -142,7 +90,7 @@ export function CarBuyersHeader({
               <div className="p-5">
                 <SheetHeader>
                   <SheetTitle className="text-left text-base font-semibold tracking-tight text-slate-900">
-                    SellYourRide
+                    CarBuyers
                   </SheetTitle>
                 </SheetHeader>
 
@@ -193,6 +141,78 @@ export function CarBuyersHeader({
               </div>
             </SheetContent>
           </Sheet>
+        </div>
+      </div>
+
+      {/* DESKTOP (keep existing structure) */}
+      <div className="mx-auto hidden h-[68px] max-w-6xl grid-cols-[minmax(220px,1fr)_minmax(0,2fr)_minmax(220px,1fr)] items-center px-4 md:grid md:px-6">
+        {/* Left: icon + phone */}
+        <div className="flex items-center justify-start">
+          <button
+            type="button"
+            onClick={() => onNav("sell")}
+            className="inline-flex items-center gap-3"
+            aria-label="Go to quote form"
+            title="Get a quote"
+          >
+            <span className="grid h-10 w-10 place-items-center rounded-xl bg-[#0B3A7A] text-white shadow-sm ring-1 ring-[#062B57]/60">
+              {/* Simple inline icon to match reference vibe */}
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                <path
+                  d="M8 7h10l2 6v6H6v-6l2-6Z"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  strokeLinejoin="round"
+                />
+                <path d="M7 13h14" stroke="currentColor" strokeWidth="2" strokeLinejoin="round" />
+                <path d="M9 19h2" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
+                <path d="M17 19h-2" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
+                <path d="M9 5h6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
+              </svg>
+            </span>
+
+            <span className="whitespace-nowrap text-[22px] font-extrabold tracking-tight text-[#0B3A7A]">
+              {phoneText}
+            </span>
+          </button>
+        </div>
+
+        {/* Center: nav (centered) */}
+        <nav className="hidden min-w-0 items-center justify-center md:flex" aria-label="Primary navigation">
+          <div className="flex min-w-0 items-center justify-center gap-7 whitespace-nowrap">
+            {items.map((n) => (
+              <button
+                key={n.id}
+                type="button"
+                onClick={() => onNav(n.id)}
+                className={cn(
+                  "inline-flex items-center gap-1 rounded-full px-2 py-2 text-sm font-semibold text-[#0B3A7A] transition",
+                  "hover:bg-slate-100",
+                  active === n.id ? "underline underline-offset-[12px] decoration-2" : "no-underline",
+                )}
+              >
+                <span className="whitespace-nowrap">{n.label}</span>
+                {n.hasDropdown ? <ChevronDown className="h-4 w-4 text-[#0B3A7A]/70" /> : null}
+              </button>
+            ))}
+          </div>
+        </nav>
+
+        {/* Right: CTA */}
+        <div className="flex items-center justify-end gap-2">
+          <Button
+            onClick={() => onNav("sell")}
+            className={cn(
+              "hidden h-10 rounded-full px-8 font-extrabold md:inline-flex",
+              "bg-white text-[#0B3A7A]",
+              "ring-1 ring-[#0B3A7A] hover:bg-slate-50",
+            )}
+          >
+            Get a quote
+          </Button>
+
+          {/* Desktop menu button not needed (nav shows). Kept layout stable. */}
+          <div className="h-10 w-10 md:hidden" />
         </div>
       </div>
     </header>
