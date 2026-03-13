@@ -40,6 +40,31 @@ const LOGOS: Logo[] = [
   },
 ];
 
+function TopWave({
+  from = "#22B9C5",
+  to = "#F1F5F9", // slate-100
+}: {
+  from?: string;
+  to?: string;
+}) {
+  return (
+    <div className="relative w-full" aria-hidden="true">
+      <svg viewBox="0 0 1440 120" preserveAspectRatio="none" className="block h-[72px] w-full sm:h-[88px] md:h-[104px]">
+        {/* Top fill (hero teal) */}
+        <path
+          d="M0,0H1440V35C1320,52 1220,78 1080,82C920,87 820,54 720,45C610,35 500,55 360,72C220,89 120,90 0,74Z"
+          fill={from}
+        />
+        {/* Bottom fill (this section bg) */}
+        <path
+          d="M0,74C120,90 220,89 360,72C500,55 610,35 720,45C820,54 920,87 1080,82C1220,78 1320,52 1440,35V120H0Z"
+          fill={to}
+        />
+      </svg>
+    </div>
+  );
+}
+
 export function AsFeaturedInStrip({
   className,
   speedSeconds = 26,
@@ -51,6 +76,11 @@ export function AsFeaturedInStrip({
 
   return (
     <section className={cn("w-full", className)} aria-label="As featured in">
+      {/* Merge: hero -> featured strip curve (teal to slate-100) */}
+      <div className="-mt-[1px]">
+        <TopWave from="#22B9C5" to="#F1F5F9" />
+      </div>
+
       <div className="w-full bg-slate-100 py-10 ring-1 ring-slate-200">
         <div className="mx-auto max-w-6xl px-4 md:px-6">
           <p className="text-center text-xs font-extrabold uppercase tracking-[0.28em] text-slate-900">
