@@ -1,5 +1,6 @@
 import { cn } from "@/lib/utils";
 import carImg from "@/assets/transparent-blue-car.webp";
+import mapImg from "@/assets/coverage-map.png";
 import { FaqTopWave } from "@/components/FaqTopWave";
 
 type City = {
@@ -10,31 +11,31 @@ type City = {
 
 const CITIES: City[] = [
   // West
-  { name: "Geraldton", x: 12, y: 58 },
-  { name: "Perth", x: 12, y: 69 },
-  { name: "Busselton", x: 12, y: 76 },
+  { name: "Geraldton", x: 8, y: 65 },
+  { name: "Perth", x: 8, y: 76 },
+  { name: "Busselton", x: 8, y: 83 },
 
   // North / QLD
-  { name: "Cairns", x: 77, y: 25 },
-  { name: "Townsville", x: 77, y: 34 },
-  { name: "North Queensland", x: 74.5, y: 41 },
+  { name: "Cairns", x: 80, y: 20 },
+  { name: "Townsville", x: 80, y: 30 },
+  { name: "North Queensland", x: 77, y: 37 },
 
   // QLD coast
-  { name: "Rockhampton", x: 78, y: 52 },
-  { name: "Bundaberg", x: 78, y: 58 },
-  { name: "Noosa Heads", x: 78, y: 65 },
-  { name: "Brisbane", x: 78, y: 70 },
-  { name: "Gold Coast", x: 78, y: 78 },
+  { name: "Rockhampton", x: 81, y: 49 },
+  { name: "Bundaberg", x: 81, y: 55 },
+  { name: "Noosa Heads", x: 81, y: 62 },
+  { name: "Brisbane", x: 81, y: 67 },
+  { name: "Gold Coast", x: 81, y: 75 },
 
   // NSW / ACT / VIC / SA
-  { name: "Sydney", x: 73, y: 84 },
-  { name: "Canberra", x: 68, y: 88 },
-  { name: "Melbourne", x: 69, y: 96 },
-  { name: "Geelong", x: 63.5, y: 97.5 },
-  { name: "Adelaide", x: 52, y: 88 },
+  { name: "Sydney", x: 76, y: 81 },
+  { name: "Canberra", x: 71, y: 85 },
+  { name: "Melbourne", x: 72, y: 93 },
+  { name: "Geelong", x: 66, y: 94.5 },
+  { name: "Adelaide", x: 54, y: 85 },
 
-  // TAS (kept inside the section)
-  { name: "Tasmania", x: 70, y: 98.5 },
+  // TAS
+  { name: "Tasmania", x: 74, y: 98 },
 ];
 
 export function AustraliaCoverageMap({ className }: { className?: string }) {
@@ -54,35 +55,18 @@ export function AustraliaCoverageMap({ className }: { className?: string }) {
 
             <div className="relative mx-auto mt-8 max-w-5xl">
               {/* Map frame */}
-              <div className={cn("relative mx-auto w-full", "h-[420px] sm:h-[520px] md:h-[660px]")}>
-                {/* Australia outline */}
-                <svg
-                  viewBox="0 0 1200 700"
-                  preserveAspectRatio="xMidYMid meet"
-                  className="absolute inset-0 h-full w-full"
-                  aria-hidden="true"
-                >
-                  {/* Outline */}
-                  <path
-                    d="M353 105 L488 60 L518 110 L610 70 L730 66 L700 120 L785 168 L812 86 L872 240 L870 305 L920 338 L900 430 L842 505 L738 540 L700 590 L616 560 L585 518 L540 560 L462 518 L395 470 L346 500 L278 458 L198 420 L173 350 L192 252 L252 220 L313 180 Z"
-                    fill="none"
-                    stroke="rgba(255,255,255,0.95)"
-                    strokeWidth="6"
-                    strokeLinejoin="round"
-                  />
+              <div className={cn("relative mx-auto w-full overflow-hidden rounded-3xl", "h-[420px] sm:h-[520px] md:h-[660px]")}>
+                {/* Map image (uploaded) */}
+                <img
+                  src={mapImg}
+                  alt="Australia coverage map"
+                  className="absolute inset-0 h-full w-full object-cover"
+                  loading="lazy"
+                  referrerPolicy="no-referrer"
+                />
 
-                  {/* Tasmania */}
-                  <path
-                    d="M775 590 L820 610 L812 660 L770 670 L740 640 Z"
-                    fill="none"
-                    stroke="rgba(255,255,255,0.95)"
-                    strokeWidth="6"
-                    strokeLinejoin="round"
-                  />
-                </svg>
-
-                {/* Center car image */}
-                <div className="pointer-events-none absolute left-1/2 top-[52%] w-[220px] -translate-x-1/2 -translate-y-1/2 sm:w-[260px] md:w-[320px]">
+                {/* Center car image (kept) */}
+                <div className="pointer-events-none absolute left-1/2 top-[55%] w-[220px] -translate-x-1/2 -translate-y-1/2 sm:w-[260px] md:w-[320px]">
                   <img
                     src={carImg}
                     alt="Car"
@@ -97,6 +81,10 @@ export function AustraliaCoverageMap({ className }: { className?: string }) {
                   <CityPin key={c.name} x={c.x} y={c.y} label={c.name} />
                 ))}
               </div>
+
+              <p className="mt-4 text-center text-[12px] font-semibold text-[#0B3A7A]/80 sm:text-[13px]">
+                Metro & regional coverage across Australia — we’ll confirm timing after you submit.
+              </p>
             </div>
           </div>
         </div>
