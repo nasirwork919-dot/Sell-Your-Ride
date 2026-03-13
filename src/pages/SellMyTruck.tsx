@@ -1,4 +1,3 @@
-As Featured In -> Fast Steps truck headline -> reuse sections from Sell My Car page.">
 import { useEffect, useMemo, useState } from "react";
 import { BackToTopButton } from "@/components/BackToTopButton";
 import { CarBuyersHeader } from "@/components/CarBuyersHeader";
