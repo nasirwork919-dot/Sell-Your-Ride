@@ -26,6 +26,20 @@ const BRANDS: Brand[] = [
   { name: "Toyota", logoUrl: toyotaLogo },
 ];
 
+function BottomCurve({ from = "#22B9C5", to = "#FFFFFF" }: { from?: string; to?: string }) {
+  return (
+    <div className="relative w-full" aria-hidden="true">
+      <svg viewBox="0 0 1440 160" preserveAspectRatio="none" className="block h-[88px] w-full sm:h-[104px] md:h-[120px]">
+        <rect x="0" y="0" width="1440" height="160" fill={from} />
+        <path
+          d="M0,36 C220,82 480,108 720,92 C980,74 1210,22 1440,38 L1440,160 L0,160 Z"
+          fill={to}
+        />
+      </svg>
+    </div>
+  );
+}
+
 export function SellByBrandSection({
   className,
   onBrand,
@@ -73,6 +87,11 @@ export function SellByBrandSection({
             ))}
           </div>
         </div>
+      </div>
+
+      {/* End-of-section curve into next (white) section */}
+      <div className="-mb-[1px]">
+        <BottomCurve from="#22B9C5" to="#FFFFFF" />
       </div>
     </section>
   );
