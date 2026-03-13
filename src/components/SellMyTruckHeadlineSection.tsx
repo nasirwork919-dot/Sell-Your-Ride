@@ -1,5 +1,5 @@
 import { cn } from "@/lib/utils";
-import truckImg from "@/assets/hero-truck.webp";
+import truckImg from "@/assets/psd_box_truck_template-2.webp";
 
 export function SellMyTruckHeadlineSection({ className }: { className?: string }) {
   return (
@@ -27,7 +27,7 @@ export function SellMyTruckHeadlineSection({ className }: { className?: string }
             <div className="mx-auto max-w-4xl">
               <img
                 src={truckImg}
-                alt="Truck"
+                alt="Box truck"
                 className="mx-auto h-auto w-full max-w-[860px] object-contain drop-shadow-[0_22px_40px_rgba(15,23,42,0.14)]"
                 loading="lazy"
                 referrerPolicy="no-referrer"
