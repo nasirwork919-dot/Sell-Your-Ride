@@ -4,7 +4,6 @@ export function FaqBottomWave({
   className,
   from = "#66E3B1",
   to = "#FFFFFF",
-  seam = "rgba(11,58,122,0.14)",
   heightClass = "h-[92px] sm:h-[112px] md:h-[128px]",
 }: {
   className?: string;
@@ -12,8 +11,6 @@ export function FaqBottomWave({
   from?: string;
   /** Color of the section below (typically white) */
   to?: string;
-  /** Subtle seam stroke */
-  seam?: string;
   /** Tailwind height classes for responsive control */
   heightClass?: string;
 }) {
@@ -41,9 +38,6 @@ export function FaqBottomWave({
           `}
           fill={to}
         />
-
-        {/* seam */}
-        <path d={waveD} fill="none" stroke={seam} strokeWidth="6" strokeLinecap="round" />
       </svg>
     </div>
   );

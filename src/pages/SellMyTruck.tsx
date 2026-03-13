@@ -232,8 +232,8 @@ export default function SellMyTruck() {
           <FaqSection />
         </section>
 
-        {/* Merge out of FAQ green into white, then show the TruckBuyers section */}
-        <div className="-mt-[1px]">
+        {/* Merge out of FAQ green into white; overlap next section to avoid 1px seam */}
+        <div className="-mb-[1px] -mt-[1px]">
           <FaqBottomWave from="#66E3B1" to="#FFFFFF" />
         </div>
 
