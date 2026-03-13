@@ -1,5 +1,5 @@
 import { cn } from "@/lib/utils";
-import mapImg from "@/assets/coverage-map.png";
+import mapImg from "@/assets/carb-buyers-australia-service-areas.png";
 
 type CityPin = {
   name: string;
@@ -64,7 +64,6 @@ function TopCurve({ from = "#22B9C5", to = "#FFFFFF" }: { from?: string; to?: st
 export function SellMyCarLocationsSection({ className }: { className?: string }) {
   return (
     <section className={cn("w-full", className)} aria-label="Sell your car locations">
-      {/* Curve should match page teal above */}
       <div className="-mt-[1px]">
         <TopCurve from="#22B9C5" to="#FFFFFF" />
       </div>
@@ -73,7 +72,6 @@ export function SellMyCarLocationsSection({ className }: { className?: string })
         <div className="mx-auto max-w-6xl px-4 py-12 sm:py-14 md:px-6">
           <div className="overflow-hidden rounded-3xl border border-slate-200 bg-[#F3F6FA] shadow-[0_18px_50px_rgba(15,23,42,0.08)]">
             <div className="grid gap-10 p-6 sm:p-8 md:grid-cols-12 md:items-center md:gap-10 md:p-10">
-              {/* Left copy */}
               <div className="md:col-span-5">
                 <h2 className="text-balance text-[30px] font-extrabold leading-[1.12] tracking-tight text-[#0B3A7A] sm:text-[34px]">
                   Sell your car in the
@@ -91,30 +89,23 @@ export function SellMyCarLocationsSection({ className }: { className?: string })
                 </ul>
               </div>
 
-              {/* Right map (blended like reference) */}
               <div className="md:col-span-7">
                 <div className="overflow-hidden rounded-2xl border border-slate-200 bg-[#F7FBEA] p-4 shadow-sm sm:p-6">
                   <div className="relative h-[280px] w-full bg-[#F7FBEA] sm:h-[340px] md:h-[360px]">
-                    {/* Soft base fill so edges match even if image has transparency/white */}
                     <div className="absolute inset-0 bg-[#F7FBEA]" aria-hidden="true" />
 
                     <img
                       src={mapImg}
-                      alt="Australia map"
-                      className={cn(
-                        "absolute inset-0 h-full w-full object-contain",
-                        // Make the map look like it's part of the background, not a separate image block
-                        "mix-blend-multiply",
-                      )}
+                      alt="Australia service areas map"
+                      className="absolute inset-0 h-full w-full object-contain mix-blend-multiply"
                       style={{
-                        filter: "saturate(0.35) contrast(0.9) brightness(1.04) hue-rotate(-8deg)",
-                        opacity: 0.72,
+                        filter: "saturate(0.45) contrast(0.92) brightness(1.03) hue-rotate(-6deg)",
+                        opacity: 0.75,
                       }}
                       loading="lazy"
                       referrerPolicy="no-referrer"
                     />
 
-                    {/* Pins only (no text overlay) */}
                     {PINS.map((p) => (
                       <MapPin key={p.name} x={p.x} y={p.y} label={p.name} />
                     ))}
@@ -134,7 +125,6 @@ export function SellMyCarLocationsSection({ className }: { className?: string })
 function MapPin({ x, y, label }: { x: number; y: number; label: string }) {
   return (
     <div className="absolute" style={{ left: `${x}%`, top: `${y}%` }} aria-label={label} title={label}>
-      {/* Dot marker only */}
       <span className="relative grid h-3.5 w-3.5 place-items-center rounded-full bg-white ring-2 ring-[#0B3A7A]">
         <span className="h-2 w-2 rounded-full bg-[#0B3A7A]" />
       </span>
