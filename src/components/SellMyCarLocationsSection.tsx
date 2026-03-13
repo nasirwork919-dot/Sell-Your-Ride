@@ -72,7 +72,7 @@ export function SellMyCarLocationsSection({ className }: { className?: string })
       <div className="w-full bg-white">
         <div className="mx-auto max-w-6xl px-4 py-12 sm:py-14 md:px-6">
           <div className="overflow-hidden rounded-3xl border border-slate-200 bg-[#F3F6FA] shadow-[0_18px_50px_rgba(15,23,42,0.08)]">
-            <div className="grid gap-10 p-6 sm:p-8 md:grid-cols-12 md:items-center md:gap-8 md:p-10">
+            <div className="grid gap-10 p-6 sm:p-8 md:grid-cols-12 md:items-center md:gap-10 md:p-10">
               {/* Left copy */}
               <div className="md:col-span-5">
                 <h2 className="text-balance text-[30px] font-extrabold leading-[1.12] tracking-tight text-[#0B3A7A] sm:text-[34px]">
@@ -81,7 +81,7 @@ export function SellMyCarLocationsSection({ className }: { className?: string })
                   following locations:
                 </h2>
 
-                <ul className="mt-6 grid gap-2 text-[13px] font-semibold text-[#0B3A7A]">
+                <ul className="mt-6 grid gap-2.5 text-[13px] font-semibold text-[#0B3A7A]">
                   {LIST.map((item) => (
                     <li key={item} className="flex gap-3">
                       <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-[#0B3A7A]/70" aria-hidden="true" />
@@ -91,10 +91,10 @@ export function SellMyCarLocationsSection({ className }: { className?: string })
                 </ul>
               </div>
 
-              {/* Right map */}
+              {/* Right map (clone: clean map, no label pills over it) */}
               <div className="md:col-span-7">
                 <div className="overflow-hidden rounded-2xl border border-slate-200 bg-[#F7FBEA] p-4 shadow-sm sm:p-6">
-                  <div className="relative h-[320px] w-full sm:h-[380px] md:h-[420px]">
+                  <div className="relative h-[280px] w-full sm:h-[340px] md:h-[360px]">
                     <img
                       src={mapImg}
                       alt="Australia map"
@@ -103,6 +103,7 @@ export function SellMyCarLocationsSection({ className }: { className?: string })
                       referrerPolicy="no-referrer"
                     />
 
+                    {/* Pins only (no text overlay) */}
                     {PINS.map((p) => (
                       <MapPin key={p.name} x={p.x} y={p.y} label={p.name} />
                     ))}
@@ -122,15 +123,10 @@ export function SellMyCarLocationsSection({ className }: { className?: string })
 function MapPin({ x, y, label }: { x: number; y: number; label: string }) {
   return (
     <div className="absolute" style={{ left: `${x}%`, top: `${y}%` }} aria-label={label} title={label}>
-      <div className="flex items-center gap-2">
-        <span className="relative grid h-3.5 w-3.5 place-items-center rounded-full bg-white ring-2 ring-[#0B3A7A]">
-          <span className="h-2 w-2 rounded-full bg-[#0B3A7A]" />
-        </span>
-
-        <span className="rounded-full bg-[#F47A1F] px-2.5 py-1 text-[10px] font-extrabold text-white shadow-[0_10px_18px_rgba(15,23,42,0.14)] sm:text-[11px]">
-          {label}
-        </span>
-      </div>
+      {/* Dot marker only */}
+      <span className="relative grid h-3.5 w-3.5 place-items-center rounded-full bg-white ring-2 ring-[#0B3A7A]">
+        <span className="h-2 w-2 rounded-full bg-[#0B3A7A]" />
+      </span>
     </div>
   );
 }
