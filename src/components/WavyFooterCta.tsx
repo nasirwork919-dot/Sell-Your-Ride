@@ -3,52 +3,53 @@ import { cn } from "@/lib/utils";
 import { Facebook, Instagram } from "lucide-react";
 
 function TopWave() {
+  const waveD = `
+    M 0 130
+    C 120 75, 240 75, 360 130
+    C 480 185, 600 185, 720 130
+    C 840 75, 960 75, 1080 130
+    C 1200 185, 1320 185, 1440 130
+  `.trim();
+
   return (
     <div className="relative w-full bg-white" aria-hidden="true">
       {/* Deep smooth wave (matches reference closer) */}
       <svg viewBox="0 0 1440 220" preserveAspectRatio="none" className="block h-[120px] w-full sm:h-[140px]">
+        <defs>
+          {/* Path for the curved text */}
+          <path id="wavePath" d={waveD} />
+        </defs>
+
         {/* White top area */}
         <rect x="0" y="0" width="1440" height="220" fill="#FFFFFF" />
 
         {/* Navy wave fill */}
         <path
-          d="
-            M 0 130
-            C 120 75, 240 75, 360 130
-            C 480 185, 600 185, 720 130
-            C 840 75, 960 75, 1080 130
-            C 1200 185, 1320 185, 1440 130
+          d={`
+            ${waveD}
             L 1440 220
             L 0 220
             Z
-          "
+          `}
           fill="#163F75"
         />
 
         {/* Subtle grey line right above the navy (like reference) */}
-        <path
-          d="
-            M 0 130
-            C 120 75, 240 75, 360 130
-            C 480 185, 600 185, 720 130
-            C 840 75, 960 75, 1080 130
-            C 1200 185, 1320 185, 1440 130
-          "
-          fill="none"
-          stroke="rgba(11,58,122,0.22)"
-          strokeWidth="6"
-          strokeLinecap="round"
-        />
-      </svg>
+        <path d={waveD} fill="none" stroke="rgba(11,58,122,0.22)" strokeWidth="6" strokeLinecap="round" />
 
-      {/* Text strip (placed on the top white band, close to the wave like the screenshot) */}
-      <div className="pointer-events-none absolute left-0 right-0 top-4 sm:top-5">
-        <div className="mx-auto max-w-6xl px-4 md:px-6">
-          <p className="select-none text-center text-[15px] font-extrabold tracking-tight text-[#22B9C5] sm:text-[18px]">
+        {/* Curved teal text riding the wave */}
+        <text
+          fill="#22B9C5"
+          fontSize="22"
+          fontWeight="800"
+          textAnchor="middle"
+          dominantBaseline="middle"
+        >
+          <textPath href="#wavePath" startOffset="50%">
             Australia-wide → Receive quote → Host inspection → Get paid instantly → We pick up your vehicle
-          </p>
-        </div>
-      </div>
+          </textPath>
+        </text>
+      </svg>
     </div>
   );
 }
@@ -152,9 +153,7 @@ export function WavyFooterCta({ className, onEnquire }: { className?: string; on
 
             {/* Social */}
             <div className="sm:col-span-1">
-              <p className="text-[11px] font-extrabold uppercase tracking-[0.18em] text-white/80">
-                Social
-              </p>
+              <p className="text-[11px] font-extrabold uppercase tracking-[0.18em] text-white/80">Social</p>
               <div className="mt-4 flex items-center gap-3">
                 <a
                   href="#"
