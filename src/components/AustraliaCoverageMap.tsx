@@ -1,5 +1,6 @@
 import { cn } from "@/lib/utils";
 import carImg from "@/assets/transparent-blue-car.webp";
+import { FaqTopWave } from "@/components/FaqTopWave";
 
 type City = {
   name: string;
@@ -38,57 +39,64 @@ const CITIES: City[] = [
 
 export function AustraliaCoverageMap({ className }: { className?: string }) {
   return (
-    <section className={cn("w-full bg-[#66E3B1]", className)} aria-label="Australia coverage">
-      <div className="w-full px-4 py-10 sm:py-12 md:px-6">
-        <div className="mx-auto max-w-6xl">
-          <h2 className="text-center text-[38px] font-extrabold tracking-tight text-[#0B3A7A] sm:text-[52px]">
-            We buy cars Australia wide
-          </h2>
+    <section className={cn("w-full", className)} aria-label="Australia coverage">
+      {/* White -> Green curve cap (no text), matching footer/FAQ style */}
+      <div className="-mb-[18px] sm:-mb-[22px]">
+        <FaqTopWave from="#FFFFFF" to="#66E3B1" />
+      </div>
 
-          <div className="relative mx-auto mt-8 max-w-5xl">
-            {/* Map frame */}
-            <div className={cn("relative mx-auto w-full", "h-[420px] sm:h-[520px] md:h-[660px]")}>
-              {/* Australia outline */}
-              <svg
-                viewBox="0 0 1200 700"
-                preserveAspectRatio="xMidYMid meet"
-                className="absolute inset-0 h-full w-full"
-                aria-hidden="true"
-              >
-                {/* Outline */}
-                <path
-                  d="M353 105 L488 60 L518 110 L610 70 L730 66 L700 120 L785 168 L812 86 L872 240 L870 305 L920 338 L900 430 L842 505 L738 540 L700 590 L616 560 L585 518 L540 560 L462 518 L395 470 L346 500 L278 458 L198 420 L173 350 L192 252 L252 220 L313 180 Z"
-                  fill="none"
-                  stroke="rgba(255,255,255,0.95)"
-                  strokeWidth="6"
-                  strokeLinejoin="round"
-                />
+      <div className="w-full bg-[#66E3B1]">
+        <div className="w-full px-4 py-10 sm:py-12 md:px-6">
+          <div className="mx-auto max-w-6xl">
+            <h2 className="text-center text-[38px] font-extrabold tracking-tight text-[#0B3A7A] sm:text-[52px]">
+              We buy cars Australia wide
+            </h2>
 
-                {/* Tasmania */}
-                <path
-                  d="M775 590 L820 610 L812 660 L770 670 L740 640 Z"
-                  fill="none"
-                  stroke="rgba(255,255,255,0.95)"
-                  strokeWidth="6"
-                  strokeLinejoin="round"
-                />
-              </svg>
+            <div className="relative mx-auto mt-8 max-w-5xl">
+              {/* Map frame */}
+              <div className={cn("relative mx-auto w-full", "h-[420px] sm:h-[520px] md:h-[660px]")}>
+                {/* Australia outline */}
+                <svg
+                  viewBox="0 0 1200 700"
+                  preserveAspectRatio="xMidYMid meet"
+                  className="absolute inset-0 h-full w-full"
+                  aria-hidden="true"
+                >
+                  {/* Outline */}
+                  <path
+                    d="M353 105 L488 60 L518 110 L610 70 L730 66 L700 120 L785 168 L812 86 L872 240 L870 305 L920 338 L900 430 L842 505 L738 540 L700 590 L616 560 L585 518 L540 560 L462 518 L395 470 L346 500 L278 458 L198 420 L173 350 L192 252 L252 220 L313 180 Z"
+                    fill="none"
+                    stroke="rgba(255,255,255,0.95)"
+                    strokeWidth="6"
+                    strokeLinejoin="round"
+                  />
 
-              {/* Center car image */}
-              <div className="pointer-events-none absolute left-1/2 top-[52%] w-[220px] -translate-x-1/2 -translate-y-1/2 sm:w-[260px] md:w-[320px]">
-                <img
-                  src={carImg}
-                  alt="Car"
-                  className="h-auto w-full object-contain drop-shadow-[0_18px_28px_rgba(15,23,42,0.18)]"
-                  loading="lazy"
-                  referrerPolicy="no-referrer"
-                />
+                  {/* Tasmania */}
+                  <path
+                    d="M775 590 L820 610 L812 660 L770 670 L740 640 Z"
+                    fill="none"
+                    stroke="rgba(255,255,255,0.95)"
+                    strokeWidth="6"
+                    strokeLinejoin="round"
+                  />
+                </svg>
+
+                {/* Center car image */}
+                <div className="pointer-events-none absolute left-1/2 top-[52%] w-[220px] -translate-x-1/2 -translate-y-1/2 sm:w-[260px] md:w-[320px]">
+                  <img
+                    src={carImg}
+                    alt="Car"
+                    className="h-auto w-full object-contain drop-shadow-[0_18px_28px_rgba(15,23,42,0.18)]"
+                    loading="lazy"
+                    referrerPolicy="no-referrer"
+                  />
+                </div>
+
+                {/* Pins + labels */}
+                {CITIES.map((c) => (
+                  <CityPin key={c.name} x={c.x} y={c.y} label={c.name} />
+                ))}
               </div>
-
-              {/* Pins + labels */}
-              {CITIES.map((c) => (
-                <CityPin key={c.name} x={c.x} y={c.y} label={c.name} />
-              ))}
             </div>
           </div>
         </div>
