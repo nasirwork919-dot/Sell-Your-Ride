@@ -50,7 +50,7 @@ export function CarBuyersHeader({
     <header
       className={cn(
         "fixed left-0 right-0 top-0 z-50 transition-transform duration-200",
-        "border-t-[6px] border-[#0B3A7A] border-b border-slate-200",
+        "border-b border-slate-200",
         scrolled ? "bg-white/92 backdrop-blur" : "bg-white",
         hidden ? "-translate-y-full" : "translate-y-0",
       )}
