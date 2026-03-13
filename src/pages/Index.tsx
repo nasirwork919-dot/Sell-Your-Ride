@@ -108,12 +108,19 @@ export default function Index() {
   const scrolled = y > 10;
 
   return (
-    <div className="min-h-screen bg-slate-50">
+    <div className="min-h-screen bg-[#22B9C5]">
       <MarketingPixels />
 
-      <CarBuyersHeader active={active} items={NAV} onNav={navTo} hidden={navHidden} scrolled={scrolled} phoneText="1300 770 571" />
+      <CarBuyersHeader
+        active={active}
+        items={NAV}
+        onNav={navTo}
+        hidden={navHidden}
+        scrolled={scrolled}
+        phoneText="1300 770 571"
+      />
 
-      <main className="w-full pb-0 pt-[88px] sm:pt-24">
+      <main className="w-full pb-0 pt-[74px] sm:pt-[74px]">
         {/* Hero + form (quote) — FULL WIDTH */}
         <section id="sell" className="w-full scroll-mt-28">
           <CarBuyersHero
