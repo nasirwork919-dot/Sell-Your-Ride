@@ -163,7 +163,7 @@ export function LeadForm({
         <>
           {/* Hero compact form matches reference fields/stack */}
           {isHero ? (
-            <form className="mt-3 grid gap-2" onSubmit={handleSubmit(onSubmit)} noValidate>
+            <form className="mt-3 grid gap-2.5" onSubmit={handleSubmit(onSubmit)} noValidate>
               {/* Honeypot */}
               <div className="hidden" aria-hidden="true">
                 <Label htmlFor={honeypotName}>Website</Label>
@@ -176,130 +176,132 @@ export function LeadForm({
                 />
               </div>
 
-              <Input
-                className={heroInput(errors.fullName?.message)}
-                placeholder="Name"
-                autoComplete="name"
-                {...register("fullName")}
-              />
-              <Input
-                className={heroInput(errors.phone?.message)}
-                placeholder="Phone Number"
-                inputMode="tel"
-                autoComplete="tel"
-                {...register("phone")}
-              />
-              <Input
-                className={heroInput(errors.email?.message)}
-                placeholder="Email"
-                inputMode="email"
-                autoComplete="email"
-                {...register("email")}
-              />
+              <div className="grid gap-2.5 rounded-xl border border-slate-200 bg-white p-2.5 shadow-[0_10px_22px_rgba(15,23,42,0.06)]">
+                <Input
+                  className={heroInput(errors.fullName?.message)}
+                  placeholder="Name"
+                  autoComplete="name"
+                  {...register("fullName")}
+                />
+                <Input
+                  className={heroInput(errors.phone?.message)}
+                  placeholder="Phone Number"
+                  inputMode="tel"
+                  autoComplete="tel"
+                  {...register("phone")}
+                />
+                <Input
+                  className={heroInput(errors.email?.message)}
+                  placeholder="Email"
+                  inputMode="email"
+                  autoComplete="email"
+                  {...register("email")}
+                />
 
-              <Select
-                value={stateVal ?? ""}
-                onValueChange={(v) => setValue("state", v, { shouldDirty: true, shouldTouch: true })}
-              >
-                <SelectTrigger className={heroSelectTrigger()}>
-                  <SelectValue placeholder="State" />
-                </SelectTrigger>
-                <SelectContent>
-                  {STATES.map((s) => (
-                    <SelectItem key={s} value={s}>
-                      {s}
-                    </SelectItem>
-                  ))}
-                </SelectContent>
-              </Select>
+                <Select
+                  value={stateVal ?? ""}
+                  onValueChange={(v) => setValue("state", v, { shouldDirty: true, shouldTouch: true })}
+                >
+                  <SelectTrigger className={heroSelectTrigger()}>
+                    <SelectValue placeholder="State" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    {STATES.map((s) => (
+                      <SelectItem key={s} value={s}>
+                        {s}
+                      </SelectItem>
+                    ))}
+                  </SelectContent>
+                </Select>
 
-              <Select
-                value={watch("carBrand") ?? ""}
-                onValueChange={(v) => setValue("carBrand", v, { shouldDirty: true, shouldTouch: true })}
-              >
-                <SelectTrigger className={heroSelectTrigger(errors.carBrand?.message)}>
-                  <SelectValue placeholder="Make" />
-                </SelectTrigger>
-                <SelectContent>
-                  {["Toyota", "Mazda", "Hyundai", "Kia", "Ford", "Holden", "Honda", "BMW", "Mercedes-Benz", "Other"].map(
-                    (m) => (
+                <Select
+                  value={watch("carBrand") ?? ""}
+                  onValueChange={(v) => setValue("carBrand", v, { shouldDirty: true, shouldTouch: true })}
+                >
+                  <SelectTrigger className={heroSelectTrigger(errors.carBrand?.message)}>
+                    <SelectValue placeholder="Make" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    {["Toyota", "Mazda", "Hyundai", "Kia", "Ford", "Holden", "Honda", "BMW", "Mercedes-Benz", "Other"].map(
+                      (m) => (
+                        <SelectItem key={m} value={m}>
+                          {m}
+                        </SelectItem>
+                      ),
+                    )}
+                  </SelectContent>
+                </Select>
+
+                <Select
+                  value={watch("carModel") ?? ""}
+                  onValueChange={(v) => setValue("carModel", v, { shouldDirty: true, shouldTouch: true })}
+                >
+                  <SelectTrigger className={heroSelectTrigger(errors.carModel?.message)}>
+                    <SelectValue placeholder="Model" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    {["Corolla", "Camry", "RAV4", "CX-5", "i30", "Cerato", "Ranger", "Hilux", "Other"].map((m) => (
                       <SelectItem key={m} value={m}>
                         {m}
                       </SelectItem>
-                    ),
-                  )}
-                </SelectContent>
-              </Select>
+                    ))}
+                  </SelectContent>
+                </Select>
 
-              <Select
-                value={watch("carModel") ?? ""}
-                onValueChange={(v) => setValue("carModel", v, { shouldDirty: true, shouldTouch: true })}
-              >
-                <SelectTrigger className={heroSelectTrigger(errors.carModel?.message)}>
-                  <SelectValue placeholder="Model" />
-                </SelectTrigger>
-                <SelectContent>
-                  {["Corolla", "Camry", "RAV4", "CX-5", "i30", "Cerato", "Ranger", "Hilux", "Other"].map((m) => (
-                    <SelectItem key={m} value={m}>
-                      {m}
-                    </SelectItem>
-                  ))}
-                </SelectContent>
-              </Select>
+                <Select
+                  value={String(watch("manufacturingYear") ?? "")}
+                  onValueChange={(v) =>
+                    setValue("manufacturingYear", Number(v) as any, { shouldDirty: true, shouldTouch: true })
+                  }
+                >
+                  <SelectTrigger className={heroSelectTrigger(errors.manufacturingYear?.message)}>
+                    <SelectValue placeholder="Year" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    {Array.from({ length: 18 }, (_, i) => currentYear - i).map((y) => (
+                      <SelectItem key={y} value={String(y)}>
+                        {y}
+                      </SelectItem>
+                    ))}
+                  </SelectContent>
+                </Select>
 
-              <Select
-                value={String(watch("manufacturingYear") ?? "")}
-                onValueChange={(v) =>
-                  setValue("manufacturingYear", Number(v) as any, { shouldDirty: true, shouldTouch: true })
-                }
-              >
-                <SelectTrigger className={heroSelectTrigger(errors.manufacturingYear?.message)}>
-                  <SelectValue placeholder="Year" />
-                </SelectTrigger>
-                <SelectContent>
-                  {Array.from({ length: 18 }, (_, i) => currentYear - i).map((y) => (
-                    <SelectItem key={y} value={String(y)}>
-                      {y}
-                    </SelectItem>
-                  ))}
-                </SelectContent>
-              </Select>
+                <Select
+                  value={badgeSelectValue}
+                  onValueChange={(v) =>
+                    setValue("badge", v === BADGE_NONE_VALUE ? "" : v, { shouldDirty: true, shouldTouch: true })
+                  }
+                >
+                  <SelectTrigger className={heroSelectTrigger()}>
+                    <SelectValue placeholder="Badge" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value={BADGE_NONE_VALUE}>—</SelectItem>
+                    {BADGES.map((b) => (
+                      <SelectItem key={b} value={b}>
+                        {b}
+                      </SelectItem>
+                    ))}
+                  </SelectContent>
+                </Select>
 
-              <Select
-                value={badgeSelectValue}
-                onValueChange={(v) =>
-                  setValue("badge", v === BADGE_NONE_VALUE ? "" : v, { shouldDirty: true, shouldTouch: true })
-                }
-              >
-                <SelectTrigger className={heroSelectTrigger()}>
-                  <SelectValue placeholder="Badge" />
-                </SelectTrigger>
-                <SelectContent>
-                  <SelectItem value={BADGE_NONE_VALUE}>—</SelectItem>
-                  {BADGES.map((b) => (
-                    <SelectItem key={b} value={b}>
-                      {b}
-                    </SelectItem>
-                  ))}
-                </SelectContent>
-              </Select>
+                <Input
+                  className={heroInput(errors.kilometersDriven?.message)}
+                  placeholder="KM's"
+                  inputMode="numeric"
+                  {...register("kilometersDriven")}
+                />
 
-              <Input
-                className={heroInput(errors.kilometersDriven?.message)}
-                placeholder="KM's"
-                inputMode="numeric"
-                {...register("kilometersDriven")}
-              />
-
-              {serverError ? (
-                <div className="mt-1 rounded-lg border border-rose-200 bg-rose-50 px-3 py-2 text-xs font-semibold text-rose-800">
-                  {serverError}
-                </div>
-              ) : null}
+                {serverError ? (
+                  <div className="rounded-lg border border-rose-200 bg-rose-50 px-3 py-2 text-xs font-semibold text-rose-800">
+                    {serverError}
+                  </div>
+                ) : null}
+              </div>
 
               <Button
                 disabled={isSubmitting}
-                className="mt-2 h-10 w-full rounded-full bg-[#137C2B] text-sm font-extrabold text-white shadow-sm hover:bg-[#106824]"
+                className="h-11 w-full rounded-full bg-[#137C2B] text-sm font-extrabold text-white shadow-[0_10px_18px_rgba(19,124,43,0.22)] hover:bg-[#106824]"
               >
                 {isSubmitting ? (
                   <span className="inline-flex items-center">
@@ -448,8 +450,8 @@ export function LeadForm({
 
 function heroInput(hasError?: string) {
   return cn(
-    "h-8 rounded-[2px] border border-slate-200 bg-slate-100 px-2.5 text-[11px] font-medium text-slate-900 shadow-inner",
-    "placeholder:text-slate-500",
+    "h-10 rounded-lg border bg-slate-50 px-3 text-sm font-semibold text-[#0B3A7A]",
+    "border-slate-200 placeholder:text-slate-400",
     "focus-visible:ring-2 focus-visible:ring-[#0B3A7A]/15 focus-visible:ring-offset-0",
     hasError ? "border-rose-300 focus-visible:ring-rose-500/25" : "",
   );
@@ -457,8 +459,10 @@ function heroInput(hasError?: string) {
 
 function heroSelectTrigger(hasError?: string) {
   return cn(
-    "h-8 rounded-[2px] border border-slate-200 bg-slate-100 px-2.5 text-[11px] font-medium text-slate-900 shadow-inner",
+    "h-10 rounded-lg border bg-slate-50 px-3 text-sm font-semibold text-[#0B3A7A]",
+    "border-slate-200",
     "focus:ring-2 focus:ring-[#0B3A7A]/15 focus:ring-offset-0",
+    "[&>span]:text-slate-400 data-[state=open]:[&>span]:text-[#0B3A7A]",
     hasError ? "border-rose-300 focus:ring-rose-500/25" : "",
   );
 }
