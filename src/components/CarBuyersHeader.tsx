@@ -35,8 +35,13 @@ export function CarBuyersHeader({
     return () => window.removeEventListener("hashchange", onHash);
   }, []);
 
+  function goHome() {
+    if (pathname !== "/") navigate("/");
+    window.setTimeout(() => window.scrollTo({ top: 0, behavior: "smooth" }), 0);
+  }
+
   function handleNav(id: string) {
-    // If user clicks "Sell my car", always go to the dedicated page route.
+    // "Sell my car" goes to dedicated page.
     if (id === "sell") {
       if (pathname !== "/sell-my-car") navigate("/sell-my-car");
       else window.scrollTo({ top: 0, behavior: "smooth" });
@@ -59,9 +64,9 @@ export function CarBuyersHeader({
       <div className="mx-auto flex h-[64px] max-w-6xl items-center justify-between px-4 md:hidden">
         <button
           type="button"
-          onClick={() => handleNav("sell")}
+          onClick={goHome}
           className="text-left"
-          aria-label="Go to quote form"
+          aria-label="Go to home page"
           title="SellYourRide"
         >
           <span className="text-[22px] font-extrabold tracking-tight text-[#0B3A7A]">SellYourRide</span>
@@ -159,10 +164,10 @@ export function CarBuyersHeader({
         <div className="flex items-center justify-start">
           <button
             type="button"
-            onClick={() => handleNav("sell")}
+            onClick={goHome}
             className="inline-flex items-center gap-3"
-            aria-label="Go to quote form"
-            title="Get a quote"
+            aria-label="Go to home page"
+            title="Home"
           >
             <span className="grid h-10 w-10 place-items-center rounded-xl bg-[#0B3A7A] text-white shadow-sm ring-1 ring-[#062B57]/60">
               <svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true">
