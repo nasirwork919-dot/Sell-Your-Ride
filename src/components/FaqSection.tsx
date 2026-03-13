@@ -1,6 +1,5 @@
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import { cn } from "@/lib/utils";
-import { Plus } from "lucide-react";
 
 type Faq = {
   q: string;
@@ -56,30 +55,17 @@ export function FaqSection({ className, defaultOpen = "item-0" }: { className?: 
               <AccordionItem
                 key={f.q}
                 value={`item-${idx}`}
-                className={cn(
-                  "border-[#0B3A7A]/25",
-                  idx === 0 ? "border-t border-b" : "border-b",
-                )}
+                className={cn("border-[#0B3A7A]/25", idx === 0 ? "border-t border-b" : "border-b")}
               >
                 <AccordionTrigger
                   className={cn(
-                    "group flex w-full items-center justify-between gap-4 py-5 text-left",
+                    "flex w-full items-center justify-between gap-4 py-5 text-left hover:no-underline",
                     "text-[13px] font-extrabold tracking-tight text-[#0B3A7A] sm:text-sm",
-                    "hover:no-underline",
+                    // Style the default chevron icon so it matches the clean single-icon look
+                    "[&>svg]:h-5 [&>svg]:w-5 [&>svg]:text-[#0B3A7A] [&>svg]:opacity-90",
                   )}
                 >
                   <span className="min-w-0">{f.q}</span>
-                  <span
-                    className={cn(
-                      "grid h-7 w-7 shrink-0 place-items-center rounded-full",
-                      "text-[#0B3A7A] transition-transform duration-200",
-                      "[&_[data-icon]]:transition-transform [&_[data-icon]]:duration-200",
-                      "group-data-[state=open]:rotate-45",
-                    )}
-                    aria-hidden="true"
-                  >
-                    <Plus data-icon className="h-5 w-5" />
-                  </span>
                 </AccordionTrigger>
 
                 <AccordionContent className="pb-6 pr-10 text-[12px] font-medium leading-relaxed text-[#08304B] sm:text-[13px]">
