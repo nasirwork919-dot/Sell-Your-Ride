@@ -140,9 +140,6 @@ export default function Index() {
           <HomeCategoryTiles onNavigate={navTo} />
         </section>
 
-        {/* Requested clone section */}
-        <WantedSellTilesSection onQuote={() => navTo("sell")} />
-
         {/* Full-width Australia coverage map section */}
         <section id="video" className="w-full scroll-mt-28">
           <AustraliaCoverageMap />
@@ -172,6 +169,9 @@ export default function Index() {
 
         {/* Exact clone benefits section (full width) */}
         <ExactBenefitsOrangeSection onEnquire={() => navTo("sell")} />
+
+        {/* Requested clone section (now directly under the orange benefits section) */}
+        <WantedSellTilesSection onQuote={() => navTo("sell")} />
 
         {/* Back to centered lane for CTA/footer */}
         <div className="mx-auto max-w-6xl px-4 md:px-6">
