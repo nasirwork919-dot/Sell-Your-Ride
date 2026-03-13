@@ -1,4 +1,3 @@
-white via a bottom wave; then merge into footer wave from white.">
 import { useEffect, useMemo, useState } from "react";
 import { BackToTopButton } from "@/components/BackToTopButton";
 import { CarBuyersHeader } from "@/components/CarBuyersHeader";
