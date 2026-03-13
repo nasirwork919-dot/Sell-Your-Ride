@@ -18,7 +18,6 @@ import { WhatsGreatAboutSection } from "@/components/WhatsGreatAboutSection";
 import { SellMyCarCoverageSection } from "@/components/SellMyCarCoverageSection";
 import { SellMyCarLocationsSection } from "@/components/SellMyCarLocationsSection";
 import { WantedSellTilesSection } from "@/components/WantedSellTilesSection";
-import { SellMyCarEndNoteSection } from "@/components/SellMyCarEndNoteSection";
 import { ExactBenefitsOrangeSection } from "@/components/ExactBenefitsOrangeSection";
 
 const NAV = [
@@ -221,14 +220,11 @@ export default function SellMyCar() {
         <SellMyCarCoverageSection />
         <SellMyCarLocationsSection />
 
-        {/* Orange paperwork / benefits section from home page */}
-        <ExactBenefitsOrangeSection onEnquire={() => window.scrollTo({ top: 0, behavior: "smooth" })} />
-
-        {/* Clone from home page: Wanting to sell tiles (placed under latest section) */}
+        {/* Wanting to sell tiles */}
         <WantedSellTilesSection onQuote={() => window.scrollTo({ top: 0, behavior: "smooth" })} />
 
-        {/* End note section */}
-        <SellMyCarEndNoteSection />
+        {/* Orange paperwork / benefits section (placed under the tiles, per request) */}
+        <ExactBenefitsOrangeSection onEnquire={() => window.scrollTo({ top: 0, behavior: "smooth" })} />
       </main>
 
       <FloatingWhatsAppButton href={adminWhatsAppLink} />
