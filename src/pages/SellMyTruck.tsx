@@ -9,6 +9,8 @@ import { LeadForm } from "@/components/LeadForm";
 import { cn } from "@/lib/utils";
 
 import heroTruck from "@/assets/hero-truck.webp";
+import { SellMyTruckHeadlineSection } from "@/components/SellMyTruckHeadlineSection";
+import { SellMyTruckStepsCard } from "@/components/SellMyTruckStepsCard";
 
 const NAV = [
   { id: "sell", label: "Sell my car" },
@@ -64,7 +66,10 @@ export default function SellMyTruck() {
       {/* Match the fixed header height (mobile: 64px, desktop: 68px) */}
       <main className="w-full pb-0 pt-[64px] md:pt-[68px]">
         {/* HERO (cloned layout: home hero style) */}
-        <section aria-label="Hero" className="relative w-full overflow-hidden bg-[#22B9C5] px-4 py-10 md:px-6 md:py-12">
+        <section
+          aria-label="Hero"
+          className="relative w-full overflow-hidden bg-[#22B9C5] px-4 py-10 md:px-6 md:py-12"
+        >
           <div className="w-full md:mx-auto md:max-w-6xl md:px-6">
             <div className="grid items-center gap-10 md:grid-cols-12 md:gap-12">
               {/* Left */}
@@ -183,6 +188,10 @@ export default function SellMyTruck() {
             </div>
           </div>
         </section>
+
+        {/* Next section (matches screenshot) */}
+        <SellMyTruckHeadlineSection />
+        <SellMyTruckStepsCard />
       </main>
 
       <FloatingWhatsAppButton href={adminWhatsAppLink} />
