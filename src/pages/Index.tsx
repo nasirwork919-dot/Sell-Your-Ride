@@ -13,6 +13,7 @@ import { FastStepsSection } from "@/components/FastStepsSection";
 import { HappyCustomersSection } from "@/components/HappyCustomersSection";
 import { ExactBenefitsOrangeSection } from "@/components/ExactBenefitsOrangeSection";
 import { ReadyToSellSection } from "@/components/ReadyToSellSection";
+import { AboutWordmarkSection } from "@/components/AboutWordmarkSection";
 
 const NAV = [
   { id: "sell", label: "Sell my car" },
@@ -175,8 +176,11 @@ export default function Index() {
         {/* Requested clone section (now directly under the orange benefits section) */}
         <WantedSellTilesSection onQuote={() => navTo("sell")} />
 
-        {/* New: Ready-to-sell section (reference screenshot) */}
+        {/* Ready-to-sell section (reference screenshot) */}
         <ReadyToSellSection onQuote={() => navTo("sell")} />
+
+        {/* New: About section (reference screenshot) */}
+        <AboutWordmarkSection onContact={() => navTo("sell")} />
       </main>
 
       <FloatingWhatsAppButton href={adminWhatsAppLink} />
