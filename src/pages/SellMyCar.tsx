@@ -62,8 +62,11 @@ export default function SellMyCar() {
       />
 
       <main className="w-full pb-0 pt-[74px] sm:pt-[74px]">
-        {/* HERO (copied structure from home hero, with only image swapped) */}
-        <section aria-label="Hero" className="relative w-full overflow-hidden bg-[#22B9C5] px-0 py-10 md:px-6 md:py-12">
+        {/* HERO (cloned from home hero layout, with only image swapped) */}
+        <section
+          aria-label="Hero"
+          className="relative w-full overflow-hidden bg-[#22B9C5] px-0 py-10 md:px-6 md:py-12"
+        >
           <div className="w-full px-4 md:mx-auto md:max-w-6xl md:px-6">
             <div className="grid items-center gap-10 md:grid-cols-12 md:gap-12">
               {/* Left */}
@@ -106,10 +109,21 @@ export default function SellMyCar() {
                         title: "Get a quick offer",
                         desc: "Fill out the form with your details and we will provide an estimate price.",
                       },
-                      { n: 2, title: "Convenient inspection", desc: "We come to a location of your choice to inspect the vehicle." },
-                      { n: 3, title: "Get the best price", desc: "We make an offer and provide same-day payment." },
+                      {
+                        n: 2,
+                        title: "Convenient inspection",
+                        desc: "We come to a location of your choice to inspect the vehicle.",
+                      },
+                      {
+                        n: 3,
+                        title: "Get the best price",
+                        desc: "We make an offer and provide same-day payment.",
+                      },
                     ].map((s) => (
-                      <Card key={s.n} className="relative rounded-2xl border-white/55 bg-white/55 p-4 text-left shadow-sm">
+                      <Card
+                        key={s.n}
+                        className="relative rounded-2xl border-white/55 bg-white/55 p-4 text-left shadow-sm"
+                      >
                         <div className="absolute -top-4 left-1/2 grid h-9 w-9 -translate-x-1/2 place-items-center rounded-full bg-[#0B3A7A] text-sm font-extrabold text-white shadow">
                           {s.n}
                         </div>
