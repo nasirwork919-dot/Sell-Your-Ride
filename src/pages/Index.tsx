@@ -111,14 +111,7 @@ export default function Index() {
     <div className="min-h-screen bg-slate-50">
       <MarketingPixels />
 
-      <CarBuyersHeader
-        active={active}
-        items={NAV}
-        onNav={navTo}
-        hidden={navHidden}
-        scrolled={scrolled}
-        phoneText="+61 478 797 731"
-      />
+      <CarBuyersHeader active={active} items={NAV} onNav={navTo} hidden={navHidden} scrolled={scrolled} phoneText="1300 770 571" />
 
       <main className="w-full pb-0 pt-[88px] sm:pt-24">
         {/* Hero + form (quote) — FULL WIDTH */}
