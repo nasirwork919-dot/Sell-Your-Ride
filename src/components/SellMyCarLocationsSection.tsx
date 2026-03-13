@@ -1,36 +1,6 @@
 import { cn } from "@/lib/utils";
 import mapImg from "@/assets/carb-buyers-australia-service-areas.png";
 
-type CityPin = {
-  name: string;
-  x: number;
-  y: number;
-};
-
-const PINS: CityPin[] = [
-  { name: "Geraldton", x: 12, y: 58 },
-  { name: "Perth", x: 16, y: 76 },
-  { name: "Busselton", x: 18, y: 86 },
-
-  { name: "Cairns", x: 74, y: 20 },
-  { name: "Townsville", x: 74, y: 30 },
-  { name: "North Queensland", x: 68, y: 37 },
-
-  { name: "Rockhampton", x: 78, y: 48 },
-  { name: "Bundaberg", x: 78, y: 56 },
-  { name: "Noosa Heads", x: 78, y: 62 },
-  { name: "Brisbane", x: 78, y: 69 },
-  { name: "Gold Coast", x: 78, y: 78 },
-
-  { name: "Sydney", x: 73.5, y: 86 },
-  { name: "Canberra", x: 69.5, y: 90 },
-  { name: "Adelaide", x: 53, y: 86 },
-  { name: "Melbourne", x: 67, y: 96 },
-  { name: "Geelong", x: 60.5, y: 98 },
-
-  { name: "Tasmania", x: 72, y: 110 },
-];
-
 const LIST = [
   "Melbourne Country and Metro",
   "Sydney Country and Metro",
@@ -94,21 +64,19 @@ export function SellMyCarLocationsSection({ className }: { className?: string })
                   <div className="relative h-[280px] w-full bg-[#F7FBEA] sm:h-[340px] md:h-[360px]">
                     <div className="absolute inset-0 bg-[#F7FBEA]" aria-hidden="true" />
 
+                    {/* Map image only (no extra points layered on top) */}
                     <img
                       src={mapImg}
                       alt="Australia service areas map"
-                      className="absolute inset-0 h-full w-full object-contain mix-blend-multiply"
+                      className="absolute inset-0 h-full w-full object-contain"
                       style={{
-                        filter: "saturate(0.45) contrast(0.92) brightness(1.03) hue-rotate(-6deg)",
-                        opacity: 0.75,
+                        // Lighter + closer to background (avoid muddy multiply look)
+                        filter: "saturate(0.55) contrast(0.78) brightness(1.12) hue-rotate(-6deg)",
+                        opacity: 0.55,
                       }}
                       loading="lazy"
                       referrerPolicy="no-referrer"
                     />
-
-                    {PINS.map((p) => (
-                      <MapPin key={p.name} x={p.x} y={p.y} label={p.name} />
-                    ))}
                   </div>
                 </div>
               </div>
@@ -119,15 +87,5 @@ export function SellMyCarLocationsSection({ className }: { className?: string })
         </div>
       </div>
     </section>
-  );
-}
-
-function MapPin({ x, y, label }: { x: number; y: number; label: string }) {
-  return (
-    <div className="absolute" style={{ left: `${x}%`, top: `${y}%` }} aria-label={label} title={label}>
-      <span className="relative grid h-3.5 w-3.5 place-items-center rounded-full bg-white ring-2 ring-[#0B3A7A]">
-        <span className="h-2 w-2 rounded-full bg-[#0B3A7A]" />
-      </span>
-    </div>
   );
 }
