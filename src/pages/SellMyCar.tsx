@@ -15,7 +15,7 @@ import { AsFeaturedInStrip } from "@/components/AsFeaturedInStrip";
 import { FastStepsSection } from "@/components/FastStepsSection";
 import { BestPriceInfoSection } from "@/components/BestPriceInfoSection";
 import { WhatsGreatAboutSection } from "@/components/WhatsGreatAboutSection";
-import { OurNameSection } from "@/components/OurNameSection";
+import { SellMyCarCoverageSection } from "@/components/SellMyCarCoverageSection";
 
 const NAV = [
   { id: "sell", label: "Sell my car" },
@@ -213,8 +213,8 @@ export default function SellMyCar() {
         {/* What's great about */}
         <WhatsGreatAboutSection />
 
-        {/* Our name section */}
-        <OurNameSection />
+        {/* Screenshot section (ONLY on this page) */}
+        <SellMyCarCoverageSection />
       </main>
 
       <FloatingWhatsAppButton href={adminWhatsAppLink} />
