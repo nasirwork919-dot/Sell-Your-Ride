@@ -73,17 +73,12 @@ export function WantedSellTilesSection({
                 <div
                   className={cn(
                     "grid items-center gap-8",
-                    "md:grid-cols-12 md:gap-10",
+                    "md:grid-cols-2 md:gap-10",
                     reversed ? "md:[&_.copy]:order-2 md:[&_.media]:order-1" : "",
                   )}
                 >
-                  {/* Copy */}
-                  <div
-                    className={cn(
-                      "copy md:col-span-5",
-                      reversed ? "md:col-start-7 md:pl-2" : "md:pr-2",
-                    )}
-                  >
+                  {/* Copy (equal-width column) */}
+                  <div className={cn("copy flex flex-col items-start")}>
                     <h3 className="text-balance text-[34px] font-extrabold leading-[1.03] tracking-tight text-[#0B3A7A] sm:text-[42px]">
                       <span className="block">{t.titleLines[0]}</span>
                       <span className="block">{t.titleLines[1]}</span>
@@ -106,26 +101,27 @@ export function WantedSellTilesSection({
                     </Button>
                   </div>
 
-                  {/* Media */}
-                  <div className={cn("media md:col-span-7", reversed ? "md:col-start-1" : "")}>
-                    <div className="mx-auto w-full max-w-[560px]">
-                      <img
-                        src={t.imageUrl}
-                        alt={t.imageAlt}
-                        className={cn(
-                          "h-auto w-full object-contain",
-                          // match screenshot: car/caravan sit a bit tighter
-                          idx === 0 ? "md:translate-x-2" : "",
-                          idx === 2 ? "md:-translate-x-1" : "",
-                        )}
-                        loading="lazy"
-                        referrerPolicy="no-referrer"
-                      />
+                  {/* Media (equal-width column) */}
+                  <div className={cn("media flex items-center justify-center")}>
+                    <div className="w-full max-w-[560px]">
+                      <div className="flex items-center justify-center">
+                        <img
+                          src={t.imageUrl}
+                          alt={t.imageAlt}
+                          className={cn(
+                            "h-auto w-full object-contain",
+                            // Keep images visually consistent across tiles and screen sizes
+                            "max-h-[220px] sm:max-h-[260px] md:max-h-[280px] lg:max-h-[320px]",
+                          )}
+                          loading="lazy"
+                          referrerPolicy="no-referrer"
+                        />
+                      </div>
                     </div>
                   </div>
                 </div>
 
-                {/* Divider (screenshot-like: thin line with generous spacing) */}
+                {/* Divider (thin line with generous spacing) */}
                 {idx !== tiles.length - 1 ? (
                   <div className="mt-10 sm:mt-12">
                     <div className="h-px w-full bg-slate-200/70" />
