@@ -1,6 +1,7 @@
 import { useEffect, useMemo, useRef, useState } from "react";
 import { CarBuyersHero } from "@/components/CarBuyersHero";
 import { HomeCategoryTiles } from "@/components/HomeCategoryTiles";
+import { WantedSellTilesSection } from "@/components/WantedSellTilesSection";
 import { CarBuyersCta } from "@/components/CarBuyersCta";
 import { CarBuyersFooter } from "@/components/CarBuyersFooter";
 import { CarBuyersHeader } from "@/components/CarBuyersHeader";
@@ -138,6 +139,9 @@ export default function Index() {
         <section id="truck" className="w-full scroll-mt-28">
           <HomeCategoryTiles onNavigate={navTo} />
         </section>
+
+        {/* Requested clone section */}
+        <WantedSellTilesSection onQuote={() => navTo("sell")} />
 
         {/* Full-width Australia coverage map section */}
         <section id="video" className="w-full scroll-mt-28">
