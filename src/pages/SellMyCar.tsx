@@ -9,6 +9,7 @@ import { LeadForm } from "@/components/LeadForm";
 import { cn } from "@/lib/utils";
 
 import heroSellMyCar from "@/assets/lady-with-a-blue-car-at-the-background.webp";
+import { SellMyCarHeadlineSection } from "@/components/SellMyCarHeadlineSection";
 
 const NAV = [
   { id: "sell", label: "Sell my car" },
@@ -187,6 +188,9 @@ export default function SellMyCar() {
             </div>
           </div>
         </section>
+
+        {/* New section under hero (matches screenshot) */}
+        <SellMyCarHeadlineSection />
       </main>
 
       <FloatingWhatsAppButton href={adminWhatsAppLink} />
