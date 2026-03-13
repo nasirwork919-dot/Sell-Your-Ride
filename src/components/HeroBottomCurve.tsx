@@ -14,17 +14,35 @@ export function HeroBottomCurve({
       <svg
         viewBox="0 0 1440 220"
         preserveAspectRatio="none"
-        className="block h-[120px] w-full sm:h-[150px] md:h-[180px]"
+        className="block h-[120px] w-full sm:h-[150px] md:h-[190px]"
       >
-        {/* Hero background */}
+        {/* hero background */}
         <rect x="0" y="0" width="1440" height="220" fill={from} />
-        {/* Big soft curve into next section */}
+
+        {/* big footer-style curve into next section */}
         <path
-          d="M0,70
-             C220,140 520,200 760,190
-             C1020,178 1185,120 1440,88
-             L1440,220 L0,220 Z"
+          d="
+            M 0 70
+            C 240 40, 480 25, 720 25
+            C 960 25, 1200 40, 1440 70
+            L 1440 220
+            L 0 220
+            Z
+          "
           fill={to}
+        />
+
+        {/* subtle seam like footer (keeps it crisp on all displays) */}
+        <path
+          d="
+            M 0 70
+            C 240 40, 480 25, 720 25
+            C 960 25, 1200 40, 1440 70
+          "
+          fill="none"
+          stroke="rgba(11,58,122,0.10)"
+          strokeWidth="6"
+          strokeLinecap="round"
         />
       </svg>
     </div>
