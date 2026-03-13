@@ -21,6 +21,9 @@ import { WantedSellTilesSection } from "@/components/WantedSellTilesSection";
 import { ExactBenefitsOrangeSection } from "@/components/ExactBenefitsOrangeSection";
 import { InspectionChecklistSection } from "@/components/InspectionChecklistSection";
 import { SellByBrandSection } from "@/components/SellByBrandSection";
+import { HappyCustomersSection } from "@/components/HappyCustomersSection";
+import { FaqSection } from "@/components/FaqSection";
+import { WavyFooterCta } from "@/components/WavyFooterCta";
 
 const NAV = [
   { id: "sell", label: "Sell my car" },
@@ -228,9 +231,16 @@ export default function SellMyCar() {
         {/* Orange paperwork / benefits section (placed under the tiles) */}
         <ExactBenefitsOrangeSection onEnquire={() => window.scrollTo({ top: 0, behavior: "smooth" })} />
 
-        {/* New: checklist + sell-by-brand sections (under orange benefits) */}
+        {/* Checklist + sell-by-brand sections (under orange benefits) */}
         <InspectionChecklistSection />
         <SellByBrandSection onBrand={() => window.scrollTo({ top: 0, behavior: "smooth" })} />
+
+        {/* Reviews + FAQ + footer */}
+        <HappyCustomersSection onEnquire={() => window.scrollTo({ top: 0, behavior: "smooth" })} />
+        <section id="faq" className="w-full scroll-mt-28">
+          <FaqSection />
+        </section>
+        <WavyFooterCta onEnquire={() => window.scrollTo({ top: 0, behavior: "smooth" })} />
       </main>
 
       <FloatingWhatsAppButton href={adminWhatsAppLink} />
