@@ -76,7 +76,8 @@ export default function SellMyCar() {
         phoneText="1300 770 571"
       />
 
-      <main className="w-full pb-0 pt-[74px] sm:pt-[74px]">
+      {/* Match the fixed header height (mobile: 64px, desktop: 68px) */}
+      <main className="w-full pb-0 pt-[64px] md:pt-[68px]">
         {/* HERO (cloned from home hero layout, with only image swapped) */}
         <section
           aria-label="Hero"
