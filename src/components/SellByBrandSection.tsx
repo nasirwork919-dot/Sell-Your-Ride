@@ -1,44 +1,29 @@
 import { Card } from "@/components/ui/card";
 import { cn } from "@/lib/utils";
 
+import holdenLogo from "@/assets/brands/holden.svg";
+import fordLogo from "@/assets/brands/ford.svg";
+import bmwLogo from "@/assets/brands/bmw.svg";
+import volkswagenLogo from "@/assets/brands/volkswagen.svg";
+import audiLogo from "@/assets/brands/audi.svg";
+import hyundaiLogo from "@/assets/brands/hyundai.svg";
+import mercedesBenzLogo from "@/assets/brands/mercedes-benz.svg";
+import toyotaLogo from "@/assets/brands/toyota.svg";
+
 type Brand = {
   name: string;
   logoUrl: string;
 };
 
 const BRANDS: Brand[] = [
-  {
-    name: "Holden",
-    logoUrl: "https://upload.wikimedia.org/wikipedia/en/thumb/8/8b/Holden_logo.svg/512px-Holden_logo.svg.png",
-  },
-  {
-    name: "Ford",
-    logoUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3e/Ford_logo_flat.svg/512px-Ford_logo_flat.svg.png",
-  },
-  {
-    name: "BMW",
-    logoUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/4/44/BMW.svg/512px-BMW.svg.png",
-  },
-  {
-    name: "Volkswagen",
-    logoUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6d/Volkswagen_logo_2019.svg/512px-Volkswagen_logo_2019.svg.png",
-  },
-  {
-    name: "Audi",
-    logoUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/9/92/Audi_logo_detail.svg/512px-Audi_logo_detail.svg.png",
-  },
-  {
-    name: "Hyundai",
-    logoUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2a/Hyundai_logo.svg/512px-Hyundai_logo.svg.png",
-  },
-  {
-    name: "Mercedes-Benz",
-    logoUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/9/90/Mercedes-Logo.svg/512px-Mercedes-Logo.svg.png",
-  },
-  {
-    name: "Toyota",
-    logoUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9d/Toyota_carlogo.svg/512px-Toyota_carlogo.svg.png",
-  },
+  { name: "Holden", logoUrl: holdenLogo },
+  { name: "Ford", logoUrl: fordLogo },
+  { name: "BMW", logoUrl: bmwLogo },
+  { name: "Volkswagen", logoUrl: volkswagenLogo },
+  { name: "Audi", logoUrl: audiLogo },
+  { name: "Hyundai", logoUrl: hyundaiLogo },
+  { name: "Mercedes-Benz", logoUrl: mercedesBenzLogo },
+  { name: "Toyota", logoUrl: toyotaLogo },
 ];
 
 export function SellByBrandSection({
@@ -73,13 +58,12 @@ export function SellByBrandSection({
                   )}
                 >
                   <div className="flex flex-col items-center justify-center text-center">
-                    <div className="grid h-[54px] w-[84px] place-items-center sm:h-[60px] sm:w-[92px]">
+                    <div className="grid h-[54px] w-[96px] place-items-center sm:h-[60px] sm:w-[108px]">
                       <img
                         src={b.logoUrl}
                         alt={`${b.name} logo`}
                         className="max-h-full max-w-full object-contain"
                         loading="lazy"
-                        referrerPolicy="no-referrer"
                       />
                     </div>
                     <p className="mt-3 text-[12px] font-extrabold tracking-tight text-[#0B3A7A]">{b.name}</p>
