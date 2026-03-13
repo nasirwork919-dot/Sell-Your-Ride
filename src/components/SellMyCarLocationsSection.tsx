@@ -60,19 +60,21 @@ export function SellMyCarLocationsSection({ className }: { className?: string })
               </div>
 
               <div className="md:col-span-7">
-                <div className="overflow-hidden rounded-2xl border border-slate-200 bg-[#F7FBEA] p-4 shadow-sm sm:p-6">
-                  <div className="relative h-[280px] w-full bg-[#F7FBEA] sm:h-[340px] md:h-[360px]">
-                    <div className="absolute inset-0 bg-[#F7FBEA]" aria-hidden="true" />
+                {/* Match the site palette: slate/neutral instead of green */}
+                <div className="overflow-hidden rounded-2xl border border-slate-200 bg-white p-4 shadow-sm sm:p-6">
+                  <div className="relative h-[280px] w-full overflow-hidden rounded-xl bg-slate-50 sm:h-[340px] md:h-[360px]">
+                    {/* Soft vignette so the map feels embedded */}
+                    <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_50%_45%,rgba(255,255,255,0.0)_0%,rgba(248,250,252,0.0)_45%,rgba(248,250,252,0.92)_100%)]" />
 
-                    {/* Map image only (no extra points layered on top) */}
+                    {/* Map image only */}
                     <img
                       src={mapImg}
                       alt="Australia service areas map"
                       className="absolute inset-0 h-full w-full object-contain"
                       style={{
-                        // Lighter + closer to background (avoid muddy multiply look)
-                        filter: "saturate(0.55) contrast(0.78) brightness(1.12) hue-rotate(-6deg)",
-                        opacity: 0.55,
+                        // Remove odd casts; keep it airy + neutral like the rest of the site
+                        filter: "saturate(0.35) contrast(0.85) brightness(1.12)",
+                        opacity: 0.42,
                       }}
                       loading="lazy"
                       referrerPolicy="no-referrer"
