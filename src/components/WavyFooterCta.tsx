@@ -18,7 +18,7 @@ function TopWave({ from = "#66E3B1", to = "#163F75" }: { from?: string; to?: str
         preserveAspectRatio="none"
         className="block h-[120px] w-full sm:h-[140px]"
       >
-        {/* Top area matches the section above (FAQ green) */}
+        {/* Top area matches the section above */}
         <rect x="0" y="0" width="1440" height="220" fill={from} />
 
         {/* Bottom fill becomes the footer background */}
@@ -61,7 +61,16 @@ function FooterCol({ col }: { col: Col }) {
   );
 }
 
-export function WavyFooterCta({ className, onEnquire }: { className?: string; onEnquire: () => void }) {
+export function WavyFooterCta({
+  className,
+  onEnquire,
+  mergeFrom = "#66E3B1",
+}: {
+  className?: string;
+  onEnquire: () => void;
+  /** The background color of the section directly above this footer (for seamless wave merge). */
+  mergeFrom?: string;
+}) {
   const cols: Col[] = [
     {
       title: "Sell",
@@ -105,9 +114,9 @@ export function WavyFooterCta({ className, onEnquire }: { className?: string; on
   return (
     <footer className={cn("w-full", className)} aria-label="Footer">
       <div className="relative">
-        {/* Merge directly with FAQ green */}
+        {/* Merge directly with the section above */}
         <div className="translate-y-[1px]">
-          <TopWave from="#66E3B1" to="#163F75" />
+          <TopWave from={mergeFrom} to="#163F75" />
         </div>
 
         <div className="bg-[#163F75]">

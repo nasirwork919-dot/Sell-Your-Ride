@@ -1,3 +1,4 @@
+white via a bottom wave; then merge into footer wave from white.">
 import { useEffect, useMemo, useState } from "react";
 import { BackToTopButton } from "@/components/BackToTopButton";
 import { CarBuyersHeader } from "@/components/CarBuyersHeader";
@@ -22,8 +23,9 @@ import { WhatsGreatAboutSection } from "@/components/WhatsGreatAboutSection";
 import { SellMyCarCoverageSection } from "@/components/SellMyCarCoverageSection";
 import { ExactBenefitsOrangeSection } from "@/components/ExactBenefitsOrangeSection";
 import { IsItTimeToSellTruckSection } from "@/components/IsItTimeToSellTruckSection";
-import { AboutSellYourRideTealSection } from "@/components/AboutSellYourRideTealSection";
 import { FaqSection } from "@/components/FaqSection";
+import { FaqBottomWave } from "@/components/FaqBottomWave";
+import { TruckBuyersTooSection } from "@/components/TruckBuyersTooSection";
 import { WavyFooterCta } from "@/components/WavyFooterCta";
 
 const NAV = [
@@ -226,13 +228,20 @@ export default function SellMyTruck() {
 
         <IsItTimeToSellTruckSection onContact={() => window.scrollTo({ top: 0, behavior: "smooth" })} />
 
-        {/* New teal ABOUT section right after the blue truck section */}
-        <AboutSellYourRideTealSection onContact={() => window.scrollTo({ top: 0, behavior: "smooth" })} />
-
+        {/* FAQ */}
         <section id="faq" className="w-full scroll-mt-28">
           <FaqSection />
         </section>
-        <WavyFooterCta onEnquire={() => window.scrollTo({ top: 0, behavior: "smooth" })} />
+
+        {/* Merge out of FAQ green into white, then show the TruckBuyers section */}
+        <div className="-mt-[1px]">
+          <FaqBottomWave from="#66E3B1" to="#FFFFFF" />
+        </div>
+
+        <TruckBuyersTooSection onContact={() => window.scrollTo({ top: 0, behavior: "smooth" })} />
+
+        {/* Merge from white into the footer wave */}
+        <WavyFooterCta mergeFrom="#FFFFFF" onEnquire={() => window.scrollTo({ top: 0, behavior: "smooth" })} />
       </main>
 
       <FloatingWhatsAppButton href={adminWhatsAppLink} />
