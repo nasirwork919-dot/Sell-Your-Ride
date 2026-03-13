@@ -14,6 +14,7 @@ import { HappyCustomersSection } from "@/components/HappyCustomersSection";
 import { ExactBenefitsOrangeSection } from "@/components/ExactBenefitsOrangeSection";
 import { ReadyToSellSection } from "@/components/ReadyToSellSection";
 import { AboutWordmarkSection } from "@/components/AboutWordmarkSection";
+import { FaqSection } from "@/components/FaqSection";
 
 const NAV = [
   { id: "sell", label: "Sell my car" },
@@ -179,8 +180,11 @@ export default function Index() {
         {/* Ready-to-sell section (reference screenshot) */}
         <ReadyToSellSection onQuote={() => navTo("sell")} />
 
-        {/* New: About section (reference screenshot) */}
+        {/* About section (reference screenshot) */}
         <AboutWordmarkSection onContact={() => navTo("sell")} />
+
+        {/* FAQ section (reference screenshot) */}
+        <FaqSection />
       </main>
 
       <FloatingWhatsAppButton href={adminWhatsAppLink} />
