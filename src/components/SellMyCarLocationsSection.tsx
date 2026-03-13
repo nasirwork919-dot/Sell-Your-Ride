@@ -60,24 +60,35 @@ export function SellMyCarLocationsSection({ className }: { className?: string })
               </div>
 
               <div className="md:col-span-7">
-                {/* Match the site palette: slate/neutral instead of green */}
                 <div className="overflow-hidden rounded-2xl border border-slate-200 bg-white p-4 shadow-sm sm:p-6">
-                  <div className="relative h-[280px] w-full overflow-hidden rounded-xl bg-slate-50 sm:h-[340px] md:h-[360px]">
-                    {/* Soft vignette so the map feels embedded */}
-                    <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_50%_45%,rgba(255,255,255,0.0)_0%,rgba(248,250,252,0.0)_45%,rgba(248,250,252,0.92)_100%)]" />
-
-                    {/* Map image only */}
+                  <div
+                    className={cn(
+                      "relative h-[280px] w-full overflow-hidden rounded-xl bg-white sm:h-[340px] md:h-[360px]",
+                      "ring-1 ring-indigo-200/60",
+                      "shadow-[0_16px_40px_rgba(15,23,42,0.08)]",
+                    )}
+                  >
+                    {/* Map image: crisp + highlighted (no low opacity) */}
                     <img
                       src={mapImg}
                       alt="Australia service areas map"
                       className="absolute inset-0 h-full w-full object-contain"
                       style={{
-                        // Remove odd casts; keep it airy + neutral like the rest of the site
-                        filter: "saturate(0.35) contrast(0.85) brightness(1.12)",
-                        opacity: 0.42,
+                        opacity: 1,
+                        filter: "saturate(0.95) contrast(1.05) brightness(1.05)",
                       }}
                       loading="lazy"
                       referrerPolicy="no-referrer"
+                    />
+
+                    {/* subtle highlight wash so it feels 'lit' not flat */}
+                    <div
+                      className="pointer-events-none absolute inset-0"
+                      style={{
+                        background:
+                          "radial-gradient(circle at 45% 40%, rgba(99,102,241,0.10) 0%, rgba(255,255,255,0.00) 55%)",
+                      }}
+                      aria-hidden="true"
                     />
                   </div>
                 </div>
