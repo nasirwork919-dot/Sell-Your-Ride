@@ -2,17 +2,14 @@ import { cn } from "@/lib/utils";
 
 export function FaqTopWave({
   className,
-  from = "#FFFFFF",
   to = "#66E3B1",
-  seam = "rgba(11,58,122,0.16)",
+  seam = "rgba(11,58,122,0.12)",
   heightClass = "h-[96px] sm:h-[116px] md:h-[132px]",
 }: {
   className?: string;
-  /** Color above the wave (typically white) */
-  from?: string;
   /** Color of the section below (FAQ green) */
   to?: string;
-  /** Optional seam stroke to mimic the footer's subtle edge */
+  /** Optional seam stroke to mimic a subtle edge (set to 'transparent' to hide) */
   seam?: string;
   /** Tailwind height classes for responsive control */
   heightClass?: string;
@@ -28,8 +25,7 @@ export function FaqTopWave({
   return (
     <div className={cn("relative w-full", className)} aria-hidden="true">
       <svg viewBox="0 0 1440 220" preserveAspectRatio="none" className={cn("block w-full", heightClass)}>
-        {/* Top area matches the section above (white) */}
-        <rect x="0" y="0" width="1440" height="220" fill={from} />
+        {/* IMPORTANT: no background rect here (transparent), so it blends into the section above */}
 
         {/* Bottom fill becomes the FAQ section color */}
         <path
@@ -42,7 +38,7 @@ export function FaqTopWave({
           fill={to}
         />
 
-        {/* Subtle seam like the footer (no text, no dashed highlight) */}
+        {/* Optional subtle seam (very light). Set seam="transparent" to hide entirely. */}
         <path d={waveD} fill="none" stroke={seam} strokeWidth="6" strokeLinecap="round" />
       </svg>
     </div>

@@ -31,9 +31,6 @@ function TopWave({ from = "#66E3B1", to = "#163F75" }: { from?: string; to?: str
           `}
           fill={to}
         />
-
-        {/* Subtle seam line */}
-        <path d={waveD} fill="none" stroke="rgba(11,58,122,0.18)" strokeWidth="6" strokeLinecap="round" />
       </svg>
     </div>
   );
