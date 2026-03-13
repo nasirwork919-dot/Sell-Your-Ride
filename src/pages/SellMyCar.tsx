@@ -16,6 +16,7 @@ import { FastStepsSection } from "@/components/FastStepsSection";
 import { BestPriceInfoSection } from "@/components/BestPriceInfoSection";
 import { WhatsGreatAboutSection } from "@/components/WhatsGreatAboutSection";
 import { SellMyCarCoverageSection } from "@/components/SellMyCarCoverageSection";
+import { SellMyCarLocationsSection } from "@/components/SellMyCarLocationsSection";
 
 const NAV = [
   { id: "sell", label: "Sell my car" },
@@ -200,6 +201,9 @@ export default function SellMyCar() {
 
         {/* 4-step icon card strip */}
         <SellMyCarStepsCard />
+
+        {/* NEW: Locations + map section (matches screenshot) */}
+        <SellMyCarLocationsSection />
 
         {/* Clone from home page: As Featured In */}
         <AsFeaturedInStrip />
