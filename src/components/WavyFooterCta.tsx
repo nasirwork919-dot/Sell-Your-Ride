@@ -4,23 +4,45 @@ import { Facebook, Instagram } from "lucide-react";
 
 function TopWave() {
   return (
-    <div className="relative w-full" aria-hidden="true">
-      <svg viewBox="0 0 1440 160" preserveAspectRatio="none" className="block h-[84px] w-full sm:h-[96px]">
+    <div className="relative w-full bg-white" aria-hidden="true">
+      {/* Deep smooth wave (matches reference closer) */}
+      <svg viewBox="0 0 1440 220" preserveAspectRatio="none" className="block h-[120px] w-full sm:h-[140px]">
+        {/* White top area */}
+        <rect x="0" y="0" width="1440" height="220" fill="#FFFFFF" />
+
+        {/* Navy wave fill */}
         <path
-          d="M0,40 C180,10 360,90 540,50 C720,10 900,90 1080,50 C1260,10 1350,40 1440,26 L1440,0 L0,0 Z"
-          fill="#FFFFFF"
+          d="
+            M 0 130
+            C 120 75, 240 75, 360 130
+            C 480 185, 600 185, 720 130
+            C 840 75, 960 75, 1080 130
+            C 1200 185, 1320 185, 1440 130
+            L 1440 220
+            L 0 220
+            Z
+          "
+          fill="#163F75"
         />
+
+        {/* Subtle grey line right above the navy (like reference) */}
         <path
-          d="M0,40 C180,10 360,90 540,50 C720,10 900,90 1080,50 C1260,10 1350,40 1440,26"
+          d="
+            M 0 130
+            C 120 75, 240 75, 360 130
+            C 480 185, 600 185, 720 130
+            C 840 75, 960 75, 1080 130
+            C 1200 185, 1320 185, 1440 130
+          "
           fill="none"
-          stroke="rgba(11,58,122,0.16)"
+          stroke="rgba(11,58,122,0.22)"
           strokeWidth="6"
           strokeLinecap="round"
         />
       </svg>
 
-      {/* Curved text strip */}
-      <div className="pointer-events-none absolute left-0 right-0 top-3 sm:top-4">
+      {/* Text strip (placed on the top white band, close to the wave like the screenshot) */}
+      <div className="pointer-events-none absolute left-0 right-0 top-4 sm:top-5">
         <div className="mx-auto max-w-6xl px-4 md:px-6">
           <p className="select-none text-center text-[15px] font-extrabold tracking-tight text-[#22B9C5] sm:text-[18px]">
             Australia-wide → Receive quote → Host inspection → Get paid instantly → We pick up your vehicle
@@ -43,10 +65,7 @@ function FooterCol({ col }: { col: Col }) {
       <ul className="mt-4 grid gap-2">
         {col.items.map((it) => (
           <li key={it.label}>
-            <a
-              href={it.href}
-              className="text-[12px] font-semibold text-white/90 transition hover:text-white"
-            >
+            <a href={it.href} className="text-[12px] font-semibold text-white/90 transition hover:text-white">
               {it.label}
             </a>
           </li>
@@ -56,13 +75,7 @@ function FooterCol({ col }: { col: Col }) {
   );
 }
 
-export function WavyFooterCta({
-  className,
-  onEnquire,
-}: {
-  className?: string;
-  onEnquire: () => void;
-}) {
+export function WavyFooterCta({ className, onEnquire }: { className?: string; onEnquire: () => void }) {
   const cols: Col[] = [
     {
       title: "Sell",
@@ -139,7 +152,9 @@ export function WavyFooterCta({
 
             {/* Social */}
             <div className="sm:col-span-1">
-              <p className="text-[11px] font-extrabold uppercase tracking-[0.18em] text-white/80">Social</p>
+              <p className="text-[11px] font-extrabold uppercase tracking-[0.18em] text-white/80">
+                Social
+              </p>
               <div className="mt-4 flex items-center gap-3">
                 <a
                   href="#"
