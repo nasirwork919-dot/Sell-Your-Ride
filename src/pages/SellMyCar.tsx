@@ -202,7 +202,10 @@ export default function SellMyCar() {
         {/* 4-step icon card strip */}
         <SellMyCarStepsCard />
 
-        {/* NEW: Locations + map section (matches screenshot) */}
+        {/* I want to sell my car... (above image only now) */}
+        <SellMyCarCoverageSection />
+
+        {/* Locations section directly underneath */}
         <SellMyCarLocationsSection />
 
         {/* Clone from home page: As Featured In */}
@@ -216,9 +219,6 @@ export default function SellMyCar() {
 
         {/* What's great about */}
         <WhatsGreatAboutSection />
-
-        {/* Screenshot section (ONLY on this page) */}
-        <SellMyCarCoverageSection />
       </main>
 
       <FloatingWhatsAppButton href={adminWhatsAppLink} />
