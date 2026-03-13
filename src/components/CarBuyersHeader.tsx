@@ -40,15 +40,30 @@ export function CarBuyersHeader({
     window.setTimeout(() => window.scrollTo({ top: 0, behavior: "smooth" }), 0);
   }
 
+  function navToHomeAnchor(id: string) {
+    if (pathname !== "/") {
+      navigate(`/#${id}`);
+      return;
+    }
+    onNav(id);
+  }
+
   function handleNav(id: string) {
-    // "Sell my car" goes to dedicated page.
+    // Dedicated pages
     if (id === "sell") {
       if (pathname !== "/sell-my-car") navigate("/sell-my-car");
       else window.scrollTo({ top: 0, behavior: "smooth" });
       return;
     }
 
-    onNav(id);
+    if (id === "truck") {
+      if (pathname !== "/sell-my-truck") navigate("/sell-my-truck");
+      else window.scrollTo({ top: 0, behavior: "smooth" });
+      return;
+    }
+
+    // Everything else: go to the home page and use anchors there
+    navToHomeAnchor(id);
   }
 
   return (
