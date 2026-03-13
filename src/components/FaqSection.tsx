@@ -1,5 +1,6 @@
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import { cn } from "@/lib/utils";
+import { FaqTopWave } from "@/components/FaqTopWave";
 
 type Faq = {
   q: string;
@@ -43,37 +44,43 @@ const FAQS: Faq[] = [
 
 export function FaqSection({ className, defaultOpen = "item-0" }: { className?: string; defaultOpen?: string }) {
   return (
-    <section className={cn("w-full bg-[#66E3B1]", className)} aria-label="Frequently asked questions">
-      <div className="mx-auto max-w-6xl px-4 py-14 sm:py-16 md:px-6">
-        <h2 className="text-center text-[34px] font-extrabold tracking-tight text-[#0B3A7A] sm:text-[44px]">
-          Frequently Asked Questions
-        </h2>
+    <section className={cn("w-full", className)} aria-label="Frequently asked questions">
+      {/* White -> Green wave cap like the footer curve (no text) */}
+      <div className="-mb-[18px] sm:-mb-[22px]">
+        <FaqTopWave from="#FFFFFF" to="#66E3B1" />
+      </div>
 
-        <div className="mx-auto mt-10 max-w-3xl">
-          <Accordion type="single" collapsible defaultValue={defaultOpen} className="rounded-2xl">
-            {FAQS.map((f, idx) => (
-              <AccordionItem
-                key={f.q}
-                value={`item-${idx}`}
-                className={cn("border-[#0B3A7A]/25", idx === 0 ? "border-t border-b" : "border-b")}
-              >
-                <AccordionTrigger
-                  className={cn(
-                    "flex w-full items-center justify-between gap-4 py-5 text-left hover:no-underline",
-                    "text-[13px] font-extrabold tracking-tight text-[#0B3A7A] sm:text-sm",
-                    // Style the default chevron icon so it matches the clean single-icon look
-                    "[&>svg]:h-5 [&>svg]:w-5 [&>svg]:text-[#0B3A7A] [&>svg]:opacity-90",
-                  )}
+      <div className="w-full bg-[#66E3B1]">
+        <div className="mx-auto max-w-6xl px-4 py-14 sm:py-16 md:px-6">
+          <h2 className="text-center text-[34px] font-extrabold tracking-tight text-[#0B3A7A] sm:text-[44px]">
+            Frequently Asked Questions
+          </h2>
+
+          <div className="mx-auto mt-10 max-w-3xl">
+            <Accordion type="single" collapsible defaultValue={defaultOpen} className="rounded-2xl">
+              {FAQS.map((f, idx) => (
+                <AccordionItem
+                  key={f.q}
+                  value={`item-${idx}`}
+                  className={cn("border-[#0B3A7A]/25", idx === 0 ? "border-t border-b" : "border-b")}
                 >
-                  <span className="min-w-0">{f.q}</span>
-                </AccordionTrigger>
+                  <AccordionTrigger
+                    className={cn(
+                      "flex w-full items-center justify-between gap-4 py-5 text-left hover:no-underline",
+                      "text-[13px] font-extrabold tracking-tight text-[#0B3A7A] sm:text-sm",
+                      "[&>svg]:h-5 [&>svg]:w-5 [&>svg]:text-[#0B3A7A] [&>svg]:opacity-90",
+                    )}
+                  >
+                    <span className="min-w-0">{f.q}</span>
+                  </AccordionTrigger>
 
-                <AccordionContent className="pb-6 pr-10 text-[12px] font-medium leading-relaxed text-[#08304B] sm:text-[13px]">
-                  {f.a}
-                </AccordionContent>
-              </AccordionItem>
-            ))}
-          </Accordion>
+                  <AccordionContent className="pb-6 pr-10 text-[12px] font-medium leading-relaxed text-[#08304B] sm:text-[13px]">
+                    {f.a}
+                  </AccordionContent>
+                </AccordionItem>
+              ))}
+            </Accordion>
+          </div>
         </div>
       </div>
     </section>
