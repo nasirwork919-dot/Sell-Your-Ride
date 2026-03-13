@@ -9,6 +9,7 @@ import Clarity from "./pages/Clarity";
 import FollowUp from "./pages/FollowUp";
 import Security from "./pages/Security";
 import SellMyCar from "./pages/SellMyCar";
+import SellMyTruck from "./pages/SellMyTruck";
 import NotFound from "./pages/NotFound";
 import { ScrollToTop } from "@/components/ScrollToTop";
 
@@ -24,6 +25,7 @@ const App = () => (
         <Routes>
           <Route path="/" element={<Index />} />
           <Route path="/sell-my-car" element={<SellMyCar />} />
+          <Route path="/sell-my-truck" element={<SellMyTruck />} />
           <Route path="/experience" element={<Experience />} />
           <Route path="/experience/clarity" element={<Clarity />} />
           <Route path="/experience/follow-up" element={<FollowUp />} />
