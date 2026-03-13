@@ -16,6 +16,7 @@ import { ReadyToSellSection } from "@/components/ReadyToSellSection";
 import { AboutWordmarkSection } from "@/components/AboutWordmarkSection";
 import { FaqSection } from "@/components/FaqSection";
 import { WavyFooterCta } from "@/components/WavyFooterCta";
+import { WaveSeparator } from "@/components/WaveSeparator";
 
 const NAV = [
   { id: "sell", label: "Sell my car" },
@@ -133,6 +134,9 @@ export default function Index() {
             phoneText="+61 478 797 731"
           />
         </section>
+
+        {/* Curve under hero (teal -> white) */}
+        <WaveSeparator from="#22B9C5" to="#FFFFFF" className="-mt-[2px]" />
 
         {/* Full-width featured strip */}
         <AsFeaturedInStrip />
