@@ -19,6 +19,8 @@ import { SellMyCarCoverageSection } from "@/components/SellMyCarCoverageSection"
 import { SellMyCarLocationsSection } from "@/components/SellMyCarLocationsSection";
 import { WantedSellTilesSection } from "@/components/WantedSellTilesSection";
 import { ExactBenefitsOrangeSection } from "@/components/ExactBenefitsOrangeSection";
+import { InspectionChecklistSection } from "@/components/InspectionChecklistSection";
+import { SellByBrandSection } from "@/components/SellByBrandSection";
 
 const NAV = [
   { id: "sell", label: "Sell my car" },
@@ -223,8 +225,12 @@ export default function SellMyCar() {
         {/* Wanting to sell tiles */}
         <WantedSellTilesSection onQuote={() => window.scrollTo({ top: 0, behavior: "smooth" })} />
 
-        {/* Orange paperwork / benefits section (placed under the tiles, per request) */}
+        {/* Orange paperwork / benefits section (placed under the tiles) */}
         <ExactBenefitsOrangeSection onEnquire={() => window.scrollTo({ top: 0, behavior: "smooth" })} />
+
+        {/* New: checklist + sell-by-brand sections (under orange benefits) */}
+        <InspectionChecklistSection />
+        <SellByBrandSection onBrand={() => window.scrollTo({ top: 0, behavior: "smooth" })} />
       </main>
 
       <FloatingWhatsAppButton href={adminWhatsAppLink} />
