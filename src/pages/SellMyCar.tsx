@@ -10,6 +10,7 @@ import { cn } from "@/lib/utils";
 
 import heroSellMyCar from "@/assets/lady-with-a-blue-car-at-the-background.webp";
 import { SellMyCarHeadlineSection } from "@/components/SellMyCarHeadlineSection";
+import { SellMyCarStepsCard } from "@/components/SellMyCarStepsCard";
 
 const NAV = [
   { id: "sell", label: "Sell my car" },
@@ -189,8 +190,11 @@ export default function SellMyCar() {
           </div>
         </section>
 
-        {/* New section under hero (matches screenshot) */}
+        {/* Headline + car */}
         <SellMyCarHeadlineSection />
+
+        {/* New 4-step card strip */}
+        <SellMyCarStepsCard />
       </main>
 
       <FloatingWhatsAppButton href={adminWhatsAppLink} />
