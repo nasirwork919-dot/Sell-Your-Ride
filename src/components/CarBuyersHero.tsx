@@ -60,7 +60,7 @@ export function CarBuyersHero({
               {/* Wordmark */}
               <div className="mt-5">
                 <p className="text-[56px] font-extrabold leading-none tracking-tight text-[#0B3A7A] sm:text-[68px]">
-                  Car<span className="text-white">Buyers</span>
+                  Sell<span className="text-white">Your</span>Ride
                   <span className="ml-1 align-top text-[10px] font-extrabold text-white/95 sm:text-[11px]">.com.au</span>
                 </p>
                 <p className="mt-2 text-[22px] font-extrabold tracking-tight text-[#0B3A7A] sm:text-[26px]">

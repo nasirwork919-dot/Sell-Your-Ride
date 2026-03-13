@@ -48,18 +48,13 @@ export function CarBuyersHeader({
           onClick={() => onNav("sell")}
           className="text-left"
           aria-label="Go to quote form"
-          title="CarBuyers"
+          title="SellYourRide"
         >
-          <span className="text-[22px] font-extrabold tracking-tight text-[#0B3A7A]">CarBuyers</span>
+          <span className="text-[22px] font-extrabold tracking-tight text-[#0B3A7A]">SellYourRide</span>
         </button>
 
         <div className="flex items-center gap-2">
-          <a
-            href={`tel:${phoneText.replace(/\s/g, "")}`}
-            className="inline-flex"
-            aria-label="Call"
-            title="Call"
-          >
+          <a href={`tel:${phoneText.replace(/\s/g, "")}`} className="inline-flex" aria-label="Call" title="Call">
             <Button
               variant="secondary"
               className="h-9 w-9 rounded-full border border-[#0B3A7A]/25 bg-white p-0 text-[#0B3A7A] hover:bg-slate-50"
@@ -90,7 +85,7 @@ export function CarBuyersHeader({
               <div className="p-5">
                 <SheetHeader>
                   <SheetTitle className="text-left text-base font-semibold tracking-tight text-slate-900">
-                    CarBuyers
+                    SellYourRide
                   </SheetTitle>
                 </SheetHeader>
 
@@ -156,7 +151,6 @@ export function CarBuyersHeader({
             title="Get a quote"
           >
             <span className="grid h-10 w-10 place-items-center rounded-xl bg-[#0B3A7A] text-white shadow-sm ring-1 ring-[#062B57]/60">
-              {/* Simple inline icon to match reference vibe */}
               <svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true">
                 <path
                   d="M8 7h10l2 6v6H6v-6l2-6Z"
@@ -211,7 +205,6 @@ export function CarBuyersHeader({
             Get a quote
           </Button>
 
-          {/* Desktop menu button not needed (nav shows). Kept layout stable. */}
           <div className="h-10 w-10 md:hidden" />
         </div>
       </div>
