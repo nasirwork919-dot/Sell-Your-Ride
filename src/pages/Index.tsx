@@ -2,8 +2,6 @@ import { useEffect, useMemo, useRef, useState } from "react";
 import { CarBuyersHero } from "@/components/CarBuyersHero";
 import { HomeCategoryTiles } from "@/components/HomeCategoryTiles";
 import { WantedSellTilesSection } from "@/components/WantedSellTilesSection";
-import { CarBuyersCta } from "@/components/CarBuyersCta";
-import { CarBuyersFooter } from "@/components/CarBuyersFooter";
 import { CarBuyersHeader } from "@/components/CarBuyersHeader";
 import { BackToTopButton } from "@/components/BackToTopButton";
 import { FloatingWhatsAppButton } from "@/components/FloatingWhatsAppButton";
@@ -166,6 +164,9 @@ export default function Index() {
 
           {/* Reviews anchor kept for nav/scroll highlighting */}
           <section id="reviews" className="sr-only" aria-hidden="true" />
+
+          {/* Contact anchor kept for nav/scroll highlighting */}
+          <section id="contact" className="sr-only" aria-hidden="true" />
         </div>
 
         {/* Exact clone benefits section (full width) */}
@@ -176,16 +177,6 @@ export default function Index() {
 
         {/* New: Ready-to-sell section (reference screenshot) */}
         <ReadyToSellSection onQuote={() => navTo("sell")} />
-
-        {/* Back to centered lane for CTA/footer */}
-        <div className="mx-auto max-w-6xl px-4 md:px-6">
-          {/* Contact / CTA */}
-          <section id="contact" className="mt-10 scroll-mt-28">
-            <CarBuyersCta onQuote={() => navTo("sell")} />
-          </section>
-
-          <CarBuyersFooter />
-        </div>
       </main>
 
       <FloatingWhatsAppButton href={adminWhatsAppLink} />
