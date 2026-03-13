@@ -18,6 +18,7 @@ import { WhatsGreatAboutSection } from "@/components/WhatsGreatAboutSection";
 import { SellMyCarCoverageSection } from "@/components/SellMyCarCoverageSection";
 import { SellMyCarLocationsSection } from "@/components/SellMyCarLocationsSection";
 import { WantedSellTilesSection } from "@/components/WantedSellTilesSection";
+import { SellMyCarEndNoteSection } from "@/components/SellMyCarEndNoteSection";
 
 const NAV = [
   { id: "sell", label: "Sell my car" },
@@ -221,6 +222,9 @@ export default function SellMyCar() {
 
         {/* Clone from home page: Wanting to sell tiles (placed under latest section) */}
         <WantedSellTilesSection onQuote={() => window.scrollTo({ top: 0, behavior: "smooth" })} />
+
+        {/* New: end note section */}
+        <SellMyCarEndNoteSection />
       </main>
 
       <FloatingWhatsAppButton href={adminWhatsAppLink} />
