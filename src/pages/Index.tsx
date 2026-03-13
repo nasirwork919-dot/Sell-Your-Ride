@@ -15,6 +15,7 @@ import { ExactBenefitsOrangeSection } from "@/components/ExactBenefitsOrangeSect
 import { ReadyToSellSection } from "@/components/ReadyToSellSection";
 import { AboutWordmarkSection } from "@/components/AboutWordmarkSection";
 import { FaqSection } from "@/components/FaqSection";
+import { WavyFooterCta } from "@/components/WavyFooterCta";
 
 const NAV = [
   { id: "sell", label: "Sell my car" },
@@ -119,7 +120,7 @@ export default function Index() {
         phoneText="+61 478 797 731"
       />
 
-      <main className="w-full pb-16 pt-[88px] sm:pt-24">
+      <main className="w-full pb-0 pt-[88px] sm:pt-24">
         {/* Hero + form (quote) — FULL WIDTH */}
         <section id="sell" className="w-full scroll-mt-28">
           <CarBuyersHero
@@ -184,7 +185,12 @@ export default function Index() {
         <AboutWordmarkSection onContact={() => navTo("sell")} />
 
         {/* FAQ section (reference screenshot) */}
-        <FaqSection />
+        <section id="faq" className="w-full scroll-mt-28">
+          <FaqSection />
+        </section>
+
+        {/* New: exact wavy footer CTA like screenshot */}
+        <WavyFooterCta onEnquire={() => navTo("sell")} />
       </main>
 
       <FloatingWhatsAppButton href={adminWhatsAppLink} />
