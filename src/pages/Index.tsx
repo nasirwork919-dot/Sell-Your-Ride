@@ -109,7 +109,7 @@ export default function Index() {
   const scrolled = y > 10;
 
   return (
-    <div className="min-h-screen bg-[#22B9C5]">
+    <div className="min-h-screen bg-[#22B9C5] overflow-x-clip">
       <MarketingPixels />
 
       <CarBuyersHeader
