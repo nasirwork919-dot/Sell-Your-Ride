@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { ChevronDown, Menu, Phone } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
@@ -26,11 +26,25 @@ export function CarBuyersHeader({
 
   const mobileItems = useMemo(() => items, [items]);
 
+  const navigate = useNavigate();
+  const { pathname } = useLocation();
+
   useEffect(() => {
     const onHash = () => setOpen(false);
     window.addEventListener("hashchange", onHash);
     return () => window.removeEventListener("hashchange", onHash);
   }, []);
+
+  function handleNav(id: string) {
+    // If user clicks "Sell my car", always go to the dedicated page route.
+    if (id === "sell") {
+      if (pathname !== "/sell-my-car") navigate("/sell-my-car");
+      else window.scrollTo({ top: 0, behavior: "smooth" });
+      return;
+    }
+
+    onNav(id);
+  }
 
   return (
     <header
@@ -45,7 +59,7 @@ export function CarBuyersHeader({
       <div className="mx-auto flex h-[64px] max-w-6xl items-center justify-between px-4 md:hidden">
         <button
           type="button"
-          onClick={() => onNav("sell")}
+          onClick={() => handleNav("sell")}
           className="text-left"
           aria-label="Go to quote form"
           title="SellYourRide"
@@ -64,7 +78,7 @@ export function CarBuyersHeader({
           </a>
 
           <Button
-            onClick={() => onNav("sell")}
+            onClick={() => handleNav("sell")}
             className="h-9 rounded-full bg-white px-4 text-[12px] font-extrabold text-[#0B3A7A] ring-1 ring-[#0B3A7A]/30 hover:bg-slate-50"
           >
             Get a quote
@@ -92,7 +106,7 @@ export function CarBuyersHeader({
                 <div className="mt-4 grid gap-2">
                   <Button
                     onClick={() => {
-                      onNav("sell");
+                      handleNav("sell");
                       setOpen(false);
                     }}
                     className="h-11 w-full rounded-2xl bg-[#0B3A7A] text-white hover:bg-[#082F64]"
@@ -105,7 +119,7 @@ export function CarBuyersHeader({
                       key={n.id}
                       type="button"
                       onClick={() => {
-                        onNav(n.id);
+                        handleNav(n.id);
                         setOpen(false);
                       }}
                       className={cn(
@@ -145,7 +159,7 @@ export function CarBuyersHeader({
         <div className="flex items-center justify-start">
           <button
             type="button"
-            onClick={() => onNav("sell")}
+            onClick={() => handleNav("sell")}
             className="inline-flex items-center gap-3"
             aria-label="Go to quote form"
             title="Get a quote"
@@ -178,7 +192,7 @@ export function CarBuyersHeader({
               <button
                 key={n.id}
                 type="button"
-                onClick={() => onNav(n.id)}
+                onClick={() => handleNav(n.id)}
                 className={cn(
                   "inline-flex items-center gap-1 rounded-full px-2 py-2 text-sm font-semibold text-[#0B3A7A] transition",
                   "hover:bg-slate-100",
@@ -195,7 +209,7 @@ export function CarBuyersHeader({
         {/* Right: CTA */}
         <div className="flex items-center justify-end gap-2">
           <Button
-            onClick={() => onNav("sell")}
+            onClick={() => handleNav("sell")}
             className={cn(
               "hidden h-10 rounded-full px-8 font-extrabold md:inline-flex",
               "bg-white text-[#0B3A7A]",
