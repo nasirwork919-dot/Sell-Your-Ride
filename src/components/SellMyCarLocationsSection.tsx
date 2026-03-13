@@ -91,14 +91,25 @@ export function SellMyCarLocationsSection({ className }: { className?: string })
                 </ul>
               </div>
 
-              {/* Right map (clone: clean map, no label pills over it) */}
+              {/* Right map (blended like reference) */}
               <div className="md:col-span-7">
                 <div className="overflow-hidden rounded-2xl border border-slate-200 bg-[#F7FBEA] p-4 shadow-sm sm:p-6">
-                  <div className="relative h-[280px] w-full sm:h-[340px] md:h-[360px]">
+                  <div className="relative h-[280px] w-full bg-[#F7FBEA] sm:h-[340px] md:h-[360px]">
+                    {/* Soft base fill so edges match even if image has transparency/white */}
+                    <div className="absolute inset-0 bg-[#F7FBEA]" aria-hidden="true" />
+
                     <img
                       src={mapImg}
                       alt="Australia map"
-                      className="absolute inset-0 h-full w-full object-contain opacity-95"
+                      className={cn(
+                        "absolute inset-0 h-full w-full object-contain",
+                        // Make the map look like it's part of the background, not a separate image block
+                        "mix-blend-multiply",
+                      )}
+                      style={{
+                        filter: "saturate(0.35) contrast(0.9) brightness(1.04) hue-rotate(-8deg)",
+                        opacity: 0.72,
+                      }}
                       loading="lazy"
                       referrerPolicy="no-referrer"
                     />
