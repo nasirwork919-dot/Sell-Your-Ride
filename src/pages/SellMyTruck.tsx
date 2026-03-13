@@ -22,6 +22,7 @@ import { WhatsGreatAboutSection } from "@/components/WhatsGreatAboutSection";
 import { SellMyCarCoverageSection } from "@/components/SellMyCarCoverageSection";
 import { ExactBenefitsOrangeSection } from "@/components/ExactBenefitsOrangeSection";
 import { IsItTimeToSellTruckSection } from "@/components/IsItTimeToSellTruckSection";
+import { AboutSellYourRideTealSection } from "@/components/AboutSellYourRideTealSection";
 import { FaqSection } from "@/components/FaqSection";
 import { WavyFooterCta } from "@/components/WavyFooterCta";
 
@@ -219,13 +220,14 @@ export default function SellMyTruck() {
         <BestPriceInfoSection />
         <WhatsGreatAboutSection />
 
-        {/* Place the requested section directly under "What's great about..." */}
         <SellMyCarCoverageSection />
 
         <ExactBenefitsOrangeSection onEnquire={() => window.scrollTo({ top: 0, behavior: "smooth" })} />
 
-        {/* Add the requested blue section under the orange benefits */}
         <IsItTimeToSellTruckSection onContact={() => window.scrollTo({ top: 0, behavior: "smooth" })} />
+
+        {/* New teal ABOUT section right after the blue truck section */}
+        <AboutSellYourRideTealSection onContact={() => window.scrollTo({ top: 0, behavior: "smooth" })} />
 
         <section id="faq" className="w-full scroll-mt-28">
           <FaqSection />
