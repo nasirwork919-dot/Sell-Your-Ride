@@ -1,5 +1,4 @@
 import { cn } from "@/lib/utils";
-import mapImg from "@/assets/coverage-map.png";
 import carImg from "@/assets/transparent-blue-car.webp";
 
 type City = {
@@ -49,20 +48,11 @@ export function AustraliaCoverageMap({ className }: { className?: string }) {
           </div>
 
           <div className="relative mx-auto mt-6 w-full max-w-5xl px-3 pb-10 sm:mt-8 sm:px-8 sm:pb-12">
-            {/* Map stage */}
-            <div className="relative overflow-visible">
+            {/* Stage */}
+            <div className="relative">
               <div className="relative h-[320px] w-full sm:h-[380px] md:h-[460px]">
-                {/* Australia outline map (image) */}
-                <img
-                  src={mapImg}
-                  alt="Australia map"
-                  className="absolute inset-0 h-full w-full object-contain"
-                  loading="lazy"
-                  referrerPolicy="no-referrer"
-                />
-
-                {/* Center car */}
-                <div className="pointer-events-none absolute left-1/2 top-[52%] w-[200px] -translate-x-1/2 -translate-y-1/2 sm:w-[240px] md:w-[300px]">
+                {/* Center car only (map removed per request) */}
+                <div className="pointer-events-none absolute left-1/2 top-1/2 w-[220px] -translate-x-1/2 -translate-y-1/2 sm:w-[260px] md:w-[320px]">
                   <img
                     src={carImg}
                     alt="Car"
@@ -79,7 +69,6 @@ export function AustraliaCoverageMap({ className }: { className?: string }) {
               </div>
             </div>
 
-            {/* Small footer spacing like the reference */}
             <p className="mt-6 text-center text-[11px] font-semibold text-[#0B3A7A]/75 sm:text-[12px]">
               Metro & regional coverage — we’ll confirm timing after you submit.
             </p>
