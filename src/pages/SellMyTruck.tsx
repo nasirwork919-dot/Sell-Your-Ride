@@ -19,12 +19,7 @@ import { FastStepsSection } from "@/components/FastStepsSection";
 
 import { BestPriceInfoSection } from "@/components/BestPriceInfoSection";
 import { WhatsGreatAboutSection } from "@/components/WhatsGreatAboutSection";
-import { SellMyCarCoverageSection } from "@/components/SellMyCarCoverageSection";
-import { SellMyCarLocationsSection } from "@/components/SellMyCarLocationsSection";
-import { WantedSellTilesSection } from "@/components/WantedSellTilesSection";
 import { ExactBenefitsOrangeSection } from "@/components/ExactBenefitsOrangeSection";
-import { InspectionChecklistSection } from "@/components/InspectionChecklistSection";
-import { SellByBrandSection } from "@/components/SellByBrandSection";
 import { FaqSection } from "@/components/FaqSection";
 import { WavyFooterCta } from "@/components/WavyFooterCta";
 
@@ -219,15 +214,11 @@ export default function SellMyTruck() {
         {/* The easiest, fastest, and safest way to sell your truck! */}
         <FastStepsSection onEnquire={() => window.scrollTo({ top: 0, behavior: "smooth" })} />
 
-        {/* Sections reused from Sell My Car */}
+        {/* Keep: sections reused from Sell My Car (excluding the removed ones) */}
         <BestPriceInfoSection />
         <WhatsGreatAboutSection />
-        <SellMyCarCoverageSection />
-        <SellMyCarLocationsSection />
-        <WantedSellTilesSection onQuote={() => window.scrollTo({ top: 0, behavior: "smooth" })} />
         <ExactBenefitsOrangeSection onEnquire={() => window.scrollTo({ top: 0, behavior: "smooth" })} />
-        <InspectionChecklistSection />
-        <SellByBrandSection onBrand={() => window.scrollTo({ top: 0, behavior: "smooth" })} />
+
         <section id="faq" className="w-full scroll-mt-28">
           <FaqSection />
         </section>
