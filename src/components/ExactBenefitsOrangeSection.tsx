@@ -1,14 +1,7 @@
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
-import {
-  BadgeCheck,
-  BookOpen,
-  HandCoins,
-  Map,
-  Smile,
-  ThumbsUp,
-  Zap,
-} from "lucide-react";
+import { BadgeCheck, BookOpen, Map, Smile, ThumbsUp, Zap } from "lucide-react";
+import { BenefitsTopWave } from "@/components/BenefitsTopWave";
 
 type Item = {
   title: string;
@@ -57,35 +50,39 @@ export function ExactBenefitsOrangeSection({
   onEnquire: () => void;
 }) {
   return (
-    <section
-      className={cn("w-full bg-[#F07A5A]", className)}
-      aria-label="Benefits (exact)"
-    >
-      <div className="mx-auto max-w-6xl px-4 py-10 sm:py-12 md:px-6">
-        <h2 className="mx-auto max-w-5xl text-center text-balance text-[28px] font-extrabold leading-[1.12] tracking-tight text-white sm:text-[34px] md:text-[40px]">
-          We&apos;ll take care of the paperwork and make a risk-free
-          <br className="hidden sm:block" />
-          payment directly to your bank account!
-        </h2>
+    <section className={cn("w-full", className)} aria-label="Benefits (exact)">
+      {/* White -> Orange wave cap like the footer curve (no text) */}
+      <div className="-mb-[18px] sm:-mb-[22px]">
+        <BenefitsTopWave from="#FFFFFF" to="#F07A5A" />
+      </div>
 
-        <div className="mt-10 grid gap-y-12 sm:mt-12 sm:grid-cols-3 sm:gap-x-8 sm:gap-y-16">
-          {ITEMS.map((it) => (
-            <Benefit key={it.title} item={it} />
-          ))}
-        </div>
+      <div className="w-full bg-[#F07A5A]">
+        <div className="mx-auto max-w-6xl px-4 py-10 sm:py-12 md:px-6">
+          <h2 className="mx-auto max-w-5xl text-center text-balance text-[28px] font-extrabold leading-[1.12] tracking-tight text-white sm:text-[34px] md:text-[40px]">
+            We&apos;ll take care of the paperwork and make a risk-free
+            <br className="hidden sm:block" />
+            payment directly to your bank account!
+          </h2>
 
-        <div className="mt-12 flex justify-center">
-          <Button
-            onClick={onEnquire}
-            className={cn(
-              "h-11 min-w-[220px] rounded-full px-10 text-sm font-extrabold",
-              "bg-[#67E2B0] text-[#0B3A7A] shadow-[0_12px_22px_rgba(0,0,0,0.22)]",
-              "hover:bg-[#57D7A6] active:translate-y-[1px]",
-              "ring-2 ring-[#2AB77D]/55",
-            )}
-          >
-            Enquire Now
-          </Button>
+          <div className="mt-10 grid gap-y-12 sm:mt-12 sm:grid-cols-3 sm:gap-x-8 sm:gap-y-16">
+            {ITEMS.map((it) => (
+              <Benefit key={it.title} item={it} />
+            ))}
+          </div>
+
+          <div className="mt-12 flex justify-center">
+            <Button
+              onClick={onEnquire}
+              className={cn(
+                "h-11 min-w-[220px] rounded-full px-10 text-sm font-extrabold",
+                "bg-[#67E2B0] text-[#0B3A7A] shadow-[0_12px_22px_rgba(0,0,0,0.22)]",
+                "hover:bg-[#57D7A6] active:translate-y-[1px]",
+                "ring-2 ring-[#2AB77D]/55",
+              )}
+            >
+              Enquire Now
+            </Button>
+          </div>
         </div>
       </div>
     </section>
@@ -101,9 +98,7 @@ function Benefit({ item }: { item: Item }) {
         <Icon className="h-12 w-12 stroke-[1.6]" />
       </div>
 
-      <p className="text-[15px] font-extrabold tracking-tight text-white sm:text-base">
-        {item.title}
-      </p>
+      <p className="text-[15px] font-extrabold tracking-tight text-white sm:text-base">{item.title}</p>
 
       <p className="mt-2 whitespace-pre-line text-[12px] font-medium leading-relaxed text-white/95 sm:text-[13px]">
         {item.desc}
