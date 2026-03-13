@@ -1,6 +1,6 @@
 import { cn } from "@/lib/utils";
-import carImg from "@/assets/transparent-blue-car.webp";
 import mapImg from "@/assets/coverage-map.png";
+import carImg from "@/assets/transparent-blue-car.webp";
 
 type City = {
   name: string;
@@ -37,79 +37,45 @@ const CITIES: City[] = [
   { name: "Tasmania", x: 79, y: 98 },
 ];
 
-const LOCATIONS = [
-  "Melbourne Country and Metro",
-  "Sydney Country and Metro",
-  "Brisbane Country and Metro",
-  "Gold Coast Country and Metro",
-  "Perth Country and Metro",
-  "Adelaide Country and Metro",
-  "Canberra Country and Metro",
-  "Tasmania and Metro",
-  "North Queensland and Metro",
-  "Geelong Country and Metro",
-] as const;
-
 export function AustraliaCoverageMap({ className }: { className?: string }) {
   return (
-    <section className={cn("w-full bg-white", className)} aria-label="Australia coverage">
+    <section className={cn("w-full bg-white", className)} aria-label="Australia coverage map">
       <div className="mx-auto max-w-6xl px-4 py-10 sm:py-12 md:px-6">
-        <div className="rounded-3xl border border-slate-200 bg-[#F3F6FA] p-4 shadow-[0_18px_50px_rgba(15,23,42,0.08)] sm:p-6">
-          <div className="grid items-stretch gap-6 md:grid-cols-12 md:gap-8">
-            {/* Left list */}
-            <div className="md:col-span-5">
-              <h2 className="text-balance text-[26px] font-extrabold leading-[1.1] tracking-tight text-[#0B3A7A] sm:text-[30px]">
-                Sell your car in the following locations:
-              </h2>
+        <div className="rounded-3xl border border-slate-200 bg-white p-4 shadow-[0_18px_50px_rgba(15,23,42,0.08)] sm:p-6">
+          <div className="text-center">
+            <p className="text-[22px] font-extrabold tracking-tight text-[#0B3A7A] sm:text-[28px]">
+              We buy cars Australia wide
+            </p>
+            <p className="mt-2 text-[12px] font-semibold text-slate-600 sm:text-[13px]">
+              Metro & regional coverage across Australia — we’ll confirm timing after you submit.
+            </p>
+          </div>
 
-              <ul className="mt-5 grid gap-1.5 text-[12px] font-semibold text-[#0B3A7A] sm:text-[13px]">
-                {LOCATIONS.map((l) => (
-                  <li key={l} className="flex items-start gap-2">
-                    <span className="mt-[7px] h-1.5 w-1.5 shrink-0 rounded-full bg-[#0B3A7A]" aria-hidden="true" />
-                    <span>{l}</span>
-                  </li>
-                ))}
-              </ul>
-            </div>
+          <div className="relative mt-6 overflow-hidden rounded-2xl bg-[#F3F1D9] ring-1 ring-slate-200">
+            <div className="relative h-[300px] w-full sm:h-[360px] md:h-[460px]">
+              <img
+                src={mapImg}
+                alt="Australia coverage map"
+                className="absolute inset-0 h-full w-full object-cover"
+                loading="lazy"
+                referrerPolicy="no-referrer"
+              />
 
-            {/* Right map panel */}
-            <div className="md:col-span-7">
-              <div className="rounded-2xl border border-slate-200 bg-white p-3 sm:p-4">
-                <p className="text-center text-[16px] font-extrabold tracking-tight text-[#0B3A7A] sm:text-[18px]">
-                  We buy cars Australia wide
-                </p>
-
-                <div className="relative mt-3 overflow-hidden rounded-xl bg-[#F3F1D9]">
-                  <div className="relative h-[280px] w-full sm:h-[320px] md:h-[360px]">
-                    <img
-                      src={mapImg}
-                      alt="Australia coverage map"
-                      className="absolute inset-0 h-full w-full object-cover"
-                      loading="lazy"
-                      referrerPolicy="no-referrer"
-                    />
-
-                    {/* Center car overlay */}
-                    <div className="pointer-events-none absolute left-1/2 top-[52%] w-[190px] -translate-x-1/2 -translate-y-1/2 sm:w-[220px] md:w-[260px]">
-                      <img
-                        src={carImg}
-                        alt="Car"
-                        className="h-auto w-full object-contain drop-shadow-[0_18px_28px_rgba(15,23,42,0.16)]"
-                        loading="lazy"
-                        referrerPolicy="no-referrer"
-                      />
-                    </div>
-
-                    {CITIES.map((c) => (
-                      <CityPin key={c.name} x={c.x} y={c.y} label={c.name} />
-                    ))}
-                  </div>
-                </div>
+              {/* Center car overlay */}
+              <div className="pointer-events-none absolute left-1/2 top-[55%] w-[210px] -translate-x-1/2 -translate-y-1/2 sm:w-[250px] md:w-[320px]">
+                <img
+                  src={carImg}
+                  alt="Car"
+                  className="h-auto w-full object-contain drop-shadow-[0_18px_28px_rgba(15,23,42,0.16)]"
+                  loading="lazy"
+                  referrerPolicy="no-referrer"
+                />
               </div>
 
-              <p className="mt-3 text-center text-[11px] font-semibold text-slate-500 sm:text-[12px]">
-                Metro & regional coverage across Australia — we’ll confirm timing after you submit.
-              </p>
+              {/* Pins */}
+              {CITIES.map((c) => (
+                <CityPin key={c.name} x={c.x} y={c.y} label={c.name} />
+              ))}
             </div>
           </div>
         </div>
