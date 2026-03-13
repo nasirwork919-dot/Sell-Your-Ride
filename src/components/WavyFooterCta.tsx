@@ -3,20 +3,21 @@ import { cn } from "@/lib/utils";
 import { Facebook, Instagram } from "lucide-react";
 
 function TopWave() {
+  // Slightly smoother wave while keeping the same deep feel.
   const waveD = `
     M 0 130
-    C 120 75, 240 75, 360 130
-    C 480 185, 600 185, 720 130
-    C 840 75, 960 75, 1080 130
-    C 1200 185, 1320 185, 1440 130
+    C 140 72, 260 72, 360 130
+    C 460 188, 620 188, 720 130
+    C 820 72, 980 72, 1080 130
+    C 1180 188, 1340 188, 1440 130
   `.trim();
+
+  const label = "Australia-wide → Receive quote → Host inspection → Get paid instantly → We pick up your vehicle";
 
   return (
     <div className="relative w-full bg-white" aria-hidden="true">
-      {/* Deep smooth wave (matches reference closer) */}
       <svg viewBox="0 0 1440 220" preserveAspectRatio="none" className="block h-[120px] w-full sm:h-[140px]">
         <defs>
-          {/* Path for the curved text */}
           <path id="wavePath" d={waveD} />
         </defs>
 
@@ -40,13 +41,25 @@ function TopWave() {
         {/* Curved teal text riding the wave */}
         <text
           fill="#22B9C5"
-          fontSize="22"
+          fontSize="18"
           fontWeight="800"
+          letterSpacing="0.5"
           textAnchor="middle"
           dominantBaseline="middle"
+          opacity="0.98"
         >
-          <textPath href="#wavePath" startOffset="50%">
-            Australia-wide → Receive quote → Host inspection → Get paid instantly → We pick up your vehicle
+          <textPath
+            href="#wavePath"
+            startOffset="50%"
+            method="align"
+            spacing="auto"
+            // Even spacing so it resembles the reference more closely
+            textLength={1180}
+            lengthAdjust="spacingAndGlyphs"
+          >
+            <tspan dy={-8} style={{ paintOrder: "stroke", stroke: "rgba(255,255,255,0.55)", strokeWidth: 2 }}>
+              {label}
+            </tspan>
           </textPath>
         </text>
       </svg>
