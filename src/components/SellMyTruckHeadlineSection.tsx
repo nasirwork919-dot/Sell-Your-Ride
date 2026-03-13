@@ -8,8 +8,9 @@ export function SellMyTruckHeadlineSection({ className }: { className?: string }
         <div className="mx-auto flex max-w-4xl flex-col items-center text-center">
           {/* Wordmark */}
           <div className="select-none text-[40px] font-extrabold leading-none tracking-tight sm:text-[46px]">
-            <span className="text-[#0B3A7A]">Car</span>
-            <span className="text-[#22B9C5]">Buyers</span>
+            <span className="text-[#0B3A7A]">Sell</span>
+            <span className="text-[#22B9C5]">Your</span>
+            <span className="text-[#0B3A7A]">Ride</span>
             <span className="ml-1 align-top text-[10px] font-extrabold text-[#0B3A7A]/70 sm:text-[11px]">
               .com.au
             </span>

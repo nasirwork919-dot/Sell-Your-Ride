@@ -3,7 +3,7 @@ import phoneLadyImg from "@/assets/laday-on-the-phone.webp";
 
 export function WhatsGreatAboutSection({ className }: { className?: string }) {
   return (
-    <section className={cn("w-full bg-white", className)} aria-label="What's great about CarBuyers">
+    <section className={cn("w-full bg-white", className)} aria-label="What's great about SellYourRide">
       <div className="mx-auto max-w-6xl px-4 py-12 sm:py-14 md:px-6">
         <div className="grid items-center gap-10 md:grid-cols-12 md:gap-12">
           {/* Copy */}
@@ -12,12 +12,12 @@ export function WhatsGreatAboutSection({ className }: { className?: string }) {
               <h2 className="text-balance text-[28px] font-extrabold leading-[1.08] tracking-tight text-[#0B3A7A] sm:text-[34px]">
                 What&apos;s great about
                 <br />
-                CarBuyers?
+                SellYourRide?
               </h2>
 
               <div className="mt-5 space-y-4 text-[12px] font-medium leading-relaxed text-[#08304B] sm:text-[13px]">
                 <p>
-                  CarBuyers has been providing amazing prices on vehicles since 2009. We bought our first car over a
+                  SellYourRide has been providing amazing prices on vehicles since 2009. We bought our first car over a
                   decade ago and have since expanded to become Australia&apos;s go-to car buying service.
                 </p>
 

@@ -18,7 +18,7 @@ export function InspectionChecklistSection({ className }: { className?: string }
     <section className={cn("w-full bg-white", className)} aria-label="Inspection checklist">
       <div className="mx-auto max-w-6xl px-4 py-12 sm:py-14 md:px-6">
         <div className="text-center">
-          <p className="text-[18px] font-extrabold tracking-tight text-[#0B3A7A] sm:text-[20px]">CarBuyers</p>
+          <p className="text-[18px] font-extrabold tracking-tight text-[#0B3A7A] sm:text-[20px]">SellYourRide</p>
           <p className="mx-auto mt-3 max-w-2xl text-balance text-[18px] font-extrabold leading-[1.15] tracking-tight text-[#0B3A7A] sm:text-[22px]">
             For a fast sale and smooth processing, <br className="hidden sm:block" />
             bring the following to your inspection.
