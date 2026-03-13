@@ -11,6 +11,8 @@ import { cn } from "@/lib/utils";
 import heroSellMyCar from "@/assets/lady-with-a-blue-car-at-the-background.webp";
 import { SellMyCarHeadlineSection } from "@/components/SellMyCarHeadlineSection";
 import { SellMyCarStepsCard } from "@/components/SellMyCarStepsCard";
+import { AsFeaturedInStrip } from "@/components/AsFeaturedInStrip";
+import { FastStepsSection } from "@/components/FastStepsSection";
 
 const NAV = [
   { id: "sell", label: "Sell my car" },
@@ -193,8 +195,14 @@ export default function SellMyCar() {
         {/* Headline + car */}
         <SellMyCarHeadlineSection />
 
-        {/* New 4-step card strip */}
+        {/* 4-step icon card strip */}
         <SellMyCarStepsCard />
+
+        {/* Clone from home page: As Featured In */}
+        <AsFeaturedInStrip />
+
+        {/* Clone from home page: The easiest, fastest, and safest way */}
+        <FastStepsSection onEnquire={() => window.scrollTo({ top: 0, behavior: "smooth" })} />
       </main>
 
       <FloatingWhatsAppButton href={adminWhatsAppLink} />
