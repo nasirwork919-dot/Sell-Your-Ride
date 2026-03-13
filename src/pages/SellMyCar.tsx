@@ -13,6 +13,7 @@ import { SellMyCarHeadlineSection } from "@/components/SellMyCarHeadlineSection"
 import { SellMyCarStepsCard } from "@/components/SellMyCarStepsCard";
 import { AsFeaturedInStrip } from "@/components/AsFeaturedInStrip";
 import { FastStepsSection } from "@/components/FastStepsSection";
+import { BestPriceInfoSection } from "@/components/BestPriceInfoSection";
 
 const NAV = [
   { id: "sell", label: "Sell my car" },
@@ -203,6 +204,9 @@ export default function SellMyCar() {
 
         {/* Clone from home page: The easiest, fastest, and safest way */}
         <FastStepsSection onEnquire={() => window.scrollTo({ top: 0, behavior: "smooth" })} />
+
+        {/* New section: best price info */}
+        <BestPriceInfoSection />
       </main>
 
       <FloatingWhatsAppButton href={adminWhatsAppLink} />
