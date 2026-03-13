@@ -1,3 +1,4 @@
+As Featured In -> Fast Steps truck headline -> reuse sections from Sell My Car page.">
 import { useEffect, useMemo, useState } from "react";
 import { BackToTopButton } from "@/components/BackToTopButton";
 import { CarBuyersHeader } from "@/components/CarBuyersHeader";
@@ -12,6 +13,21 @@ import heroTruck from "@/assets/hero-truck.webp";
 import { SellMyTruckHeadlineSection } from "@/components/SellMyTruckHeadlineSection";
 import { SellMyTruckStepsCard } from "@/components/SellMyTruckStepsCard";
 import { HeroBottomCurve } from "@/components/HeroBottomCurve";
+
+import { HappyCustomersSection } from "@/components/HappyCustomersSection";
+import { AsFeaturedInStrip } from "@/components/AsFeaturedInStrip";
+import { FastStepsSection } from "@/components/FastStepsSection";
+
+import { BestPriceInfoSection } from "@/components/BestPriceInfoSection";
+import { WhatsGreatAboutSection } from "@/components/WhatsGreatAboutSection";
+import { SellMyCarCoverageSection } from "@/components/SellMyCarCoverageSection";
+import { SellMyCarLocationsSection } from "@/components/SellMyCarLocationsSection";
+import { WantedSellTilesSection } from "@/components/WantedSellTilesSection";
+import { ExactBenefitsOrangeSection } from "@/components/ExactBenefitsOrangeSection";
+import { InspectionChecklistSection } from "@/components/InspectionChecklistSection";
+import { SellByBrandSection } from "@/components/SellByBrandSection";
+import { FaqSection } from "@/components/FaqSection";
+import { WavyFooterCta } from "@/components/WavyFooterCta";
 
 const NAV = [
   { id: "sell", label: "Sell my car" },
@@ -66,14 +82,16 @@ export default function SellMyTruck() {
 
       {/* Match the fixed header height (mobile: 64px, desktop: 68px) */}
       <main className="w-full pb-0 pt-[64px] md:pt-[68px]">
-        {/* HERO (cloned layout: home hero style) */}
-        <section aria-label="Hero" className="relative w-full overflow-hidden bg-[#22B9C5] px-4 py-10 md:px-6 md:py-12">
+        {/* HERO */}
+        <section
+          aria-label="Hero"
+          className="relative w-full overflow-hidden bg-[#22B9C5] px-4 py-10 md:px-6 md:py-12"
+        >
           <div className="w-full md:mx-auto md:max-w-6xl md:px-6">
             <div className="grid items-center gap-10 md:grid-cols-12 md:gap-12">
               {/* Left */}
               <div className="md:col-span-7">
                 <div className="mx-auto max-w-[640px] text-center md:mx-0 md:text-left">
-                  {/* Swapped image */}
                   <div className="relative mx-auto w-full max-w-[560px] md:mx-0">
                     <div className="relative mx-auto overflow-hidden rounded-[28px] bg-white/0 p-0 md:mx-0">
                       <img
@@ -86,7 +104,6 @@ export default function SellMyTruck() {
                     </div>
                   </div>
 
-                  {/* Wordmark */}
                   <div className="mt-5">
                     <p className="text-[56px] font-extrabold leading-none tracking-tight text-[#0B3A7A] sm:text-[68px]">
                       Sell<span className="text-white">Your</span>Ride
@@ -102,7 +119,6 @@ export default function SellMyTruck() {
                     </p>
                   </div>
 
-                  {/* Steps */}
                   <div className="mt-8 grid gap-4 sm:grid-cols-3 md:max-w-[680px]">
                     {[
                       {
@@ -121,7 +137,10 @@ export default function SellMyTruck() {
                         desc: "We make an offer and provide same-day payment.",
                       },
                     ].map((s) => (
-                      <Card key={s.n} className="relative rounded-2xl border-white/55 bg-white/55 p-4 text-left shadow-sm">
+                      <Card
+                        key={s.n}
+                        className="relative rounded-2xl border-white/55 bg-white/55 p-4 text-left shadow-sm"
+                      >
                         <div className="absolute -top-4 left-1/2 grid h-9 w-9 -translate-x-1/2 place-items-center rounded-full bg-[#0B3A7A] text-sm font-extrabold text-white shadow">
                           {s.n}
                         </div>
@@ -137,7 +156,6 @@ export default function SellMyTruck() {
               {/* Right: form card */}
               <div className="md:col-span-5">
                 <div className="relative w-full md:mx-auto md:max-w-none">
-                  {/* Starburst badge */}
                   <div className="pointer-events-none absolute -top-7 left-10 z-10">
                     <div className="grid h-14 w-14 rotate-[-10deg] place-items-center rounded-[18px] bg-transparent">
                       <div className="relative grid h-14 w-14 place-items-center">
@@ -158,7 +176,6 @@ export default function SellMyTruck() {
                       We will buy your truck today!
                     </p>
 
-                    {/* Step indicator */}
                     <div className="mt-4 flex items-center gap-3 px-2" aria-label="Quote steps">
                       <div className="grid h-7 w-7 place-items-center rounded-full bg-[#0B3A7A] text-[12px] font-extrabold text-white">
                         1
@@ -192,9 +209,30 @@ export default function SellMyTruck() {
           <HeroBottomCurve from="#22B9C5" to="#F3F6FA" />
         </div>
 
-        {/* Next section (merged visually via matching bg) */}
+        {/* Headline + steps */}
         <SellMyTruckHeadlineSection />
         <SellMyTruckStepsCard />
+
+        {/* Reviews (then featured in) */}
+        <HappyCustomersSection onEnquire={() => window.scrollTo({ top: 0, behavior: "smooth" })} />
+        <AsFeaturedInStrip />
+
+        {/* The easiest, fastest, and safest way to sell your truck! */}
+        <FastStepsSection onEnquire={() => window.scrollTo({ top: 0, behavior: "smooth" })} />
+
+        {/* Sections reused from Sell My Car */}
+        <BestPriceInfoSection />
+        <WhatsGreatAboutSection />
+        <SellMyCarCoverageSection />
+        <SellMyCarLocationsSection />
+        <WantedSellTilesSection onQuote={() => window.scrollTo({ top: 0, behavior: "smooth" })} />
+        <ExactBenefitsOrangeSection onEnquire={() => window.scrollTo({ top: 0, behavior: "smooth" })} />
+        <InspectionChecklistSection />
+        <SellByBrandSection onBrand={() => window.scrollTo({ top: 0, behavior: "smooth" })} />
+        <section id="faq" className="w-full scroll-mt-28">
+          <FaqSection />
+        </section>
+        <WavyFooterCta onEnquire={() => window.scrollTo({ top: 0, behavior: "smooth" })} />
       </main>
 
       <FloatingWhatsAppButton href={adminWhatsAppLink} />
