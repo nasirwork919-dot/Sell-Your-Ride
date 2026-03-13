@@ -15,7 +15,6 @@ function TopWave() {
 
   return (
     <div className="relative w-full">
-      {/* The SVG is transparent and overlays between the above section and the navy footer */}
       <svg
         viewBox="0 0 1440 220"
         preserveAspectRatio="none"
@@ -26,10 +25,8 @@ function TopWave() {
           <path id="wavePath" d={waveD} />
         </defs>
 
-        {/* This white area blends into the ABOVE section */}
         <rect x="0" y="0" width="1440" height="220" fill="#FFFFFF" />
 
-        {/* Navy wave fill that continues into the footer below */}
         <path
           d={`
             ${waveD}
@@ -40,10 +37,8 @@ function TopWave() {
           fill="#163F75"
         />
 
-        {/* Subtle grey seam line */}
         <path d={waveD} fill="none" stroke="rgba(11,58,122,0.22)" strokeWidth="6" strokeLinecap="round" />
 
-        {/* Curved teal text riding the wave */}
         <text
           fill="#22B9C5"
           fontSize="24"
@@ -136,85 +131,87 @@ export function WavyFooterCta({ className, onEnquire }: { className?: string; on
 
   return (
     <footer className={cn("w-full", className)} aria-label="Footer">
-      {/* Pull the wave slightly down so it visually becomes the top edge of the navy footer */}
-      <div className="-mb-[18px] sm:-mb-[22px]">
-        <TopWave />
-      </div>
+      {/* Seamless join: pull the navy footer up behind the wave slightly */}
+      <div className="relative">
+        <div className="translate-y-[1px]">
+          <TopWave />
+        </div>
 
-      <div className="bg-[#163F75]">
-        <div className="mx-auto max-w-6xl px-4 pb-10 pt-10 md:px-6 md:pt-12">
-          {/* CTA */}
-          <div className="text-center">
-            <p className="text-[22px] font-extrabold tracking-tight text-[#66E3B1] sm:text-[26px]">
-              Ready to sell your car?
-            </p>
-            <p className="mt-2 text-[12px] font-semibold text-white/95 sm:text-[13px]">
-              Contact us today to get your instant offer
-            </p>
+        <div className="bg-[#163F75]">
+          <div className="mx-auto max-w-6xl px-4 pb-10 pt-10 md:px-6 md:pt-12">
+            {/* CTA */}
+            <div className="text-center">
+              <p className="text-[22px] font-extrabold tracking-tight text-[#66E3B1] sm:text-[26px]">
+                Ready to sell your car?
+              </p>
+              <p className="mt-2 text-[12px] font-semibold text-white/95 sm:text-[13px]">
+                Contact us today to get your instant offer
+              </p>
 
-            <p className="mt-6 text-[12px] font-semibold text-white/95">and many more!</p>
+              <p className="mt-6 text-[12px] font-semibold text-white/95">and many more!</p>
 
-            <div className="mt-4 flex justify-center">
-              <Button
-                onClick={onEnquire}
-                className="h-11 rounded-full bg-white px-10 text-[12px] font-extrabold text-[#0B3A7A] hover:bg-white/95"
-              >
-                Enquire Now
-              </Button>
-            </div>
-          </div>
-
-          {/* Link grid */}
-          <div className="mx-auto mt-10 grid max-w-3xl grid-cols-2 gap-10 sm:grid-cols-5 sm:gap-8">
-            <FooterCol col={cols[0]} />
-            <FooterCol col={cols[1]} />
-            <FooterCol col={cols[2]} />
-            <FooterCol col={cols[3]} />
-
-            {/* Social */}
-            <div className="sm:col-span-1">
-              <p className="text-[11px] font-extrabold uppercase tracking-[0.18em] text-white/80">Social</p>
-              <div className="mt-4 flex items-center gap-3">
-                <a
-                  href="#"
-                  className="inline-flex h-9 w-9 items-center justify-center rounded-full bg-white/10 text-white ring-1 ring-white/15 transition hover:bg-white/15"
-                  aria-label="Instagram"
-                  title="Instagram"
+              <div className="mt-4 flex justify-center">
+                <Button
+                  onClick={onEnquire}
+                  className="h-11 rounded-full bg-white px-10 text-[12px] font-extrabold text-[#0B3A7A] hover:bg-white/95"
                 >
-                  <Instagram className="h-4 w-4" />
-                </a>
-                <a
-                  href="#"
-                  className="inline-flex h-9 w-9 items-center justify-center rounded-full bg-white/10 text-white ring-1 ring-white/15 transition hover:bg-white/15"
-                  aria-label="Facebook"
-                  title="Facebook"
-                >
-                  <Facebook className="h-4 w-4" />
-                </a>
+                  Enquire Now
+                </Button>
               </div>
             </div>
-          </div>
 
-          {/* Licenses / small lines */}
-          <div className="mt-12 text-center">
-            <p className="text-[10px] font-extrabold tracking-[0.18em] text-[#66E3B1]">
-              VIC LMCT: 13029 &nbsp;&nbsp; NSW: MD099272 &nbsp;&nbsp; WA: MD28980 &nbsp;&nbsp; SA: MVD312051
-              &nbsp;&nbsp; QLD: 4874443 &nbsp;&nbsp; TAS: 6267
-            </p>
+            {/* Link grid */}
+            <div className="mx-auto mt-10 grid max-w-3xl grid-cols-2 gap-10 sm:grid-cols-5 sm:gap-8">
+              <FooterCol col={cols[0]} />
+              <FooterCol col={cols[1]} />
+              <FooterCol col={cols[2]} />
+              <FooterCol col={cols[3]} />
 
-            <div className="mt-4">
-              <a href="#privacy" className="text-[11px] font-semibold text-white/95 hover:text-white">
-                Privacy Policy
-              </a>
-              <span className="mx-2 text-white/40">|</span>
-              <a href="#terms" className="text-[11px] font-semibold text-white/95 hover:text-white">
-                Terms & Conditions
-              </a>
+              {/* Social */}
+              <div className="sm:col-span-1">
+                <p className="text-[11px] font-extrabold uppercase tracking-[0.18em] text-white/80">Social</p>
+                <div className="mt-4 flex items-center gap-3">
+                  <a
+                    href="#"
+                    className="inline-flex h-9 w-9 items-center justify-center rounded-full bg-white/10 text-white ring-1 ring-white/15 transition hover:bg-white/15"
+                    aria-label="Instagram"
+                    title="Instagram"
+                  >
+                    <Instagram className="h-4 w-4" />
+                  </a>
+                  <a
+                    href="#"
+                    className="inline-flex h-9 w-9 items-center justify-center rounded-full bg-white/10 text-white ring-1 ring-white/15 transition hover:bg-white/15"
+                    aria-label="Facebook"
+                    title="Facebook"
+                  >
+                    <Facebook className="h-4 w-4" />
+                  </a>
+                </div>
+              </div>
             </div>
 
-            <p className="mt-5 text-[11px] font-semibold text-white/70">
-              TWG Sell Your Ride Pty Ltd (ABN 11 686 678 633). Copyright 2026
-            </p>
+            {/* Licenses / small lines */}
+            <div className="mt-12 text-center">
+              <p className="text-[10px] font-extrabold tracking-[0.18em] text-[#66E3B1]">
+                VIC LMCT: 13029 &nbsp;&nbsp; NSW: MD099272 &nbsp;&nbsp; WA: MD28980 &nbsp;&nbsp; SA: MVD312051
+                &nbsp;&nbsp; QLD: 4874443 &nbsp;&nbsp; TAS: 6267
+              </p>
+
+              <div className="mt-4">
+                <a href="#privacy" className="text-[11px] font-semibold text-white/95 hover:text-white">
+                  Privacy Policy
+                </a>
+                <span className="mx-2 text-white/40">|</span>
+                <a href="#terms" className="text-[11px] font-semibold text-white/95 hover:text-white">
+                  Terms & Conditions
+                </a>
+              </div>
+
+              <p className="mt-5 text-[11px] font-semibold text-white/70">
+                TWG Sell Your Ride Pty Ltd (ABN 11 686 678 633). Copyright 2026
+              </p>
+            </div>
           </div>
         </div>
       </div>

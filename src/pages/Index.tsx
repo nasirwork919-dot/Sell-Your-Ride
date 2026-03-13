@@ -16,6 +16,7 @@ import { ReadyToSellSection } from "@/components/ReadyToSellSection";
 import { AboutWordmarkSection } from "@/components/AboutWordmarkSection";
 import { FaqSection } from "@/components/FaqSection";
 import { WavyFooterCta } from "@/components/WavyFooterCta";
+import { FullBleedSection } from "@/components/FullBleedSection";
 
 const NAV = [
   { id: "sell", label: "Sell my car" },
@@ -153,43 +154,34 @@ export default function Index() {
         {/* Happy customers section */}
         <HappyCustomersSection onEnquire={() => navTo("sell")} />
 
-        {/* Remaining sections: centered content */}
-        <div className="mx-auto max-w-6xl px-4 md:px-6">
-          {/* Caravan anchor can map to same block for now */}
+        {/* Anchors (no boxed wrapper; keep full-bleed behavior) */}
+        <FullBleedSection className="sr-only" innerClassName="px-0">
           <section id="caravan" className="sr-only" aria-hidden="true" />
-
-          {/* Difference + About anchors (scroll targets for header items) */}
           <section id="difference" className="sr-only" aria-hidden="true" />
           <section id="about" className="sr-only" aria-hidden="true" />
-
-          {/* How anchor kept for nav/scroll highlighting, but no longer renders the block */}
           <section id="how" className="sr-only" aria-hidden="true" />
-
-          {/* Reviews anchor kept for nav/scroll highlighting */}
           <section id="reviews" className="sr-only" aria-hidden="true" />
-
-          {/* Contact anchor kept for nav/scroll highlighting */}
           <section id="contact" className="sr-only" aria-hidden="true" />
-        </div>
+        </FullBleedSection>
 
         {/* Exact clone benefits section (full width) */}
         <ExactBenefitsOrangeSection onEnquire={() => navTo("sell")} />
 
-        {/* Requested clone section (now directly under the orange benefits section) */}
+        {/* Requested clone section (full width) */}
         <WantedSellTilesSection onQuote={() => navTo("sell")} />
 
-        {/* Ready-to-sell section (reference screenshot) */}
+        {/* Ready-to-sell section (full width) */}
         <ReadyToSellSection onQuote={() => navTo("sell")} />
 
-        {/* About section (reference screenshot) */}
+        {/* About section (full width) */}
         <AboutWordmarkSection onContact={() => navTo("sell")} />
 
-        {/* FAQ section (reference screenshot) */}
+        {/* FAQ section (full width) */}
         <section id="faq" className="w-full scroll-mt-28">
           <FaqSection />
         </section>
 
-        {/* New: exact wavy footer CTA like screenshot */}
+        {/* Wavy footer CTA (full width) */}
         <WavyFooterCta onEnquire={() => navTo("sell")} />
       </main>
 
