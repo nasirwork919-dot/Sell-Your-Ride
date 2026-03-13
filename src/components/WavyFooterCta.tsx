@@ -41,23 +41,22 @@ function TopWave() {
         {/* Curved teal text riding the wave */}
         <text
           fill="#22B9C5"
-          fontSize="18"
-          fontWeight="800"
-          letterSpacing="0.5"
+          fontSize="20"
+          fontWeight="900"
+          letterSpacing="0.6"
           textAnchor="middle"
           dominantBaseline="middle"
-          opacity="0.98"
+          opacity="0.99"
         >
           <textPath
             href="#wavePath"
             startOffset="50%"
             method="align"
             spacing="auto"
-            // Even spacing so it resembles the reference more closely
             textLength={1180}
             lengthAdjust="spacingAndGlyphs"
           >
-            <tspan dy={-8} style={{ paintOrder: "stroke", stroke: "rgba(255,255,255,0.55)", strokeWidth: 2 }}>
+            <tspan dy={-9} style={{ paintOrder: "stroke", stroke: "rgba(255,255,255,0.55)", strokeWidth: 2 }}>
               {label}
             </tspan>
           </textPath>
